@@ -1,9 +1,10 @@
-# Institutional Options Pricing, Greek Engine & CME/COMEX Volatility Surfaces
-
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Tests: 21 Passed](https://img.shields.io/badge/tests-21%20passed-brightgreen.svg)](./tests)
 [![Markets: CME & COMEX](https://img.shields.io/badge/Exchanges-CME%20%7C%20COMEX-gold.svg)](https://www.cmegroup.com)
+[![Vercel: Live](https://img.shields.io/badge/Vercel-Live%20Demo-brightgreen.svg?logo=vercel)](https://web-five-pied-83.vercel.app)
+
+> 🚀 **Live Production Deployment on Vercel:** [https://web-five-pied-83.vercel.app](https://web-five-pied-83.vercel.app)
 
 A high-performance quantitative derivatives library engineered from first principles for commodity and futures options desks. Features analytical Black-76, dynamic programming Binomial Trees for American early-exercise boundary solving, Antithetic Monte Carlo simulation, 1st, 2nd, and cross Greeks (Vanna, Volga), Gatheral's SVI and Hagan's SABR volatility surface calibration, and an automated relative-value volatility arbitrage scanner.
 
