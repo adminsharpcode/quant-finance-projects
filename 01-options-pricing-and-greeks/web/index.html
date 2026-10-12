@@ -521,8 +521,18 @@
               </button>
             </div>
             <div class="portfolio-actions">
+              <button class="btn btn-xs btn-algo-toggle active" id="btn-auto-signals" title="Toggle automatic signal lifecycle engine">
+                <span class="algo-dot"></span>
+                <span id="auto-signals-text">AUTO SIGNAL TRADING: ON</span>
+              </button>
+              <button class="btn btn-xs btn-glass" id="btn-gen-signals" title="Evaluate live chain and execute active signals">
+                🎯 Generate Signals
+              </button>
+              <button class="btn btn-xs btn-glass text-emerald" id="btn-harvest-targets" title="Harvest profit on all positions reaching edge targets">
+                💰 Take Profit (Target Met)
+              </button>
               <button class="btn btn-xs btn-rebalance-header" id="btn-quick-rebalance">
-                ⚡ REBALANCE DELTA (Δ = 0)
+                ⚡ Rebalance Delta (Δ = 0)
               </button>
               <button class="btn btn-xs btn-glass-danger" id="btn-flatten-book">
                 ✕ Flatten Book
@@ -736,15 +746,16 @@
                   <thead>
                     <tr>
                       <th>Contract / Symbol</th>
+                      <th>Signal Strategy</th>
                       <th>Side & Type</th>
                       <th>Qty</th>
                       <th>Entry Price</th>
                       <th>Mark Price</th>
                       <th>Position Δ</th>
-                      <th>Position Γ</th>
                       <th>Position ν</th>
                       <th>Position Θ</th>
                       <th>Unrealized PnL</th>
+                      <th>Target Status</th>
                       <th>Action</th>
                     </tr>
                   </thead>
