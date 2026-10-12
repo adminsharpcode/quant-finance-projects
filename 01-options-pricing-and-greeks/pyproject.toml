@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "quant-options-engine"
+version = "1.0.0"
+description = "Institutional Options Pricing, Greek Engine, SVI/SABR Volatility Surface Calibration and Relative-Value Arbitrage"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    { name = "Quantitative Research & Engineering" }
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Office/Business :: Financial :: Investment",
+]
+dependencies = [
+    "numpy>=1.26.0",
+    "scipy>=1.12.0",
+    "pandas>=2.2.0",
+    "matplotlib>=3.8.0",
+    "plotly>=5.18.0",
+    "rich>=13.7.0"
+]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q --tb=short"
+testpaths = ["tests"]
+pythonpath = ["."]
