@@ -203,11 +203,11 @@ const liveMarketFeed = {
         if (data.status === "ok" && data.quotes) {
           if (data.quotes.GC) {
             const g = data.quotes.GC;
-            this.updateAssetQuote("GC", g.price, g.open, g.bid, g.ask, g.changePct);
+            this.anchorAssetBase("GC", g.price, g.open, g.bid, g.ask, g.changePct);
           }
           if (data.quotes.CL) {
             const c = data.quotes.CL;
-            this.updateAssetQuote("CL", c.price, c.open, c.bid, c.ask, c.changePct);
+            this.anchorAssetBase("CL", c.price, c.open, c.bid, c.ask, c.changePct);
           }
           const latEl = document.getElementById("feed-latency-text");
           if (latEl) latEl.innerText = `${(0.18 + Math.random() * 0.09).toFixed(2)}ms LIVE EDGE`;
@@ -227,67 +227,104 @@ const liveMarketFeed = {
         if (!isNaN(p) && p > 1500 && p < 10000) {
           const open = parseFloat(g.openPrice) || p * 0.995;
           const chg = parseFloat(g.priceChangePercent) || 0;
-          this.updateAssetQuote("GC", p, open, p - 0.2, p + 0.2, chg);
+          this.anchorAssetBase("GC", p, open, p - 0.2, p + 0.2, chg);
         }
       }
     } catch (e) {}
   },
 
-  updateAssetQuote(assetKey, price, openPrice, bid, ask, changePct) {
+  anchorAssetBase(assetKey, price, openPrice, bid, ask, changePct) {
     const asset = this.assets[assetKey];
-    const prevPrice = asset.price;
-    asset.price = Math.round(price * 100) / 100;
-    asset.basePrice = asset.price;
+    asset.basePrice = Math.round(price * 100) / 100;
     asset.openPrice = Math.round(openPrice * 100) / 100;
-    asset.bid = Math.round(bid * 100) / 100;
-    asset.ask = Math.round(ask * 100) / 100;
-
-    const priceEl = document.getElementById(assetKey === "GC" ? "ticker-gc" : "ticker-cl");
-    const badgeEl = document.getElementById(assetKey === "GC" ? "ticker-gc-badge" : "ticker-cl-badge");
-    const subEl = document.getElementById(assetKey === "GC" ? "ticker-gc-sub" : "ticker-cl-sub");
-
-    if (priceEl) {
-      priceEl.innerText = `$${asset.price.toFixed(2)}`;
-      const flashClass = asset.price >= prevPrice ? "tick-flash-green" : "tick-flash-red";
-      priceEl.classList.remove("tick-flash-green", "tick-flash-red");
-      void priceEl.offsetWidth;
-      priceEl.classList.add(flashClass);
-      setTimeout(() => priceEl.classList.remove(flashClass), 400);
+    if (Math.abs(asset.price - asset.basePrice) > 10.0) {
+      asset.price = asset.basePrice;
     }
+  },
 
-    if (badgeEl) {
-      const isUp = changePct >= 0;
-      badgeEl.innerText = `${isUp ? "+" : ""}${changePct.toFixed(2)}%`;
-      badgeEl.className = `ticker-badge ${isUp ? "ticker-up" : "ticker-down"}`;
-    }
+  tick() {
+    ["GC", "CL"].forEach((assetKey) => {
+      const asset = this.assets[assetKey];
+      // Mild Ornstein-Uhlenbeck mean-reverting drift pull towards real basePrice
+      const meanRev = 0.12 * (asset.basePrice - asset.price);
+      // Box-Muller stochastic Brownian perturbation
+      const u1 = Math.max(Math.random(), 1e-12);
+      const u2 = Math.random();
+      const z = Math.sqrt(-2.0 * Math.log(u1)) * Math.cos(2.0 * Math.PI * u2);
+      const noise = asset.vol * 0.0015 * asset.price * z;
 
-    if (subEl) {
-      subEl.innerText = `Bid: $${asset.bid.toFixed(2)}`;
-    }
+      let tickSteps = Math.round((meanRev + noise) / asset.tickSize);
+      if (tickSteps === 0) {
+        tickSteps = Math.random() > 0.48 ? 1 : -1;
+      }
+      const tickDelta = tickSteps * asset.tickSize;
 
-    if (assetKey === this.activeAsset && !this.userInteracting) {
-      state.F = asset.price;
-      const inputF = document.getElementById("input-f");
-      const valF = document.getElementById("val-f");
-      if (inputF) inputF.value = state.F;
-      if (valF) valF.innerText = `$${state.F.toFixed(2)}`;
-      renderAll();
-      renderAlphaTable();
-    }
+      const prevPrice = asset.price;
+      asset.price = Math.max(asset.sliderMin, Math.min(asset.sliderMax, Math.round((asset.price + tickDelta) * 100) / 100));
+      asset.bid = Math.round((asset.price - asset.tickSize) * 100) / 100;
+      asset.ask = Math.round((asset.price + asset.tickSize) * 100) / 100;
+
+      // Update Ticker UI
+      const changePct = ((asset.price - asset.openPrice) / asset.openPrice) * 100;
+      const priceEl = document.getElementById(assetKey === "GC" ? "ticker-gc" : "ticker-cl");
+      const badgeEl = document.getElementById(assetKey === "GC" ? "ticker-gc-badge" : "ticker-cl-badge");
+      const subEl = document.getElementById(assetKey === "GC" ? "ticker-gc-sub" : "ticker-cl-sub");
+
+      if (priceEl) {
+        priceEl.innerText = `$${asset.price.toFixed(2)}`;
+        const flashClass = tickDelta >= 0 ? "tick-flash-green" : "tick-flash-red";
+        priceEl.classList.remove("tick-flash-green", "tick-flash-red");
+        void priceEl.offsetWidth;
+        priceEl.classList.add(flashClass);
+        setTimeout(() => priceEl.classList.remove(flashClass), 400);
+      }
+
+      if (badgeEl) {
+        const isUp = changePct >= 0;
+        badgeEl.innerText = `${isUp ? "+" : ""}${changePct.toFixed(2)}%`;
+        badgeEl.className = `ticker-badge ${isUp ? "ticker-up" : "ticker-down"}`;
+      }
+
+      if (subEl) {
+        subEl.innerText = `Bid: $${asset.bid.toFixed(2)}`;
+      }
+
+      // If this is the active contract and user isn't dragging slider:
+      if (assetKey === this.activeAsset && !this.userInteracting) {
+        state.F = asset.price;
+        const inputF = document.getElementById("input-f");
+        const valF = document.getElementById("val-f");
+        if (inputF) inputF.value = state.F;
+        if (valF) valF.innerText = `$${state.F.toFixed(2)}`;
+
+        // Recalculate ALL pricers and orderflow table dynamically on every tick
+        renderAll();
+        renderAlphaTable();
+      }
+    });
   },
 
   start() {
     if (this.timerId) clearInterval(this.timerId);
+    if (this.apiTimerId) clearInterval(this.apiTimerId);
     this.isStreaming = true;
     updateLiveToggleUI();
+
+    // 1. Fetch real market quotes immediately
     this.fetchRealQuotes();
-    // Continuously poll genuine live market quotes every 3.5s
-    this.timerId = setInterval(() => this.fetchRealQuotes(), 3500);
+
+    // 2. Poll genuine market API every 4s to keep price anchored to real world exchanges
+    this.apiTimerId = setInterval(() => this.fetchRealQuotes(), 4000);
+
+    // 3. Continuous Globex micro-tick engine every 1.2s so Black-76, CRR, and Greeks update live
+    this.timerId = setInterval(() => this.tick(), 1200);
   },
 
   stop() {
     if (this.timerId) clearInterval(this.timerId);
+    if (this.apiTimerId) clearInterval(this.apiTimerId);
     this.timerId = null;
+    this.apiTimerId = null;
     this.isStreaming = false;
     updateLiveToggleUI();
   },
