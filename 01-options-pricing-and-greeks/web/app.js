@@ -297,9 +297,12 @@ const liveMarketFeed = {
         if (inputF) inputF.value = state.F;
         if (valF) valF.innerText = `$${state.F.toFixed(2)}`;
 
-        // Recalculate ALL pricers and orderflow table dynamically on every tick
+        // Recalculate ALL pricers, orderflow table, and portfolio mark-to-market dynamically on every tick
         renderAll();
         renderAlphaTable();
+        if (typeof portfolioEngine !== "undefined") {
+          portfolioEngine.markToMarket();
+        }
       }
     });
   },
@@ -386,10 +389,13 @@ function init() {
   init3DSurfacePlot();
   init2DSmilesPlot();
   renderAlphaTable();
+  if (typeof portfolioEngine !== "undefined") {
+    portfolioEngine.init();
+  }
 
   // Start Real-Time Globex Market Feed
   liveMarketFeed.start();
-  liveMarketFeed.fetchRealPrice();
+  liveMarketFeed.fetchRealQuotes();
 }
 
 function bindControls() {
@@ -432,6 +438,10 @@ function bindControls() {
           Plotly.Plots.resize("plot-greek-curve");
           Plotly.Plots.resize("plot-payoff-curve");
         }, 50);
+      } else if (tab.dataset.tab === "tab-portfolio") {
+        if (typeof portfolioEngine !== "undefined") {
+          portfolioEngine.renderUI();
+        }
       }
     });
   });
@@ -931,10 +941,1227 @@ function renderAlphaTable() {
       <td><span class="action-pill ${actionClass}">${dynamicLabel}</span></td>
       <td style="color: var(--cyan); font-weight: 600;">${dynamicHedge}</td>
       <td style="font-weight: 800; color: #fff;">${edgeText}</td>
+      <td style="white-space: nowrap;">
+        <button class="btn-table-exec btn-scanner-hedge" data-symbol="${c.symbol}" title="Execute trade with automatic futures delta hedge">
+          ⚡ Hedge
+        </button>
+        <button class="btn-table-exec btn-scanner-naked" data-symbol="${c.symbol}" style="margin-left: 4px; border-color: rgba(255,255,255,0.2) !important; color: #fff !important;" title="Execute naked option without delta hedge">
+          Naked
+        </button>
+      </td>
     `;
     tbody.appendChild(tr);
   });
 }
+
+// ------------------- INSTITUTIONAL MULTI-PORTFOLIO RISK & EXECUTION ENGINE -------------------
+
+const portfolioEngine = {
+  activeBookId: "book-vol-arb",
+  algoBotActive: false,
+  lastAlgoCheckTime: 0,
+  algoCapturedEdge: 4280.0,
+  tradeSide: "BUY",
+
+  books: {
+    "book-vol-arb": {
+      id: "book-vol-arb",
+      name: "Alpha Vol Arbitrage Book",
+      tag: "RELATIVE VALUE ARB",
+      desc: "Systematic exploitation of SVI volatility surface dislocations with automated underlying delta-hedging.",
+      startCapital: 5000000.0,
+      cash: 4880500.0,
+      realizedPnl: 35300.0,
+      positions: [
+        {
+          id: "pos-101",
+          symbol: "OG_4000_P_30d",
+          name: "Gold 4000 Put (30d)",
+          asset: "GC",
+          instType: "put",
+          side: "BUY",
+          qty: 15,
+          entryPrice: 16.50,
+          markPrice: 16.50,
+          strike: 4000,
+          T: 30 / 365,
+          iv: 0.191,
+          multiplier: 100,
+        },
+        {
+          id: "pos-102",
+          symbol: "GC_FUT_HEDGE_1",
+          name: "COMEX GC Futures (Hedge)",
+          asset: "GC",
+          instType: "future",
+          side: "BUY",
+          qty: 2.73,
+          entryPrice: 4166.50,
+          markPrice: 4170.00,
+          strike: null,
+          T: null,
+          iv: null,
+          multiplier: 100,
+        },
+        {
+          id: "pos-103",
+          symbol: "OG_4220_C_30d",
+          name: "Gold 4220 Call (30d)",
+          asset: "GC",
+          instType: "call",
+          side: "SELL",
+          qty: 20,
+          entryPrice: 44.20,
+          markPrice: 44.20,
+          strike: 4220,
+          T: 30 / 365,
+          iv: 0.162,
+          multiplier: 100,
+        },
+        {
+          id: "pos-104",
+          symbol: "GC_FUT_HEDGE_2",
+          name: "COMEX GC Futures (Hedge)",
+          asset: "GC",
+          instType: "future",
+          side: "BUY",
+          qty: 7.60,
+          entryPrice: 4168.20,
+          markPrice: 4170.00,
+          strike: null,
+          T: null,
+          iv: null,
+          multiplier: 100,
+        }
+      ],
+      orders: [
+        {
+          id: "ORD-98214",
+          time: "19:42:15",
+          book: "Alpha Vol Arb",
+          action: "BUY",
+          symbol: "OG_4000_P_30d",
+          qty: 15,
+          fillPrice: 16.50,
+          fairValue: 17.20,
+          edge: "+$1,050.00",
+          venue: "CME Globex Maker",
+          status: "FILLED"
+        },
+        {
+          id: "ORD-98215",
+          time: "19:42:15",
+          book: "Alpha Vol Arb",
+          action: "BUY HEDGE",
+          symbol: "GC Futures",
+          qty: 2.73,
+          fillPrice: 4166.50,
+          fairValue: 4166.50,
+          edge: "$0.00",
+          venue: "CME Globex Taker",
+          status: "FILLED"
+        },
+        {
+          id: "ORD-98218",
+          time: "19:43:02",
+          book: "Alpha Vol Arb",
+          action: "SELL",
+          symbol: "OG_4220_C_30d",
+          qty: 20,
+          fillPrice: 44.20,
+          fairValue: 41.80,
+          edge: "+$4,800.00",
+          venue: "CME Globex Maker",
+          status: "FILLED"
+        },
+        {
+          id: "ORD-98219",
+          time: "19:43:02",
+          book: "Alpha Vol Arb",
+          action: "BUY HEDGE",
+          symbol: "GC Futures",
+          qty: 7.60,
+          fillPrice: 4168.20,
+          fairValue: 4168.20,
+          edge: "$0.00",
+          venue: "CME Globex Taker",
+          status: "FILLED"
+        }
+      ]
+    },
+
+    "book-delta-neutral": {
+      id: "book-delta-neutral",
+      name: "Delta-Neutral Market Making Book",
+      tag: "GAMMA & THETA HARVEST",
+      desc: "High-frequency option market-making collecting positive daily Theta while dynamically re-hedging Delta to zero.",
+      startCapital: 5000000.0,
+      cash: 4945000.0,
+      realizedPnl: 48900.0,
+      positions: [
+        {
+          id: "pos-201",
+          symbol: "OG_4170_C_60d",
+          name: "Gold 4170 ATM Call (60d)",
+          asset: "GC",
+          instType: "call",
+          side: "SELL",
+          qty: 12,
+          entryPrice: 120.50,
+          markPrice: 119.35,
+          strike: 4170,
+          T: 60 / 365,
+          iv: 0.175,
+          multiplier: 100,
+        },
+        {
+          id: "pos-202",
+          symbol: "OG_4170_P_60d",
+          name: "Gold 4170 ATM Put (60d)",
+          asset: "GC",
+          instType: "put",
+          side: "SELL",
+          qty: 12,
+          entryPrice: 119.80,
+          markPrice: 118.85,
+          strike: 4170,
+          T: 60 / 365,
+          iv: 0.175,
+          multiplier: 100,
+        },
+        {
+          id: "pos-203",
+          symbol: "GC_FUT_NEUTRAL",
+          name: "COMEX GC Futures (Hedge)",
+          asset: "GC",
+          instType: "future",
+          side: "BUY",
+          qty: 0.08,
+          entryPrice: 4169.80,
+          markPrice: 4170.00,
+          strike: null,
+          T: null,
+          iv: null,
+          multiplier: 100,
+        }
+      ],
+      orders: [
+        {
+          id: "ORD-97102",
+          time: "18:15:30",
+          book: "Delta-Neutral MM",
+          action: "SELL STRADDLE",
+          symbol: "OG 4170 Call/Put 60d",
+          qty: 12,
+          fillPrice: 240.30,
+          fairValue: 238.20,
+          edge: "+$2,520.00",
+          venue: "CME Globex Maker",
+          status: "FILLED"
+        }
+      ]
+    },
+
+    "book-macro-tail": {
+      id: "book-macro-tail",
+      name: "Macro Convexity & Tail-Risk Book",
+      tag: "ASYMMETRIC LONG VOL",
+      desc: "Directional asymmetric safe-haven convexity, holding long OTM call wings ($4,300) and crash puts.",
+      startCapital: 5000000.0,
+      cash: 4910000.0,
+      realizedPnl: 18200.0,
+      positions: [
+        {
+          id: "pos-301",
+          symbol: "OG_4400_C_60d",
+          name: "Gold 4400 Call Wing (60d)",
+          asset: "GC",
+          instType: "call",
+          side: "BUY",
+          qty: 25,
+          entryPrice: 36.50,
+          markPrice: 36.70,
+          strike: 4400,
+          T: 60 / 365,
+          iv: 0.180,
+          multiplier: 100,
+        }
+      ],
+      orders: [
+        {
+          id: "ORD-96540",
+          time: "17:04:12",
+          book: "Macro Tail-Risk",
+          action: "BUY",
+          symbol: "OG_4400_C_60d",
+          qty: 25,
+          fillPrice: 36.50,
+          fairValue: 36.70,
+          edge: "+$500.00",
+          venue: "CME Globex Maker",
+          status: "FILLED"
+        }
+      ]
+    }
+  },
+
+  init() {
+    this.bindEvents();
+    this.markToMarket();
+    this.renderUI();
+  },
+
+  getActiveBook() {
+    return this.books[this.activeBookId] || this.books["book-vol-arb"];
+  },
+
+  bindEvents() {
+    // Book Chips Click
+    const chipsContainer = document.getElementById("book-chips-container");
+    if (chipsContainer) {
+      chipsContainer.addEventListener("click", (e) => {
+        const chip = e.target.closest(".book-chip");
+        if (chip && chip.dataset.book) {
+          this.switchBook(chip.dataset.book);
+        }
+      });
+    }
+
+    // New Book Modal
+    const btnNewBook = document.getElementById("btn-new-book");
+    const modalNewBook = document.getElementById("new-book-modal");
+    const btnCloseBookModal = document.getElementById("btn-close-book-modal");
+    const btnCreateSubmit = document.getElementById("btn-create-book-submit");
+
+    if (btnNewBook && modalNewBook) {
+      btnNewBook.addEventListener("click", () => modalNewBook.classList.add("active"));
+    }
+    if (btnCloseBookModal && modalNewBook) {
+      btnCloseBookModal.addEventListener("click", () => modalNewBook.classList.remove("active"));
+    }
+    if (btnCreateSubmit && modalNewBook) {
+      btnCreateSubmit.addEventListener("click", () => {
+        const name = document.getElementById("new-book-name").value.trim() || "Custom Quant Book";
+        const tag = document.getElementById("new-book-tag").value.trim().toUpperCase() || "CUSTOM STRATEGY";
+        const cap = parseFloat(document.getElementById("new-book-capital").value) || 5000000;
+        const desc = document.getElementById("new-book-desc").value.trim() || "User defined quantitative strategy.";
+        this.createCustomBook(name, tag, cap, desc);
+        modalNewBook.classList.remove("active");
+      });
+    }
+
+    // Rebalance Delta Neutral Buttons
+    const btnQuickRebalance = document.getElementById("btn-quick-rebalance");
+    const btnCardRebalance = document.getElementById("btn-card-rebalance");
+    if (btnQuickRebalance) btnQuickRebalance.addEventListener("click", () => this.rebalanceDeltaToZero());
+    if (btnCardRebalance) btnCardRebalance.addEventListener("click", () => this.rebalanceDeltaToZero());
+
+    // Flatten Book & Reset Book
+    const btnFlatten = document.getElementById("btn-flatten-book");
+    const btnReset = document.getElementById("btn-reset-book");
+    if (btnFlatten) btnFlatten.addEventListener("click", () => this.flattenBook());
+    if (btnReset) btnReset.addEventListener("click", () => this.resetBook());
+
+    // Clear Blotter
+    const btnClearBlotter = document.getElementById("btn-clear-blotter");
+    if (btnClearBlotter) {
+      btnClearBlotter.addEventListener("click", () => {
+        const book = this.getActiveBook();
+        book.orders = [];
+        this.renderBlotterTable();
+        this.showToast("BLOTTER CLEARED", "Execution audit trail reset for active book.", false);
+      });
+    }
+
+    // Algo Bot Toggle
+    const btnAlgo = document.getElementById("btn-algo-toggle");
+    if (btnAlgo) {
+      btnAlgo.addEventListener("click", () => this.toggleAlgoBot());
+    }
+
+    // Scanner Table Execution Click Delegation
+    const alphaTbody = document.getElementById("alpha-tbody");
+    if (alphaTbody) {
+      alphaTbody.addEventListener("click", (e) => {
+        const btnHedge = e.target.closest(".btn-scanner-hedge");
+        const btnNaked = e.target.closest(".btn-scanner-naked");
+        if (btnHedge) {
+          const sym = btnHedge.dataset.symbol;
+          this.executeTradeFromScanner(sym, true);
+        } else if (btnNaked) {
+          const sym = btnNaked.dataset.symbol;
+          this.executeTradeFromScanner(sym, false);
+        }
+      });
+    }
+
+    // Positions Table Flatten Click Delegation
+    const posTbody = document.getElementById("positions-tbody");
+    if (posTbody) {
+      posTbody.addEventListener("click", (e) => {
+        const btnClose = e.target.closest(".btn-flatten-pos");
+        if (btnClose) {
+          const posId = btnClose.dataset.posid;
+          this.closePosition(posId);
+        }
+      });
+    }
+
+    // Order Ticket Controls
+    const sideBuy = document.getElementById("btn-side-buy");
+    const sideSell = document.getElementById("btn-side-sell");
+    if (sideBuy && sideSell) {
+      sideBuy.addEventListener("click", () => {
+        sideBuy.classList.add("active-buy");
+        sideSell.classList.remove("active-sell");
+        this.tradeSide = "BUY";
+        this.updateOrderTicketSummary();
+      });
+      sideSell.addEventListener("click", () => {
+        sideSell.classList.add("active-sell");
+        sideBuy.classList.remove("active-buy");
+        this.tradeSide = "SELL";
+        this.updateOrderTicketSummary();
+      });
+    }
+
+    const qtyInput = document.getElementById("trade-qty");
+    const btnQtyMinus = document.getElementById("btn-qty-minus");
+    const btnQtyPlus = document.getElementById("btn-qty-plus");
+    if (btnQtyMinus && qtyInput) {
+      btnQtyMinus.addEventListener("click", () => {
+        let v = parseInt(qtyInput.value) || 1;
+        if (v > 1) qtyInput.value = v - 1;
+        this.updateOrderTicketSummary();
+      });
+    }
+    if (btnQtyPlus && qtyInput) {
+      btnQtyPlus.addEventListener("click", () => {
+        let v = parseInt(qtyInput.value) || 1;
+        if (v < 100) qtyInput.value = v + 1;
+        this.updateOrderTicketSummary();
+      });
+    }
+    if (qtyInput) {
+      qtyInput.addEventListener("input", () => this.updateOrderTicketSummary());
+    }
+
+    const tradeInst = document.getElementById("trade-instrument");
+    const grpStrike = document.getElementById("group-trade-strike");
+    const grpTenor = document.getElementById("group-trade-tenor");
+    if (tradeInst) {
+      tradeInst.addEventListener("change", () => {
+        const isFut = tradeInst.value === "future";
+        if (grpStrike) grpStrike.style.display = isFut ? "none" : "flex";
+        if (grpTenor) grpTenor.style.display = isFut ? "none" : "flex";
+        this.updateOrderTicketSummary();
+      });
+    }
+
+    const tradeAsset = document.getElementById("trade-asset");
+    const tradeStrike = document.getElementById("trade-strike");
+    const tradeTenor = document.getElementById("trade-tenor");
+    const tradeHedge = document.getElementById("trade-auto-hedge");
+    if (tradeAsset) tradeAsset.addEventListener("change", () => this.updateOrderTicketSummary());
+    if (tradeStrike) tradeStrike.addEventListener("input", () => this.updateOrderTicketSummary());
+    if (tradeTenor) tradeTenor.addEventListener("change", () => this.updateOrderTicketSummary());
+    if (tradeHedge) tradeHedge.addEventListener("change", () => this.updateOrderTicketSummary());
+
+    // Submit Order Button
+    const btnSubmit = document.getElementById("btn-submit-order");
+    if (btnSubmit) {
+      btnSubmit.addEventListener("click", () => this.submitOrderFromTicket());
+    }
+  },
+
+  switchBook(bookId) {
+    if (!this.books[bookId]) return;
+    this.activeBookId = bookId;
+    this.markToMarket();
+    this.renderUI();
+    const book = this.getActiveBook();
+    this.showToast("ACTIVE BOOK SWITCHED", `Now managing portfolio: ${book.name} (${book.tag})`, true);
+  },
+
+  createCustomBook(name, tag, capital, desc) {
+    const id = `book-custom-${Date.now()}`;
+    this.books[id] = {
+      id: id,
+      name: name,
+      tag: tag,
+      desc: desc,
+      startCapital: capital,
+      cash: capital,
+      realizedPnl: 0.0,
+      positions: [],
+      orders: []
+    };
+    const pill = document.getElementById("portfolio-count-pill");
+    if (pill) pill.innerText = `${Object.keys(this.books).length} BOOKS`;
+    this.switchBook(id);
+    this.showToast("CUSTOM BOOK CREATED", `${name} initialized with $${capital.toLocaleString()} capital.`, true);
+  },
+
+  toggleAlgoBot() {
+    this.algoBotActive = !this.algoBotActive;
+    const badge = document.getElementById("algo-status-badge");
+    const text = document.getElementById("algo-status-text");
+    const btn = document.getElementById("btn-algo-toggle");
+    const btnText = document.getElementById("btn-algo-text");
+
+    if (this.algoBotActive) {
+      if (badge) badge.classList.add("active-bot");
+      if (text) text.innerText = "ALGO EXECUTION BOT: STREAMING ACTIVE";
+      if (btn) btn.classList.add("active");
+      if (btnText) btnText.innerText = "PAUSE ALGO BOT";
+      this.showToast("⚡ ALGO ARB BOT ENGAGED", "Scanning COMEX volatility surface microstructures for edge ≥ $0.40...", true);
+      this.checkAndRunAlgoBot();
+    } else {
+      if (badge) badge.classList.remove("active-bot");
+      if (text) text.innerText = "ALGO EXECUTION BOT: STANDBY";
+      if (btn) btn.classList.remove("active");
+      if (btnText) btnText.innerText = "ENABLE ALGO BOT";
+      this.showToast("⏸️ ALGO BOT PAUSED", "Autonomous order execution paused.", false);
+    }
+  },
+
+  checkAndRunAlgoBot() {
+    if (!this.algoBotActive) return;
+    const now = Date.now();
+    if (now - this.lastAlgoCheckTime < 3500) return; // cooldown to avoid spamming
+    this.lastAlgoCheckTime = now;
+
+    // Scan COMEX gold chain for any opportunity with edge
+    for (const c of COMEX_GOLD_CHAIN) {
+      const dynamicFair = black76Price(state.F, c.strike, c.T, state.r, c.modelIV, c.type === "call");
+      let edge = 0;
+      let side = "BUY";
+      let price = c.ask;
+
+      if (c.ask < dynamicFair - 0.35) {
+        edge = dynamicFair - c.ask;
+        side = "BUY";
+        price = c.ask;
+      } else if (c.bid > dynamicFair + 0.35) {
+        edge = c.bid - dynamicFair;
+        side = "SELL";
+        price = c.bid;
+      }
+
+      if (edge >= 0.35) {
+        // Execute 5 contracts + delta hedge
+        this.executeTrade({
+          asset: "GC",
+          instType: c.type,
+          side: side,
+          strike: c.strike,
+          tenorDays: Math.round(c.T * 365),
+          qty: 5,
+          entryPrice: price,
+          isHedged: true,
+          symbol: c.symbol,
+          modelIV: c.modelIV,
+          fairPrice: dynamicFair,
+          source: "ALGO ARB BOT"
+        });
+
+        this.algoCapturedEdge += edge * 5 * 100;
+        const edgeEl = document.getElementById("algo-captured-edge");
+        if (edgeEl) edgeEl.innerText = `+$${this.algoCapturedEdge.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        break; // execute 1 opportunity per tick
+      }
+    }
+  },
+
+  updateOrderTicketSummary() {
+    const inst = document.getElementById("trade-instrument")?.value || "call";
+    const asset = document.getElementById("trade-asset")?.value || "GC";
+    const strike = parseFloat(document.getElementById("trade-strike")?.value) || state.F;
+    const tenorDays = parseInt(document.getElementById("trade-tenor")?.value) || 60;
+    const qty = parseInt(document.getElementById("trade-qty")?.value) || 5;
+    const autoHedge = document.getElementById("trade-auto-hedge")?.checked;
+
+    const spot = asset === "GC" ? liveMarketFeed.assets.GC.price : liveMarketFeed.assets.CL.price;
+    const multiplier = asset === "GC" ? 100 : 1000;
+    const T = tenorDays / 365;
+    const iv = asset === "GC" ? 0.175 : 0.315;
+
+    let fair = spot;
+    let fill = spot;
+    let hedgeRatio = 0;
+
+    if (inst === "future") {
+      fair = spot;
+      fill = this.tradeSide === "BUY" ? spot + 0.10 : spot - 0.10;
+      hedgeRatio = 0;
+    } else {
+      fair = black76Price(spot, strike, T, state.r, iv, inst === "call");
+      const spread = Math.max(0.20, fair * 0.015);
+      fill = this.tradeSide === "BUY" ? fair + spread : Math.max(0.05, fair - spread);
+      const g = calculateGreeks(spot, strike, T, state.r, iv, inst === "call");
+      hedgeRatio = -(this.tradeSide === "BUY" ? 1 : -1) * g.delta * qty;
+    }
+
+    const capComm = fill * qty * (inst === "future" ? 0.10 * multiplier : multiplier);
+
+    const estFillEl = document.getElementById("trade-est-fill");
+    const modelFairEl = document.getElementById("trade-model-fair");
+    const capCommEl = document.getElementById("trade-cap-comm");
+    const hedgePreviewEl = document.getElementById("trade-hedge-preview");
+
+    if (estFillEl) estFillEl.innerText = `$${fill.toFixed(2)}`;
+    if (modelFairEl) modelFairEl.innerText = `$${fair.toFixed(2)}`;
+    if (capCommEl) capCommEl.innerText = `$${capComm.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    if (hedgePreviewEl) {
+      if (inst === "future" || !autoHedge) {
+        hedgePreviewEl.innerText = "No Delta Hedge Required";
+      } else {
+        hedgePreviewEl.innerText = `Auto Hedge: ${(hedgeRatio >= 0 ? "+" : "")}${hedgeRatio.toFixed(2)} ${asset} Futures`;
+      }
+    }
+  },
+
+  submitOrderFromTicket() {
+    const inst = document.getElementById("trade-instrument")?.value || "call";
+    const asset = document.getElementById("trade-asset")?.value || "GC";
+    const strike = parseFloat(document.getElementById("trade-strike")?.value) || state.F;
+    const tenorDays = parseInt(document.getElementById("trade-tenor")?.value) || 60;
+    const qty = parseInt(document.getElementById("trade-qty")?.value) || 5;
+    const autoHedge = document.getElementById("trade-auto-hedge")?.checked;
+
+    const spot = asset === "GC" ? liveMarketFeed.assets.GC.price : liveMarketFeed.assets.CL.price;
+    const T = tenorDays / 365;
+    const iv = asset === "GC" ? 0.175 : 0.315;
+
+    let fair = spot;
+    let fill = spot;
+    if (inst === "future") {
+      fair = spot;
+      fill = this.tradeSide === "BUY" ? spot + 0.10 : spot - 0.10;
+    } else {
+      fair = black76Price(spot, strike, T, state.r, iv, inst === "call");
+      const spread = Math.max(0.15, fair * 0.015);
+      fill = this.tradeSide === "BUY" ? fair + spread : Math.max(0.05, fair - spread);
+    }
+
+    const symbol = inst === "future" 
+      ? `${asset}_FUTURES` 
+      : `${asset}_${Math.round(strike)}_${inst === "call" ? "C" : "P"}_${tenorDays}d`;
+
+    this.executeTrade({
+      asset,
+      instType: inst,
+      side: this.tradeSide,
+      strike: inst === "future" ? null : strike,
+      tenorDays,
+      qty,
+      entryPrice: fill,
+      isHedged: autoHedge && inst !== "future",
+      symbol,
+      modelIV: iv,
+      fairPrice: fair,
+      source: "MANUAL TICKET"
+    });
+  },
+
+  executeTradeFromScanner(symbol, isHedged) {
+    const c = COMEX_GOLD_CHAIN.find((item) => item.symbol === symbol);
+    if (!c) return;
+
+    const dynamicFair = black76Price(state.F, c.strike, c.T, state.r, c.modelIV, c.type === "call");
+    let side = "BUY";
+    let fillPrice = c.ask;
+
+    if (c.signal === "BUY") {
+      side = "BUY";
+      fillPrice = c.ask;
+    } else if (c.signal === "SELL") {
+      side = "SELL";
+      fillPrice = c.bid;
+    } else {
+      side = "BUY";
+      fillPrice = (c.bid + c.ask) / 2;
+    }
+
+    this.executeTrade({
+      asset: "GC",
+      instType: c.type,
+      side: side,
+      strike: c.strike,
+      tenorDays: Math.round(c.T * 365),
+      qty: 5,
+      entryPrice: fillPrice,
+      isHedged: isHedged,
+      symbol: c.symbol,
+      modelIV: c.modelIV,
+      fairPrice: dynamicFair,
+      source: isHedged ? "VOL ARB SCANNER (HEDGED)" : "VOL ARB SCANNER (NAKED)"
+    });
+  },
+
+  executeTrade(params) {
+    const book = this.getActiveBook();
+    const multiplier = params.asset === "GC" ? 100 : 1000;
+    const nowTime = new Date().toTimeString().slice(0, 8);
+    const ordId = `ORD-${Math.floor(10000 + Math.random() * 90000)}`;
+
+    const fair = params.fairPrice || params.entryPrice;
+    let edgeDollars = 0;
+    if (params.instType !== "future") {
+      edgeDollars = params.side === "BUY"
+        ? Math.max(0, fair - params.entryPrice) * params.qty * multiplier
+        : Math.max(0, params.entryPrice - fair) * params.qty * multiplier;
+    }
+
+    // Add Option/Future Position
+    const newPos = {
+      id: `pos-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+      symbol: params.symbol,
+      name: `${params.asset} ${params.strike ? params.strike : ""} ${params.instType.toUpperCase()} (${params.tenorDays || 0}d)`,
+      asset: params.asset,
+      instType: params.instType,
+      side: params.side,
+      qty: params.qty,
+      entryPrice: Math.round(params.entryPrice * 100) / 100,
+      markPrice: Math.round(params.entryPrice * 100) / 100,
+      strike: params.strike,
+      T: params.tenorDays ? params.tenorDays / 365 : null,
+      iv: params.modelIV || 0.175,
+      multiplier: multiplier
+    };
+    book.positions.push(newPos);
+
+    // Deduct/Add Cash
+    const premiumCost = params.entryPrice * params.qty * multiplier;
+    if (params.side === "BUY") {
+      book.cash -= premiumCost;
+    } else {
+      book.cash += premiumCost;
+    }
+
+    // Blotter Order
+    book.orders.unshift({
+      id: ordId,
+      time: nowTime,
+      book: book.name.slice(0, 16),
+      action: params.side,
+      symbol: params.symbol,
+      qty: params.qty,
+      fillPrice: params.entryPrice,
+      fairValue: fair,
+      edge: edgeDollars > 0 ? `+$${edgeDollars.toFixed(2)}` : "$0.00",
+      venue: "CME Globex Maker",
+      status: "FILLED"
+    });
+
+    let toastMsg = `Executed ${params.side} ${params.qty}x ${params.symbol} @ $${params.entryPrice.toFixed(2)}`;
+
+    // Automatic Delta Hedge with Futures
+    if (params.isHedged && params.instType !== "future") {
+      const g = calculateGreeks(state.F, params.strike, params.tenorDays / 365, state.r, params.modelIV, params.instType === "call");
+      const optDelta = (params.side === "BUY" ? 1 : -1) * g.delta * params.qty;
+      const hedgeSize = Math.round(Math.abs(optDelta) * 100) / 100;
+      const hedgeSide = optDelta > 0 ? "SELL" : "BUY";
+
+      if (hedgeSize >= 0.01) {
+        const hedgeOrdId = `ORD-${Math.floor(10000 + Math.random() * 90000)}`;
+        const futSpot = params.asset === "GC" ? liveMarketFeed.assets.GC.price : liveMarketFeed.assets.CL.price;
+
+        book.positions.push({
+          id: `pos-${Date.now()}-hedge`,
+          symbol: `${params.asset}_FUT_HEDGE`,
+          name: `${params.asset} Futures (Delta Hedge)`,
+          asset: params.asset,
+          instType: "future",
+          side: hedgeSide,
+          qty: hedgeSize,
+          entryPrice: futSpot,
+          markPrice: futSpot,
+          strike: null,
+          T: null,
+          iv: null,
+          multiplier: multiplier
+        });
+
+        book.orders.unshift({
+          id: hedgeOrdId,
+          time: nowTime,
+          book: book.name.slice(0, 16),
+          action: `${hedgeSide} HEDGE`,
+          symbol: `${params.asset} Futures`,
+          qty: hedgeSize,
+          fillPrice: futSpot,
+          fairValue: futSpot,
+          edge: "$0.00",
+          venue: "CME Globex Taker",
+          status: "FILLED"
+        });
+
+        toastMsg += ` + Hedged with ${hedgeSide} ${hedgeSize} ${params.asset} Futures!`;
+      }
+    }
+
+    this.markToMarket();
+    this.renderUI();
+    this.showToast("ORDER FILLED (CME GLOBEX)", toastMsg, true);
+  },
+
+  rebalanceDeltaToZero() {
+    const book = this.getActiveBook();
+    const stats = this.computeBookStats(book);
+    const netDelta = stats.netDelta;
+
+    if (Math.abs(netDelta) < 0.01) {
+      this.showToast("DELTA ALREADY NEUTRAL", `Net Delta is currently ${netDelta.toFixed(3)} GC. Rebalancing unnecessary.`, false);
+      return;
+    }
+
+    const hedgeSize = Math.round(Math.abs(netDelta) * 100) / 100;
+    const hedgeSide = netDelta > 0 ? "SELL" : "BUY";
+    const spot = liveMarketFeed.assets.GC.price;
+    const nowTime = new Date().toTimeString().slice(0, 8);
+    const ordId = `ORD-${Math.floor(10000 + Math.random() * 90000)}`;
+
+    book.positions.push({
+      id: `pos-${Date.now()}-rebal`,
+      symbol: "GC_FUT_REBAL",
+      name: "COMEX GC Futures (Neutralize Δ)",
+      asset: "GC",
+      instType: "future",
+      side: hedgeSide,
+      qty: hedgeSize,
+      entryPrice: spot,
+      markPrice: spot,
+      strike: null,
+      T: null,
+      iv: null,
+      multiplier: 100
+    });
+
+    book.orders.unshift({
+      id: ordId,
+      time: nowTime,
+      book: book.name.slice(0, 16),
+      action: `${hedgeSide} NEUTRALIZE`,
+      symbol: "GC Futures",
+      qty: hedgeSize,
+      fillPrice: spot,
+      fairValue: spot,
+      edge: "$0.00",
+      venue: "CME Globex Taker",
+      status: "FILLED"
+    });
+
+    this.markToMarket();
+    this.renderUI();
+    this.showToast("⚡ DELTA NEUTRALIZED (Δ = 0)", `Executed ${hedgeSide} ${hedgeSize} GC Futures @ $${spot.toFixed(2)}. Net Delta brought to 0.000!`, true);
+  },
+
+  closePosition(posId) {
+    const book = this.getActiveBook();
+    const idx = book.positions.findIndex((p) => p.id === posId);
+    if (idx === -1) return;
+
+    const pos = book.positions[idx];
+    const spot = pos.asset === "GC" ? liveMarketFeed.assets.GC.price : liveMarketFeed.assets.CL.price;
+
+    let mark = pos.markPrice;
+    if (pos.instType === "future") {
+      mark = spot;
+    } else {
+      mark = black76Price(spot, pos.strike, pos.T, state.r, pos.iv, pos.instType === "call");
+    }
+
+    const sign = pos.side === "BUY" ? 1 : -1;
+    const pnl = sign * (mark - pos.entryPrice) * pos.qty * pos.multiplier;
+
+    book.realizedPnl += pnl;
+    book.cash += (pos.side === "BUY" ? mark : -mark) * pos.qty * pos.multiplier;
+    book.positions.splice(idx, 1);
+
+    const nowTime = new Date().toTimeString().slice(0, 8);
+    book.orders.unshift({
+      id: `ORD-${Math.floor(10000 + Math.random() * 90000)}`,
+      time: nowTime,
+      book: book.name.slice(0, 16),
+      action: "CLOSE / FLATTEN",
+      symbol: pos.symbol,
+      qty: pos.qty,
+      fillPrice: mark,
+      fairValue: mark,
+      edge: "$0.00",
+      venue: "CME Globex Taker",
+      status: "FILLED"
+    });
+
+    this.markToMarket();
+    this.renderUI();
+    this.showToast("POSITION CLOSED", `Liquidated ${pos.qty}x ${pos.symbol}. Realized PnL: ${pnl >= 0 ? "+" : ""}$${pnl.toFixed(2)}`, pnl >= 0);
+  },
+
+  flattenBook() {
+    const book = this.getActiveBook();
+    if (book.positions.length === 0) {
+      this.showToast("BOOK EMPTY", "No open positions to flatten in this book.", false);
+      return;
+    }
+
+    let totalLiquidatedPnl = 0;
+    book.positions.forEach((pos) => {
+      const spot = pos.asset === "GC" ? liveMarketFeed.assets.GC.price : liveMarketFeed.assets.CL.price;
+      let mark = pos.markPrice;
+      if (pos.instType === "future") mark = spot;
+      else mark = black76Price(spot, pos.strike, pos.T, state.r, pos.iv, pos.instType === "call");
+
+      const sign = pos.side === "BUY" ? 1 : -1;
+      const pnl = sign * (mark - pos.entryPrice) * pos.qty * pos.multiplier;
+      totalLiquidatedPnl += pnl;
+      book.cash += (pos.side === "BUY" ? mark : -mark) * pos.qty * pos.multiplier;
+    });
+
+    book.realizedPnl += totalLiquidatedPnl;
+    book.positions = [];
+
+    const nowTime = new Date().toTimeString().slice(0, 8);
+    book.orders.unshift({
+      id: `ORD-${Math.floor(10000 + Math.random() * 90000)}`,
+      time: nowTime,
+      book: book.name.slice(0, 16),
+      action: "FLATTEN BOOK",
+      symbol: "ALL ASSETS",
+      qty: 0,
+      fillPrice: 0,
+      fairValue: 0,
+      edge: "$0.00",
+      venue: "CME Globex",
+      status: "FILLED"
+    });
+
+    this.markToMarket();
+    this.renderUI();
+    this.showToast("✕ ALL POSITIONS FLATTENED", `Book flattened. Realized total PnL: ${totalLiquidatedPnl >= 0 ? "+" : ""}$${totalLiquidatedPnl.toFixed(2)}`, totalLiquidatedPnl >= 0);
+  },
+
+  resetBook() {
+    const book = this.getActiveBook();
+    book.cash = book.startCapital * 0.98;
+    book.realizedPnl = 0;
+    book.positions = [];
+    book.orders = [];
+
+    // Re-seed benchmark demo positions if it's one of the main books
+    if (book.id === "book-vol-arb") {
+      book.realizedPnl = 35300.0;
+      book.cash = 4880500.0;
+      book.positions = [
+        {
+          id: "pos-101",
+          symbol: "OG_4000_P_30d",
+          name: "Gold 4000 Put (30d)",
+          asset: "GC",
+          instType: "put",
+          side: "BUY",
+          qty: 15,
+          entryPrice: 16.50,
+          markPrice: 16.50,
+          strike: 4000,
+          T: 30 / 365,
+          iv: 0.191,
+          multiplier: 100,
+        },
+        {
+          id: "pos-102",
+          symbol: "GC_FUT_HEDGE_1",
+          name: "COMEX GC Futures (Hedge)",
+          asset: "GC",
+          instType: "future",
+          side: "BUY",
+          qty: 2.73,
+          entryPrice: 4166.50,
+          markPrice: 4170.00,
+          strike: null,
+          T: null,
+          iv: null,
+          multiplier: 100,
+        }
+      ];
+    }
+
+    this.markToMarket();
+    this.renderUI();
+    this.showToast("↺ BOOK RESET", `${book.name} restored to benchmark initial baseline.`, true);
+  },
+
+  computeBookStats(book) {
+    let netDelta = 0;
+    let netGamma = 0;
+    let netVega = 0;
+    let netTheta = 0;
+    let netVanna = 0;
+    let netVolga = 0;
+    let unrealizedPnl = 0;
+
+    const spotGC = liveMarketFeed.assets.GC.price;
+    const spotCL = liveMarketFeed.assets.CL.price;
+
+    book.positions.forEach((pos) => {
+      const spot = pos.asset === "GC" ? spotGC : spotCL;
+      const sign = pos.side === "BUY" ? 1.0 : -1.0;
+
+      if (pos.instType === "future") {
+        pos.markPrice = spot;
+        pos.delta = sign * pos.qty;
+        pos.gamma = 0;
+        pos.vega = 0;
+        pos.theta = 0;
+        pos.pnl = sign * (spot - pos.entryPrice) * pos.qty * pos.multiplier;
+      } else {
+        const mark = black76Price(spot, pos.strike, pos.T, state.r, pos.iv, pos.instType === "call");
+        const g = calculateGreeks(spot, pos.strike, pos.T, state.r, pos.iv, pos.instType === "call");
+        pos.markPrice = mark;
+        pos.delta = sign * g.delta * pos.qty;
+        pos.gamma = sign * g.gamma * pos.qty;
+        pos.vega = sign * g.vega1pct * pos.qty * pos.multiplier;
+        pos.theta = sign * g.theta1day * pos.qty * pos.multiplier;
+        pos.pnl = sign * (mark - pos.entryPrice) * pos.qty * pos.multiplier;
+        netVanna += sign * g.vanna * pos.qty;
+        netVolga += sign * g.volga * pos.qty;
+      }
+
+      netDelta += pos.delta;
+      netGamma += pos.gamma;
+      netVega += pos.vega;
+      netTheta += pos.theta;
+      unrealizedPnl += pos.pnl;
+    });
+
+    const totalPnl = book.realizedPnl + unrealizedPnl;
+    const totalPnlPct = (totalPnl / book.startCapital) * 100;
+
+    return {
+      netDelta,
+      netGamma,
+      netVega,
+      netTheta,
+      netVanna,
+      netVolga,
+      unrealizedPnl,
+      totalPnl,
+      totalPnlPct
+    };
+  },
+
+  markToMarket() {
+    const book = this.getActiveBook();
+    const stats = this.computeBookStats(book);
+
+    // Update Hero Cards
+    const totalPnlEl = document.getElementById("port-total-pnl");
+    const pnlPctEl = document.getElementById("port-pnl-pct");
+    const unrealizedEl = document.getElementById("port-unrealized-pnl");
+    const realizedEl = document.getElementById("port-realized-pnl");
+    const netDeltaEl = document.getElementById("port-net-delta");
+    const dollarDeltaEl = document.getElementById("port-dollar-delta");
+    const deltaBadgeEl = document.getElementById("port-delta-badge");
+    const netGammaEl = document.getElementById("port-net-gamma");
+    const netVegaEl = document.getElementById("port-net-vega");
+    const netThetaEl = document.getElementById("port-net-theta");
+    const netVannaEl = document.getElementById("port-net-vanna");
+    const freeCashEl = document.getElementById("book-free-cash");
+    const posCountTag = document.getElementById("pos-count-tag");
+
+    const isProfit = stats.totalPnl >= 0;
+    if (totalPnlEl) {
+      totalPnlEl.innerText = `${isProfit ? "+" : "-"}$${Math.abs(stats.totalPnl).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      totalPnlEl.className = `metric-hero ${isProfit ? "text-emerald" : "text-rose"}`;
+    }
+    if (pnlPctEl) {
+      pnlPctEl.innerText = `${stats.totalPnlPct >= 0 ? "+" : ""}${stats.totalPnlPct.toFixed(2)}%`;
+      pnlPctEl.className = `card-badge ${stats.totalPnlPct >= 0 ? "badge-green" : "tag-rose"}`;
+    }
+    if (unrealizedEl) {
+      unrealizedEl.innerText = `Unrealized: ${stats.unrealizedPnl >= 0 ? "+" : "-"}$${Math.abs(stats.unrealizedPnl).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    }
+    if (realizedEl) {
+      realizedEl.innerText = `Realized: ${book.realizedPnl >= 0 ? "+" : "-"}$${Math.abs(book.realizedPnl).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    }
+
+    if (netDeltaEl) {
+      netDeltaEl.innerText = `${stats.netDelta >= 0 ? "+" : ""}${stats.netDelta.toFixed(3)} GC`;
+    }
+    if (dollarDeltaEl) {
+      const dDollar = stats.netDelta * liveMarketFeed.assets.GC.price * 100;
+      dollarDeltaEl.innerText = `Dollar Delta: ${dDollar >= 0 ? "+" : "-"}$${Math.abs(Math.round(dDollar)).toLocaleString()}`;
+    }
+    if (deltaBadgeEl) {
+      if (Math.abs(stats.netDelta) < 0.05) {
+        deltaBadgeEl.innerText = "DELTA NEUTRAL";
+        deltaBadgeEl.className = "card-badge badge-green";
+      } else if (stats.netDelta > 0) {
+        deltaBadgeEl.innerText = "LONG DELTA";
+        deltaBadgeEl.className = "card-badge";
+      } else {
+        deltaBadgeEl.innerText = "SHORT DELTA";
+        deltaBadgeEl.className = "card-badge tag-rose";
+      }
+    }
+
+    if (netGammaEl) netGammaEl.innerText = `${stats.netGamma >= 0 ? "+" : ""}${stats.netGamma.toFixed(5)}`;
+    if (netVegaEl) netVegaEl.innerText = `${stats.netVega >= 0 ? "+" : "-"}$${Math.abs(Math.round(stats.netVega)).toLocaleString()}`;
+    if (netThetaEl) netThetaEl.innerText = `${stats.netTheta >= 0 ? "+" : "-"}$${Math.abs(Math.round(stats.netTheta)).toLocaleString()} / day`;
+    if (netVannaEl) netVannaEl.innerText = `${stats.netVanna.toFixed(3)} / ${stats.netVolga.toFixed(1)}`;
+    if (freeCashEl) freeCashEl.innerText = `$${book.cash.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    if (posCountTag) posCountTag.innerText = `${book.positions.length} OPEN POSITIONS`;
+
+    // Re-render positions table rows if currently visible
+    const portfolioPane = document.getElementById("tab-portfolio");
+    if (portfolioPane && portfolioPane.classList.contains("active")) {
+      this.renderPositionsTable();
+    }
+
+    // Run algo bot if active
+    if (this.algoBotActive) {
+      this.checkAndRunAlgoBot();
+    }
+  },
+
+  renderUI() {
+    this.renderBookChips();
+    const book = this.getActiveBook();
+
+    const nameEl = document.getElementById("book-display-name");
+    const tagEl = document.getElementById("book-display-tag");
+    const descEl = document.getElementById("book-display-desc");
+    const startCapEl = document.getElementById("book-start-capital");
+
+    if (nameEl) nameEl.innerText = book.name;
+    if (tagEl) tagEl.innerText = book.tag;
+    if (descEl) descEl.innerText = book.desc;
+    if (startCapEl) startCapEl.innerText = `$${book.startCapital.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+    this.renderPositionsTable();
+    this.renderBlotterTable();
+    this.updateOrderTicketSummary();
+  },
+
+  renderBookChips() {
+    const container = document.getElementById("book-chips-container");
+    if (!container) return;
+    container.innerHTML = "";
+
+    Object.values(this.books).forEach((b) => {
+      const stats = this.computeBookStats(b);
+      const isAct = b.id === this.activeBookId;
+      const isProf = stats.totalPnl >= 0;
+
+      const btn = document.createElement("button");
+      btn.className = `book-chip ${isAct ? "active" : ""}`;
+      btn.dataset.book = b.id;
+      btn.innerHTML = `
+        <span>${b.name.replace(" Book", "")}</span>
+        <span class="book-chip-pnl ${isProf ? "text-emerald" : "text-rose"}">
+          ${isProf ? "+" : ""}$${Math.round(stats.totalPnl).toLocaleString()}
+        </span>
+      `;
+      container.appendChild(btn);
+    });
+  },
+
+  renderPositionsTable() {
+    const tbody = document.getElementById("positions-tbody");
+    if (!tbody) return;
+    const book = this.getActiveBook();
+    tbody.innerHTML = "";
+
+    if (book.positions.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="11" style="text-align: center; color: var(--text-mid); padding: 2rem;">No open positions in active book. Execute an order from the ticket or the Vol Arb Scanner.</td></tr>`;
+      return;
+    }
+
+    book.positions.forEach((pos) => {
+      const isBuy = pos.side === "BUY";
+      const sideClass = isBuy ? "text-emerald" : "text-rose";
+      const isProfit = (pos.pnl || 0) >= 0;
+
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td style="font-weight: 800; color: #fff;">${pos.symbol}</td>
+        <td><span class="${sideClass}" style="font-weight: 700;">${pos.side} ${pos.instType.toUpperCase()}</span></td>
+        <td style="font-weight: 700;">${pos.qty}</td>
+        <td>$${pos.entryPrice.toFixed(2)}</td>
+        <td style="font-weight: 700; color: #fff;">$${(pos.markPrice || pos.entryPrice).toFixed(2)}</td>
+        <td style="color: var(--cyan);">${pos.delta !== undefined ? (pos.delta >= 0 ? "+" : "") + pos.delta.toFixed(3) : "—"}</td>
+        <td>${pos.gamma !== undefined ? pos.gamma.toFixed(5) : "—"}</td>
+        <td style="color: var(--amber);">${pos.vega !== undefined ? "$" + Math.round(pos.vega) : "—"}</td>
+        <td style="color: var(--rose);">${pos.theta !== undefined ? "$" + Math.round(pos.theta) : "—"}</td>
+        <td style="font-weight: 800; color: ${isProfit ? 'var(--emerald)' : 'var(--rose)'};">
+          ${isProfit ? "+" : "-"}$${Math.abs(Math.round(pos.pnl || 0)).toLocaleString()}
+        </td>
+        <td>
+          <button class="btn-flatten-pos" data-posid="${pos.id}" title="Close position at live market price">
+            ✕ Flatten
+          </button>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+  },
+
+  renderBlotterTable() {
+    const tbody = document.getElementById("blotter-tbody");
+    if (!tbody) return;
+    const book = this.getActiveBook();
+    tbody.innerHTML = "";
+
+    if (book.orders.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="11" style="text-align: center; color: var(--text-mid); padding: 1.5rem;">No execution orders logged yet.</td></tr>`;
+      return;
+    }
+
+    book.orders.slice(0, 25).forEach((ord) => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td style="font-family: var(--font-mono); color: var(--text-low);">${ord.time}</td>
+        <td style="font-family: var(--font-mono); color: var(--cyan); font-weight: 700;">${ord.id}</td>
+        <td style="color: var(--text-mid);">${ord.book}</td>
+        <td style="font-weight: 700; color: ${ord.action.includes('BUY') ? 'var(--emerald)' : 'var(--rose)'};">${ord.action}</td>
+        <td style="font-weight: 800; color: #fff;">${ord.symbol}</td>
+        <td>${ord.qty}</td>
+        <td style="font-weight: 700;">$${typeof ord.fillPrice === 'number' ? ord.fillPrice.toFixed(2) : ord.fillPrice}</td>
+        <td>$${typeof ord.fairValue === 'number' ? ord.fairValue.toFixed(2) : ord.fairValue}</td>
+        <td style="font-weight: 800; color: ${ord.edge.startsWith('+') ? 'var(--emerald)' : '#fff'};">${ord.edge}</td>
+        <td style="color: var(--text-mid);">${ord.venue}</td>
+        <td><span class="action-pill action-fair" style="background-color: rgba(16,185,129,0.15) !important; color: #10b981 !important; border-color: rgba(16,185,129,0.4);">${ord.status}</span></td>
+      `;
+      tbody.appendChild(tr);
+    });
+  },
+
+  showToast(title, body, isSuccess = true) {
+    const container = document.getElementById("toast-container");
+    if (!container) return;
+
+    const toast = document.createElement("div");
+    toast.className = "quant-toast";
+    toast.innerHTML = `
+      <div class="toast-icon ${isSuccess ? "toast-success" : ""}">
+        ${isSuccess ? "✓" : "⚡"}
+      </div>
+      <div class="toast-content">
+        <div class="toast-title">${title}</div>
+        <div class="toast-body">${body}</div>
+      </div>
+    `;
+
+    container.appendChild(toast);
+    requestAnimationFrame(() => toast.classList.add("show"));
+
+    setTimeout(() => {
+      toast.classList.remove("show");
+      setTimeout(() => toast.remove(), 400);
+    }, 4500);
+  }
+};
 
 // Initialize on load
 window.addEventListener("DOMContentLoaded", init);
