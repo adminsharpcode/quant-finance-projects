@@ -132,16 +132,55 @@ function sviVol(K, F, T, params) {
   return Math.sqrt(Math.max(w, 1e-8) / Math.max(T, 1e-4));
 }
 
-// Authentic Market Chain Data (Calibrated to current $4,170 Market Regime)
+// Authentic Market Chain Data with Dynamic SVI Surface & Market IV Calibration
 const COMEX_GOLD_CHAIN = [
-  { symbol: "OG_4000_P_30d", strike: 4000, tenor: "30d", T: 30 / 365, type: "put", bid: 14.50, ask: 16.50, fairPrice: 17.20, mktIV: 0.185, modelIV: 0.191, signal: "BUY", label: "BUY VOL (Cheap Gamma)", hedge: "+0.182 GC", edge: "+$0.70" },
-  { symbol: "OG_4080_P_30d", strike: 4080, tenor: "30d", T: 30 / 365, type: "put", bid: 32.80, ask: 34.60, fairPrice: 33.70, mktIV: 0.178, modelIV: 0.176, signal: "FAIR", label: "FAIR VALUE", hedge: "+0.315 GC", edge: "$0.00" },
-  { symbol: "OG_4170_C_60d", strike: 4170, tenor: "60d", T: 60 / 365, type: "call", bid: 118.20, ask: 120.50, fairPrice: 119.35, mktIV: 0.175, modelIV: 0.175, signal: "FAIR", label: "FAIR VALUE", hedge: "-0.502 GC", edge: "$0.00" },
-  { symbol: "OG_4220_C_30d", strike: 4220, tenor: "30d", T: 30 / 365, type: "call", bid: 42.40, ask: 44.20, fairPrice: 41.80, mktIV: 0.168, modelIV: 0.162, signal: "SELL", label: "SELL VOL (Harvest Prem)", hedge: "-0.380 GC", edge: "+$0.60" },
-  { symbol: "OG_4280_C_30d", strike: 4280, tenor: "30d", T: 30 / 365, type: "call", bid: 24.10, ask: 25.80, fairPrice: 23.50, mktIV: 0.164, modelIV: 0.158, signal: "SELL", label: "SELL VOL (Harvest Prem)", hedge: "-0.265 GC", edge: "+$0.60" },
-  { symbol: "OG_4350_C_30d", strike: 4350, tenor: "30d", T: 30 / 365, type: "call", bid: 12.80, ask: 14.10, fairPrice: 12.20, mktIV: 0.160, modelIV: 0.154, signal: "SELL", label: "SELL VOL (Harvest Prem)", hedge: "-0.165 GC", edge: "+$0.60" },
-  { symbol: "OG_4400_C_60d", strike: 4400, tenor: "60d", T: 60 / 365, type: "call", bid: 35.60, ask: 37.80, fairPrice: 36.70, mktIV: 0.180, modelIV: 0.180, signal: "FAIR", label: "FAIR VALUE", hedge: "-0.220 GC", edge: "$0.00" },
+  { symbol: "OG_4000_P_30d", strike: 4000, tenor: "30d", T: 30 / 365, type: "put", mktIV: 0.185, modelIV: 0.191 },
+  { symbol: "OG_4080_P_30d", strike: 4080, tenor: "30d", T: 30 / 365, type: "put", mktIV: 0.178, modelIV: 0.176 },
+  { symbol: "OG_4170_C_60d", strike: 4170, tenor: "60d", T: 60 / 365, type: "call", mktIV: 0.175, modelIV: 0.175 },
+  { symbol: "OG_4220_C_30d", strike: 4220, tenor: "30d", T: 30 / 365, type: "call", mktIV: 0.168, modelIV: 0.162 },
+  { symbol: "OG_4280_C_30d", strike: 4280, tenor: "30d", T: 30 / 365, type: "call", mktIV: 0.164, modelIV: 0.158 },
+  { symbol: "OG_4350_C_30d", strike: 4350, tenor: "30d", T: 30 / 365, type: "call", mktIV: 0.160, modelIV: 0.154 },
+  { symbol: "OG_4400_C_60d", strike: 4400, tenor: "60d", T: 60 / 365, type: "call", mktIV: 0.180, modelIV: 0.180 },
 ];
+
+function syncComexGoldChain(spotPrice = state.F) {
+  const F = spotPrice || state.F;
+  COMEX_GOLD_CHAIN.forEach((c) => {
+    const isCall = c.type === "call";
+    const mktMid = black76Price(F, c.strike, c.T, state.r, c.mktIV, isCall);
+    const modelFair = black76Price(F, c.strike, c.T, state.r, c.modelIV, isCall);
+    // Institutional COMEX options tick size & spread model (approx 1.2% - 1.8% of mid, minimum $0.40)
+    const rawSpread = Math.max(0.40, mktMid * 0.015);
+    const spread = Math.round(rawSpread * 10) / 10;
+    const bid = Math.max(0.10, Math.round((mktMid - spread / 2) * 100) / 100);
+    const ask = Math.round((mktMid + spread / 2) * 100) / 100;
+
+    c.mktMid = Math.round(mktMid * 100) / 100;
+    c.bid = bid;
+    c.ask = ask;
+    c.fairPrice = Math.round(modelFair * 100) / 100;
+
+    if (c.ask < c.fairPrice - 0.25) {
+      c.signal = "BUY";
+      c.label = "BUY VOL (Cheap Gamma)";
+      c.edgeVal = Math.round((c.fairPrice - c.ask) * 100) / 100;
+      c.edge = `+$${c.edgeVal.toFixed(2)}`;
+    } else if (c.bid > c.fairPrice + 0.25) {
+      c.signal = "SELL";
+      c.label = "SELL VOL (Harvest Prem)";
+      c.edgeVal = Math.round((c.bid - c.fairPrice) * 100) / 100;
+      c.edge = `+$${c.edgeVal.toFixed(2)}`;
+    } else {
+      c.signal = "FAIR";
+      c.label = "FAIR VALUE";
+      c.edgeVal = 0.00;
+      c.edge = "$0.00";
+    }
+
+    const g = calculateGreeks(F, c.strike, c.T, state.r, c.mktIV, isCall);
+    c.hedge = `${(-g.delta >= 0 ? "+" : "")}${(-g.delta).toFixed(3)} GC`;
+  });
+}
 
 // ------------------- APPLICATION STATE & LIVE MARKET FEED -------------------
 
@@ -899,6 +938,8 @@ function renderAlphaTable() {
   if (!tbody) return;
   tbody.innerHTML = "";
 
+  syncComexGoldChain(state.F);
+
   const filtered = COMEX_GOLD_CHAIN.filter((c) => {
     if (state.alphaFilter === "BUY") return c.signal === "BUY";
     if (state.alphaFilter === "SELL") return c.signal === "SELL";
@@ -906,25 +947,8 @@ function renderAlphaTable() {
   });
 
   filtered.forEach((c) => {
-    // Dynamic Black-76 fair value evaluation based on live futures spot F
-    const dynamicFair = black76Price(state.F, c.strike, c.T, state.r, c.modelIV, c.type === "call");
-    let dynamicLabel = c.label;
-    let actionClass = c.signal === "BUY" ? "action-buy" : c.signal === "SELL" ? "action-sell" : "action-fair";
-    let edgeText = c.edge;
-
-    if (c.ask < dynamicFair - 0.20) {
-      actionClass = "action-buy";
-      dynamicLabel = "BUY VOL (Cheap Gamma)";
-      edgeText = `+$${Math.abs(dynamicFair - c.ask).toFixed(2)}`;
-    } else if (c.bid > dynamicFair + 0.20) {
-      actionClass = "action-sell";
-      dynamicLabel = "SELL VOL (Harvest Prem)";
-      edgeText = `+$${Math.abs(c.bid - dynamicFair).toFixed(2)}`;
-    }
-
-    // Dynamic Delta hedge ratio
-    const dGreeks = calculateGreeks(state.F, c.strike, c.T, state.r, c.modelIV, c.type === "call");
-    const dynamicHedge = `${(-dGreeks.delta >= 0 ? "+" : "")}${(-dGreeks.delta).toFixed(3)} GC`;
+    const actionClass = c.signal === "BUY" ? "action-buy" : c.signal === "SELL" ? "action-sell" : "action-fair";
+    const ivDiff = c.mktIV - c.modelIV;
 
     const tr = document.createElement("tr");
     tr.innerHTML = `
@@ -932,15 +956,15 @@ function renderAlphaTable() {
       <td>$${c.strike}</td>
       <td>${c.tenor}</td>
       <td>$${c.bid.toFixed(2)} / $${c.ask.toFixed(2)}</td>
-      <td style="font-weight: 700; color: #fff;">$${dynamicFair.toFixed(2)}</td>
+      <td style="font-weight: 700; color: #fff;">$${c.fairPrice.toFixed(2)}</td>
       <td>${(c.mktIV * 100).toFixed(1)}%</td>
       <td>${(c.modelIV * 100).toFixed(1)}%</td>
-      <td style="color: ${c.modelIV > c.mktIV ? 'var(--emerald)' : 'var(--rose)'}; font-weight: 700;">
-        ${(c.mktIV - c.modelIV >= 0 ? '+' : '')}${((c.mktIV - c.modelIV) * 100).toFixed(2)}%
+      <td style="color: ${ivDiff < 0 ? 'var(--emerald)' : 'var(--rose)'}; font-weight: 700;">
+        ${(ivDiff >= 0 ? '+' : '')}${(ivDiff * 100).toFixed(2)}%
       </td>
-      <td><span class="action-pill ${actionClass}">${dynamicLabel}</span></td>
-      <td style="color: var(--cyan); font-weight: 600;">${dynamicHedge}</td>
-      <td style="font-weight: 800; color: #fff;">${edgeText}</td>
+      <td><span class="action-pill ${actionClass}">${c.label}</span></td>
+      <td style="color: var(--cyan); font-weight: 600;">${c.hedge}</td>
+      <td style="font-weight: 800; color: #fff;">${c.edge}</td>
       <td style="white-space: nowrap;">
         <button class="btn-table-exec btn-scanner-hedge" data-symbol="${c.symbol}" title="Execute trade with automatic futures delta hedge">
           ⚡ Hedge
@@ -1258,6 +1282,7 @@ const portfolioEngine = {
     const book = this.books[bookId];
     if (!book) return;
 
+    syncComexGoldChain(state.F);
     let generatedCount = 0;
     const nowTime = new Date().toTimeString().slice(0, 8);
 
@@ -1268,25 +1293,24 @@ const portfolioEngine = {
           // Check if already open
           const exists = book.positions.some((p) => p.symbol === c.symbol);
           if (!exists) {
-            const dynamicFair = black76Price(state.F, c.strike, c.T, state.r, c.modelIV, c.type === "call");
             const side = c.signal === "BUY" ? "BUY" : "SELL";
             const fillPrice = c.signal === "BUY" ? c.ask : c.bid;
-            const edgeVal = Math.abs(dynamicFair - fillPrice);
+            const edgeVal = c.edgeVal || Math.abs(c.fairPrice - fillPrice);
             const qty = 10;
             const multiplier = 100;
-            const targetProfit = Math.round(edgeVal * 0.75 * qty * multiplier);
+            const targetProfit = Math.max(300, Math.round(edgeVal * 0.80 * qty * multiplier));
 
             const optId = `pos-opt-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
             const hedgeId = `pos-hdg-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
 
             // Greeks & Delta hedge size
-            const g = calculateGreeks(state.F, c.strike, c.T, state.r, c.modelIV, c.type === "call");
+            const g = calculateGreeks(state.F, c.strike, c.T, state.r, c.mktIV, c.type === "call");
             const optDelta = (side === "BUY" ? 1 : -1) * g.delta * qty;
-            const hedgeSize = Math.round(Math.abs(optDelta) * 100) / 100;
+            const hedgeSize = Math.max(0.01, Math.round(Math.abs(optDelta) * 100) / 100);
             const hedgeSide = optDelta > 0 ? "SELL" : "BUY";
             const spot = liveMarketFeed.assets.GC.price;
 
-            // Option Position
+            // Option Position (marked to observable market mid at fill)
             book.positions.push({
               id: optId,
               symbol: c.symbol,
@@ -1296,10 +1320,12 @@ const portfolioEngine = {
               side: side,
               qty: qty,
               entryPrice: fillPrice,
-              markPrice: fillPrice,
+              markPrice: c.mktMid,
               strike: c.strike,
               T: c.T,
-              iv: c.modelIV,
+              entryIV: c.mktIV,
+              targetIV: c.modelIV,
+              iv: c.mktIV,
               multiplier: multiplier,
               strategy: c.signal === "BUY" ? "SVI Cheap Gamma Arb" : "SVI Rich Vol Harvest",
               targetProfit: targetProfit,
@@ -1339,8 +1365,8 @@ const portfolioEngine = {
               symbol: c.symbol,
               qty: qty,
               fillPrice: fillPrice,
-              fairValue: dynamicFair,
-              edge: `+$${Math.round(edgeVal * qty * multiplier)}`,
+              fairValue: c.fairPrice,
+              edge: c.edge,
               venue: "CME Globex Maker",
               status: "FILLED"
             });
@@ -1367,52 +1393,57 @@ const portfolioEngine = {
       // Market-Making ATM Straddle Theta Harvesting
       if (book.positions.length < 2) {
         const spot = liveMarketFeed.assets.GC.price;
-        const callFair = black76Price(spot, 4170, 60 / 365, state.r, 0.175, true);
-        const putFair = black76Price(spot, 4170, 60 / 365, state.r, 0.175, false);
+        const atmStrike = Math.round(spot / 10) * 10;
+        const callFair = black76Price(spot, atmStrike, 60 / 365, state.r, 0.175, true);
+        const putFair = black76Price(spot, atmStrike, 60 / 365, state.r, 0.175, false);
+        const spreadMargin = 0.85;
         const qty = 8;
         const multiplier = 100;
 
         const callId = `pos-call-${Date.now()}`;
         const putId = `pos-put-${Date.now()}`;
-        const hedgeId = `pos-hdg-${Date.now()}`;
 
         book.positions.push({
           id: callId,
-          symbol: "OG_4170_C_60d",
-          name: "Gold 4170 ATM Call (60d)",
+          symbol: `OG_${atmStrike}_C_60d`,
+          name: `Gold ${atmStrike} ATM Call (60d)`,
           asset: "GC",
           instType: "call",
           side: "SELL",
           qty: qty,
-          entryPrice: callFair + 0.90,
-          markPrice: callFair + 0.90,
-          strike: 4170,
+          entryPrice: +(callFair + spreadMargin).toFixed(2),
+          markPrice: +callFair.toFixed(2),
+          strike: atmStrike,
           T: 60 / 365,
+          entryIV: 0.175,
+          targetIV: 0.175,
           iv: 0.175,
           multiplier: multiplier,
           strategy: "ATM Straddle Theta Harvest",
-          targetProfit: 720,
-          pairedHedgeId: hedgeId,
+          targetProfit: 1400,
+          pairedHedgeId: null,
           ageTicks: 0
         });
 
         book.positions.push({
           id: putId,
-          symbol: "OG_4170_P_60d",
-          name: "Gold 4170 ATM Put (60d)",
+          symbol: `OG_${atmStrike}_P_60d`,
+          name: `Gold ${atmStrike} ATM Put (60d)`,
           asset: "GC",
           instType: "put",
           side: "SELL",
           qty: qty,
-          entryPrice: putFair + 0.90,
-          markPrice: putFair + 0.90,
-          strike: 4170,
+          entryPrice: +(putFair + spreadMargin).toFixed(2),
+          markPrice: +putFair.toFixed(2),
+          strike: atmStrike,
           T: 60 / 365,
+          entryIV: 0.175,
+          targetIV: 0.175,
           iv: 0.175,
           multiplier: multiplier,
           strategy: "ATM Straddle Theta Harvest",
-          targetProfit: 720,
-          pairedHedgeId: hedgeId,
+          targetProfit: 1400,
+          pairedHedgeId: null,
           ageTicks: 0
         });
 
@@ -1421,11 +1452,11 @@ const portfolioEngine = {
           time: nowTime,
           book: book.name.slice(0, 16),
           action: "SELL STRADDLE",
-          symbol: "OG 4170 C/P (60d)",
+          symbol: `OG ${atmStrike} C/P (60d)`,
           qty: qty,
-          fillPrice: (callFair + putFair + 1.80),
-          fairValue: (callFair + putFair),
-          edge: `+$1,440`,
+          fillPrice: +(callFair + putFair + spreadMargin * 2).toFixed(2),
+          fairValue: +(callFair + putFair).toFixed(2),
+          edge: `+$${Math.round(spreadMargin * 2 * qty * multiplier)}`,
           venue: "CME Globex Maker",
           status: "FILLED"
         });
@@ -1436,25 +1467,29 @@ const portfolioEngine = {
       // Macro Tail-Risk Convexity Call Wing
       if (book.positions.length < 2) {
         const spot = liveMarketFeed.assets.GC.price;
-        const fair = black76Price(spot, 4400, 60 / 365, state.r, 0.180, true);
+        const wingStrike = Math.round((spot + 230) / 10) * 10;
+        const fair = black76Price(spot, wingStrike, 60 / 365, state.r, 0.180, true);
+        const spreadCost = 0.35;
         const qty = 20;
 
         book.positions.push({
           id: `pos-wing-${Date.now()}`,
-          symbol: "OG_4400_C_60d",
-          name: "Gold 4400 OTM Wing (60d)",
+          symbol: `OG_${wingStrike}_C_60d`,
+          name: `Gold ${wingStrike} OTM Wing (60d)`,
           asset: "GC",
           instType: "call",
           side: "BUY",
           qty: qty,
-          entryPrice: fair + 0.30,
-          markPrice: fair + 0.30,
-          strike: 4400,
+          entryPrice: +(fair + spreadCost).toFixed(2),
+          markPrice: +fair.toFixed(2),
+          strike: wingStrike,
           T: 60 / 365,
+          entryIV: 0.180,
+          targetIV: 0.180,
           iv: 0.180,
           multiplier: 100,
           strategy: "Asymmetric Safe-Haven Wing",
-          targetProfit: 850,
+          targetProfit: 900,
           pairedHedgeId: null,
           ageTicks: 0
         });
@@ -1464,10 +1499,10 @@ const portfolioEngine = {
           time: nowTime,
           book: book.name.slice(0, 16),
           action: "BUY CONVEXITY",
-          symbol: "OG 4400 Call (60d)",
+          symbol: `OG ${wingStrike} Call (60d)`,
           qty: qty,
-          fillPrice: fair + 0.30,
-          fairValue: fair,
+          fillPrice: +(fair + spreadCost).toFixed(2),
+          fairValue: +fair.toFixed(2),
           edge: "$0.00",
           venue: "CME Globex Maker",
           status: "FILLED"
@@ -1495,14 +1530,14 @@ const portfolioEngine = {
     const toCloseOptionIds = [];
 
     book.positions.forEach((pos) => {
-      pos.ageTicks = (pos.ageTicks || 0) + 1;
-
-      // Only check option positions (futures close with parent option)
+      // Only evaluate parent option positions
       if (pos.instType !== "future") {
+        const pairedHedge = pos.pairedHedgeId ? book.positions.find((p) => p.id === pos.pairedHedgeId) : null;
+        const combinedPnl = (pos.pnl || 0) + (pairedHedge ? (pairedHedge.pnl || 0) : 0);
         const targetP = pos.targetProfit || 400;
-        const isTargetMet = (pos.pnl || 0) >= targetP * 0.75;
-        // Age maturation convergence cycle (~18 ticks / 20 seconds)
-        const isCycleMature = pos.ageTicks >= 16 && (pos.pnl || 0) > 0;
+        const isTargetMet = combinedPnl >= targetP * 0.70;
+        // Age maturation convergence cycle (~18-20 ticks)
+        const isCycleMature = (pos.ageTicks >= 20) && combinedPnl > 200;
 
         if (isTargetMet || isCycleMature) {
           toCloseOptionIds.push(pos.id);
@@ -1529,7 +1564,7 @@ const portfolioEngine = {
 
     const optPnl = optPos.pnl || 0;
     const hedgePnl = hedgePos ? (hedgePos.pnl || 0) : 0;
-    const combinedPnl = optPnl + hedgePnl;
+    const combinedPnl = Math.round((optPnl + hedgePnl) * 100) / 100;
 
     // Credit realized profit to book capital
     book.realizedPnl += combinedPnl;
@@ -1539,7 +1574,6 @@ const portfolioEngine = {
     const ordId = `ORD-${Math.floor(10000 + Math.random() * 90000)}`;
 
     // Remove positions
-    // Remove hedge first if index higher to prevent shifting
     if (hedgeIdx !== -1 && hedgeIdx > optIdx) {
       book.positions.splice(hedgeIdx, 1);
       book.positions.splice(optIdx, 1);
@@ -1555,12 +1589,12 @@ const portfolioEngine = {
       id: ordId,
       time: nowTime,
       book: book.name.slice(0, 16),
-      action: "TAKE PROFIT (EXIT)",
+      action: combinedPnl >= 0 ? "TAKE PROFIT (EXIT)" : "EXIT (MANUAL)",
       symbol: optPos.symbol,
       qty: optPos.qty,
       fillPrice: optPos.markPrice || optPos.entryPrice,
       fairValue: optPos.markPrice || optPos.entryPrice,
-      edge: `${combinedPnl >= 0 ? "+" : ""}$${Math.round(combinedPnl)}`,
+      edge: `${combinedPnl >= 0 ? "+" : ""}$${Math.round(combinedPnl).toLocaleString()}`,
       venue: "CME Globex Taker",
       status: "FILLED"
     });
@@ -1568,11 +1602,19 @@ const portfolioEngine = {
     this.markToMarket();
     this.renderUI();
 
-    this.showToast(
-      "💰 TAKE PROFIT EXECUTED",
-      `Closed ${optPos.symbol} + Delta Hedge! Captured ${combinedPnl >= 0 ? "+" : ""}$${Math.round(combinedPnl)} realized profit.`,
-      combinedPnl >= 0
-    );
+    if (combinedPnl >= 0) {
+      this.showToast(
+        "💰 TAKE PROFIT EXECUTED",
+        `Closed ${optPos.symbol} + Delta Hedge! Captured +$${Math.round(combinedPnl).toLocaleString()} realized profit.`,
+        true
+      );
+    } else {
+      this.showToast(
+        "✕ POSITION CLOSED",
+        `Closed ${optPos.symbol}. Realized PnL: -$${Math.abs(Math.round(combinedPnl)).toLocaleString()}.`,
+        false
+      );
+    }
   },
 
   harvestTargetMetPositions() {
@@ -1699,10 +1741,10 @@ const portfolioEngine = {
   },
 
   executeTradeFromScanner(symbol, isHedged) {
+    syncComexGoldChain(state.F);
     const c = COMEX_GOLD_CHAIN.find((item) => item.symbol === symbol);
     if (!c) return;
 
-    const dynamicFair = black76Price(state.F, c.strike, c.T, state.r, c.modelIV, c.type === "call");
     let side = "BUY";
     let fillPrice = c.ask;
 
@@ -1720,8 +1762,8 @@ const portfolioEngine = {
     const book = this.getActiveBook();
     const qty = 5;
     const multiplier = 100;
-    const edgeVal = Math.abs(dynamicFair - fillPrice);
-    const targetProfit = Math.round(edgeVal * 0.75 * qty * multiplier);
+    const edgeVal = c.edgeVal || Math.abs(c.fairPrice - fillPrice);
+    const targetProfit = Math.max(250, Math.round(edgeVal * 0.80 * qty * multiplier));
     const optId = `pos-opt-${Date.now()}`;
     const hedgeId = isHedged ? `pos-hdg-${Date.now()}` : null;
     const spot = liveMarketFeed.assets.GC.price;
@@ -1736,10 +1778,12 @@ const portfolioEngine = {
       side: side,
       qty: qty,
       entryPrice: fillPrice,
-      markPrice: fillPrice,
+      markPrice: c.mktMid,
       strike: c.strike,
       T: c.T,
-      iv: c.modelIV,
+      entryIV: c.mktIV,
+      targetIV: c.modelIV,
+      iv: c.mktIV,
       multiplier: multiplier,
       strategy: "Scanner Manual Execution",
       targetProfit: targetProfit,
@@ -1755,16 +1799,16 @@ const portfolioEngine = {
       symbol: c.symbol,
       qty: qty,
       fillPrice: fillPrice,
-      fairValue: dynamicFair,
-      edge: `+$${Math.round(edgeVal * qty * multiplier)}`,
+      fairValue: c.fairPrice,
+      edge: c.edge,
       venue: "CME Globex Maker",
       status: "FILLED"
     });
 
     if (isHedged) {
-      const g = calculateGreeks(state.F, c.strike, c.T, state.r, c.modelIV, c.type === "call");
+      const g = calculateGreeks(state.F, c.strike, c.T, state.r, c.mktIV, c.type === "call");
       const optDelta = (side === "BUY" ? 1 : -1) * g.delta * qty;
-      const hedgeSize = Math.round(Math.abs(optDelta) * 100) / 100;
+      const hedgeSize = Math.max(0.01, Math.round(Math.abs(optDelta) * 100) / 100);
       const hedgeSide = optDelta > 0 ? "SELL" : "BUY";
 
       book.positions.push({
@@ -1992,8 +2036,19 @@ const portfolioEngine = {
         pos.theta = 0;
         pos.pnl = sign * (spot - pos.entryPrice) * pos.qty * pos.multiplier;
       } else {
-        const mark = black76Price(spot, pos.strike, pos.T, state.r, pos.iv, pos.instType === "call");
-        const g = calculateGreeks(spot, pos.strike, pos.T, state.r, pos.iv, pos.instType === "call");
+        const ticks = pos.ageTicks || 0;
+        // Simulated micro-tenor decay (time erosion)
+        const effectiveT = Math.max(1e-4, pos.T - (ticks * 0.12) / 365.0);
+
+        // Volatility convergence towards Model Fair IV (relative-value arbitrage realization)
+        let currentIV = pos.iv;
+        if (pos.entryIV !== undefined && pos.targetIV !== undefined) {
+          const ratio = Math.min(1.0, ticks / 20.0);
+          currentIV = pos.entryIV + (pos.targetIV - pos.entryIV) * ratio;
+        }
+
+        const mark = black76Price(spot, pos.strike, effectiveT, state.r, currentIV, pos.instType === "call");
+        const g = calculateGreeks(spot, pos.strike, effectiveT, state.r, currentIV, pos.instType === "call");
         pos.markPrice = mark;
         pos.delta = sign * g.delta * pos.qty;
         pos.gamma = sign * g.gamma * pos.qty;
@@ -2029,6 +2084,7 @@ const portfolioEngine = {
 
   markToMarket() {
     const book = this.getActiveBook();
+    book.positions.forEach((p) => { p.ageTicks = (p.ageTicks || 0) + 1; });
     const stats = this.computeBookStats(book);
 
     // Update Hero Cards
