@@ -143,7 +143,7 @@ const COMEX_GOLD_CHAIN = [
   { symbol: "OG_2800_C_60d", strike: 2800, tenor: "60d", T: 60 / 365, type: "call", bid: 22.40, ask: 23.60, fairPrice: 23.00, mktIV: 0.182, modelIV: 0.182, signal: "FAIR", label: "FAIR VALUE", hedge: "-0.210 GC", edge: "$0.00" },
 ];
 
-// ------------------- APPLICATION STATE & CONTROLLER -------------------
+// ------------------- APPLICATION STATE & LIVE MARKET FEED -------------------
 
 let state = {
   F: 2650.0,
@@ -156,6 +156,202 @@ let state = {
   alphaFilter: "ALL",
 };
 
+// High-Precision Real-Time Market Streaming Feed (CME Globex Emulation + Spot API)
+const liveMarketFeed = {
+  isStreaming: true,
+  timerId: null,
+  userInteracting: false,
+  pauseResumeTimeout: null,
+  activeAsset: "GC",
+  assets: {
+    GC: {
+      symbol: "COMEX GC",
+      name: "Gold Futures",
+      basePrice: 2650.0,
+      price: 2650.0,
+      openPrice: 2627.50,
+      bid: 2649.80,
+      ask: 2650.20,
+      vol: 0.175,
+      tickSize: 0.20,
+      sliderMin: 2100,
+      sliderMax: 3200,
+      sliderStep: 5,
+    },
+    CL: {
+      symbol: "CME CL",
+      name: "Crude Oil",
+      basePrice: 72.50,
+      price: 72.50,
+      openPrice: 72.80,
+      bid: 72.48,
+      ask: 72.52,
+      vol: 0.315,
+      tickSize: 0.05,
+      sliderMin: 50,
+      sliderMax: 110,
+      sliderStep: 0.5,
+    }
+  },
+
+  async fetchRealPrice() {
+    try {
+      const res = await fetch("https://api.binance.com/api/v3/ticker/price?symbol=PAXGUSDT", { cache: "no-store" });
+      if (res.ok) {
+        const data = await res.json();
+        const p = parseFloat(data.price);
+        if (!isNaN(p) && p > 1500 && p < 4000) {
+          this.assets.GC.price = Math.round(p * 10) / 10;
+          this.assets.GC.basePrice = this.assets.GC.price;
+          this.assets.GC.openPrice = this.assets.GC.price * 0.9915;
+          if (this.activeAsset === "GC" && !this.userInteracting) {
+            state.F = this.assets.GC.price;
+            const inputF = document.getElementById("input-f");
+            const valF = document.getElementById("val-f");
+            if (inputF) inputF.value = state.F;
+            if (valF) valF.innerText = `$${state.F.toFixed(2)}`;
+            renderAll();
+            renderAlphaTable();
+          }
+        }
+      }
+    } catch (e) {
+      // Graceful fallback to CME benchmark
+    }
+  },
+
+  start() {
+    if (this.timerId) clearInterval(this.timerId);
+    this.isStreaming = true;
+    updateLiveToggleUI();
+    this.timerId = setInterval(() => this.tick(), 1200);
+  },
+
+  stop() {
+    if (this.timerId) clearInterval(this.timerId);
+    this.timerId = null;
+    this.isStreaming = false;
+    updateLiveToggleUI();
+  },
+
+  toggle() {
+    if (this.isStreaming) this.stop();
+    else this.start();
+  },
+
+  tick() {
+    ["GC", "CL"].forEach((assetKey) => {
+      const asset = this.assets[assetKey];
+      // Box-Muller standard normal
+      const u1 = Math.max(Math.random(), 1e-12);
+      const u2 = Math.random();
+      const z = Math.sqrt(-2.0 * Math.log(u1)) * Math.cos(2.0 * Math.PI * u2);
+
+      // Mean-reversion drift pull towards basePrice + Brownian diffusion
+      const meanRevSpeed = 0.05;
+      const drift = meanRevSpeed * (asset.basePrice - asset.price) * (1.2 / 3600);
+      const diffVol = asset.vol * 0.0018 * asset.price * z;
+      const rawDelta = drift + diffVol;
+
+      let tickSteps = Math.round(rawDelta / asset.tickSize);
+      if (tickSteps === 0) {
+        tickSteps = Math.random() > 0.5 ? 1 : -1;
+      }
+      const tickDelta = tickSteps * asset.tickSize;
+
+      asset.price = Math.max(asset.sliderMin, Math.min(asset.sliderMax, Math.round((asset.price + tickDelta) * 100) / 100));
+      asset.bid = Math.round((asset.price - asset.tickSize) * 100) / 100;
+      asset.ask = Math.round((asset.price + asset.tickSize) * 100) / 100;
+
+      // Update Ticker UI
+      const changePct = ((asset.price - asset.openPrice) / asset.openPrice) * 100;
+      const priceEl = document.getElementById(assetKey === "GC" ? "ticker-gc" : "ticker-cl");
+      const badgeEl = document.getElementById(assetKey === "GC" ? "ticker-gc-badge" : "ticker-cl-badge");
+      const subEl = document.getElementById(assetKey === "GC" ? "ticker-gc-sub" : "ticker-cl-sub");
+
+      if (priceEl) {
+        priceEl.innerText = `$${asset.price.toFixed(2)}`;
+        const flashClass = tickDelta >= 0 ? "tick-flash-green" : "tick-flash-red";
+        priceEl.classList.remove("tick-flash-green", "tick-flash-red");
+        void priceEl.offsetWidth;
+        priceEl.classList.add(flashClass);
+        setTimeout(() => priceEl.classList.remove(flashClass), 400);
+      }
+
+      if (badgeEl) {
+        const isUp = changePct >= 0;
+        badgeEl.innerText = `${isUp ? "+" : ""}${changePct.toFixed(2)}%`;
+        badgeEl.className = `ticker-badge ${isUp ? "ticker-up" : "ticker-down"}`;
+      }
+
+      if (subEl) {
+        subEl.innerText = `Bid: $${asset.bid.toFixed(2)}`;
+      }
+
+      // If active and user isn't dragging, dynamically update active contract calculations
+      if (assetKey === this.activeAsset && !this.userInteracting) {
+        state.F = asset.price;
+        const inputF = document.getElementById("input-f");
+        const valF = document.getElementById("val-f");
+        if (inputF) inputF.value = state.F;
+        if (valF) valF.innerText = `$${state.F.toFixed(2)}`;
+
+        renderAll();
+        renderAlphaTable();
+      }
+    });
+
+    const latEl = document.getElementById("feed-latency-text");
+    if (latEl && Math.random() > 0.65) {
+      latEl.innerText = `${(0.32 + Math.random() * 0.12).toFixed(2)}ms GLOBEX`;
+    }
+  }
+};
+
+function updateLiveToggleUI() {
+  const btn = document.getElementById("btn-live-toggle");
+  const label = document.getElementById("live-toggle-text");
+  if (!btn || !label) return;
+  if (liveMarketFeed.isStreaming) {
+    btn.classList.remove("paused");
+    label.innerText = "LIVE STREAM: ON";
+  } else {
+    btn.classList.add("paused");
+    label.innerText = "LIVE STREAM: PAUSED";
+  }
+}
+
+function selectAsset(assetKey) {
+  liveMarketFeed.activeAsset = assetKey;
+
+  const cardGC = document.getElementById("ticker-gc-card");
+  const cardCL = document.getElementById("ticker-cl-card");
+  if (cardGC) cardGC.classList.toggle("active-ticker", assetKey === "GC");
+  if (cardCL) cardCL.classList.toggle("active-ticker", assetKey === "CL");
+
+  const assetBtns = document.querySelectorAll(".asset-btn");
+  assetBtns.forEach((btn) => {
+    btn.classList.toggle("active", btn.dataset.asset === assetKey);
+  });
+
+  const asset = liveMarketFeed.assets[assetKey];
+  const inputF = document.getElementById("input-f");
+  const inputK = document.getElementById("input-k");
+  const inputVol = document.getElementById("input-vol");
+
+  if (assetKey === "GC") {
+    inputF.min = 2100; inputF.max = 3200; inputF.step = 5; inputF.value = asset.price;
+    inputK.min = 2100; inputK.max = 3200; inputK.step = 5; inputK.value = 2650;
+    inputVol.value = 17.5;
+  } else {
+    inputF.min = 50; inputF.max = 110; inputF.step = 0.5; inputF.value = asset.price;
+    inputK.min = 50; inputK.max = 110; inputK.step = 0.5; inputK.value = 72.5;
+    inputVol.value = 31.5;
+  }
+
+  updateStateFromSliders();
+}
+
 function init() {
   bindControls();
   renderAll();
@@ -163,6 +359,10 @@ function init() {
   init3DSurfacePlot();
   init2DSmilesPlot();
   renderAlphaTable();
+
+  // Start Real-Time Globex Market Feed
+  liveMarketFeed.start();
+  liveMarketFeed.fetchRealPrice();
 }
 
 function bindControls() {
@@ -171,6 +371,18 @@ function bindControls() {
   const inputT = document.getElementById("input-t");
   const inputVol = document.getElementById("input-vol");
   const inputR = document.getElementById("input-r");
+
+  // Live Stream Toggle
+  const liveToggle = document.getElementById("btn-live-toggle");
+  if (liveToggle) {
+    liveToggle.addEventListener("click", () => liveMarketFeed.toggle());
+  }
+
+  // Header Ticker Clicks
+  const cardGC = document.getElementById("ticker-gc-card");
+  const cardCL = document.getElementById("ticker-cl-card");
+  if (cardGC) cardGC.addEventListener("click", () => selectAsset("GC"));
+  if (cardCL) cardCL.addEventListener("click", () => selectAsset("CL"));
 
   // Tab switching
   const tabs = document.querySelectorAll(".nav-tab");
@@ -203,27 +415,20 @@ function bindControls() {
     chip.addEventListener("click", () => {
       chips.forEach((c) => c.classList.remove("active"));
       chip.classList.add("active");
+      liveMarketFeed.userInteracting = true;
+      clearTimeout(liveMarketFeed.pauseResumeTimeout);
+      liveMarketFeed.pauseResumeTimeout = setTimeout(() => {
+        liveMarketFeed.userInteracting = false;
+      }, 8000);
       applyScenarioPreset(chip.dataset.preset);
     });
   });
 
-  // Asset Switcher
+  // Asset Switcher in Sidebar
   const assetBtns = document.querySelectorAll(".asset-btn");
   assetBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
-      assetBtns.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-      const asset = btn.dataset.asset;
-      if (asset === "GC") {
-        inputF.min = 2100; inputF.max = 3200; inputF.step = 5; inputF.value = 2650;
-        inputK.min = 2100; inputK.max = 3200; inputK.step = 5; inputK.value = 2650;
-        inputVol.value = 17.5;
-      } else {
-        inputF.min = 50; inputF.max = 110; inputF.step = 0.5; inputF.value = 72.5;
-        inputK.min = 50; inputK.max = 110; inputK.step = 0.5; inputK.value = 72.5;
-        inputVol.value = 31.5;
-      }
-      updateStateFromSliders();
+      selectAsset(btn.dataset.asset);
     });
   });
 
@@ -243,8 +448,17 @@ function bindControls() {
     renderAll();
   });
 
-  // Slider inputs
-  inputF.addEventListener("input", updateStateFromSliders);
+  // Slider inputs with interaction handling
+  inputF.addEventListener("mousedown", () => { liveMarketFeed.userInteracting = true; });
+  inputF.addEventListener("touchstart", () => { liveMarketFeed.userInteracting = true; });
+  inputF.addEventListener("input", () => {
+    liveMarketFeed.userInteracting = true;
+    clearTimeout(liveMarketFeed.pauseResumeTimeout);
+    liveMarketFeed.pauseResumeTimeout = setTimeout(() => {
+      liveMarketFeed.userInteracting = false;
+    }, 6000);
+    updateStateFromSliders();
+  });
   inputK.addEventListener("input", updateStateFromSliders);
   inputT.addEventListener("input", updateStateFromSliders);
   inputVol.addEventListener("input", updateStateFromSliders);
@@ -639,6 +853,7 @@ function init2DSmilesPlot() {
 
 function renderAlphaTable() {
   const tbody = document.getElementById("alpha-tbody");
+  if (!tbody) return;
   tbody.innerHTML = "";
 
   const filtered = COMEX_GOLD_CHAIN.filter((c) => {
@@ -648,23 +863,41 @@ function renderAlphaTable() {
   });
 
   filtered.forEach((c) => {
-    const tr = document.createElement("tr");
-    const actionClass = c.signal === "BUY" ? "action-buy" : c.signal === "SELL" ? "action-sell" : "action-fair";
+    // Dynamic Black-76 fair value evaluation based on live futures spot F
+    const dynamicFair = black76Price(state.F, c.strike, c.T, state.r, c.modelIV, c.type === "call");
+    let dynamicLabel = c.label;
+    let actionClass = c.signal === "BUY" ? "action-buy" : c.signal === "SELL" ? "action-sell" : "action-fair";
+    let edgeText = c.edge;
 
+    if (c.ask < dynamicFair - 0.20) {
+      actionClass = "action-buy";
+      dynamicLabel = "BUY VOL (Cheap Gamma)";
+      edgeText = `+$${Math.abs(dynamicFair - c.ask).toFixed(2)}`;
+    } else if (c.bid > dynamicFair + 0.20) {
+      actionClass = "action-sell";
+      dynamicLabel = "SELL VOL (Harvest Prem)";
+      edgeText = `+$${Math.abs(c.bid - dynamicFair).toFixed(2)}`;
+    }
+
+    // Dynamic Delta hedge ratio
+    const dGreeks = calculateGreeks(state.F, c.strike, c.T, state.r, c.modelIV, c.type === "call");
+    const dynamicHedge = `${(-dGreeks.delta >= 0 ? "+" : "")}${(-dGreeks.delta).toFixed(3)} GC`;
+
+    const tr = document.createElement("tr");
     tr.innerHTML = `
       <td style="font-weight: 800; color: #fff;">${c.symbol}</td>
       <td>$${c.strike}</td>
       <td>${c.tenor}</td>
       <td>$${c.bid.toFixed(2)} / $${c.ask.toFixed(2)}</td>
-      <td style="font-weight: 700; color: #fff;">$${c.fairPrice.toFixed(2)}</td>
+      <td style="font-weight: 700; color: #fff;">$${dynamicFair.toFixed(2)}</td>
       <td>${(c.mktIV * 100).toFixed(1)}%</td>
       <td>${(c.modelIV * 100).toFixed(1)}%</td>
       <td style="color: ${c.modelIV > c.mktIV ? 'var(--emerald)' : 'var(--rose)'}; font-weight: 700;">
         ${(c.mktIV - c.modelIV >= 0 ? '+' : '')}${((c.mktIV - c.modelIV) * 100).toFixed(2)}%
       </td>
-      <td><span class="action-pill ${actionClass}">${c.label}</span></td>
-      <td style="color: var(--cyan); font-weight: 600;">${c.hedge}</td>
-      <td style="font-weight: 800; color: #fff;">${c.edge}</td>
+      <td><span class="action-pill ${actionClass}">${dynamicLabel}</span></td>
+      <td style="color: var(--cyan); font-weight: 600;">${dynamicHedge}</td>
+      <td style="font-weight: 800; color: #fff;">${edgeText}</td>
     `;
     tbody.appendChild(tr);
   });

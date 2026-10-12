@@ -244,6 +244,16 @@ html, body {
   background-color: #141f38 !important;
 }
 
+.market-ticker.active-ticker {
+  border-color: var(--cyan) !important;
+  background-color: #111d38 !important;
+  box-shadow: 0 0 14px rgba(0, 240, 255, 0.25);
+}
+
+.market-ticker.active-ticker .ticker-sym {
+  color: var(--cyan) !important;
+}
+
 .ticker-top {
   display: flex;
   justify-content: space-between;
@@ -261,10 +271,19 @@ html, body {
   font-family: var(--font-mono);
   font-size: 0.65rem;
   font-weight: 700;
+  padding: 0.1rem 0.3rem;
+  border-radius: 4px;
 }
 
-.ticker-up { color: var(--emerald) !important; }
-.ticker-down { color: var(--rose) !important; }
+.ticker-up {
+  color: var(--emerald) !important;
+  background-color: rgba(16, 185, 129, 0.12) !important;
+}
+
+.ticker-down {
+  color: var(--rose) !important;
+  background-color: rgba(244, 63, 94, 0.12) !important;
+}
 
 .ticker-bot {
   display: flex;
@@ -278,6 +297,7 @@ html, body {
   font-size: 0.95rem;
   font-weight: 700;
   color: #fff !important;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
 }
 
 .ticker-sub {
@@ -286,9 +306,70 @@ html, body {
   font-family: var(--font-mono);
 }
 
+/* Real-Time Tick Flash Animations */
+.tick-flash-green {
+  color: #10b981 !important;
+  text-shadow: 0 0 10px rgba(16, 185, 129, 0.8) !important;
+}
+
+.tick-flash-red {
+  color: #f43f5e !important;
+  text-shadow: 0 0 10px rgba(244, 63, 94, 0.8) !important;
+}
+
 /* Header Right */
 .header-right {
-  gap: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn-live-stream {
+  background-color: #062e24 !important;
+  color: var(--emerald) !important;
+  border: 1px solid var(--border-emerald);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.btn-live-stream:hover {
+  background-color: #0c3e32 !important;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.35);
+}
+
+.btn-live-stream.paused {
+  background-color: #1e293b !important;
+  color: var(--text-mid) !important;
+  border-color: #334155;
+}
+
+.live-stream-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--emerald);
+  box-shadow: 0 0 8px var(--emerald);
+  animation: liveBeacon 1.2s infinite ease-in-out;
+}
+
+.btn-live-stream.paused .live-stream-dot {
+  background-color: var(--text-low);
+  box-shadow: none;
+  animation: none;
+}
+
+@keyframes liveBeacon {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.85); }
 }
 
 .latency-badge {

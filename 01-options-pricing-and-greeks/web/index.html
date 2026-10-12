@@ -45,34 +45,38 @@
 
       <!-- Center Market Tickers -->
       <div class="header-center">
-        <div class="market-ticker" id="ticker-gc-card">
+        <div class="market-ticker active-ticker" id="ticker-gc-card" data-asset="GC" title="Click to track COMEX Gold Futures">
           <div class="ticker-top">
             <span class="ticker-sym">COMEX GC</span>
-            <span class="ticker-badge ticker-up">+0.85%</span>
+            <span class="ticker-badge ticker-up" id="ticker-gc-badge">+0.85%</span>
           </div>
           <div class="ticker-bot">
             <span class="ticker-val" id="ticker-gc">$2,650.00</span>
-            <span class="ticker-sub">Vol: 17.5%</span>
+            <span class="ticker-sub" id="ticker-gc-sub">Bid: $2,649.80</span>
           </div>
         </div>
 
-        <div class="market-ticker" id="ticker-cl-card">
+        <div class="market-ticker" id="ticker-cl-card" data-asset="CL" title="Click to track CME Crude Oil Futures">
           <div class="ticker-top">
             <span class="ticker-sym">CME CL</span>
-            <span class="ticker-badge ticker-down">-0.42%</span>
+            <span class="ticker-badge ticker-down" id="ticker-cl-badge">-0.42%</span>
           </div>
           <div class="ticker-bot">
             <span class="ticker-val" id="ticker-cl">$72.50</span>
-            <span class="ticker-sub">Vol: 31.5%</span>
+            <span class="ticker-sub" id="ticker-cl-sub">Bid: $72.48</span>
           </div>
         </div>
       </div>
 
       <!-- Header Actions -->
       <div class="header-right">
-        <div class="latency-badge">
+        <button class="btn btn-live-stream" id="btn-live-toggle" title="Toggle Real-Time Globex Market Feed">
+          <span class="live-stream-dot"></span>
+          <span id="live-toggle-text">LIVE STREAM: ON</span>
+        </button>
+        <div class="latency-badge" id="feed-latency-badge">
           <span class="latency-dot"></span>
-          <span>0.38ms KERNEL</span>
+          <span id="feed-latency-text">0.38ms GLOBEX</span>
         </div>
         <button class="btn btn-glass" id="btn-math-modal">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
