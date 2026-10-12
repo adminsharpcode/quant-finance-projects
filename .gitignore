@@ -54,4 +54,5 @@ htmlcov/
 # Output plots / cache
 *.png
 *.html
+!**/web/*.html
 *.log

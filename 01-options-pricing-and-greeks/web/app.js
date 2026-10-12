@@ -383,6 +383,8 @@ function drawMonteCarloPaths() {
   const H = canvas.height;
 
   ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = "#060913";
+  ctx.fillRect(0, 0, W, H);
 
   // Background subtle grid
   ctx.strokeStyle = "rgba(255, 255, 255, 0.04)";

@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VOLX | Institutional Options Pricing & Volatility Surface Terminal</title>
+  <meta name="description" content="Next-Generation Quantitative Derivatives Terminal: Black-76, American CRR Trees, Stochastic Monte Carlo Path Sim, Greeks Risk Desk (Vanna/Volga), SVI & SABR Surfaces, and Relative-Value Arbitrage.">
+  <meta name="color-scheme" content="dark">
+  <meta name="supported-color-schemes" content="dark">
+  <meta name="theme-color" content="#060913">
+  <meta name="darkreader-lock">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Ambient Background Mesh Glow -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <div class="app-layout">
+    <!-- Top Institutional Command Bar -->
+    <header class="terminal-header">
+      <div class="header-left">
+        <div class="terminal-brand">
+          <div class="terminal-gem">
+            <span class="gem-symbol">Ω</span>
+            <div class="gem-pulse"></div>
+          </div>
+          <div>
+            <div class="brand-title-wrap">
+              <span class="brand-title">VOLX</span>
+              <span class="brand-sub">QUANTITATIVE LAB</span>
+              <span class="badge badge-terminal">GLOBEX L3 FEED</span>
+              <span class="badge badge-live"><span class="pulse-dot"></span> LIVE ENGINE</span>
+            </div>
+            <p class="brand-caption">Commodity & Futures Derivatives • Black-76 • CRR American Lattice • SVI / SABR Calibration</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Center Market Tickers -->
+      <div class="header-center">
+        <div class="market-ticker" id="ticker-gc-card">
+          <div class="ticker-top">
+            <span class="ticker-sym">COMEX GC</span>
+            <span class="ticker-badge ticker-up">+0.85%</span>
+          </div>
+          <div class="ticker-bot">
+            <span class="ticker-val" id="ticker-gc">$2,650.00</span>
+            <span class="ticker-sub">Vol: 17.5%</span>
+          </div>
+        </div>
+
+        <div class="market-ticker" id="ticker-cl-card">
+          <div class="ticker-top">
+            <span class="ticker-sym">CME CL</span>
+            <span class="ticker-badge ticker-down">-0.42%</span>
+          </div>
+          <div class="ticker-bot">
+            <span class="ticker-val" id="ticker-cl">$72.50</span>
+            <span class="ticker-sub">Vol: 31.5%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Header Actions -->
+      <div class="header-right">
+        <div class="latency-badge">
+          <span class="latency-dot"></span>
+          <span>0.38ms KERNEL</span>
+        </div>
+        <button class="btn btn-glass" id="btn-math-modal">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          Math Spec
+        </button>
+        <a href="https://github.com/adminsharpcode/quant-finance-projects" target="_blank" class="btn btn-primary" id="btn-repo-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub Repo
+        </a>
+      </div>
+    </header>
+
+    <!-- Quick Scenario Preset Bar -->
+    <div class="preset-bar">
+      <span class="preset-label">SCENARIO PRESETS:</span>
+      <div class="preset-chips">
+        <button class="preset-chip active" data-preset="gc_atm">COMEX Gold ATM ($2,650)</button>
+        <button class="preset-chip" data-preset="gc_otm_call">Safe-Haven Call Wing ($2,750)</button>
+        <button class="preset-chip" data-preset="gc_otm_put">Tail Risk Hedge Put ($2,550)</button>
+        <button class="preset-chip" data-preset="cl_atm">CME Crude Oil ($72.50)</button>
+        <button class="preset-chip" data-preset="cl_skew">Crude Supply Shock Skew</button>
+      </div>
+    </div>
+
+    <!-- Main Workspace Split: Sidebar & Multi-Tab Content -->
+    <div class="workspace-body">
+      <!-- Left Controls Rail -->
+      <aside class="control-sidebar">
+        <div class="sidebar-section-title">
+          <span>CONTRACT PARAMETERS</span>
+          <span class="dot-active"></span>
+        </div>
+
+        <!-- Asset Selection -->
+        <div class="input-card">
+          <label class="field-label">Underlying Future</label>
+          <div class="asset-switcher">
+            <button class="asset-btn active" data-asset="GC">
+              <span class="asset-code">GC</span>
+              <span class="asset-name">Gold Futures</span>
+            </button>
+            <button class="asset-btn" data-asset="CL">
+              <span class="asset-code">CL</span>
+              <span class="asset-name">Crude Oil</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Option Type Switch -->
+        <div class="input-card">
+          <label class="field-label">Option Direction</label>
+          <div class="type-switch">
+            <button class="type-btn active" id="btn-call" data-type="call">CALL OPTION</button>
+            <button class="type-btn" id="btn-put" data-type="put">PUT OPTION</button>
+          </div>
+        </div>
+
+        <!-- Futures Price F -->
+        <div class="input-card">
+          <div class="field-head">
+            <label class="field-label" for="input-f">Futures Price (F)</label>
+            <span class="field-val" id="val-f">$2,650.00</span>
+          </div>
+          <input type="range" id="input-f" min="2100" max="3200" step="5" value="2650" class="neon-slider">
+          <div class="slider-marks"><span>$2,100</span><span>$2,650 ATM</span><span>$3,200</span></div>
+        </div>
+
+        <!-- Strike Price K -->
+        <div class="input-card">
+          <div class="field-head">
+            <label class="field-label" for="input-k">Strike Price (K)</label>
+            <span class="field-val" id="val-k">$2,650.00</span>
+          </div>
+          <input type="range" id="input-k" min="2100" max="3200" step="5" value="2650" class="neon-slider">
+          <div class="slider-marks"><span>ITM Wing</span><span>Moneyness 100%</span><span>OTM Wing</span></div>
+        </div>
+
+        <!-- Tenor T -->
+        <div class="input-card">
+          <div class="field-head">
+            <label class="field-label" for="input-t">Time to Expiry (T)</label>
+            <span class="field-val" id="val-t">60 Days (0.164y)</span>
+          </div>
+          <input type="range" id="input-t" min="5" max="365" step="1" value="60" class="neon-slider">
+          <div class="slider-marks"><span>5 Days</span><span>60 Days</span><span>1 Year</span></div>
+        </div>
+
+        <!-- Volatility Sigma -->
+        <div class="input-card">
+          <div class="field-head">
+            <label class="field-label" for="input-vol">Implied Volatility (σ)</label>
+            <span class="field-val text-amber" id="val-vol">17.50%</span>
+          </div>
+          <input type="range" id="input-vol" min="5" max="80" step="0.25" value="17.5" class="neon-slider">
+          <div class="slider-marks"><span>5.0%</span><span>Low / Normal</span><span>80.0%</span></div>
+        </div>
+
+        <!-- Risk Free Rate r -->
+        <div class="input-card">
+          <div class="field-head">
+            <label class="field-label" for="input-r">Discount Rate (r)</label>
+            <span class="field-val" id="val-r">4.50%</span>
+          </div>
+          <input type="range" id="input-r" min="0" max="10" step="0.25" value="4.5" class="neon-slider">
+          <div class="slider-marks"><span>0.0%</span><span>Fed Funds: 4.5%</span><span>10.0%</span></div>
+        </div>
+
+        <div class="kernel-callout">
+          <div class="callout-head">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            <span>Black-76 Commodity Martingale</span>
+          </div>
+          <p>Under risk-neutral Q, the forward commodity price has <strong>zero drift</strong> ($dF = \sigma F dW^Q$). Early exercise boundary is computed via backwards CRR recursion.</p>
+        </div>
+      </aside>
+
+      <!-- Right Analytics Hub -->
+      <main class="analytics-main">
+        <!-- Tab Navigation Bar -->
+        <div class="tab-nav">
+          <button class="nav-tab active" data-tab="tab-pricing">
+            <span class="tab-icon">⚡</span>
+            <span>Numerical Pricer Convergence</span>
+            <span class="tab-pill">3 ENGINES</span>
+          </button>
+          <button class="nav-tab" data-tab="tab-greeks">
+            <span class="tab-icon">📊</span>
+            <span>Greeks Risk & Payoff Desk</span>
+            <span class="tab-pill">7 GREEKS</span>
+          </button>
+          <button class="nav-tab" data-tab="tab-surface">
+            <span class="tab-icon">🌐</span>
+            <span>3D Volatility Surface & SVI</span>
+            <span class="tab-pill">PLOTLY 3D</span>
+          </button>
+          <button class="nav-tab" data-tab="tab-alpha">
+            <span class="tab-icon">🎯</span>
+            <span>Systematic Alpha & Vol Arbitrage</span>
+            <span class="tab-pill">LIVE SCAN</span>
+          </button>
+        </div>
+
+        <!-- ================= TAB 1: PRICING LAB ================= -->
+        <div class="tab-pane active" id="tab-pricing">
+          <!-- Summary Metrics Cards -->
+          <div class="cards-banner">
+            <div class="metric-card card-glow-cyan">
+              <div class="metric-label">
+                <span>BLACK-76 CLOSED FORM</span>
+                <span class="card-badge">EXACT FORMULA</span>
+              </div>
+              <div class="metric-hero" id="price-b76">$74.550</div>
+              <div class="metric-sub">
+                <span>European Analytical</span>
+                <span class="mono-tag">d1: +0.051 | d2: -0.020</span>
+              </div>
+            </div>
+
+            <div class="metric-card card-glow-emerald">
+              <div class="metric-label">
+                <span>CRR AMERICAN LATTICE</span>
+                <span class="card-badge badge-green">OPTIMAL STOPPING</span>
+              </div>
+              <div class="metric-hero text-emerald" id="price-crr-ame">$74.564</div>
+              <div class="metric-sub">
+                <span>Dynamic Programming</span>
+                <span class="mono-tag tag-emerald" id="badge-early-prem">+$0.014 Prem</span>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-label">
+                <span>CRR EUROPEAN LATTICE</span>
+                <span class="card-badge">RECOMBINING</span>
+              </div>
+              <div class="metric-hero" id="price-crr-eur">$74.548</div>
+              <div class="metric-sub">
+                <span>300 Steps</span>
+                <span class="mono-tag" id="crr-diff">Diff: $0.002 vs B-76</span>
+              </div>
+            </div>
+
+            <div class="metric-card card-glow-purple">
+              <div class="metric-label">
+                <span>ANTITHETIC MONTE CARLO</span>
+                <span class="card-badge">40K PATHS</span>
+              </div>
+              <div class="metric-hero text-purple" id="price-mc">$74.542</div>
+              <div class="metric-sub">
+                <span id="mc-ci">95% CI: ±$0.021</span>
+                <span class="mono-tag">Var Reduction: 68%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Monte Carlo Path Simulator Canvas -->
+          <div class="visual-panel">
+            <div class="panel-top">
+              <div>
+                <h3 class="panel-heading">Real-Time Monte Carlo Stochastic Trajectory Simulator</h3>
+                <p class="panel-sub">Simulating 35 Geometric Brownian Motion trajectories with Antithetic Pairing ($dF_t = \sigma F_t dW_t$)</p>
+              </div>
+              <button class="btn btn-sm btn-glass" id="btn-resim-mc">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+                Regenerate Paths
+              </button>
+            </div>
+            <div class="canvas-container">
+              <canvas id="mc-canvas"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 2: GREEKS RISK LAB ================= -->
+        <div class="tab-pane" id="tab-greeks">
+          <!-- Greeks Bento Grid -->
+          <div class="greeks-bento">
+            <div class="greek-card">
+              <div class="greek-head">
+                <span class="greek-symbol">Δ</span>
+                <span class="greek-title">Delta</span>
+                <span class="greek-order">1st Order</span>
+              </div>
+              <div class="greek-hero text-cyan" id="g-delta">+0.5034</div>
+              <div class="greek-detail">Units of futures needed to hedge 1 option contract</div>
+            </div>
+
+            <div class="greek-card">
+              <div class="greek-head">
+                <span class="greek-symbol">Γ</span>
+                <span class="greek-title">Gamma</span>
+                <span class="greek-order">2nd Order</span>
+              </div>
+              <div class="greek-hero text-emerald" id="g-gamma">0.00195</div>
+              <div class="greek-detail">Rate of change of delta per $1 move in underlying</div>
+            </div>
+
+            <div class="greek-card">
+              <div class="greek-head">
+                <span class="greek-symbol">ν</span>
+                <span class="greek-title">Vega (1%)</span>
+                <span class="greek-order">1st Order</span>
+              </div>
+              <div class="greek-hero text-amber" id="g-vega">$4.25</div>
+              <div class="greek-detail">Dollar PnL generated per +1.0% shift in volatility</div>
+            </div>
+
+            <div class="greek-card">
+              <div class="greek-head">
+                <span class="greek-symbol">Θ</span>
+                <span class="greek-title">Theta (1d)</span>
+                <span class="greek-order">1st Order</span>
+              </div>
+              <div class="greek-hero text-rose" id="g-theta">-$1.05</div>
+              <div class="greek-detail">Daily calendar decay elapsed per 24 hours</div>
+            </div>
+
+            <div class="greek-card">
+              <div class="greek-head">
+                <span class="greek-symbol">ρ</span>
+                <span class="greek-title">Rho (100bp)</span>
+                <span class="greek-order">1st Order</span>
+              </div>
+              <div class="greek-hero" id="g-rho">-$0.10</div>
+              <div class="greek-detail">Sensitivity to a 100 bps shift in discount rate</div>
+            </div>
+
+            <div class="greek-card">
+              <div class="greek-head">
+                <span class="greek-symbol">Vanna</span>
+                <span class="greek-title">Vanna</span>
+                <span class="greek-order">Cross (dΔ/dσ)</span>
+              </div>
+              <div class="greek-hero text-amber" id="g-vanna">+0.0420</div>
+              <div class="greek-detail">Cross derivative: how delta drifts when volatility shocks</div>
+            </div>
+
+            <div class="greek-card">
+              <div class="greek-head">
+                <span class="greek-symbol">Volga</span>
+                <span class="greek-title">Volga (Vomma)</span>
+                <span class="greek-order">Convexity (dν/dσ)</span>
+              </div>
+              <div class="greek-hero text-cyan" id="g-volga">-3.05</div>
+              <div class="greek-detail">Convexity of Vega; critical for smile & tail-risk pricing</div>
+            </div>
+          </div>
+
+          <!-- Dynamic Sensitivity & Payoff Chart Split -->
+          <div class="charts-dual-grid">
+            <div class="visual-panel">
+              <div class="panel-top">
+                <div>
+                  <h3 class="panel-heading">Greek Sensitivity Profile Across Underlying Spot</h3>
+                  <p class="panel-sub">Evaluating risk exposure through ±15% underlying shifts</p>
+                </div>
+                <div class="pill-selector">
+                  <button class="selector-btn active" data-chart="delta">Δ Delta</button>
+                  <button class="selector-btn" data-chart="gamma">Γ Gamma</button>
+                  <button class="selector-btn" data-chart="vega">ν Vega</button>
+                  <button class="selector-btn" data-chart="theta">Θ Theta</button>
+                  <button class="selector-btn" data-chart="vanna">Vanna</button>
+                  <button class="selector-btn" data-chart="volga">Volga</button>
+                </div>
+              </div>
+              <div id="plot-greek-curve" class="plotly-frame"></div>
+            </div>
+
+            <div class="visual-panel">
+              <div class="panel-top">
+                <div>
+                  <h3 class="panel-heading">Terminal Payoff vs Present Value Curve</h3>
+                  <p class="panel-sub">Black-76 smooth decay curve vs Intrinsic boundary at expiry</p>
+                </div>
+              </div>
+              <div id="plot-payoff-curve" class="plotly-frame"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 3: VOLATILITY SURFACE ================= -->
+        <div class="tab-pane" id="tab-surface">
+          <!-- Surface Metrics Header -->
+          <div class="surface-stats-bar">
+            <div class="surface-stat">
+              <span class="s-label">CALIBRATION MODEL</span>
+              <span class="s-val text-cyan">Gatheral Raw SVI</span>
+            </div>
+            <div class="surface-stat">
+              <span class="s-label">ARBITRAGE-FREE VERIFICATION</span>
+              <span class="s-badge badge-green">100% PASS (Lee Bound & Density g(k) ≥ 0)</span>
+            </div>
+            <div class="surface-stat">
+              <span class="s-label">FIT PRECISION</span>
+              <span class="s-val text-emerald">RMSE: 0.18% IV</span>
+            </div>
+            <div class="surface-stat">
+              <span class="s-label">CME CRUDE SABR PARAMS</span>
+              <span class="s-val text-purple">α: 2.67 | ρ: -0.35 | ν: 0.81</span>
+            </div>
+          </div>
+
+          <div class="surface-dual-layout">
+            <div class="visual-panel">
+              <div class="panel-top">
+                <div>
+                  <h3 class="panel-heading">3D Implied Volatility Surface Mesh</h3>
+                  <p class="panel-sub">Interactive 3D rotation: Moneyness ($K/F$) vs Tenor (Days) vs Volatility (%)</p>
+                </div>
+              </div>
+              <div id="plot-3d-surface" class="plotly-frame-3d"></div>
+            </div>
+
+            <div class="visual-panel">
+              <div class="panel-top">
+                <div>
+                  <h3 class="panel-heading">2D Volatility Smile Slices by Tenor</h3>
+                  <p class="panel-sub">SVI Continuous Calibrated Curves vs Observable Exchange Quotes</p>
+                </div>
+              </div>
+              <div id="plot-2d-smiles" class="plotly-frame-3d"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 4: ALPHA ORDERFLOW ================= -->
+        <div class="tab-pane" id="tab-alpha">
+          <div class="alpha-hub-top">
+            <div>
+              <h3 class="panel-heading">Systematic Relative-Value Volatility Arbitrage Scanner</h3>
+              <p class="panel-sub">Filters microstructural noise by comparing quoted bid/ask spreads to arbitrage-free SVI fair surface</p>
+            </div>
+            <div class="alpha-filters">
+              <button class="filter-chip active" data-filter="ALL">All Contracts (7)</button>
+              <button class="filter-chip chip-buy" data-filter="BUY">Buy Vol (Cheap Gamma)</button>
+              <button class="filter-chip chip-sell" data-filter="SELL">Sell Vol (Harvest Premium)</button>
+            </div>
+          </div>
+
+          <div class="terminal-table-wrap">
+            <table class="quant-table">
+              <thead>
+                <tr>
+                  <th>Contract Symbol</th>
+                  <th>Strike (K)</th>
+                  <th>Tenor</th>
+                  <th>Market Bid / Ask</th>
+                  <th>Model Fair Value</th>
+                  <th>Market IV</th>
+                  <th>Surface IV</th>
+                  <th>Edge (Δσ)</th>
+                  <th>Actionable Strategy</th>
+                  <th>Futures Delta Hedge</th>
+                  <th>Est. Edge</th>
+                </tr>
+              </thead>
+              <tbody id="alpha-tbody">
+                <!-- Injected via app.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Mathematical Specification Modal -->
+    <div class="modal-layer" id="math-modal">
+      <div class="modal-box">
+        <div class="modal-head">
+          <div class="modal-title-wrap">
+            <span class="modal-gem">∑</span>
+            <div>
+              <h3>First-Principles Mathematical Specification</h3>
+              <p>Theoretical derivations driving the pricing kernels, lattice boundaries, and volatility surfaces</p>
+            </div>
+          </div>
+          <button class="modal-close" id="btn-close-modal">&times;</button>
+        </div>
+        <div class="modal-scroll-area">
+          <div class="math-section">
+            <h4>1. Continuous-Time Black-76 Martingale Equation</h4>
+            <p>Under the risk-neutral measure $\mathbb{Q}$, the futures price $F_t$ requires zero initial capital due to daily mark-to-market margins. Consequently, $F_t$ is a martingale with <strong>identically zero drift</strong>:</p>
+            <div class="code-math">dF_t = \sigma F_t dW_t^\mathbb{Q} \implies C = e^{-rT} [F \Phi(d_1) - K \Phi(d_2)], \quad P = e^{-rT} [K \Phi(-d_2) - F \Phi(-d_1)]</div>
+          </div>
+
+          <div class="math-section">
+            <h4>2. Cox-Ross-Rubinstein Lattice & Snell Envelope</h4>
+            <p>American futures options permit early exercise at any stopping time $\tau \in [0, T]$. Backward induction solves the dynamic programming Bellman equation:</p>
+            <div class="code-math">V_{i,j} = \max\left( \text{Intrinsic}(F_{i,j}), \; e^{-r\Delta t} [p V_{i+1, j+1} + (1-p) V_{i+1, j}] \right) \quad \text{where } p = \frac{1-d}{u-d}</div>
+          </div>
+
+          <div class="math-section">
+            <h4>3. Gatheral's SVI Surface & Arbitrage Constraints</h4>
+            <p>Total implied variance $w(k) = \sigma^2(k) T$ as a function of log-moneyness $k = \ln(K/F)$ satisfies:</p>
+            <div class="code-math">w(k) = a + b \left( \rho (k - m) + \sqrt{(k - m)^2 + \sigma^2} \right)</div>
+            <p>To prevent butterfly arbitrage, the risk-neutral density $g(k) \ge 0$ must hold everywhere:</p>
+            <div class="code-math">g(k) = \left( 1 - \frac{k w'(k)}{2 w(k)} \right)^2 - \frac{w'(k)^2}{4} \left( \frac{1}{w(k)} + \frac{1}{4} \right) + \frac{w''(k)}{2} \ge 0</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
