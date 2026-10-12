@@ -1,0 +1,13 @@
+{
+  "name": "quant-options-pricing-engine",
+  "version": "1.0.0",
+  "description": "Institutional Options Pricing, Greek Engine & CME/COMEX Volatility Surfaces",
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'Static web application ready for Vercel deployment'",
+    "start": "npx serve ."
+  },
+  "keywords": ["quantitative-finance", "options-pricing", "black-scholes", "black-76", "greeks", "volatility-surface", "svi", "sabr"],
+  "author": "Quantitative Engineering",
+  "license": "MIT"
+}

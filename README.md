@@ -1,22 +1,22 @@
-# Quant Finance Production Engineering Series
+# 4 Production Quant Finance Projects to Stand Out in 2026
 
-A collection of 4 production-grade quantitative finance systems engineered from first principles. Each project includes complete mathematical derivations, modular C++/Python implementations, calibration against real exchange data (CME, COMEX, CBOE), and actionable systematic alpha engines.
+An institutional portfolio of 4 quantitative engineering systems built from first principles. Each project includes complete mathematical derivations, modular production code, calibration against real exchange data (CME, COMEX, NASDAQ), and deployment-ready architecture for Vercel.
 
 ---
 
 ## 🗺️ Master Curriculum & Series Roadmap
 
-| # | Project | Focus & Core Mathematics | Exchange / Data | Status |
-|---|---|---|---|---|
-| **01** | **[Options Pricing, Greek Engine & Volatility Surface Calibration](./01-options-pricing-and-greeks)** | Black-76, CRR American Trees, Monte Carlo Variance Reduction, SVI/SABR Calibration, Vanna/Volga Greeks, Relative-Value Volatility Arbitrage | COMEX Gold (`GC`), CME Crude (`CL`) | 🟢 **Complete** |
-| **02** | **Limit Order Book (LOB) Dynamics & Microstructure Alpha** | L2/L3 Order Flow Imbalance (OFI), Volume Synchronized Probability of Toxicity (VPIN), Queue Reactive Hawkes Processes, VWAP/TWAP Execution | CME Globex, NASDAQ ITCH | ⏳ *Upcoming* |
-| **03** | **Statistical Arbitrage & Cointegration Engine** | Johansen Cointegration, Dynamic State-Space Kalman Filtering, Ornstein-Uhlenbeck Optimal Stopping, Pairs & Basket Execution | CME Futures, US Equities | ⏳ *Upcoming* |
-| **04** | **Multi-Asset Portfolio Optimization & Factor Risk Engine** | Hierarchical Risk Parity (HRP), Black-Litterman Bayesian Updating, Conditional Value-at-Risk (CVaR), Barra-style Multi-Factor Attribution | Cross-Asset Macro Futures | ⏳ *Upcoming* |
+| # | Project | Focus & Core Mathematics | Exchange / Data | Status | Vercel Deployment |
+|---|---|---|---|---|---|
+| **01** | **[Options Pricing, Greek Engine & Volatility Surfaces](./01-options-pricing-and-greeks)** | Black-76, CRR American Lattice, Antithetic Monte Carlo, SVI/SABR Calibration, Higher-Order Greeks (Vanna, Volga), Relative-Value Volatility Arbitrage | COMEX Gold (`GC`), CME Crude (`CL`) | 🟢 **Complete** | [🌐 Live App](./01-options-pricing-and-greeks/web) |
+| **02** | **[Pairs Trading Backtester](./02-pairs-trading-backtester)** | Engle-Granger & Johansen Cointegration, Dynamic Kalman Filter Beta Tracking, Ornstein-Uhlenbeck Mean Reversion, Slippage & Borrow Fees, Out-of-Sample Walk-Forward Validation | US Equities & Commodity Spreads | ⏳ *Day 2* | *Configured* |
+| **03** | **[Limit Order Book (LOB) Simulator](./03-limit-order-book-simulator)** | Event-Driven FIFO Matching Engine, Avellaneda-Stoikov Market Making Reservation Pricing, Inventory Penalty $\gamma$, Order Flow Imbalance (OFI), Toxic Flow VPIN | CME Globex, NASDAQ ITCH | ⏳ *Day 3* | *Configured* |
+| **04** | **[Machine Learning Alpha Signal Engine](./04-ml-alpha-signal)** | De Prado PurgedGroupTimeSeriesSplit + Embargo (Zero Leakage), LightGBM Return Prediction, Garman-Klass Volatility, Rank IC & Turnover Attribution | Cross-Sectional Equities | ⏳ *Day 4* | *Configured* |
 
 ---
 
-## 🏛️ System Architecture Standards
-- **Zero Black Boxes**: Every pricing equation, gradient, and tree recursion is derived from stochastic calculus first principles.
-- **Production Performance**: Vectorized NumPy/SciPy kernels with JIT/analytical shortcuts and root-finding fallback routines.
-- **Market Microstructure Fidelity**: Distinct handling of spot equity options vs. cash-settled futures options (Black-76, American exercise on futures).
-- **Automated Validation**: Comprehensive test suites verifying Put-Call parity, martingale pricing, and numerical derivative convergence.
+## 🏛️ What Separates This Portfolio (2026 Hedge Fund & Prop Standards)
+- **Zero Black Boxes**: Every pricing equation, tree recursion, and Kalman update is derived from stochastic calculus and linear algebra first principles.
+- **Microstructure Realism**: Accounts for American early-exercise on futures, transaction fees, bid-ask half-spread crossing, and borrow costs.
+- **Production Web Deployment**: Includes interactive web applications deployable in 1-click via Vercel with zero cold-start latency.
+- **Statistical Rigor**: 100% automated test coverage with verified put-call parity, martingale pricing conditions, and no lookahead bias.
