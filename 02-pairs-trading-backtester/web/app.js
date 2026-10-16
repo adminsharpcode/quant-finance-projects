@@ -709,13 +709,28 @@
     if (!c || !res.mcRes) return;
     const { ctx, width, height } = c;
 
+    // Solid dark canvas background - NEVER transparent
     ctx.clearRect(0, 0, width, height);
+    ctx.fillStyle = '#070c18';
+    ctx.fillRect(0, 0, width, height);
 
     const mc = res.mcRes;
     const h = mc.horizonDays;
     const padL = 45, padR = 20, padT = 20, padB = 25;
     const plotW = width - padL - padR;
     const plotH = height - padT - padB;
+
+    // Subtle background grid
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+    ctx.lineWidth = 1;
+    for (let r = 1; r <= 4; r++) {
+      const gy = padT + (plotH / 5) * r;
+      ctx.beginPath(); ctx.moveTo(padL, gy); ctx.lineTo(width - padR, gy); ctx.stroke();
+    }
+    for (let col = 1; col <= 5; col++) {
+      const gx = padL + (plotW / 6) * col;
+      ctx.beginPath(); ctx.moveTo(gx, padT); ctx.lineTo(gx, height - padB); ctx.stroke();
+    }
 
     const minS = -simParams.zStop - 0.5;
     const maxS = 1.5;
@@ -724,8 +739,8 @@
     const getX = t => padL + (t / h) * plotW;
 
     // Zero / Target line
-    ctx.strokeStyle = '#FFD600';
-    ctx.lineWidth = 1.2;
+    ctx.strokeStyle = '#fbbf24';
+    ctx.lineWidth = 1.4;
     ctx.setLineDash([4, 4]);
     ctx.beginPath();
     ctx.moveTo(padL, getY(0.0));
@@ -734,8 +749,8 @@
     ctx.setLineDash([]);
 
     // Stop loss line
-    ctx.strokeStyle = '#FF1744';
-    ctx.lineWidth = 1.2;
+    ctx.strokeStyle = '#ef4444';
+    ctx.lineWidth = 1.4;
     ctx.setLineDash([4, 4]);
     ctx.beginPath();
     ctx.moveTo(padL, getY(-simParams.zStop));
@@ -744,7 +759,7 @@
     ctx.setLineDash([]);
 
     // Confidence Interval 90% fill (p5 to p95)
-    ctx.fillStyle = 'rgba(41, 121, 255, 0.15)';
+    ctx.fillStyle = 'rgba(59, 130, 246, 0.22)';
     ctx.beginPath();
     ctx.moveTo(getX(0), getY(mc.percentiles.p5[0]));
     for (let t = 0; t <= h; t++) ctx.lineTo(getX(t), getY(mc.percentiles.p95[t]));
@@ -753,7 +768,7 @@
     ctx.fill();
 
     // Interquartile Range 50% fill (p25 to p75)
-    ctx.fillStyle = 'rgba(0, 230, 118, 0.22)';
+    ctx.fillStyle = 'rgba(16, 185, 129, 0.28)';
     ctx.beginPath();
     ctx.moveTo(getX(0), getY(mc.percentiles.p25[0]));
     for (let t = 0; t <= h; t++) ctx.lineTo(getX(t), getY(mc.percentiles.p75[t]));
@@ -761,9 +776,9 @@
     ctx.closePath();
     ctx.fill();
 
-    // Sample paths
+    // Sample paths (semi-transparent cyan)
     for (const trace of mc.sampledPaths) {
-      ctx.strokeStyle = 'rgba(0, 229, 255, 0.12)';
+      ctx.strokeStyle = 'rgba(0, 240, 255, 0.16)';
       ctx.lineWidth = 0.8;
       ctx.beginPath();
       for (let t = 0; t <= h; t++) {
@@ -775,9 +790,11 @@
       ctx.stroke();
     }
 
-    // Median 50th line
-    ctx.strokeStyle = '#FFD600';
-    ctx.lineWidth = 2.0;
+    // Median 50th line with subtle glow
+    ctx.shadowColor = 'rgba(251, 191, 36, 0.4)';
+    ctx.shadowBlur = 6;
+    ctx.strokeStyle = '#fbbf24';
+    ctx.lineWidth = 2.4;
     ctx.beginPath();
     for (let t = 0; t <= h; t++) {
       const cx = getX(t);
@@ -786,10 +803,11 @@
       else ctx.lineTo(cx, cy);
     }
     ctx.stroke();
+    ctx.shadowBlur = 0;
 
     // Labels
-    ctx.fillStyle = '#64748B';
-    ctx.font = '9px JetBrains Mono';
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '10px JetBrains Mono';
     ctx.textAlign = 'right';
     [1.0, 0.0, -simParams.zEntry, -simParams.zStop].forEach(v => {
       ctx.fillText(v.toFixed(1) + 'σ', padL - 6, getY(v) + 3);
@@ -808,13 +826,28 @@
     if (!c) return;
     const { ctx, width, height } = c;
 
+    // Solid dark canvas background - NEVER transparent
     ctx.clearRect(0, 0, width, height);
+    ctx.fillStyle = '#070c18';
+    ctx.fillRect(0, 0, width, height);
 
     const z = res.kf.zscoreHist;
     const n = z.length;
     const padL = 40, padR = 20, padT = 20, padB = 25;
     const plotW = width - padL - padR;
     const plotH = height - padT - padB;
+
+    // Subtle background grid
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+    ctx.lineWidth = 1;
+    for (let r = 1; r <= 4; r++) {
+      const gy = padT + (plotH / 5) * r;
+      ctx.beginPath(); ctx.moveTo(padL, gy); ctx.lineTo(width - padR, gy); ctx.stroke();
+    }
+    for (let col = 1; col <= 5; col++) {
+      const gx = padL + (plotW / 6) * col;
+      ctx.beginPath(); ctx.moveTo(gx, padT); ctx.lineTo(gx, height - padB); ctx.stroke();
+    }
 
     const minZ = -4.2, maxZ = 4.2;
     const getY = val => padT + (1.0 - (val - minZ) / (maxZ - minZ)) * plotH;
@@ -825,21 +858,20 @@
     const yStopShort = getY(simParams.zStop);
     const yEntryLong = getY(-simParams.zEntry);
     const yStopLong = getY(-simParams.zStop);
-    const yZero = getY(0.0);
 
     // Short entry danger band
-    ctx.fillStyle = 'rgba(255, 82, 82, 0.08)';
+    ctx.fillStyle = 'rgba(244, 63, 94, 0.12)';
     ctx.fillRect(padL, yStopShort, plotW, yEntryShort - yStopShort);
 
     // Long entry opportunity band
-    ctx.fillStyle = 'rgba(0, 230, 118, 0.08)';
+    ctx.fillStyle = 'rgba(16, 185, 129, 0.12)';
     ctx.fillRect(padL, yEntryLong, plotW, yStopLong - yEntryLong);
 
-    // Horizontal grid & threshold lines
+    // Threshold lines
     function drawThresholdLine(val, color, dash = [4, 4]) {
       const yVal = getY(val);
       ctx.strokeStyle = color;
-      ctx.lineWidth = 1;
+      ctx.lineWidth = 1.2;
       ctx.setLineDash(dash);
       ctx.beginPath();
       ctx.moveTo(padL, yVal);
@@ -848,15 +880,17 @@
       ctx.setLineDash([]);
     }
 
-    drawThresholdLine(0.0, 'rgba(255, 214, 0, 0.5)', [2, 2]);
-    drawThresholdLine(simParams.zEntry, 'rgba(255, 82, 82, 0.8)', [4, 4]);
-    drawThresholdLine(-simParams.zEntry, 'rgba(0, 230, 118, 0.8)', [4, 4]);
-    drawThresholdLine(simParams.zStop, 'rgba(213, 0, 0, 0.6)', [6, 4]);
-    drawThresholdLine(-simParams.zStop, 'rgba(0, 200, 83, 0.6)', [6, 4]);
+    drawThresholdLine(0.0, 'rgba(251, 191, 36, 0.65)', [3, 3]);
+    drawThresholdLine(simParams.zEntry, '#f43f5e', [4, 4]);
+    drawThresholdLine(-simParams.zEntry, '#10b981', [4, 4]);
+    drawThresholdLine(simParams.zStop, '#ef4444', [6, 4]);
+    drawThresholdLine(-simParams.zStop, '#ef4444', [6, 4]);
 
-    // Z-Score Line
-    ctx.strokeStyle = '#ECEFF1';
-    ctx.lineWidth = 1.4;
+    // Z-Score Line (Vivid electric cyan with glow!)
+    ctx.shadowColor = 'rgba(0, 240, 255, 0.45)';
+    ctx.shadowBlur = 6;
+    ctx.strokeStyle = '#00f0ff';
+    ctx.lineWidth = 2.0;
     ctx.beginPath();
     for (let i = 0; i < n; i++) {
       const cx = getX(i);
@@ -865,6 +899,7 @@
       else ctx.lineTo(cx, cy);
     }
     ctx.stroke();
+    ctx.shadowBlur = 0;
 
     // Trade event scatter points
     for (const ev of res.sigs.tradeEvents) {
@@ -872,20 +907,20 @@
       const ey = getY(Math.max(minZ, Math.min(maxZ, ev.z)));
       ctx.beginPath();
       if (ev.type === 'ENTRY_LONG') {
-        ctx.fillStyle = '#00E676';
-        ctx.arc(ex, ey, 4.5, 0, Math.PI * 2);
+        ctx.fillStyle = '#10b981';
+        ctx.arc(ex, ey, 5.0, 0, Math.PI * 2);
       } else if (ev.type === 'ENTRY_SHORT') {
-        ctx.fillStyle = '#FF5252';
-        ctx.arc(ex, ey, 4.5, 0, Math.PI * 2);
+        ctx.fillStyle = '#f43f5e';
+        ctx.arc(ex, ey, 5.0, 0, Math.PI * 2);
       } else {
-        ctx.fillStyle = '#FFD600';
-        ctx.arc(ex, ey, 3.5, 0, Math.PI * 2);
+        ctx.fillStyle = '#fbbf24';
+        ctx.arc(ex, ey, 4.0, 0, Math.PI * 2);
       }
       ctx.fill();
     }
 
     // Y Axis Labels
-    ctx.fillStyle = '#64748B';
+    ctx.fillStyle = '#94a3b8';
     ctx.font = '10px JetBrains Mono';
     ctx.textAlign = 'right';
     [-3, -2, 0, 2, 3].forEach(v => {
@@ -899,7 +934,10 @@
     if (!c) return;
     const { ctx, width, height } = c;
 
+    // Solid dark canvas background - NEVER transparent
     ctx.clearRect(0, 0, width, height);
+    ctx.fillStyle = '#070c18';
+    ctx.fillRect(0, 0, width, height);
 
     const betas = res.kf.betaHist;
     const staticBeta = res.ols.beta;
@@ -907,6 +945,14 @@
     const padL = 45, padR = 20, padT = 20, padB = 25;
     const plotW = width - padL - padR;
     const plotH = height - padT - padB;
+
+    // Subtle background grid
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+    ctx.lineWidth = 1;
+    for (let r = 1; r <= 4; r++) {
+      const gy = padT + (plotH / 5) * r;
+      ctx.beginPath(); ctx.moveTo(padL, gy); ctx.lineTo(width - padR, gy); ctx.stroke();
+    }
 
     let minB = staticBeta, maxB = staticBeta;
     for (let i = 0; i < n; i++) {
@@ -920,19 +966,33 @@
     const getY = val => padT + (1.0 - (val - minB) / (maxB - minB)) * plotH;
     const getX = i => padL + (i / (n - 1)) * plotW;
 
-    // Static OLS horizontal line
-    ctx.strokeStyle = '#FF1744';
-    ctx.lineWidth = 1.5;
-    ctx.setLineDash([5, 5]);
+    // Static OLS horizontal line (dashed vivid rose)
+    ctx.strokeStyle = '#f43f5e';
+    ctx.lineWidth = 2.0;
+    ctx.setLineDash([6, 4]);
     ctx.beginPath();
     ctx.moveTo(padL, getY(staticBeta));
     ctx.lineTo(width - padR, getY(staticBeta));
     ctx.stroke();
     ctx.setLineDash([]);
 
+    // Gradient fill under dynamic beta
+    const betaGrad = ctx.createLinearGradient(0, padT, 0, height - padB);
+    betaGrad.addColorStop(0, 'rgba(0, 240, 255, 0.18)');
+    betaGrad.addColorStop(1, 'rgba(0, 240, 255, 0.0)');
+    ctx.fillStyle = betaGrad;
+    ctx.beginPath();
+    ctx.moveTo(getX(0), height - padB);
+    for (let i = 0; i < n; i++) ctx.lineTo(getX(i), getY(betas[i]));
+    ctx.lineTo(getX(n - 1), height - padB);
+    ctx.closePath();
+    ctx.fill();
+
     // Dynamic Kalman line with glow
-    ctx.strokeStyle = '#00E5FF';
-    ctx.lineWidth = 2.0;
+    ctx.shadowColor = 'rgba(0, 240, 255, 0.5)';
+    ctx.shadowBlur = 8;
+    ctx.strokeStyle = '#00f0ff';
+    ctx.lineWidth = 2.5;
     ctx.beginPath();
     for (let i = 0; i < n; i++) {
       const cx = getX(i);
@@ -941,9 +1001,10 @@
       else ctx.lineTo(cx, cy);
     }
     ctx.stroke();
+    ctx.shadowBlur = 0;
 
     // Axis Labels
-    ctx.fillStyle = '#64748B';
+    ctx.fillStyle = '#94a3b8';
     ctx.font = '10px JetBrains Mono';
     ctx.textAlign = 'right';
     [minB + span * 0.2, staticBeta, maxB - span * 0.2].forEach(v => {
@@ -957,7 +1018,10 @@
     if (!c) return;
     const { ctx, width, height } = c;
 
+    // Solid dark canvas background - NEVER transparent
     ctx.clearRect(0, 0, width, height);
+    ctx.fillStyle = '#070c18';
+    ctx.fillRect(0, 0, width, height);
 
     const eq = res.btest.equity;
     const yPrice = res.y;
@@ -965,6 +1029,14 @@
     const padL = 50, padR = 20, padT = 15, padB = 25;
     const plotW = width - padL - padR;
     const plotH = height - padT - padB;
+
+    // Subtle background grid
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+    ctx.lineWidth = 1;
+    for (let r = 1; r <= 4; r++) {
+      const gy = padT + (plotH / 5) * r;
+      ctx.beginPath(); ctx.moveTo(padL, gy); ctx.lineTo(width - padR, gy); ctx.stroke();
+    }
 
     const normY = new Float64Array(n);
     for (let i = 0; i < n; i++) normY[i] = (yPrice[i] / yPrice[0]) * simParams.initialCapital;
@@ -983,10 +1055,10 @@
     const getY = val => padT + (1.0 - (val - minV) / (maxV - minV)) * plotH;
     const getX = i => padL + (i / (n - 1)) * plotW;
 
-    // Benchmark Y curve
-    ctx.strokeStyle = '#2979FF';
-    ctx.lineWidth = 1.2;
-    ctx.setLineDash([3, 3]);
+    // Benchmark Y curve (royal sapphire blue)
+    ctx.strokeStyle = '#3b82f6';
+    ctx.lineWidth = 1.6;
+    ctx.setLineDash([4, 4]);
     ctx.beginPath();
     for (let i = 0; i < n; i++) {
       const cx = getX(i);
@@ -997,23 +1069,26 @@
     ctx.stroke();
     ctx.setLineDash([]);
 
-    // Strategy Equity Curve with Gradient Fill
+    // Strategy Equity Curve with Rich Gradient Fill
     const grad = ctx.createLinearGradient(0, padT, 0, height - padB);
-    grad.addColorStop(0, 'rgba(0, 230, 118, 0.25)');
-    grad.addColorStop(1, 'rgba(0, 230, 118, 0.0)');
+    grad.addColorStop(0, 'rgba(16, 185, 129, 0.28)');
+    grad.addColorStop(1, 'rgba(16, 185, 129, 0.0)');
 
     ctx.fillStyle = grad;
     ctx.beginPath();
-    ctx.moveTo(getX(0), getY(minV));
+    ctx.moveTo(getX(0), height - padB);
     for (let i = 0; i < n; i++) {
       ctx.lineTo(getX(i), getY(eq[i]));
     }
-    ctx.lineTo(getX(n - 1), getY(minV));
+    ctx.lineTo(getX(n - 1), height - padB);
     ctx.closePath();
     ctx.fill();
 
-    ctx.strokeStyle = '#00E676';
-    ctx.lineWidth = 2.0;
+    // Strategy line with glow
+    ctx.shadowColor = 'rgba(16, 185, 129, 0.45)';
+    ctx.shadowBlur = 6;
+    ctx.strokeStyle = '#10b981';
+    ctx.lineWidth = 2.4;
     ctx.beginPath();
     for (let i = 0; i < n; i++) {
       const cx = getX(i);
@@ -1022,10 +1097,11 @@
       else ctx.lineTo(cx, cy);
     }
     ctx.stroke();
+    ctx.shadowBlur = 0;
 
     // Axis labels
-    ctx.fillStyle = '#64748B';
-    ctx.font = '9px JetBrains Mono';
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '10px JetBrains Mono';
     ctx.textAlign = 'right';
     [minV + span * 0.2, simParams.initialCapital, maxV - span * 0.2].forEach(v => {
       ctx.fillText('$' + (v / 1000).toFixed(0) + 'k', padL - 6, getY(v) + 3);
@@ -1038,7 +1114,10 @@
     if (!c) return;
     const { ctx, width, height } = c;
 
+    // Solid dark canvas background - NEVER transparent
     ctx.clearRect(0, 0, width, height);
+    ctx.fillStyle = '#070c18';
+    ctx.fillRect(0, 0, width, height);
 
     const dd = res.perf.ddSeries;
     const n = dd.length;
@@ -1050,8 +1129,11 @@
     const getY = val => padT + (Math.abs(val) / maxDdPct) * plotH;
     const getX = i => padL + (i / (n - 1)) * plotW;
 
-    // Fill area
-    ctx.fillStyle = 'rgba(255, 82, 82, 0.3)';
+    // Fill area with vivid ruby red gradient
+    const ddGrad = ctx.createLinearGradient(0, padT, 0, height - padB);
+    ddGrad.addColorStop(0, 'rgba(244, 63, 94, 0.15)');
+    ddGrad.addColorStop(1, 'rgba(244, 63, 94, 0.45)');
+    ctx.fillStyle = ddGrad;
     ctx.beginPath();
     ctx.moveTo(getX(0), padT);
     for (let i = 0; i < n; i++) {
@@ -1062,16 +1144,16 @@
     ctx.fill();
 
     // Top zero line
-    ctx.strokeStyle = '#546E7A';
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
     ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.moveTo(padL, padT);
     ctx.lineTo(width - padR, padT);
     ctx.stroke();
 
-    // Drawdown line
-    ctx.strokeStyle = '#FF5252';
-    ctx.lineWidth = 1.4;
+    // Drawdown contour line
+    ctx.strokeStyle = '#f43f5e';
+    ctx.lineWidth = 1.8;
     ctx.beginPath();
     for (let i = 0; i < n; i++) {
       const cx = getX(i);
@@ -1082,10 +1164,11 @@
     ctx.stroke();
 
     // Labels
-    ctx.fillStyle = '#64748B';
-    ctx.font = '9px JetBrains Mono';
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '10px JetBrains Mono';
     ctx.textAlign = 'right';
     ctx.fillText('0.0%', padL - 6, padT + 4);
+    ctx.fillStyle = '#f43f5e';
     ctx.fillText('-' + (maxDdPct * 100).toFixed(1) + '%', padL - 6, height - padB);
   }
 
@@ -1095,7 +1178,10 @@
     if (!c) return;
     const { ctx, width, height } = c;
 
+    // Solid dark canvas background - NEVER transparent
     ctx.clearRect(0, 0, width, height);
+    ctx.fillStyle = '#070c18';
+    ctx.fillRect(0, 0, width, height);
 
     const folds = res.wf.folds;
     const m = folds.length;
@@ -1119,7 +1205,7 @@
     const yZero = getY(0.0);
 
     // Zero line
-    ctx.strokeStyle = '#546E7A';
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
     ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.moveTo(padL, yZero);
@@ -1133,20 +1219,20 @@
       const f = folds[i];
       const cx = padL + i * barGroupW + barGroupW / 2;
 
-      // In-sample bar (blue)
+      // In-sample bar (royal sapphire blue)
       const isY = getY(f.isSharpe);
-      ctx.fillStyle = 'rgba(41, 121, 255, 0.8)';
+      ctx.fillStyle = '#3b82f6';
       ctx.fillRect(cx - barW, Math.min(yZero, isY), barW, Math.abs(yZero - isY));
 
-      // Out-of-sample bar (green if positive, red if negative)
+      // Out-of-sample bar (emerald if positive, crimson if negative)
       const oosY = getY(f.oosSharpe);
-      ctx.fillStyle = f.oosSharpe >= 0 ? 'rgba(0, 230, 118, 0.85)' : 'rgba(255, 82, 82, 0.85)';
+      ctx.fillStyle = f.oosSharpe >= 0 ? '#10b981' : '#f43f5e';
       ctx.fillRect(cx, Math.min(yZero, oosY), barW, Math.abs(yZero - oosY));
     }
 
     // Y Axis labels
-    ctx.fillStyle = '#64748B';
-    ctx.font = '9px JetBrains Mono';
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '10px JetBrains Mono';
     ctx.textAlign = 'right';
     ctx.fillText('0.0', padL - 6, yZero + 3);
     ctx.fillText(maxS.toFixed(1), padL - 6, padT + 8);
