@@ -15,6 +15,7 @@
 
   // --- STATE VARIABLES ---
   let currentPairKey = 'CVX_XOM';
+  let activeTvViewMode = 'Y';
   let pairMeta = {
     'CVX_XOM': { y: 'CVX', x: 'XOM', name: 'US Integrated Oil', yLabel: 'CVX', xLabel: 'XOM' },
     'BAC_JPM': { y: 'BAC', x: 'JPM', name: 'US Banking', yLabel: 'BAC', xLabel: 'JPM' },
@@ -489,16 +490,50 @@
 
   // --- 2. PIPELINE EXECUTION & UI UPDATE ---
 
+  function getActivePairData() {
+    if (typeof window !== 'undefined' && window.PAIRS_DATA && window.PAIRS_DATA[currentPairKey]) {
+      const p = window.PAIRS_DATA[currentPairKey];
+      return {
+        meta: {
+          name: p.name || currentPairKey,
+          y: p.symbolY,
+          x: p.symbolX,
+          yLabel: p.symbolY,
+          xLabel: p.symbolX
+        },
+        y: new Float64Array(p.y),
+        x: new Float64Array(p.x),
+        dates: p.dates,
+        lastPriceX: p.lastPriceX !== undefined ? p.lastPriceX : p.x[p.x.length - 1],
+        lastPriceY: p.lastPriceY !== undefined ? p.lastPriceY : p.y[p.y.length - 1],
+        isLive: p.isLive || false
+      };
+    }
+    if (typeof PAIRS_MARKET_DATA !== 'undefined' && pairMeta[currentPairKey]) {
+      const meta = pairMeta[currentPairKey];
+      const yArr = PAIRS_MARKET_DATA.series[meta.y];
+      const xArr = PAIRS_MARKET_DATA.series[meta.x];
+      return {
+        meta,
+        y: new Float64Array(yArr),
+        x: new Float64Array(xArr),
+        dates: PAIRS_MARKET_DATA.dates,
+        lastPriceX: xArr[xArr.length - 1],
+        lastPriceY: yArr[yArr.length - 1],
+        isLive: false
+      };
+    }
+    return null;
+  }
+
   function recalculateAll() {
-    if (typeof PAIRS_MARKET_DATA === 'undefined') {
-      console.error('Market data not loaded.');
+    const pairData = getActivePairData();
+    if (!pairData) {
+      console.warn('Market data not found for', currentPairKey);
       return;
     }
 
-    const meta = pairMeta[currentPairKey];
-    const y = PAIRS_MARKET_DATA.series[meta.y];
-    const x = PAIRS_MARKET_DATA.series[meta.x];
-    const dates = PAIRS_MARKET_DATA.dates;
+    const { meta, y, x, dates, lastPriceX, lastPriceY } = pairData;
 
     // 1. OLS & Cointegration
     const ols = computeOLS(y, x);
@@ -532,12 +567,18 @@
       mcHorizon
     );
 
-    currentResults = { meta, y, x, dates, ols, ou, kf, sigs, btest, perf, wf, mcRes };
+    currentResults = { meta, y, x, dates, ols, ou, kf, sigs, btest, perf, wf, mcRes, lastPriceX, lastPriceY };
 
     // Update Telemetry & Badges
     updateTelemetryUI(currentResults);
 
-    // Render Charts
+    // Update Live Toolbar Badges
+    updateLiveToolbar(currentResults);
+
+    // Update TradingView Official Real-Time Widget
+    updateTradingViewWidget(activeTvViewMode);
+
+    // Render Algorithmic High-DPI Charts
     renderCharts(currentResults);
 
     // Render Trade Blotter
@@ -679,6 +720,480 @@
     }
 
     document.getElementById('active-pair-label').textContent = res.meta.yLabel + ' / ' + res.meta.xLabel;
+  }
+
+  // --- 2.1 LIVE MARKET DATA & TRADINGVIEW WIDGET ENGINE ---
+
+  function updateLiveToolbar(res) {
+    const { meta, y, x, kf, lastPriceX, lastPriceY } = res;
+    const n = y.length;
+    const currBeta = kf.betaHist[n - 1];
+    const currZ = kf.zscoreHist[n - 1];
+    const currSpread = y[n - 1] - currBeta * x[n - 1];
+
+    const prevY = n > 1 ? y[n - 2] : lastPriceY;
+    const prevX = n > 1 ? x[n - 2] : lastPriceX;
+    const chgY = ((lastPriceY - prevY) / prevY) * 100.0;
+    const chgX = ((lastPriceX - prevX) / prevX) * 100.0;
+
+    const elSymY = document.getElementById('live-sym-y');
+    if (elSymY) elSymY.textContent = meta.yLabel;
+    const elPriceY = document.getElementById('live-price-y');
+    if (elPriceY) elPriceY.textContent = '$' + lastPriceY.toFixed(2);
+    const elChgY = document.getElementById('live-chg-y');
+    if (elChgY) {
+      elChgY.textContent = (chgY >= 0 ? '+' : '') + chgY.toFixed(2) + '%';
+      elChgY.className = 'quote-chg ' + (chgY >= 0 ? 'val-positive' : 'val-negative');
+    }
+
+    const elSymX = document.getElementById('live-sym-x');
+    if (elSymX) elSymX.textContent = meta.xLabel;
+    const elPriceX = document.getElementById('live-price-x');
+    if (elPriceX) elPriceX.textContent = '$' + lastPriceX.toFixed(2);
+    const elChgX = document.getElementById('live-chg-x');
+    if (elChgX) {
+      elChgX.textContent = (chgX >= 0 ? '+' : '') + chgX.toFixed(2) + '%';
+      elChgX.className = 'quote-chg ' + (chgX >= 0 ? 'val-positive' : 'val-negative');
+    }
+
+    const elSpread = document.getElementById('live-spread-val');
+    if (elSpread) elSpread.textContent = (currSpread >= 0 ? '+$' : '-$') + Math.abs(currSpread).toFixed(2);
+    const elZ = document.getElementById('live-zscore-val');
+    if (elZ) elZ.textContent = currZ.toFixed(2) + 'σ';
+  }
+
+  function updateTradingViewWidget(viewMode = 'Y') {
+    activeTvViewMode = viewMode;
+    const container = document.getElementById('tv-widget-container');
+    if (!container) return;
+    const pairData = getActivePairData();
+    if (!pairData) return;
+
+    const symY = pairData.meta.yLabel.toUpperCase();
+    const symX = pairData.meta.xLabel.toUpperCase();
+
+    function formatTvSymbol(s) {
+      s = s.toUpperCase();
+      if (['AAPL', 'MSFT', 'NVDA', 'AMD', 'GOOGL', 'AMZN', 'META', 'TSLA'].includes(s)) return 'NASDAQ:' + s;
+      if (['CVX', 'XOM', 'JPM', 'BAC', 'C', 'WFC', 'DIS', 'KO', 'PEP'].includes(s)) return 'NYSE:' + s;
+      if (s === 'WTI' || s === 'CL=F') return 'NYMEX:CL1!';
+      if (s === 'BRENT' || s === 'BZ=F') return 'ICEEUR:B1!';
+      if (s === 'GOLD' || s === 'GC=F') return 'COMEX:GC1!';
+      if (s === 'SILVER' || s === 'SI=F') return 'COMEX:SI1!';
+      if (s.includes('USDT') || ['BTC', 'ETH', 'SOL', 'BNB', 'AVAX'].includes(s)) {
+        const base = s.replace('USDT', '');
+        return 'BINANCE:' + base + 'USDT';
+      }
+      return s;
+    }
+
+    let tvSym;
+    if (viewMode === 'X') {
+      tvSym = formatTvSymbol(symX);
+    } else if (viewMode === 'SPREAD') {
+      tvSym = `${formatTvSymbol(symY)}/${formatTvSymbol(symX)}`;
+    } else {
+      tvSym = formatTvSymbol(symY);
+    }
+
+    // Update active tab buttons
+    const tabY = document.getElementById('tv-tab-y');
+    const tabX = document.getElementById('tv-tab-x');
+    const tabSpread = document.getElementById('tv-tab-spread');
+    if (tabY) {
+      tabY.textContent = `Asset Y: ${symY}`;
+      tabY.classList.toggle('active', viewMode === 'Y');
+    }
+    if (tabX) {
+      tabX.textContent = `Asset X: ${symX}`;
+      tabX.classList.toggle('active', viewMode === 'X');
+    }
+    if (tabSpread) {
+      tabSpread.textContent = `Spread: ${symY} / ${symX}`;
+      tabSpread.classList.toggle('active', viewMode === 'SPREAD');
+    }
+
+    container.innerHTML = '';
+    const widgetDiv = document.createElement('div');
+    widgetDiv.className = 'tradingview-widget-container__widget';
+    widgetDiv.style.height = '100%';
+    widgetDiv.style.width = '100%';
+    container.appendChild(widgetDiv);
+
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
+    script.async = true;
+    script.innerHTML = JSON.stringify({
+      "autosize": true,
+      "symbol": tvSym,
+      "interval": "D",
+      "timezone": "Etc/UTC",
+      "theme": "dark",
+      "style": "1",
+      "locale": "en",
+      "enable_publishing": false,
+      "hide_side_toolbar": false,
+      "allow_symbol_change": true,
+      "calendar": false,
+      "support_host": "https://www.tradingview.com"
+    });
+    container.appendChild(script);
+  }
+
+  async function fetchLiveCustomPair(symY, symX) {
+    const btn = document.getElementById('btn-fetch-custom-pair');
+    const statusText = document.getElementById('live-streaming-status');
+    const oldText = btn ? btn.innerHTML : '';
+    if (btn) {
+      btn.innerHTML = `<span class="live-beacon"></span> Fetching Live...`;
+      btn.disabled = true;
+    }
+    if (statusText) statusText.textContent = `CONNECTING TO LIVE LIQUIDITY FOR ${symY}/${symX}...`;
+
+    try {
+      const cleanY = symY.toUpperCase().trim();
+      const cleanX = symX.toUpperCase().trim();
+      const isCrypto = cleanY.includes('USDT') || cleanX.includes('USDT') || ['BTC', 'ETH', 'SOL', 'BNB'].includes(cleanY);
+
+      let pairResult = null;
+
+      if (isCrypto) {
+        // Direct Free Binance Spot API (CORS-enabled)
+        const pairSymY = cleanY.includes('USDT') ? cleanY : cleanY + 'USDT';
+        const pairSymX = cleanX.includes('USDT') ? cleanX : cleanX + 'USDT';
+
+        const [resY, resX] = await Promise.all([
+          fetch(`https://api.binance.com/api/v3/klines?symbol=${pairSymY}&interval=1d&limit=750`).then(r => r.json()),
+          fetch(`https://api.binance.com/api/v3/klines?symbol=${pairSymX}&interval=1d&limit=750`).then(r => r.json())
+        ]);
+
+        const mapX = new Map();
+        for (const k of resX) {
+          const d = new Date(k[0]).toISOString().split('T')[0];
+          mapX.set(d, parseFloat(k[4]));
+        }
+
+        const dates = [];
+        const xVals = [];
+        const yVals = [];
+        for (const k of resY) {
+          const d = new Date(k[0]).toISOString().split('T')[0];
+          if (mapX.has(d)) {
+            dates.push(d);
+            xVals.push(mapX.get(d));
+            yVals.push(parseFloat(k[4]));
+          }
+        }
+
+        pairResult = {
+          name: `${cleanY} / ${cleanX} Spot`,
+          category: 'Cryptocurrency',
+          symbolX: cleanX,
+          symbolY: cleanY,
+          dates,
+          x: xVals,
+          y: yVals,
+          lastPriceX: xVals[xVals.length - 1],
+          lastPriceY: yVals[yVals.length - 1],
+          isLive: true
+        };
+      } else {
+        // Fetch via Vercel serverless /api/live_pair endpoint (or fallback)
+        const resp = await fetch(`/api/live_pair?symbolX=${cleanX}&symbolY=${cleanY}&range=2y`);
+        if (!resp.ok) {
+          const errData = await resp.json().catch(() => ({}));
+          throw new Error(errData.error || `HTTP ${resp.status}`);
+        }
+        const data = await resp.json();
+        pairResult = {
+          name: `${cleanY} vs ${cleanX} Pair`,
+          category: 'Equities & Commodities',
+          symbolX: data.symbolX,
+          symbolY: data.symbolY,
+          dates: data.dates,
+          x: data.x,
+          y: data.y,
+          lastPriceX: data.lastPriceX,
+          lastPriceY: data.lastPriceY,
+          isLive: true
+        };
+      }
+
+      if (pairResult && pairResult.x.length > 30) {
+        const customKey = `${cleanY}_${cleanX}`;
+        window.PAIRS_DATA = window.PAIRS_DATA || {};
+        window.PAIRS_DATA[customKey] = pairResult;
+        pairMeta[customKey] = {
+          y: pairResult.symbolY,
+          x: pairResult.symbolX,
+          name: pairResult.name,
+          yLabel: pairResult.symbolY,
+          xLabel: pairResult.symbolX
+        };
+        currentPairKey = customKey;
+
+        if (statusText) statusText.textContent = `LIVE FEED SYNCHRONIZED: ${cleanY}/${cleanX} (${pairResult.dates.length} BARS)`;
+        recalculateAll();
+      } else {
+        throw new Error('Insufficient synchronous market bars received.');
+      }
+    } catch (err) {
+      console.error('Error fetching live pair:', err);
+      alert(`Could not fetch live data for ${symY}/${symX}: ${err.message}`);
+      if (statusText) statusText.textContent = 'LIVE FEED ERROR - REVERTED TO CACHE';
+    } finally {
+      if (btn) {
+        btn.innerHTML = oldText;
+        btn.disabled = false;
+      }
+    }
+  }
+
+  // --- 2.2 CLIENT-SIDE PARAMETER OPTIMIZATION & WALK-FORWARD SENSITIVITY ---
+
+  function runClientParameterOptimization() {
+    const btnOpt = document.getElementById('btn-run-optimization');
+    if (btnOpt) {
+      btnOpt.disabled = true;
+      btnOpt.innerHTML = `<span class="live-beacon"></span> Scanning Parameter Space...`;
+    }
+
+    setTimeout(() => {
+      try {
+        const pairData = getActivePairData();
+        if (!pairData) return;
+        const { y, x, dates } = pairData;
+
+        const objective = document.getElementById('opt-objective')?.value || 'sharpe';
+        const minTrades = parseInt(document.getElementById('opt-min-trades')?.value || '4', 10);
+
+        const n = y.length;
+        const trainSplit = Math.floor(n * 0.65);
+        const yTrain = y.subarray(0, trainSplit);
+        const xTrain = x.subarray(0, trainSplit);
+        const yTest = y.subarray(trainSplit);
+        const xTest = x.subarray(trainSplit);
+        const datesTrain = dates.slice(0, trainSplit);
+        const datesTest = dates.slice(trainSplit);
+
+        const entries = [1.4, 1.7, 2.0, 2.3, 2.6];
+        const exits = [-0.2, 0.0, 0.2, 0.4];
+        const stops = [3.5, 4.0];
+        const deltas = [1e-5, 1e-4];
+
+        // Pre-run Kalman filter for each delta
+        const kfFullCache = {};
+        const kfTrainCache = {};
+        const kfTestCache = {};
+        for (const d of deltas) {
+          kfFullCache[d] = runKalmanFilter(y, x, d, 1e-3, 1.0, 30);
+          kfTrainCache[d] = runKalmanFilter(yTrain, xTrain, d, 1e-3, 1.0, 30);
+          kfTestCache[d] = runKalmanFilter(yTest, xTest, d, 1e-3, 1.0, 30);
+        }
+
+        const trials = [];
+
+        for (const delta of deltas) {
+          const kfFull = kfFullCache[delta];
+          const kfTrain = kfTrainCache[delta];
+          const kfTest = kfTestCache[delta];
+
+          for (const zIn of entries) {
+            for (const zOut of exits) {
+              if (zOut >= zIn) continue;
+              for (const zSt of stops) {
+                if (zSt <= zIn) continue;
+
+                // Full sample simulation
+                const sigFull = generateSignals(kfFull.zscoreHist, zIn, zOut, zSt);
+                const btestFull = simulateExecution(y, x, sigFull.positions, kfFull.betaHist, dates, simParams);
+                const perfFull = computePerformance(btestFull.equity, btestFull.returns, btestFull.trades, simParams.initialCapital);
+
+                // In-sample simulation
+                const sigTrain = generateSignals(kfTrain.zscoreHist, zIn, zOut, zSt);
+                const btestTrain = simulateExecution(yTrain, xTrain, sigTrain.positions, kfTrain.betaHist, datesTrain, simParams);
+                const perfTrain = computePerformance(btestTrain.equity, btestTrain.returns, btestTrain.trades, simParams.initialCapital);
+
+                // Out-of-sample simulation
+                const sigTest = generateSignals(kfTest.zscoreHist, zIn, zOut, zSt);
+                const btestTest = simulateExecution(yTest, xTest, sigTest.positions, kfTest.betaHist, datesTest, simParams);
+                const perfTest = computePerformance(btestTest.equity, btestTest.returns, btestTest.trades, simParams.initialCapital);
+
+                // Walk-forward efficiency WFE
+                const wfe = perfTrain.sharpe > 0.05 ? Math.max(0, (perfTest.sharpe / perfTrain.sharpe) * 100.0) : (perfTest.sharpe >= 0 ? 100.0 : 0.0);
+
+                // Scoring metric
+                let score = perfFull.sharpe;
+                if (objective === 'calmar') score = perfFull.calmar;
+                else if (objective === 'return') score = perfFull.totalReturnPct;
+                else if (objective === 'winrate') score = perfFull.winRatePct;
+                else if (objective === 'profitfactor') score = perfFull.profitFactor;
+
+                if (perfFull.totalTrades < minTrades) score = -999.0;
+
+                trials.push({
+                  zIn, zOut, zSt, delta,
+                  score,
+                  sharpe: perfFull.sharpe,
+                  sharpeIS: perfTrain.sharpe,
+                  sharpeOOS: perfTest.sharpe,
+                  wfe,
+                  returnPct: perfFull.totalReturnPct,
+                  maxDd: perfFull.maxDdPct,
+                  winRate: perfFull.winRatePct,
+                  trades: perfFull.totalTrades
+                });
+              }
+            }
+          }
+        }
+
+        trials.sort((a, b) => b.score - a.score);
+
+        // Render Top 8 into Table
+        const tbody = document.getElementById('opt-table-body');
+        if (tbody) {
+          tbody.innerHTML = '';
+          const topList = trials.slice(0, 8);
+          topList.forEach((t, idx) => {
+            const tr = document.createElement('tr');
+            const wfeColor = t.wfe >= 60 ? 'val-positive' : (t.wfe >= 30 ? 'val-gold' : 'val-negative');
+            const retColor = t.returnPct >= 0 ? 'val-positive' : 'val-negative';
+
+            tr.innerHTML = `
+              <td style="font-weight: 800; color: #00f0ff;">#${idx + 1}</td>
+              <td>${t.zIn.toFixed(2)}σ</td>
+              <td>${t.zOut.toFixed(2)}σ</td>
+              <td>${t.zSt.toFixed(1)}σ</td>
+              <td>1e${Math.round(Math.log10(t.delta))}</td>
+              <td>${t.sharpeIS.toFixed(2)}</td>
+              <td>${t.sharpeOOS.toFixed(2)}</td>
+              <td class="${wfeColor}">${t.wfe.toFixed(1)}%</td>
+              <td class="${retColor}">${t.returnPct >= 0 ? '+' : ''}${t.returnPct.toFixed(2)}%</td>
+              <td style="color: #f43f5e;">-${t.maxDd.toFixed(1)}%</td>
+              <td>${t.winRate.toFixed(1)}% (${t.trades}t)</td>
+              <td>
+                <button class="btn-apply-opt" data-zin="${t.zIn}" data-zout="${t.zOut}" data-zst="${t.zSt}" data-delta="${t.delta}">
+                  Apply
+                </button>
+              </td>
+            `;
+            tbody.appendChild(tr);
+          });
+
+          // Bind Apply buttons
+          tbody.querySelectorAll('.btn-apply-opt').forEach(b => {
+            b.addEventListener('click', () => {
+              const zIn = parseFloat(b.dataset.zin);
+              const zOut = parseFloat(b.dataset.zout);
+              const zSt = parseFloat(b.dataset.zst);
+              const d = parseFloat(b.dataset.delta);
+
+              simParams.zEntry = zIn;
+              simParams.zExit = zOut;
+              simParams.zStop = zSt;
+              simParams.kalmanDelta = d;
+
+              const sIn = document.getElementById('slider-z-entry');
+              if (sIn) { sIn.value = zIn; document.getElementById('val-z-entry').textContent = zIn.toFixed(2) + ' σ'; }
+              const sOut = document.getElementById('slider-z-exit');
+              if (sOut) { sOut.value = zOut; document.getElementById('val-z-exit').textContent = zOut.toFixed(2) + ' σ'; }
+              const sSt = document.getElementById('slider-z-stop');
+              if (sSt) { sSt.value = zSt; document.getElementById('val-z-stop').textContent = zSt.toFixed(2) + ' σ'; }
+              const sDel = document.getElementById('slider-kalman-delta');
+              if (sDel) { sDel.value = Math.log10(d); document.getElementById('val-kalman-delta').textContent = '1e' + Math.round(Math.log10(d)); }
+
+              recalculateAll();
+            });
+          });
+        }
+
+        // Draw 2D Parameter Heatmap
+        drawOptimizationHeatmap(trials, entries, exits);
+
+      } catch (e) {
+        console.error('Optimization error:', e);
+      } finally {
+        if (btnOpt) {
+          btnOpt.disabled = false;
+          btnOpt.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg> Run Parameter Optimization`;
+        }
+      }
+    }, 50);
+  }
+
+  function drawOptimizationHeatmap(trials, entries, exits) {
+    const c = setupCanvas('canvas-opt-heatmap');
+    if (!c) return;
+    const { ctx, width, height } = c;
+
+    ctx.fillStyle = '#070c18';
+    ctx.fillRect(0, 0, width, height);
+
+    const padL = 40, padR = 20, padT = 25, padB = 30;
+    const plotW = width - padL - padR;
+    const plotH = height - padT - padB;
+
+    const nCols = entries.length;
+    const nRows = exits.length;
+    const cellW = plotW / nCols;
+    const cellH = plotH / nRows;
+
+    // Find min and max Sharpe across trials
+    let minS = -3.0, maxS = 2.0;
+    for (const t of trials) {
+      if (t.sharpe > maxS && t.sharpe < 10) maxS = t.sharpe;
+      if (t.sharpe < minS && t.sharpe > -10) minS = t.sharpe;
+    }
+
+    for (let r = 0; r < nRows; r++) {
+      const zOut = exits[r];
+      for (let col = 0; col < nCols; col++) {
+        const zIn = entries[col];
+        const match = trials.find(t => Math.abs(t.zIn - zIn) < 0.05 && Math.abs(t.zOut - zOut) < 0.05);
+        const sh = match ? match.sharpe : -999;
+
+        const xPos = padL + col * cellW;
+        const yPos = padT + (nRows - 1 - r) * cellH;
+
+        if (sh !== -999) {
+          const norm = Math.max(0, Math.min(1, (sh - minS) / (maxS - minS || 1)));
+          // Color interpolate from dark navy to cyan to emerald
+          let rVal = Math.round(16 + norm * (16 - 16));
+          let gVal = Math.round(25 + norm * (185 - 25));
+          let bVal = Math.round(60 + norm * (240 - 60));
+          ctx.fillStyle = `rgb(${rVal}, ${gVal}, ${bVal})`;
+        } else {
+          ctx.fillStyle = '#0b1120';
+        }
+
+        ctx.fillRect(xPos + 1, yPos + 1, cellW - 2, cellH - 2);
+
+        // Value text
+        if (sh !== -999) {
+          ctx.fillStyle = '#f8fafc';
+          ctx.font = '10px JetBrains Mono';
+          ctx.textAlign = 'center';
+          ctx.fillText(sh.toFixed(2), xPos + cellW / 2, yPos + cellH / 2 + 3);
+        }
+      }
+    }
+
+    // Axis Labels
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '10px JetBrains Mono';
+    ctx.textAlign = 'center';
+    for (let col = 0; col < nCols; col++) {
+      const xPos = padL + col * cellW + cellW / 2;
+      ctx.fillText(entries[col].toFixed(1) + 'σ', xPos, height - 10);
+    }
+
+    ctx.textAlign = 'right';
+    for (let r = 0; r < nRows; r++) {
+      const yPos = padT + (nRows - 1 - r) * cellH + cellH / 2 + 3;
+      ctx.fillText(exits[r].toFixed(1) + 'σ', padL - 6, yPos);
+    }
   }
 
   // --- 3. HIGH-DPI CANVAS CHARTING ENGINE ---
@@ -1340,6 +1855,37 @@
     if (selectMcH) {
       selectMcH.addEventListener('change', () => {
         recalculateAll();
+      });
+    }
+
+    // TradingView Tab Viewport Switcher
+    ['tv-tab-y', 'tv-tab-x', 'tv-tab-spread'].forEach(tabId => {
+      const tab = document.getElementById(tabId);
+      if (tab) {
+        tab.addEventListener('click', () => {
+          const target = tab.dataset.target;
+          updateTradingViewWidget(target);
+        });
+      }
+    });
+
+    // Custom Live Pair Fetcher
+    const btnCustom = document.getElementById('btn-fetch-custom-pair');
+    if (btnCustom) {
+      btnCustom.addEventListener('click', () => {
+        const symY = document.getElementById('input-custom-y')?.value.trim();
+        const symX = document.getElementById('input-custom-x')?.value.trim();
+        if (symY && symX) {
+          fetchLiveCustomPair(symY, symX);
+        }
+      });
+    }
+
+    // Parameter Optimizer Trigger
+    const btnOpt = document.getElementById('btn-run-optimization');
+    if (btnOpt) {
+      btnOpt.addEventListener('click', () => {
+        runClientParameterOptimization();
       });
     }
 

@@ -21,6 +21,7 @@ from src.strategy.zscore_signals import ZScoreSignalGenerator
 from src.backtest.execution_sim import PairsExecutionSimulator
 from src.backtest.performance import PerformanceAnalyzer
 from src.validation.walk_forward import WalkForwardValidator
+from src.optimization.grid_search import PairGridOptimizer
 
 
 def run_pipeline_for_pair(
@@ -137,6 +138,23 @@ def run_pipeline_for_pair(
     print(f"    Parametric 95% Value at Risk: -${mc_res.var_95_pct:,.2f}")
     print(f"    99% Expected Shortfall(CVaR): -${mc_res.cvar_99_pct:,.2f}")
 
+    # 7. Parameter Grid Optimization & Stability
+    opt = PairGridOptimizer()
+    grid = {
+        "z_entry": [1.5, 1.8, 2.0, 2.3],
+        "z_exit": [-0.2, 0.0, 0.2],
+        "z_stop": [3.5, 4.0],
+        "kalman_delta": [1e-5, 1e-4],
+    }
+    opt_res = opt.optimize(series_y, series_x, param_grid=grid, objective="sharpe")
+    print(f"\n[7] PARAMETER OPTIMIZATION & SENSITIVITY (Grid Search):")
+    print(f"    Optimal Entry Z-Score      : {opt_res.best_params['z_entry']:.2f} sigma")
+    print(f"    Optimal Exit Z-Score       : {opt_res.best_params['z_exit']:.2f} sigma")
+    print(f"    Optimal Stop-Loss Z-Score  : {opt_res.best_params['z_stop']:.2f} sigma")
+    print(f"    Optimal Kalman Delta       : {opt_res.best_params['kalman_delta']:.1e}")
+    print(f"    Optimized Sharpe Ratio     : {opt_res.best_metrics['sharpe_ratio']:.2f} (In-Sample: {opt_res.best_metrics['sharpe_in_sample']:.2f}, Out-of-Sample: {opt_res.best_metrics['sharpe_out_of_sample']:.2f})")
+    print(f"    Walk-Forward Efficiency WFE: {opt_res.walk_forward_efficiency * 100:.1f}%")
+
     return {
         "pair_name": pair_name,
         "cadf": cadf_res,
@@ -144,7 +162,8 @@ def run_pipeline_for_pair(
         "kf": kf_res,
         "backtest": btest,
         "perf": perf,
-        "walk_forward": wf_res
+        "walk_forward": wf_res,
+        "optimization": opt_res,
     }
 
 

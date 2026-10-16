@@ -1,6 +1,7 @@
 {
   "name": "quant-pairs-trading-engine",
   "version": "1.0.0",
+  "type": "module",
   "description": "Institutional Pairs Trading, Dynamic Kalman Filter & Cointegration Backtesting Engine",
   "keywords": [
     "quantitative-finance",

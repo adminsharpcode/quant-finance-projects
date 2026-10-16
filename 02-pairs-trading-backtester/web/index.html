@@ -7,6 +7,7 @@
   <meta name="description" content="Production quantitative statistical arbitrage workbench. Features Engle-Granger & Johansen cointegration, dynamic state-space Kalman filter beta tracking, Ornstein-Uhlenbeck calibration, institutional execution simulation with short borrow fees, and walk-forward validation.">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <script src="lightweight-charts.standalone.production.js"></script>
 </head>
 <body>
 
@@ -36,6 +37,44 @@
 
   <!-- DASHBOARD CONTAINER -->
   <main class="dashboard-container">
+
+    <!-- LIVE MARKET DATA & CUSTOM PAIR CONTROLLER -->
+    <section class="live-market-toolbar" aria-label="Live Market Feeds">
+      <div class="live-feed-status">
+        <span class="live-beacon"></span>
+        <span id="live-streaming-status">LIVE REAL-TIME DATA STREAM</span>
+      </div>
+
+      <!-- Live Prices Strip -->
+      <div class="live-quotes-strip">
+        <div class="live-quote-chip" id="chip-symbol-y">
+          <span class="quote-symbol" id="live-sym-y">CVX</span>
+          <span class="quote-price" id="live-price-y">$224.26</span>
+          <span class="quote-chg val-positive" id="live-chg-y">+1.8%</span>
+        </div>
+        <div class="live-quote-chip" id="chip-symbol-x">
+          <span class="quote-symbol" id="live-sym-x">XOM</span>
+          <span class="quote-price" id="live-price-x">$178.04</span>
+          <span class="quote-chg val-positive" id="live-chg-x">+1.2%</span>
+        </div>
+        <div class="live-quote-chip">
+          <span class="quote-symbol">SPREAD (Y-βX)</span>
+          <span class="quote-price" id="live-spread-val">-$0.15</span>
+          <span class="quote-chg val-neutral" id="live-zscore-val">1.03σ</span>
+        </div>
+      </div>
+
+      <!-- Custom Pair Fetch Form -->
+      <div class="custom-pair-input-group">
+        <input type="text" class="custom-pair-input" id="input-custom-y" placeholder="Asset Y" value="NVDA" title="Ticker Symbol for Asset Y">
+        <span style="color: #64748b; font-weight: 700;">/</span>
+        <input type="text" class="custom-pair-input" id="input-custom-x" placeholder="Asset X" value="AMD" title="Ticker Symbol for Asset X">
+        <button class="btn-fetch-live" id="btn-fetch-custom-pair" title="Fetch live market data for this pair">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+          Fetch Live Pair
+        </button>
+      </div>
+    </section>
 
     <!-- TOP CONTROL ROW: PAIR SELECTION & PARAMETER SLIDERS -->
     <div class="pair-control-grid">
@@ -200,6 +239,31 @@
       </div>
     </section>
 
+    <!-- TRADINGVIEW ADVANCED REAL-TIME CHART TERMINAL (https://in.tradingview.com/widget/#charts) -->
+    <section class="tv-terminal-wrapper" aria-label="TradingView Real-Time Chart Terminal">
+      <div class="tv-terminal-header">
+        <div class="tv-terminal-title">
+          <svg width="22" height="22" viewBox="0 0 36 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 22H7V11H14V22ZM24 22H17V6H24V22ZM34 22H27V16H34V22Z" fill="#00f0ff"/>
+            <circle cx="4" cy="4" r="3" fill="#10b981"/>
+          </svg>
+          <span>TRADINGVIEW ADVANCED REAL-TIME CHART DESK</span>
+          <span class="brand-badge" style="background: rgba(0, 240, 255, 0.15); color: #00f0ff; border: 1px solid rgba(0, 240, 255, 0.3); font-size: 0.68rem;">OFFICIAL TRADINGVIEW WIDGET</span>
+        </div>
+
+        <div class="tv-tab-group">
+          <button class="tv-tab-btn active" id="tv-tab-y" data-target="Y">Asset Y: CVX</button>
+          <button class="tv-tab-btn" id="tv-tab-x" data-target="X">Asset X: XOM</button>
+          <button class="tv-tab-btn" id="tv-tab-spread" data-target="SPREAD">Spread: CVX / XOM</button>
+        </div>
+      </div>
+
+      <!-- TradingView Widget Embed Container -->
+      <div class="tv-widget-embed-frame" id="tv-widget-container">
+        <!-- Injected dynamically via app.js with https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js -->
+      </div>
+    </section>
+
     <!-- PRIMARY CHARTS ROW -->
     <div class="charts-grid-row">
       <!-- Standardized Spread Z-Score Chart -->
@@ -334,6 +398,90 @@
       <!-- Canvas Fan Chart -->
       <div class="chart-canvas-container" style="min-height: 260px;">
         <canvas id="canvas-montecarlo"></canvas>
+      </div>
+    </section>
+
+    <!-- QUANTITATIVE PARAMETER OPTIMIZATION & SENSITIVITY DESK -->
+    <section class="opt-desk-card" aria-label="Parameter Optimization Desk">
+      <div class="panel-header">
+        <div>
+          <h2 class="panel-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            Quantitative Parameter Optimization & Walk-Forward Sensitivity Desk
+          </h2>
+          <p style="font-size: 0.76rem; color: #94a3b8; margin-top: 0.25rem;">
+            Simulate multi-parameter grid search across Z-score thresholds and Kalman Process Noise δ with Out-of-Sample Walk-Forward validation to prevent overfitting.
+          </p>
+        </div>
+      </div>
+
+      <div class="opt-controls-bar">
+        <div class="opt-input-item">
+          <label for="opt-objective">Target Objective:</label>
+          <select id="opt-objective">
+            <option value="sharpe" selected>Max Sharpe Ratio (Annualized)</option>
+            <option value="calmar">Max Calmar Ratio (Return / MaxDD)</option>
+            <option value="return">Max Total Net Return (%)</option>
+            <option value="winrate">Max Win Rate (%)</option>
+            <option value="profitfactor">Max Profit Factor</option>
+          </select>
+        </div>
+
+        <div class="opt-input-item">
+          <label for="opt-min-trades">Min Trade Threshold:</label>
+          <select id="opt-min-trades">
+            <option value="4" selected>≥ 4 Trades</option>
+            <option value="8">≥ 8 Trades</option>
+            <option value="12">≥ 12 Trades</option>
+          </select>
+        </div>
+
+        <button class="btn-run-opt" id="btn-run-optimization" title="Run grid search parameter optimization">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Run Parameter Optimization
+        </button>
+      </div>
+
+      <div class="opt-results-grid">
+        <!-- Top Parameter Sets Ranking Table -->
+        <div class="opt-table-container">
+          <table class="quant-table" id="opt-ranking-table">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Z_in</th>
+                <th>Z_out</th>
+                <th>Z_stop</th>
+                <th>Kalman δ</th>
+                <th>In-Sample Sh</th>
+                <th>OOS Sh</th>
+                <th>WFE %</th>
+                <th>Return %</th>
+                <th>Max DD</th>
+                <th>Win Rate</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="opt-table-body">
+              <tr>
+                <td colspan="12" style="text-align: center; color: #64748b; padding: 2rem;">
+                  Click "Run Parameter Optimization" to scan 48+ threshold combinations across in-sample and out-of-sample folds.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 2D Sensitivity Heatmap Box -->
+        <div class="heatmap-canvas-box">
+          <div class="heatmap-title">
+            <span>Parameter Stability Heatmap</span>
+            <span style="color: #00f0ff;">Z_in vs Z_out Sharpe Plateau</span>
+          </div>
+          <div style="flex-grow: 1; position: relative; min-height: 220px;">
+            <canvas id="canvas-opt-heatmap"></canvas>
+          </div>
+        </div>
       </div>
     </section>
 
