@@ -767,12 +767,20 @@ canvas {
 
 .tv-widget-embed-frame {
   width: 100%;
-  height: 520px;
+  height: 540px;
   border-radius: var(--radius-sm);
   overflow: hidden;
   border: 1px solid #1e293b;
   background-color: #070c18;
   position: relative;
+}
+
+.tv-widget-embed-frame iframe {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 540px !important;
+  border: none !important;
+  display: block !important;
 }
 
 /* PARAMETER OPTIMIZATION DESK */

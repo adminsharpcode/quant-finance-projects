@@ -813,32 +813,41 @@
       tabSpread.classList.toggle('active', viewMode === 'SPREAD');
     }
 
-    container.innerHTML = '';
-    const widgetDiv = document.createElement('div');
-    widgetDiv.className = 'tradingview-widget-container__widget';
-    widgetDiv.style.height = '100%';
-    widgetDiv.style.width = '100%';
-    container.appendChild(widgetDiv);
+    const settings = {
+      autosize: true,
+      symbol: tvSym,
+      interval: "D",
+      timezone: "Etc/UTC",
+      theme: "dark",
+      style: "1",
+      locale: "en",
+      enable_publishing: false,
+      hide_side_toolbar: false,
+      allow_symbol_change: true,
+      calendar: false,
+      support_host: "https://www.tradingview.com"
+    };
 
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
-    script.async = true;
-    script.innerHTML = JSON.stringify({
-      "autosize": true,
-      "symbol": tvSym,
-      "interval": "D",
-      "timezone": "Etc/UTC",
-      "theme": "dark",
-      "style": "1",
-      "locale": "en",
-      "enable_publishing": false,
-      "hide_side_toolbar": false,
-      "allow_symbol_change": true,
-      "calendar": false,
-      "support_host": "https://www.tradingview.com"
-    });
-    container.appendChild(script);
+    const targetUrl = `https://www.tradingview-widget.com/embed-widget/advanced-chart/?locale=en#${encodeURIComponent(JSON.stringify(settings))}`;
+
+    let iframe = document.getElementById('tradingview_active_iframe');
+    if (iframe) {
+      if (iframe.src !== targetUrl) {
+        iframe.src = targetUrl;
+      }
+    } else {
+      container.innerHTML = '';
+      iframe = document.createElement('iframe');
+      iframe.id = 'tradingview_active_iframe';
+      iframe.title = 'TradingView Real-Time Chart';
+      iframe.style.width = '100%';
+      iframe.style.height = '100%';
+      iframe.style.border = 'none';
+      iframe.style.display = 'block';
+      iframe.setAttribute('allowfullscreen', 'true');
+      iframe.src = targetUrl;
+      container.appendChild(iframe);
+    }
   }
 
   async function fetchLiveCustomPair(symY, symX) {
