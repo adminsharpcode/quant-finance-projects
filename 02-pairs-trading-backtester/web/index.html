@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pairs Trading & Cointegration Engine | Quantitative Statistical Arbitrage</title>
+  <meta name="description" content="Production quantitative statistical arbitrage workbench. Features Engle-Granger & Johansen cointegration, dynamic state-space Kalman filter beta tracking, Ornstein-Uhlenbeck calibration, institutional execution simulation with short borrow fees, and walk-forward validation.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+
+  <!-- HEADER NAVIGATION BAR -->
+  <header class="header-bar">
+    <div class="brand-section">
+      <div class="brand-logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M3.5 18.5l6-6 4 4L22 6.92 20.59 5.5l-7.09 7.08-4-4L2 16.08l1.5 2.42z"/></svg>
+      </div>
+      <div>
+        <h1 class="brand-title">STAT-ARB ALPHA DESK</h1>
+      </div>
+      <span class="brand-badge" id="desk-status-badge">Kalman Dynamic Beta</span>
+    </div>
+
+    <div class="header-status-group">
+      <div class="status-indicator">
+        <span class="status-dot"></span>
+        <span id="market-status-text">COINTEGRATED REGIME</span>
+      </div>
+      <button class="action-btn" id="btn-recalibrate" title="Recalibrate Kalman & OU Parameters">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+        Recalibrate Engine
+      </button>
+    </div>
+  </header>
+
+  <!-- DASHBOARD CONTAINER -->
+  <main class="dashboard-container">
+
+    <!-- TOP CONTROL ROW: PAIR SELECTION & PARAMETER SLIDERS -->
+    <div class="pair-control-grid">
+      <!-- Pair Selector Card -->
+      <section class="panel-card" aria-labelledby="pair-selection-heading">
+        <div class="panel-header">
+          <h2 class="panel-title" id="pair-selection-heading">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 000 20 14.5 14.5 0 000-20M2 12h20"/></svg>
+            Asset Universe & Pair Candidates
+          </h2>
+          <span style="font-size: 0.72rem; color: var(--text-muted); font-family: var(--font-mono);" id="active-pair-label">CVX / XOM</span>
+        </div>
+        <div class="pair-picker-grid" id="pair-picker-container">
+          <button class="pair-btn active" data-pair="CVX_XOM" id="btn-pair-cvx-xom">
+            <span class="pair-btn-symbols">CVX vs XOM</span>
+            <span class="pair-btn-cat">US Integrated Oil</span>
+          </button>
+          <button class="pair-btn" data-pair="BAC_JPM" id="btn-pair-bac-jpm">
+            <span class="pair-btn-symbols">BAC vs JPM</span>
+            <span class="pair-btn-cat">US Banking</span>
+          </button>
+          <button class="pair-btn" data-pair="MSFT_AAPL" id="btn-pair-msft-aapl">
+            <span class="pair-btn-symbols">MSFT vs AAPL</span>
+            <span class="pair-btn-cat">Mega-Cap Tech</span>
+          </button>
+          <button class="pair-btn" data-pair="NVDA_AMD" id="btn-pair-nvda-amd">
+            <span class="pair-btn-symbols">NVDA vs AMD</span>
+            <span class="pair-btn-cat">Semiconductors</span>
+          </button>
+          <button class="pair-btn" data-pair="BRENT_WTI" id="btn-pair-brent-wti">
+            <span class="pair-btn-symbols">BRENT vs WTI</span>
+            <span class="pair-btn-cat">Crude Benchmark</span>
+          </button>
+          <button class="pair-btn" data-pair="SILVER_GOLD" id="btn-pair-silver-gold">
+            <span class="pair-btn-symbols">SILVER vs GOLD</span>
+            <span class="pair-btn-cat">Precious Metals</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Strategy Parameters Card -->
+      <section class="panel-card" aria-labelledby="strategy-params-heading">
+        <div class="panel-header">
+          <h2 class="panel-title" id="strategy-params-heading">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+            Execution Parameters & Friction Drag
+          </h2>
+          <span style="font-size: 0.72rem; color: var(--accent-green); font-family: var(--font-mono);">Real-Time Sensitivity</span>
+        </div>
+        <div class="controls-grid">
+          <!-- Entry Z-Score -->
+          <div class="control-item">
+            <div class="control-label">
+              <span>Entry Z-Score (Z_in)</span>
+              <span class="control-val" id="val-z-entry">2.00 σ</span>
+            </div>
+            <input type="range" class="range-slider" id="slider-z-entry" min="1.0" max="3.0" step="0.1" value="2.0">
+          </div>
+
+          <!-- Exit Z-Score -->
+          <div class="control-item">
+            <div class="control-label">
+              <span>Exit Z-Score (Z_out)</span>
+              <span class="control-val" id="val-z-exit">0.00 σ</span>
+            </div>
+            <input type="range" class="range-slider" id="slider-z-exit" min="-0.5" max="1.0" step="0.1" value="0.0">
+          </div>
+
+          <!-- Stop-Loss Z-Score -->
+          <div class="control-item">
+            <div class="control-label">
+              <span>Stop Loss (Z_stop)</span>
+              <span class="control-val" id="val-z-stop">3.50 σ</span>
+            </div>
+            <input type="range" class="range-slider" id="slider-z-stop" min="2.5" max="5.0" step="0.1" value="3.5">
+          </div>
+
+          <!-- Kalman Process Noise Delta -->
+          <div class="control-item">
+            <div class="control-label">
+              <span>Kalman Drift (log10 δ)</span>
+              <span class="control-val" id="val-kalman-delta">1e-4</span>
+            </div>
+            <input type="range" class="range-slider" id="slider-kalman-delta" min="-5" max="-2" step="0.2" value="-4">
+          </div>
+
+          <!-- Half-Spread Crossing -->
+          <div class="control-item">
+            <div class="control-label">
+              <span>Half-Spread Crossing</span>
+              <span class="control-val" id="val-half-spread">3.0 bps</span>
+            </div>
+            <input type="range" class="range-slider" id="slider-half-spread" min="0" max="10" step="0.5" value="3.0">
+          </div>
+
+          <!-- Impact Slippage -->
+          <div class="control-item">
+            <div class="control-label">
+              <span>Impact Slippage</span>
+              <span class="control-val" id="val-slippage">2.0 bps</span>
+            </div>
+            <input type="range" class="range-slider" id="slider-slippage" min="0" max="10" step="0.5" value="2.0">
+          </div>
+
+          <!-- Prime Short Borrow Fee -->
+          <div class="control-item">
+            <div class="control-label">
+              <span>Short Borrow Fee (p.a.)</span>
+              <span class="control-val" id="val-borrow-fee">1.50 %</span>
+            </div>
+            <input type="range" class="range-slider" id="slider-borrow-fee" min="0.0" max="5.0" step="0.25" value="1.5">
+          </div>
+
+          <!-- Lookback Window for Empirical Z-score -->
+          <div class="control-item">
+            <div class="control-label">
+              <span>Rolling Z-Score Window</span>
+              <span class="control-val" id="val-rolling-window">30 Days</span>
+            </div>
+            <input type="range" class="range-slider" id="slider-rolling-window" min="10" max="90" step="5" value="30">
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- METRICS TELEMETRY STRIP -->
+    <section class="metrics-strip" aria-label="Performance Telemetry">
+      <div class="metric-card">
+        <span class="metric-label">Strategy Total Return</span>
+        <span class="metric-value val-positive" id="metric-total-return">+21.55%</span>
+        <span class="metric-sub" id="metric-net-pnl">+$21,549 Net PnL</span>
+      </div>
+
+      <div class="metric-card">
+        <span class="metric-label">Sharpe Ratio (Rf=4.0%)</span>
+        <span class="metric-value val-neutral" id="metric-sharpe">1.82</span>
+        <span class="metric-sub" id="metric-sortino">Sortino: 2.45</span>
+      </div>
+
+      <div class="metric-card">
+        <span class="metric-label">Maximum Drawdown</span>
+        <span class="metric-value val-negative" id="metric-mdd">-10.90%</span>
+        <span class="metric-sub" id="metric-mdd-days">Duration: 466 bars</span>
+      </div>
+
+      <div class="metric-card">
+        <span class="metric-label">Win Rate / Trades</span>
+        <span class="metric-value val-gold" id="metric-win-rate">65.1%</span>
+        <span class="metric-sub" id="metric-trades-count">255 Roundtrips</span>
+      </div>
+
+      <div class="metric-card">
+        <span class="metric-label">Mean-Reversion Half-Life</span>
+        <span class="metric-value val-neutral" id="metric-half-life">20.4 d</span>
+        <span class="metric-sub" id="metric-ou-theta">OU θ: 0.0340</span>
+      </div>
+
+      <div class="metric-card">
+        <span class="metric-label">Cointegration & WFE</span>
+        <span class="metric-value val-positive" id="metric-cadf-pval">p < 0.01</span>
+        <span class="metric-sub" id="metric-wfe">Walk-Forward: 68.4%</span>
+      </div>
+    </section>
+
+    <!-- PRIMARY CHARTS ROW -->
+    <div class="charts-grid-row">
+      <!-- Standardized Spread Z-Score Chart -->
+      <section class="chart-card" aria-label="Standardized Spread Z-Score Chart">
+        <div class="chart-top-bar">
+          <div class="chart-title-group">
+            <h2 class="panel-title">Spread Z-Score & Dynamic Execution Signals</h2>
+          </div>
+          <div class="chart-legend">
+            <div class="legend-item"><span class="legend-color" style="background: #ECEFF1;"></span> Spread Z-Score</div>
+            <div class="legend-item"><span class="legend-color" style="background: #FF5252;"></span> Short Entry (+2.0σ)</div>
+            <div class="legend-item"><span class="legend-color" style="background: #00E676;"></span> Long Entry (-2.0σ)</div>
+            <div class="legend-item"><span class="legend-color" style="background: #FFD600;"></span> Take Profit (0.0σ)</div>
+          </div>
+        </div>
+        <div class="chart-canvas-container">
+          <canvas id="canvas-zscore"></canvas>
+        </div>
+      </section>
+
+      <!-- Dynamic Kalman Beta Tracker -->
+      <section class="chart-card" aria-label="Dynamic Kalman Beta Tracker">
+        <div class="chart-top-bar">
+          <div class="chart-title-group">
+            <h2 class="panel-title">Dynamic Kalman Hedge Ratio (β_t)</h2>
+          </div>
+          <div class="chart-legend">
+            <div class="legend-item"><span class="legend-color" style="background: #00E5FF;"></span> Kalman β_t</div>
+            <div class="legend-item"><span class="legend-color" style="background: #FF1744;"></span> Static OLS β</div>
+          </div>
+        </div>
+        <div class="chart-canvas-container">
+          <canvas id="canvas-beta"></canvas>
+        </div>
+      </section>
+    </div>
+
+    <!-- SECONDARY CHARTS ROW -->
+    <div class="secondary-charts-grid">
+      <!-- Cumulative Strategy Equity vs Benchmarks -->
+      <section class="chart-card" aria-label="Equity Curve">
+        <div class="chart-top-bar">
+          <h2 class="panel-title">Cumulative Strategy Equity ($)</h2>
+          <div class="chart-legend">
+            <div class="legend-item"><span class="legend-color" style="background: #00E676;"></span> Strategy PnL</div>
+            <div class="legend-item"><span class="legend-color" style="background: #2979FF;"></span> Asset Y B&H</div>
+          </div>
+        </div>
+        <div class="chart-canvas-container" style="min-height: 220px;">
+          <canvas id="canvas-equity"></canvas>
+        </div>
+      </section>
+
+      <!-- Underwater Drawdown Profile -->
+      <section class="chart-card" aria-label="Underwater Drawdown">
+        <div class="chart-top-bar">
+          <h2 class="panel-title">Underwater Drawdown Profile</h2>
+          <span style="font-size: 0.75rem; color: var(--accent-red); font-family: var(--font-mono);" id="badge-current-dd">-0.00%</span>
+        </div>
+        <div class="chart-canvas-container" style="min-height: 220px;">
+          <canvas id="canvas-drawdown"></canvas>
+        </div>
+      </section>
+
+      <!-- Walk-Forward Parameter Stability -->
+      <section class="chart-card" aria-label="Walk-Forward Folds">
+        <div class="chart-top-bar">
+          <h2 class="panel-title">Walk-Forward Cross Validation</h2>
+          <span style="font-size: 0.72rem; color: var(--accent-cyan); font-family: var(--font-mono);">12 Rolling Folds</span>
+        </div>
+        <div class="chart-canvas-container" style="min-height: 220px;">
+          <canvas id="canvas-walkforward"></canvas>
+        </div>
+      </section>
+    </div>
+
+    <!-- MONTE CARLO STOCHASTIC REVERSION DESK -->
+    <section class="panel-card" aria-labelledby="monte-carlo-heading">
+      <div class="panel-header">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <h2 class="panel-title" id="monte-carlo-heading">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            Monte Carlo Stochastic Simulation & First Passage Time Desk
+          </h2>
+          <span class="brand-badge" style="background: rgba(0, 230, 118, 0.12); color: var(--accent-green); border-color: rgba(0, 230, 118, 0.3);">1,000 Paths</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono);">
+            <span>Horizon:</span>
+            <select id="select-mc-horizon" style="background: var(--bg-surface); color: var(--text-primary); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 0.2rem 0.5rem; font-family: var(--font-mono); font-size: 0.75rem;">
+              <option value="30">30 Days</option>
+              <option value="60" selected>60 Days</option>
+              <option value="90">90 Days</option>
+            </select>
+          </div>
+          <button class="action-btn" id="btn-run-monte-carlo" style="padding: 0.35rem 0.9rem; font-size: 0.78rem;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Simulate 1,000 Paths
+          </button>
+        </div>
+      </div>
+
+      <!-- Monte Carlo Metrics Strip -->
+      <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.75rem; margin-bottom: 1rem;">
+        <div class="metric-card" style="padding: 0.75rem;">
+          <span class="metric-label">Probability of Profit (PoP)</span>
+          <span class="metric-value val-positive" id="mc-pop" style="font-size: 1.25rem;">84.2%</span>
+          <span class="metric-sub" id="mc-reversion-target">Target: 0.0σ Mean</span>
+        </div>
+        <div class="metric-card" style="padding: 0.75rem;">
+          <span class="metric-label">Probability of Stop-Loss</span>
+          <span class="metric-value val-negative" id="mc-pstop" style="font-size: 1.25rem;">5.8%</span>
+          <span class="metric-sub" id="mc-stop-boundary">Boundary: ±3.5σ</span>
+        </div>
+        <div class="metric-card" style="padding: 0.75rem;">
+          <span class="metric-label">Expected Days to Exit</span>
+          <span class="metric-value val-neutral" id="mc-exit-days" style="font-size: 1.25rem;">12.4 d</span>
+          <span class="metric-sub" id="mc-median-days">Median: 10.0 d</span>
+        </div>
+        <div class="metric-card" style="padding: 0.75rem;">
+          <span class="metric-label">Parametric 95% VaR</span>
+          <span class="metric-value val-negative" id="mc-var95" style="font-size: 1.25rem;">-$1,420</span>
+          <span class="metric-sub">95% Confidence Loss</span>
+        </div>
+        <div class="metric-card" style="padding: 0.75rem;">
+          <span class="metric-label">99% Expected Shortfall (CVaR)</span>
+          <span class="metric-value val-negative" id="mc-cvar99" style="font-size: 1.25rem;">-$2,180</span>
+          <span class="metric-sub">Tail Expectation</span>
+        </div>
+      </div>
+
+      <!-- Canvas Fan Chart -->
+      <div class="chart-canvas-container" style="min-height: 260px;">
+        <canvas id="canvas-montecarlo"></canvas>
+      </div>
+    </section>
+
+    <!-- TRADE EXECUTION BLOTTER TABLE -->
+    <section class="panel-card" aria-labelledby="trade-blotter-heading">
+      <div class="panel-header">
+        <h2 class="panel-title" id="trade-blotter-heading">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+          Institutional Round-Trip Execution Blotter
+        </h2>
+        <span style="font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono);" id="table-summary-stats">Showing last 25 executions (Net of borrow fees & slippage)</span>
+      </div>
+      <div class="trade-log-container">
+        <table class="quant-table" id="trade-log-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Direction</th>
+              <th>Entry Date</th>
+              <th>Exit Date</th>
+              <th>Bars</th>
+              <th>Y Entry/Exit</th>
+              <th>X Entry/Exit</th>
+              <th>Hedge (β)</th>
+              <th>Borrow Fees</th>
+              <th>Slippage</th>
+              <th>Net PnL ($)</th>
+              <th>Return</th>
+              <th>Exit Reason</th>
+            </tr>
+          </thead>
+          <tbody id="trade-table-body">
+            <!-- Dynamic rows populated via app.js -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer-bar">
+    <p>⚡ <strong>Quant Series Project 02: Pairs Trading & Cointegration Backtesting Engine</strong> | Engineered from First Principles for Hedge Fund & Prop Desks.</p>
+    <p style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--text-muted);">Features State-Space Kalman Filtering, Ornstein-Uhlenbeck SDE Calibration, Microstructure Borrow Fees, and Zero-Lookahead Walk-Forward Validation.</p>
+  </footer>
+
+  <!-- DATA & APP SCRIPTS -->
+  <script src="pairs_data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

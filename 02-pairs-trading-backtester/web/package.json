@@ -1,0 +1,16 @@
+{
+  "name": "quant-pairs-trading-engine",
+  "version": "1.0.0",
+  "description": "Institutional Pairs Trading, Dynamic Kalman Filter & Cointegration Backtesting Engine",
+  "keywords": [
+    "quantitative-finance",
+    "pairs-trading",
+    "statistical-arbitrage",
+    "cointegration",
+    "kalman-filter",
+    "ornstein-uhlenbeck",
+    "walk-forward-validation"
+  ],
+  "author": "Quantitative Engineering",
+  "license": "MIT"
+}
