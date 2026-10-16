@@ -491,6 +491,75 @@
       </div>
     </section>
 
+    <!-- LIVE TRADE EXECUTION & ACTIVE POSITIONS DESK -->
+    <section class="live-trade-card" aria-label="Live Trade Execution Desk">
+      <div class="panel-header">
+        <div>
+          <h2 class="panel-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00f0ff" stroke-width="2.2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            Live Market Order Execution & Position Manager
+          </h2>
+          <p style="font-size: 0.76rem; color: #94a3b8; margin-top: 0.25rem;">
+            Execute statistical arbitrage market orders at current live quotes with realistic bid-ask crossing, slippage, and borrow fees.
+          </p>
+        </div>
+        <div class="live-signal-badge" id="live-signal-badge">
+          <span class="live-beacon"></span>
+          <span id="live-signal-text">ANALYZING SIGNAL...</span>
+        </div>
+      </div>
+
+      <div class="live-trade-grid">
+        <!-- Order Entry Form -->
+        <div class="trade-form-panel">
+          <div class="trade-form-row">
+            <div class="trade-field">
+              <label>Capital Allocation ($):</label>
+              <select id="trade-alloc-size" class="quant-select">
+                <option value="25000">$25,000</option>
+                <option value="50000" selected>$50,000</option>
+                <option value="100000">$100,000</option>
+                <option value="250000">$250,000</option>
+              </select>
+            </div>
+            <div class="trade-field">
+              <label>Direction Mode:</label>
+              <select id="trade-dir-mode" class="quant-select">
+                <option value="AUTO" selected>Auto (Algorithmic Z-Score)</option>
+                <option value="LONG_SPREAD">Force Long Spread (Buy Y / Sell X)</option>
+                <option value="SHORT_SPREAD">Force Short Spread (Sell Y / Buy X)</option>
+              </select>
+            </div>
+            <div class="trade-field">
+              <label>Simulated Slip/Spread Drag:</label>
+              <div style="font-family: var(--font-mono); color: #fbbf24; font-size: 0.82rem; padding-top: 0.4rem;">
+                <span id="live-est-drag">5.0 bps</span> (~$25.00)
+              </div>
+            </div>
+            <div class="trade-field" style="display: flex; align-items: flex-end;">
+              <button class="btn-execute-live" id="btn-execute-live-order">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                Execute Live Market Order
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Active Open Position Card -->
+        <div class="active-position-panel" id="active-position-panel">
+          <div class="pos-header">
+            <span style="font-weight: 700; color: #94a3b8; font-size: 0.74rem; text-transform: uppercase;">Active Live Position</span>
+            <span class="badge-tag" id="pos-status-badge" style="background: rgba(255,255,255,0.06); color: #94a3b8;">NO OPEN POSITION</span>
+          </div>
+          <div class="pos-body" id="pos-body-content">
+            <div style="color: #64748b; font-size: 0.8rem; text-align: center; padding: 1.25rem 0;">
+              No open statistical arbitrage positions. Use the order panel above to enter when Z-Score diverges.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- TRADE EXECUTION BLOTTER TABLE -->
     <section class="panel-card" aria-labelledby="trade-blotter-heading">
       <div class="panel-header">

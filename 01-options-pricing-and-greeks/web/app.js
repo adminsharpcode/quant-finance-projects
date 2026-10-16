@@ -230,6 +230,48 @@ const liveMarketFeed = {
       sliderMin: 65,
       sliderMax: 135,
       sliderStep: 0.25,
+    },
+    SPY: {
+      symbol: "AMEX SPY",
+      name: "S&P 500 ETF",
+      basePrice: 585.50,
+      price: 585.50,
+      openPrice: 582.00,
+      bid: 585.45,
+      ask: 585.55,
+      vol: 0.142,
+      tickSize: 0.05,
+      sliderMin: 450,
+      sliderMax: 700,
+      sliderStep: 1,
+    },
+    NVDA: {
+      symbol: "NASDAQ NVDA",
+      name: "NVIDIA Corp",
+      basePrice: 139.80,
+      price: 139.80,
+      openPrice: 136.50,
+      bid: 139.75,
+      ask: 139.85,
+      vol: 0.465,
+      tickSize: 0.05,
+      sliderMin: 80,
+      sliderMax: 220,
+      sliderStep: 0.5,
+    },
+    BTC: {
+      symbol: "BINANCE BTC",
+      name: "Bitcoin Spot",
+      basePrice: 68450.0,
+      price: 68450.0,
+      openPrice: 67200.0,
+      bid: 68445.0,
+      ask: 68455.0,
+      vol: 0.540,
+      tickSize: 5.0,
+      sliderMin: 40000,
+      sliderMax: 120000,
+      sliderStep: 100,
     }
   },
 
@@ -240,16 +282,15 @@ const liveMarketFeed = {
       if (res.ok) {
         const data = await res.json();
         if (data.status === "ok" && data.quotes) {
-          if (data.quotes.GC) {
-            const g = data.quotes.GC;
-            this.anchorAssetBase("GC", g.price, g.open, g.bid, g.ask, g.changePct);
-          }
-          if (data.quotes.CL) {
-            const c = data.quotes.CL;
-            this.anchorAssetBase("CL", c.price, c.open, c.bid, c.ask, c.changePct);
-          }
+          ["GC", "CL", "SPY", "NVDA", "BTC"].forEach(k => {
+            if (data.quotes[k]) {
+              const q = data.quotes[k];
+              this.anchorAssetBase(k, q.price, q.open, q.bid, q.ask, q.changePct);
+            }
+          });
           const latEl = document.getElementById("feed-latency-text");
           if (latEl) latEl.innerText = `${(0.18 + Math.random() * 0.09).toFixed(2)}ms LIVE EDGE`;
+          if (typeof updateLiveOptionDeskUI === "function") updateLiveOptionDeskUI();
           return;
         }
       }
@@ -274,16 +315,18 @@ const liveMarketFeed = {
 
   anchorAssetBase(assetKey, price, openPrice, bid, ask, changePct) {
     const asset = this.assets[assetKey];
+    if (!asset) return;
     asset.basePrice = Math.round(price * 100) / 100;
     asset.openPrice = Math.round(openPrice * 100) / 100;
-    if (Math.abs(asset.price - asset.basePrice) > 10.0) {
+    if (Math.abs(asset.price - asset.basePrice) > (asset.basePrice * 0.05)) {
       asset.price = asset.basePrice;
     }
   },
 
   tick() {
-    ["GC", "CL"].forEach((assetKey) => {
+    ["GC", "CL", "SPY", "NVDA", "BTC"].forEach((assetKey) => {
       const asset = this.assets[assetKey];
+      if (!asset) return;
       // Mild Ornstein-Uhlenbeck mean-reverting drift pull towards real basePrice
       const meanRev = 0.12 * (asset.basePrice - asset.price);
       // Box-Muller stochastic Brownian perturbation
@@ -305,9 +348,9 @@ const liveMarketFeed = {
 
       // Update Ticker UI
       const changePct = ((asset.price - asset.openPrice) / asset.openPrice) * 100;
-      const priceEl = document.getElementById(assetKey === "GC" ? "ticker-gc" : "ticker-cl");
-      const badgeEl = document.getElementById(assetKey === "GC" ? "ticker-gc-badge" : "ticker-cl-badge");
-      const subEl = document.getElementById(assetKey === "GC" ? "ticker-gc-sub" : "ticker-cl-sub");
+      const priceEl = document.getElementById(assetKey === "GC" ? "ticker-gc" : assetKey === "CL" ? "ticker-cl" : "");
+      const badgeEl = document.getElementById(assetKey === "GC" ? "ticker-gc-badge" : assetKey === "CL" ? "ticker-cl-badge" : "");
+      const subEl = document.getElementById(assetKey === "GC" ? "ticker-gc-sub" : assetKey === "CL" ? "ticker-cl-sub" : "");
 
       if (priceEl) {
         priceEl.innerText = `$${asset.price.toFixed(2)}`;
@@ -341,6 +384,9 @@ const liveMarketFeed = {
         renderAlphaTable();
         if (typeof portfolioEngine !== "undefined") {
           portfolioEngine.markToMarket();
+        }
+        if (typeof updateLiveOptionDeskUI === "function") {
+          updateLiveOptionDeskUI();
         }
       }
     });
@@ -403,22 +449,248 @@ function selectAsset(assetKey) {
     btn.classList.toggle("active", btn.dataset.asset === assetKey);
   });
 
-  const asset = liveMarketFeed.assets[assetKey];
+  const asset = liveMarketFeed.assets[assetKey] || liveMarketFeed.assets.GC;
   const inputF = document.getElementById("input-f");
   const inputK = document.getElementById("input-k");
   const inputVol = document.getElementById("input-vol");
 
-  if (assetKey === "GC") {
-    inputF.min = 3500; inputF.max = 4800; inputF.step = 5; inputF.value = asset.price;
-    inputK.min = 3500; inputK.max = 4800; inputK.step = 5; inputK.value = 4170;
-    inputVol.value = 17.5;
-  } else {
-    inputF.min = 65; inputF.max = 135; inputF.step = 0.25; inputF.value = asset.price;
-    inputK.min = 65; inputK.max = 135; inputK.step = 0.25; inputK.value = 93.60;
-    inputVol.value = 31.5;
+  if (inputF && inputK && inputVol) {
+    inputF.min = asset.sliderMin;
+    inputF.max = asset.sliderMax;
+    inputF.step = asset.sliderStep;
+    inputF.value = asset.price;
+
+    inputK.min = asset.sliderMin;
+    inputK.max = asset.sliderMax;
+    inputK.step = asset.sliderStep;
+    inputK.value = asset.price;
+
+    inputVol.value = (asset.vol * 100).toFixed(1);
   }
 
   updateStateFromSliders();
+  if (typeof updateLiveOptionDeskUI === "function") {
+    updateLiveOptionDeskUI();
+  }
+}
+
+function updateLiveOptionDeskUI() {
+  const assetSelect = document.getElementById("p1-trade-asset-select");
+  const typeSelect = document.getElementById("p1-trade-type-select");
+  const strikeSelect = document.getElementById("p1-trade-strike-select");
+  const tenorSelect = document.getElementById("p1-trade-tenor-select");
+  const qtySelect = document.getElementById("p1-trade-qty-select");
+
+  if (!assetSelect) return;
+
+  const assetKey = assetSelect.value || "GC";
+  const asset = liveMarketFeed.assets[assetKey] || liveMarketFeed.assets.GC;
+  const F = asset.price;
+  const type = typeSelect ? typeSelect.value : "BUY_CALL";
+  const isCall = type.includes("CALL");
+  const isBuy = type.startsWith("BUY");
+
+  const strikeMode = strikeSelect ? strikeSelect.value : "ATM";
+  let strike = F;
+  if (strikeMode === "OTM_5") strike = F * (isCall ? 1.05 : 0.95);
+  else if (strikeMode === "OTM_10") strike = F * (isCall ? 1.10 : 0.90);
+  else if (strikeMode === "ITM_5") strike = F * (isCall ? 0.95 : 1.05);
+
+  if (strike > 5000) strike = Math.round(strike / 100) * 100;
+  else if (strike > 500) strike = Math.round(strike / 5) * 5;
+  else if (strike > 50) strike = Math.round(strike * 2) / 2;
+  else strike = Math.round(strike * 10) / 10;
+
+  const tenorDays = parseInt(tenorSelect ? tenorSelect.value : "60", 10) || 60;
+  const T = tenorDays / 365.0;
+  const qty = parseInt(qtySelect ? qtySelect.value : "5", 10) || 5;
+  const vol = asset.vol;
+  const r = state.r || 0.045;
+
+  const fair = black76Price(F, strike, T, r, vol, isCall);
+  const spread = Math.max(0.15, fair * 0.015);
+  const fill = isBuy ? fair + spread : Math.max(0.05, fair - spread);
+  const g = calculateGreeks(F, strike, T, r, vol, isCall);
+
+  let multiplier = 100;
+  if (assetKey === "CL") multiplier = 1000;
+  if (assetKey === "BTC") multiplier = 1;
+
+  const capComm = fill * qty * multiplier;
+
+  const elFair = document.getElementById("p1-live-fair-val");
+  const elFill = document.getElementById("p1-live-fill-val");
+  const elDelta = document.getElementById("p1-live-delta-val");
+  const elCap = document.getElementById("p1-live-cap-val");
+
+  if (elFair) elFair.textContent = `$${fair.toFixed(2)}`;
+  if (elFill) elFill.textContent = `$${fill.toFixed(2)}`;
+  if (elDelta) elDelta.textContent = (g.delta >= 0 ? "+" : "") + g.delta.toFixed(3);
+  if (elCap) elCap.textContent = `$${capComm.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+}
+
+function executeLiveOptionTradeP1() {
+  const assetSelect = document.getElementById("p1-trade-asset-select");
+  const typeSelect = document.getElementById("p1-trade-type-select");
+  const strikeSelect = document.getElementById("p1-trade-strike-select");
+  const tenorSelect = document.getElementById("p1-trade-tenor-select");
+  const qtySelect = document.getElementById("p1-trade-qty-select");
+
+  const assetKey = assetSelect ? assetSelect.value : "GC";
+  const asset = liveMarketFeed.assets[assetKey] || liveMarketFeed.assets.GC;
+  const F = asset.price;
+  const type = typeSelect ? typeSelect.value : "BUY_CALL";
+  const isCall = type.includes("CALL");
+  const isBuy = type.startsWith("BUY");
+  const side = isBuy ? "BUY" : "SELL";
+
+  const strikeMode = strikeSelect ? strikeSelect.value : "ATM";
+  let strike = F;
+  if (strikeMode === "OTM_5") strike = F * (isCall ? 1.05 : 0.95);
+  else if (strikeMode === "OTM_10") strike = F * (isCall ? 1.10 : 0.90);
+  else if (strikeMode === "ITM_5") strike = F * (isCall ? 0.95 : 1.05);
+
+  if (strike > 5000) strike = Math.round(strike / 100) * 100;
+  else if (strike > 500) strike = Math.round(strike / 5) * 5;
+  else if (strike > 50) strike = Math.round(strike * 2) / 2;
+  else strike = Math.round(strike * 10) / 10;
+
+  const tenorDays = parseInt(tenorSelect ? tenorSelect.value : "60", 10) || 60;
+  const T = tenorDays / 365.0;
+  const qty = parseInt(qtySelect ? qtySelect.value : "5", 10) || 5;
+  const vol = asset.vol;
+  const r = state.r || 0.045;
+
+  const fair = black76Price(F, strike, T, r, vol, isCall);
+  const spread = Math.max(0.15, fair * 0.015);
+  const fill = isBuy ? fair + spread : Math.max(0.05, fair - spread);
+  const g = calculateGreeks(F, strike, T, r, vol, isCall);
+
+  let multiplier = 100;
+  if (assetKey === "CL") multiplier = 1000;
+  if (assetKey === "BTC") multiplier = 1;
+
+  const posId = `pos-opt-live-${Date.now()}`;
+  const nowTime = new Date().toTimeString().slice(0, 8);
+  const symbol = `${assetKey}_${Math.round(strike)}_${isCall ? "C" : "P"}_${tenorDays}d`;
+  const name = `${assetKey} $${Math.round(strike)} ${isCall ? "CALL" : "PUT"} (${tenorDays}d)`;
+
+  const book = portfolioEngine.getActiveBook();
+  book.positions.push({
+    id: posId,
+    symbol: symbol,
+    name: name,
+    asset: assetKey,
+    instType: isCall ? "call" : "put",
+    side: side,
+    qty: qty,
+    entryPrice: +fill.toFixed(2),
+    markPrice: +fair.toFixed(2),
+    strike: strike,
+    T: T,
+    entryIV: vol,
+    targetIV: vol,
+    iv: vol,
+    multiplier: multiplier,
+    strategy: isBuy ? "Long Volatility / Gamma" : "Short Premium / Theta Harvest",
+    targetProfit: Math.round(fill * qty * multiplier * 0.15),
+    pairedHedgeId: null,
+    ageTicks: 0
+  });
+
+  book.orders.unshift({
+    id: `ORD-${Math.floor(10000 + Math.random() * 90000)}`,
+    time: nowTime,
+    book: book.name.slice(0, 16),
+    action: `${side} ${isCall ? "CALL" : "PUT"}`,
+    symbol: symbol,
+    qty: qty,
+    fillPrice: +fill.toFixed(2),
+    fairValue: +fair.toFixed(2),
+    edge: `+$${Math.abs(fill - fair).toFixed(2)}`,
+    venue: "CBOE / CME Globex",
+    status: "FILLED"
+  });
+
+  portfolioEngine.markToMarket();
+  portfolioEngine.renderUI();
+
+  portfolioEngine.showToast(
+    "⚡ OPTION ORDER FILLED",
+    `Executed ${side} ${qty}x ${name} @ $${fill.toFixed(2)} | Δ: ${(g.delta * (isBuy ? 1 : -1) * qty).toFixed(2)}`,
+    true
+  );
+}
+
+function initTradingViewDeskP1() {
+  const tabs = [
+    { id: "p1-tv-tab-gc", sym: "COMEX:GC1!", asset: "GC" },
+    { id: "p1-tv-tab-cl", sym: "NYMEX:CL1!", asset: "CL" },
+    { id: "p1-tv-tab-spy", sym: "AMEX:SPY", asset: "SPY" },
+    { id: "p1-tv-tab-nvda", sym: "NASDAQ:NVDA", asset: "NVDA" },
+    { id: "p1-tv-tab-btc", sym: "BINANCE:BTCUSDT", asset: "BTC" },
+  ];
+
+  tabs.forEach(t => {
+    const btn = document.getElementById(t.id);
+    if (!btn) return;
+    btn.addEventListener("click", () => {
+      tabs.forEach(o => document.getElementById(o.id)?.classList.remove("active"));
+      btn.classList.add("active");
+
+      const iframe = document.getElementById("p1_tradingview_active_iframe");
+      if (iframe) {
+        const settings = {
+          autosize: true,
+          symbol: t.sym,
+          interval: "D",
+          timezone: "Etc/UTC",
+          theme: "dark",
+          style: "1",
+          locale: "en",
+          enable_publishing: false,
+          hide_side_toolbar: false,
+          allow_symbol_change: true,
+          calendar: false,
+          support_host: "https://www.tradingview.com"
+        };
+        iframe.src = `https://www.tradingview-widget.com/embed-widget/advanced-chart/?locale=en#${encodeURIComponent(JSON.stringify(settings))}`;
+      }
+
+      const assetSel = document.getElementById("p1-trade-asset-select");
+      if (assetSel) {
+        assetSel.value = t.asset;
+      }
+      selectAsset(t.asset);
+      updateLiveOptionDeskUI();
+    });
+  });
+
+  const assetSel = document.getElementById("p1-trade-asset-select");
+  if (assetSel) {
+    assetSel.addEventListener("change", (e) => {
+      const selected = e.target.value;
+      const matchTab = tabs.find(t => t.asset === selected);
+      if (matchTab) {
+        document.getElementById(matchTab.id)?.click();
+      } else {
+        selectAsset(selected);
+        updateLiveOptionDeskUI();
+      }
+    });
+  }
+
+  ["p1-trade-type-select", "p1-trade-strike-select", "p1-trade-tenor-select", "p1-trade-qty-select"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener("change", updateLiveOptionDeskUI);
+  });
+
+  const btnExec = document.getElementById("btn-p1-execute-live-order");
+  if (btnExec) {
+    btnExec.addEventListener("click", executeLiveOptionTradeP1);
+  }
+
+  updateLiveOptionDeskUI();
 }
 
 function init() {
@@ -428,6 +700,7 @@ function init() {
   init3DSurfacePlot();
   init2DSmilesPlot();
   renderAlphaTable();
+  initTradingViewDeskP1();
   if (typeof portfolioEngine !== "undefined") {
     portfolioEngine.init();
   }

@@ -16,6 +16,7 @@
   // --- STATE VARIABLES ---
   let currentPairKey = 'CVX_XOM';
   let activeTvViewMode = 'Y';
+  let activeLivePosition = null;
   let pairMeta = {
     'CVX_XOM': { y: 'CVX', x: 'XOM', name: 'US Integrated Oil', yLabel: 'CVX', xLabel: 'XOM' },
     'BAC_JPM': { y: 'BAC', x: 'JPM', name: 'US Banking', yLabel: 'BAC', xLabel: 'JPM' },
@@ -760,6 +761,192 @@
     if (elSpread) elSpread.textContent = (currSpread >= 0 ? '+$' : '-$') + Math.abs(currSpread).toFixed(2);
     const elZ = document.getElementById('live-zscore-val');
     if (elZ) elZ.textContent = currZ.toFixed(2) + 'σ';
+
+    // Update Live Signal Badge
+    const elSigText = document.getElementById('live-signal-text');
+    const elSigBadge = document.getElementById('live-signal-badge');
+    if (elSigText && elSigBadge) {
+      if (currZ <= -simParams.zEntry) {
+        elSigText.textContent = `LONG SPREAD OPPORTUNITY (BUY ${meta.yLabel} / SELL ${meta.xLabel})`;
+        elSigBadge.style.borderColor = '#10b981';
+        elSigBadge.style.color = '#10b981';
+      } else if (currZ >= simParams.zEntry) {
+        elSigText.textContent = `SHORT SPREAD OPPORTUNITY (SELL ${meta.yLabel} / BUY ${meta.xLabel})`;
+        elSigBadge.style.borderColor = '#f43f5e';
+        elSigBadge.style.color = '#f43f5e';
+      } else {
+        elSigText.textContent = `MEAN REVERSION REGIME (WAITING FOR ${simParams.zEntry.toFixed(1)}σ)`;
+        elSigBadge.style.borderColor = '#fbbf24';
+        elSigBadge.style.color = '#fbbf24';
+      }
+    }
+
+    // Update estimated drag
+    const elDrag = document.getElementById('live-est-drag');
+    if (elDrag) {
+      const totDrag = (simParams.halfSpreadBps + simParams.slippageBps).toFixed(1);
+      elDrag.textContent = `${totDrag} bps`;
+    }
+
+    // Update active open live position PnL if any
+    updateActivePositionCard(res);
+  }
+
+  function updateActivePositionCard(res) {
+    const pnlContainer = document.getElementById('pos-body-content');
+    const badge = document.getElementById('pos-status-badge');
+    if (!pnlContainer || !badge) return;
+
+    if (!activeLivePosition) {
+      badge.textContent = 'NO OPEN POSITION';
+      badge.style.background = 'rgba(255,255,255,0.06)';
+      badge.style.color = '#94a3b8';
+      pnlContainer.innerHTML = `
+        <div style="color: #64748b; font-size: 0.8rem; text-align: center; padding: 1.25rem 0;">
+          No open statistical arbitrage positions. Use the order panel to enter when Z-Score reaches ${simParams.zEntry.toFixed(1)}σ.
+        </div>
+      `;
+      return;
+    }
+
+    const pos = activeLivePosition;
+    const { y, x, kf, lastPriceX, lastPriceY } = res;
+    const currBeta = kf.betaHist[kf.betaHist.length - 1];
+
+    // Mark-to-market calculations
+    let grossPnl = 0;
+    if (pos.direction === 'LONG_SPREAD') {
+      grossPnl = (lastPriceY - pos.entryY) * pos.sharesY - (lastPriceX - pos.entryX) * pos.sharesX;
+    } else {
+      grossPnl = (pos.entryY - lastPriceY) * pos.sharesY + (pos.entryX - lastPriceX) * pos.sharesX;
+    }
+
+    const drag = (simParams.halfSpreadBps + simParams.slippageBps) * 1e-4 * pos.allocation;
+    const borrowFee = (pos.allocation * 0.5) * (simParams.borrowFeeAnnual / 360.0);
+    const netPnl = grossPnl - drag - borrowFee;
+    const returnPct = (netPnl / pos.allocation) * 100.0;
+    const pnlColor = netPnl >= 0 ? '#10b981' : '#f43f5e';
+
+    badge.textContent = pos.direction.replace('_', ' ');
+    badge.className = 'badge-tag ' + (pos.direction === 'LONG_SPREAD' ? 'tag-long' : 'tag-short');
+
+    pnlContainer.innerHTML = `
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; font-family: var(--font-mono); font-size: 0.78rem;">
+        <div>
+          <span style="color: #64748b;">Filled Leg Y:</span>
+          <div style="font-weight: 700; color: #f8fafc;">${pos.sharesY} sh @ $${pos.entryY.toFixed(2)} (${pos.ySymbol})</div>
+        </div>
+        <div>
+          <span style="color: #64748b;">Filled Leg X:</span>
+          <div style="font-weight: 700; color: #f8fafc;">${pos.sharesX} sh @ $${pos.entryX.toFixed(2)} (${pos.xSymbol})</div>
+        </div>
+        <div>
+          <span style="color: #64748b;">Entry / Current Spread:</span>
+          <div style="font-weight: 700; color: #00f0ff;">$${pos.entrySpread.toFixed(2)} → $${(lastPriceY - currBeta * lastPriceX).toFixed(2)}</div>
+        </div>
+        <div>
+          <span style="color: #64748b;">Unrealized Net PnL:</span>
+          <div style="font-weight: 800; font-size: 0.95rem; color: ${pnlColor};">
+            ${netPnl >= 0 ? '+$' : '-$'}${Math.abs(netPnl).toFixed(2)} (${returnPct >= 0 ? '+' : ''}${returnPct.toFixed(2)}%)
+          </div>
+        </div>
+      </div>
+      <button class="btn-close-pos" id="btn-close-active-pos">
+        Close Position at Market (Lock in ${netPnl >= 0 ? '+$' : '-$'}${Math.abs(netPnl).toFixed(2)})
+      </button>
+    `;
+
+    document.getElementById('btn-close-active-pos')?.addEventListener('click', closeActivePosition);
+  }
+
+  function executeLiveTrade() {
+    if (!currentResults) return;
+    const { meta, y, x, kf, lastPriceX, lastPriceY } = currentResults;
+    const n = y.length;
+    const currBeta = kf.betaHist[n - 1];
+    const currZ = kf.zscoreHist[n - 1];
+
+    const dirMode = document.getElementById('trade-dir-mode')?.value || 'AUTO';
+    let direction = dirMode;
+    if (dirMode === 'AUTO') {
+      direction = currZ <= 0 ? 'LONG_SPREAD' : 'SHORT_SPREAD';
+    }
+
+    const alloc = parseFloat(document.getElementById('trade-alloc-size')?.value || '50000');
+    const dragBps = (simParams.halfSpreadBps + simParams.slippageBps) * 1e-4;
+
+    const fillY = direction === 'LONG_SPREAD' ? lastPriceY * (1 + dragBps) : lastPriceY * (1 - dragBps);
+    const fillX = direction === 'LONG_SPREAD' ? lastPriceX * (1 - dragBps) : lastPriceX * (1 + dragBps);
+
+    const sharesY = Math.max(1, Math.round((alloc * 0.5) / fillY));
+    const sharesX = Math.max(1, Math.round(currBeta * sharesY));
+
+    activeLivePosition = {
+      id: Date.now().toString().slice(-4),
+      direction,
+      entryTime: new Date().toLocaleTimeString(),
+      entryDate: currentResults.dates[n - 1] || new Date().toISOString().split('T')[0],
+      ySymbol: meta.yLabel,
+      xSymbol: meta.xLabel,
+      entryY: fillY,
+      entryX: fillX,
+      beta: currBeta,
+      sharesY,
+      sharesX,
+      allocation: alloc,
+      entrySpread: fillY - currBeta * fillX,
+      entryZ: currZ
+    };
+
+    updateActivePositionCard(currentResults);
+  }
+
+  function closeActivePosition() {
+    if (!activeLivePosition || !currentResults) return;
+    const pos = activeLivePosition;
+    const { y, x, kf, lastPriceX, lastPriceY, dates } = currentResults;
+    const n = y.length;
+    const dragBps = (simParams.halfSpreadBps + simParams.slippageBps) * 1e-4;
+
+    const exitY = pos.direction === 'LONG_SPREAD' ? lastPriceY * (1 - dragBps) : lastPriceY * (1 + dragBps);
+    const exitX = pos.direction === 'LONG_SPREAD' ? lastPriceX * (1 + dragBps) : lastPriceX * (1 - dragBps);
+
+    let grossPnl = 0;
+    if (pos.direction === 'LONG_SPREAD') {
+      grossPnl = (exitY - pos.entryY) * pos.sharesY - (exitX - pos.entryX) * pos.sharesX;
+    } else {
+      grossPnl = (pos.entryY - exitY) * pos.sharesY + (pos.entryX - exitX) * pos.sharesX;
+    }
+
+    const slippageCost = dragBps * pos.allocation * 2.0;
+    const borrowFees = (pos.allocation * 0.5) * (simParams.borrowFeeAnnual / 360.0);
+    const netPnl = grossPnl - slippageCost - borrowFees;
+    const returnPct = (netPnl / pos.allocation) * 100.0;
+
+    // Add to completed trades in blotter
+    const newTrade = {
+      id: parseInt(pos.id, 10),
+      direction: pos.direction,
+      entryDate: pos.entryDate,
+      exitDate: dates[n - 1] || new Date().toISOString().split('T')[0],
+      bars: 1,
+      entryY: pos.entryY,
+      exitY,
+      entryX: pos.entryX,
+      exitX,
+      beta: pos.beta,
+      borrowFees,
+      slippage: slippageCost,
+      netPnl,
+      returnPct,
+      exitReason: netPnl >= 0 ? 'TAKE_PROFIT' : 'STOP_LOSS'
+    };
+
+    currentResults.btest.trades.push(newTrade);
+    renderTradeBlotter(currentResults.btest.trades);
+
+    activeLivePosition = null;
+    updateActivePositionCard(currentResults);
   }
 
   function updateTradingViewWidget(viewMode = 'Y') {
@@ -1895,6 +2082,14 @@
     if (btnOpt) {
       btnOpt.addEventListener('click', () => {
         runClientParameterOptimization();
+      });
+    }
+
+    // Live Order Execution Trigger
+    const btnExec = document.getElementById('btn-execute-live-order');
+    if (btnExec) {
+      btnExec.addEventListener('click', () => {
+        executeLiveTrade();
       });
     }
 

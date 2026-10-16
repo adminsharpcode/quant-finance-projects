@@ -230,6 +230,137 @@
 
         <!-- ================= TAB 1: PRICING LAB ================= -->
         <div class="tab-pane active" id="tab-pricing">
+          <!-- TRADINGVIEW ADVANCED REAL-TIME CHART TERMINAL (https://in.tradingview.com/widget/#charts) -->
+          <section class="tv-terminal-wrapper" aria-label="TradingView Real-Time Chart Terminal">
+            <div class="tv-terminal-header">
+              <div class="tv-terminal-title">
+                <svg width="22" height="22" viewBox="0 0 36 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14 22H7V11H14V22ZM24 22H17V6H24V22ZM34 22H27V16H34V22Z" fill="#00f0ff"/>
+                  <circle cx="4" cy="4" r="3" fill="#10b981"/>
+                </svg>
+                <span>TRADINGVIEW ADVANCED REAL-TIME CHART DESK</span>
+                <span class="brand-badge" style="background: rgba(0, 240, 255, 0.15); color: #00f0ff; border: 1px solid rgba(0, 240, 255, 0.3); font-size: 0.68rem;">OFFICIAL TRADINGVIEW WIDGET</span>
+              </div>
+
+              <div class="tv-tab-group">
+                <button class="tv-tab-btn active" id="p1-tv-tab-gc" data-symbol="COMEX:GC1!">Gold (GC1!)</button>
+                <button class="tv-tab-btn" id="p1-tv-tab-cl" data-symbol="NYMEX:CL1!">Crude (CL1!)</button>
+                <button class="tv-tab-btn" id="p1-tv-tab-spy" data-symbol="AMEX:SPY">S&P 500 (SPY)</button>
+                <button class="tv-tab-btn" id="p1-tv-tab-nvda" data-symbol="NASDAQ:NVDA">Nvidia (NVDA)</button>
+                <button class="tv-tab-btn" id="p1-tv-tab-btc" data-symbol="BINANCE:BTCUSDT">Bitcoin (BTCUSDT)</button>
+              </div>
+            </div>
+
+            <!-- TradingView Widget Embed Frame -->
+            <div class="tv-widget-embed-frame" id="p1-tv-widget-container">
+              <iframe id="p1_tradingview_active_iframe"
+                title="TradingView Real-Time Chart"
+                src="https://www.tradingview-widget.com/embed-widget/advanced-chart/?locale=en#%7B%22autosize%22%3Atrue%2C%22symbol%22%3A%22COMEX%3AGC1!%22%2C%22interval%22%3A%22D%22%2C%22timezone%22%3A%22Etc%2FUTC%22%2C%22theme%22%3A%22dark%22%2C%22style%22%3A%221%22%2C%22locale%22%3A%22en%22%2C%22allow_symbol_change%22%3Atrue%2C%22hide_side_toolbar%22%3Afalse%2C%22calendar%22%3Afalse%2C%22support_host%22%3A%22https%3A%2F%2Fwww.tradingview.com%22%7D"
+                style="width: 100%; height: 100%; border: none; display: block;"
+                allowfullscreen="true">
+              </iframe>
+            </div>
+          </section>
+
+          <!-- LIVE OPTION TRADE EXECUTION & SIMULATOR DESK -->
+          <section class="live-option-exec-card" aria-label="Live Option Trade Execution Desk">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; flex-wrap: wrap; gap: 0.75rem;">
+              <div>
+                <h2 style="font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; color: #f8fafc; display: flex; align-items: center; gap: 0.6rem;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00f0ff" stroke-width="2.2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                  Live Market Option Order Execution & Simulation Desk
+                </h2>
+                <p style="font-size: 0.76rem; color: #94a3b8; margin-top: 0.2rem;">
+                  Simulate institutional options market orders directly from TradingView market quotes with continuous Black-76 fair pricing, bid-ask half-spread crossing, and delta-hedging.
+                </p>
+              </div>
+              <div class="live-signal-badge" id="p1-live-signal-badge">
+                <span class="live-beacon"></span>
+                <span id="p1-live-signal-text">MARKET LIVE • CME GLOBEX / CBOE</span>
+              </div>
+            </div>
+
+            <div class="option-trade-grid">
+              <div class="trade-field">
+                <label>Active Underlying:</label>
+                <select id="p1-trade-asset-select" class="quant-select">
+                  <option value="GC" selected>COMEX Gold (GC) - $4,170</option>
+                  <option value="CL">NYMEX Crude Oil (CL) - $93.60</option>
+                  <option value="SPY">SPDR S&P 500 (SPY) - $585.50</option>
+                  <option value="NVDA">NVIDIA Corp (NVDA) - $139.80</option>
+                  <option value="BTC">Bitcoin Spot (BTC) - $68,450</option>
+                </select>
+              </div>
+
+              <div class="trade-field">
+                <label>Option Type & Direction:</label>
+                <select id="p1-trade-type-select" class="quant-select">
+                  <option value="BUY_CALL" selected>BUY Call Option (Long Convexity)</option>
+                  <option value="BUY_PUT">BUY Put Option (Downside Hedge)</option>
+                  <option value="SELL_CALL">SELL Call Option (Harvest Theta)</option>
+                  <option value="SELL_PUT">SELL Put Option (Bull Put Leg)</option>
+                </select>
+              </div>
+
+              <div class="trade-field">
+                <label>Strike Selection:</label>
+                <select id="p1-trade-strike-select" class="quant-select">
+                  <option value="ATM" selected>At-The-Money (ATM)</option>
+                  <option value="OTM_5">+5% Out-of-the-Money</option>
+                  <option value="OTM_10">+10% Wing OTM</option>
+                  <option value="ITM_5">-5% In-the-Money</option>
+                </select>
+              </div>
+
+              <div class="trade-field">
+                <label>Tenor / Expiry:</label>
+                <select id="p1-trade-tenor-select" class="quant-select">
+                  <option value="30">30 Days (Prompt Month)</option>
+                  <option value="60" selected>60 Days (Quarterly Expiry)</option>
+                  <option value="90">90 Days (LEAPS Wing)</option>
+                </select>
+              </div>
+
+              <div class="trade-field">
+                <label>Contract Quantity:</label>
+                <select id="p1-trade-qty-select" class="quant-select">
+                  <option value="1">1 Contract</option>
+                  <option value="5" selected>5 Contracts</option>
+                  <option value="10">10 Contracts</option>
+                  <option value="25">25 Contracts</option>
+                  <option value="50">50 Contracts</option>
+                </select>
+              </div>
+
+              <div class="trade-field" style="display: flex; flex-direction: column; justify-content: flex-end;">
+                <button class="btn-execute-live" id="btn-p1-execute-live-order">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                  Execute Live Option Trade
+                </button>
+              </div>
+            </div>
+
+            <!-- Execution Preview & Live Fill Stats -->
+            <div style="margin-top: 0.85rem; padding: 0.65rem 1rem; background-color: #070c18; border: 1px solid #1e293b; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; font-family: var(--font-mono); font-size: 0.78rem;">
+              <div>
+                <span style="color: #64748b;">Theoretical Black-76 Fair Value:</span>
+                <span style="font-weight: 700; color: #00f0ff; margin-left: 0.4rem;" id="p1-live-fair-val">$74.55</span>
+              </div>
+              <div>
+                <span style="color: #64748b;">Est. Fill Price (Spread Crossing):</span>
+                <span style="font-weight: 700; color: #fbbf24; margin-left: 0.4rem;" id="p1-live-fill-val">$75.10</span>
+              </div>
+              <div>
+                <span style="color: #64748b;">Contract Delta (Δ):</span>
+                <span style="font-weight: 700; color: #10b981; margin-left: 0.4rem;" id="p1-live-delta-val">+0.503</span>
+              </div>
+              <div>
+                <span style="color: #64748b;">Capital Commitment:</span>
+                <span style="font-weight: 700; color: #f8fafc; margin-left: 0.4rem;" id="p1-live-cap-val">$37,550.00</span>
+              </div>
+            </div>
+          </section>
+
           <!-- Summary Metrics Cards -->
           <div class="cards-banner">
             <div class="metric-card card-glow-cyan">
