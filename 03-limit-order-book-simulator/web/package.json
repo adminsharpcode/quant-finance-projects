@@ -1,0 +1,13 @@
+{
+  "name": "quant-limit-order-book-simulator",
+  "version": "1.0.0",
+  "description": "High-Frequency Limit Order Book & Avellaneda-Stoikov Market Making Simulator",
+  "scripts": {
+    "dev": "npx serve .",
+    "start": "npx serve ."
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}

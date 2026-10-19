@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LOBX | High-Frequency Limit Order Book & Avellaneda-Stoikov Market Making Simulator</title>
+  <meta name="description" content="Production-grade Limit Order Book matching engine simulating price-time priority, Avellaneda-Stoikov optimal market making, OFI, VPIN toxicity, and adverse selection.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- APP HEADER -->
+    <header class="app-header">
+      <div class="brand-group">
+        <div class="brand-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00f0ff" stroke-width="2.5">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+          </svg>
+        </div>
+        <div>
+          <div class="brand-title">
+            <span>LOBX QUANT SIMULATOR</span>
+            <span class="brand-badge">FIFO MATCHING • AVELLANEDA-STOIKOV</span>
+          </div>
+          <div style="font-size: 0.72rem; color: var(--text-dim); font-family: var(--font-mono); margin-top: 0.1rem;">
+            Continuous Double Auction Engine • NASDAQ ITCH / CME Globex Microstructure
+          </div>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button class="btn-stream-toggle" id="btn-stream-toggle" title="Toggle Real-Time Order Flow Engine">
+          <span class="pulse-dot"></span>
+          <span id="stream-btn-text">MATCHING ENGINE: ACTIVE</span>
+        </button>
+        <div class="latency-chip" id="latency-badge">
+          <span style="color: var(--accent-cyan); font-weight: 700;">0.14ms</span> CME GLOBEX
+        </div>
+        <a href="https://github.com/adminsharpcode/quant-finance-projects" target="_blank" class="btn-github">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span>GitHub</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- MICROSTRUCTURE TELEMETRY STRIP (6 BENTO CARDS) -->
+    <section class="metrics-bento-strip" aria-label="Microstructure Telemetry">
+      <div class="metric-card">
+        <div class="metric-label">
+          <span>MID &amp; MICRO-PRICE</span>
+          <span style="color: var(--accent-cyan);">P_micro</span>
+        </div>
+        <div class="metric-hero" id="tele-mid">$585.00</div>
+        <div class="metric-sub">
+          <span>Micro: <strong id="tele-micro" style="color: var(--accent-cyan);">$585.02</strong></span>
+          <span id="tele-imbalance" style="color: var(--accent-green);">+12.4% Bid</span>
+        </div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-label">
+          <span>BID-ASK SPREAD</span>
+          <span style="color: var(--accent-amber);">TICK: $0.05</span>
+        </div>
+        <div class="metric-hero" id="tele-spread" style="color: var(--accent-amber);">$0.10</div>
+        <div class="metric-sub">
+          <span id="tele-spread-bps">1.71 bps</span>
+          <span style="color: var(--text-dim);">Liquid Regime</span>
+        </div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-label">
+          <span>ORDER FLOW IMBALANCE</span>
+          <span>CONT (2014)</span>
+        </div>
+        <div class="metric-hero" id="tele-ofi" style="color: var(--accent-cyan);">+14.0 sh</div>
+        <div class="metric-sub">
+          <span>Depth Elasticity β: <strong id="tele-beta">0.0018</strong></span>
+          <span style="color: var(--accent-green);">Buy Inflow</span>
+        </div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-label">
+          <span>VPIN TOXICITY GAUGE</span>
+          <span id="vpin-status-pill" style="color: var(--accent-green);">BALANCED</span>
+        </div>
+        <div class="metric-hero" id="tele-vpin" style="color: var(--accent-green);">0.214</div>
+        <div class="metric-sub">
+          <span>Threshold: 0.50</span>
+          <span>Vol Buckets: 500 sh</span>
+        </div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-label">
+          <span>MM INVENTORY (q)</span>
+          <span id="inv-capacity-pill" style="color: var(--accent-cyan);">CAP: ±15</span>
+        </div>
+        <div class="metric-hero" id="tele-inventory" style="color: #fff;">0 sh</div>
+        <div class="metric-sub">
+          <span>Res Price r(s,q): <strong id="tele-res-price" style="color: var(--accent-amber);">$585.00</strong></span>
+          <span id="tele-skew-text">Neutral</span>
+        </div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-label">
+          <span>MM TOTAL NET PNL</span>
+          <span id="tele-sharpe" style="color: var(--accent-green);">SHARPE: 3.42</span>
+        </div>
+        <div class="metric-hero" id="tele-pnl" style="color: var(--accent-green);">+$0.00</div>
+        <div class="metric-sub">
+          <span>Realized: <strong id="tele-realized" style="color: var(--accent-green);">+$0.00</strong></span>
+          <span>MTM: <strong id="tele-unrealized">$0.00</strong></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRADINGVIEW ADVANCED REAL-TIME CANDLESTICK TERMINAL -->
+    <section class="tv-terminal-card" aria-label="TradingView Candlestick Terminal">
+      <div class="tv-terminal-header">
+        <div class="tv-title">
+          <svg width="22" height="22" viewBox="0 0 36 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 22H7V11H14V22ZM24 22H17V6H24V22ZM34 22H27V16H34V22Z" fill="#00f0ff"/>
+            <circle cx="4" cy="4" r="3" fill="#10b981"/>
+          </svg>
+          <span>TRADINGVIEW ADVANCED REAL-TIME MARKET DESK</span>
+          <span class="brand-badge" style="font-size: 0.65rem;">OFFICIAL CANDLESTICK STREAM</span>
+        </div>
+
+        <div class="tv-tab-group">
+          <button class="tv-tab-btn active" id="tv-tab-spy" data-symbol="AMEX:SPY" data-asset="SPY">SPDR S&P 500 (SPY)</button>
+          <button class="tv-tab-btn" id="tv-tab-qqq" data-symbol="NASDAQ:QQQ" data-asset="QQQ">Invesco QQQ (QQQ)</button>
+          <button class="tv-tab-btn" id="tv-tab-nvda" data-symbol="NASDAQ:NVDA" data-asset="NVDA">NVIDIA (NVDA)</button>
+          <button class="tv-tab-btn" id="tv-tab-aapl" data-symbol="NASDAQ:AAPL" data-asset="AAPL">Apple (AAPL)</button>
+          <button class="tv-tab-btn" id="tv-tab-btc" data-symbol="BINANCE:BTCUSDT" data-asset="BTC">Bitcoin (BTCUSDT)</button>
+        </div>
+      </div>
+
+      <div class="tv-widget-embed-frame" id="tv-widget-container">
+        <iframe id="tradingview_active_iframe"
+          title="TradingView Real-Time Chart"
+          src="https://www.tradingview-widget.com/embed-widget/advanced-chart/?locale=en#%7B%22autosize%22%3Atrue%2C%22symbol%22%3A%22AMEX%3ASPY%22%2C%22interval%22%3A%22D%22%2C%22timezone%22%3A%22Etc%2FUTC%22%2C%22theme%22%3A%22dark%22%2C%22style%22%3A%221%22%2C%22locale%22%3A%22en%22%2C%22allow_symbol_change%22%3Atrue%2C%22hide_side_toolbar%22%3Afalse%2C%22calendar%22%3Afalse%2C%22support_host%22%3A%22https%3A%2F%2Fwww.tradingview.com%22%7D"
+          allowfullscreen="true">
+        </iframe>
+      </div>
+    </section>
+
+    <!-- MAIN 3-COLUMN WORKSPACE GRID -->
+    <div class="workspace-grid">
+      <!-- COLUMN 1: LIVE L2 DEPTH LADDER -->
+      <section class="panel-card" aria-label="Level 2 Depth Ladder">
+        <div class="panel-head">
+          <div class="panel-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2.2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            <span>Live L2/L3 Depth Ladder</span>
+          </div>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim);" id="ladder-depth-pill">10 LEVELS</span>
+        </div>
+
+        <div class="ladder-container">
+          <div class="ladder-header">
+            <span>Ords</span>
+            <span style="text-align: right;">Bid Vol</span>
+            <span style="text-align: right;">Bids</span>
+            <span>Asks</span>
+            <span>Ask Vol</span>
+            <span style="text-align: right;">Ords</span>
+          </div>
+
+          <!-- Ask Levels (Rendered from top down to best ask) -->
+          <div id="ladder-asks-container"></div>
+
+          <!-- Mid & Spread Bar -->
+          <div class="ladder-sep-bar">
+            <span>SPREAD: <strong id="ladder-spread-val" style="color: var(--accent-amber);">$0.10</strong></span>
+            <span>MID: <strong id="ladder-mid-val" style="color: #fff;">$585.00</strong></span>
+            <span>MICRO: <strong id="ladder-micro-val" style="color: var(--accent-cyan);">$585.02</strong></span>
+          </div>
+
+          <!-- Bid Levels (Rendered from best bid down) -->
+          <div id="ladder-bids-container"></div>
+        </div>
+      </section>
+
+      <!-- COLUMN 2: AVELLANEDA-STOIKOV MARKET MAKING DESK -->
+      <section class="panel-card" aria-label="Avellaneda-Stoikov Controls">
+        <div class="panel-head">
+          <div class="panel-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-amber)" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <span>Avellaneda-Stoikov MM Engine</span>
+          </div>
+          <span class="brand-badge" style="background: rgba(251, 191, 36, 0.15); color: var(--accent-amber); border-color: rgba(251, 191, 36, 0.3);">OPTIMAL QUOTING</span>
+        </div>
+
+        <div class="control-group">
+          <!-- Risk Aversion Gamma -->
+          <div class="control-item">
+            <div class="control-head">
+              <span>Risk Aversion (γ)</span>
+              <span class="control-val" id="val-gamma">0.15</span>
+            </div>
+            <input type="range" class="slider-input" id="slider-gamma" min="0.01" max="1.00" step="0.01" value="0.15">
+          </div>
+
+          <!-- Liquidity Intensity Kappa -->
+          <div class="control-item">
+            <div class="control-head">
+              <span>Order Flow Intensity (κ)</span>
+              <span class="control-val" id="val-kappa">12.0</span>
+            </div>
+            <input type="range" class="slider-input" id="slider-kappa" min="1.0" max="30.0" step="0.5" value="12.0">
+          </div>
+
+          <!-- Volatility Sigma -->
+          <div class="control-item">
+            <div class="control-head">
+              <span>Mid Volatility (σ)</span>
+              <span class="control-val" id="val-sigma">0.030</span>
+            </div>
+            <input type="range" class="slider-input" id="slider-sigma" min="0.005" max="0.100" step="0.005" value="0.030">
+          </div>
+
+          <!-- Max Inventory Q_max -->
+          <div class="control-item">
+            <div class="control-head">
+              <span>Max Inventory Cap (Q_max)</span>
+              <span class="control-val" id="val-qmax">15 sh</span>
+            </div>
+            <input type="range" class="slider-input" id="slider-qmax" min="5" max="30" step="1" value="15">
+          </div>
+
+          <!-- Quoting Model Mode -->
+          <div class="control-item" style="margin-top: 0.25rem;">
+            <div class="control-head">
+              <span>Model Formulation</span>
+            </div>
+            <select id="select-as-mode" class="quant-input">
+              <option value="FINITE" selected>Finite Horizon r(s, q, t) [Avellaneda 2008]</option>
+              <option value="STATIONARY">Stationary Guéant Approximation [2012]</option>
+            </select>
+          </div>
+
+          <!-- Model Mathematical Diagnostics Box -->
+          <div style="background-color: var(--bg-base); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 0.85rem; font-family: var(--font-mono); font-size: 0.74rem; display: flex; flex-direction: column; gap: 0.45rem;">
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: var(--text-dim);">Indifference Price r(s,q):</span>
+              <strong id="box-r-price" style="color: var(--accent-amber);">$585.00</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: var(--text-dim);">Optimal Half-Spread δ*:</span>
+              <strong id="box-half-spread" style="color: var(--accent-cyan);">$0.082 (1.6 ticks)</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: var(--text-dim);">Optimal Quoted Bid*:</span>
+              <strong id="box-opt-bid" style="color: var(--accent-green);">$584.90</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: var(--text-dim);">Optimal Quoted Ask*:</span>
+              <strong id="box-opt-ask" style="color: var(--accent-red);">$585.10</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: var(--text-dim);">Inventory Skew Penalty:</span>
+              <strong id="box-skew-penalty" style="color: #fff;">$0.00</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- COLUMN 3: INSTITUTIONAL ORDER ENTRY DESK -->
+      <section class="panel-card" aria-label="Interactive Order Entry">
+        <div class="panel-head">
+          <div class="panel-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2.2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            <span>Order Entry &amp; Simulator Desk</span>
+          </div>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-green);">DIRECT TO ENGINE</span>
+        </div>
+
+        <div class="control-group">
+          <!-- Buy / Sell Side Switch -->
+          <div class="side-switch-group">
+            <button type="button" class="side-btn active-buy" id="btn-side-buy" data-side="BUY">BUY (BID)</button>
+            <button type="button" class="side-btn" id="btn-side-sell" data-side="SELL">SELL (OFFER)</button>
+          </div>
+
+          <!-- Order Type -->
+          <div class="control-item">
+            <label class="control-head">Order Type</label>
+            <select id="user-order-type" class="quant-input">
+              <option value="LIMIT" selected>Limit Order (Passive Queue Entry)</option>
+              <option value="MARKET">Market Order (Immediate Taker Sweep)</option>
+            </select>
+          </div>
+
+          <!-- Price Input -->
+          <div class="control-item" id="group-user-price">
+            <div class="control-head">
+              <span>Limit Price ($)</span>
+              <span id="quick-pegs" style="display: flex; gap: 0.35rem;">
+                <button type="button" id="btn-peg-bid" style="background: none; border: 1px solid var(--border-subtle); color: var(--accent-green); font-size: 0.68rem; padding: 0.1rem 0.35rem; border-radius: 3px; cursor: pointer;">Peg Bid</button>
+                <button type="button" id="btn-peg-ask" style="background: none; border: 1px solid var(--border-subtle); color: var(--accent-red); font-size: 0.68rem; padding: 0.1rem 0.35rem; border-radius: 3px; cursor: pointer;">Peg Ask</button>
+              </span>
+            </div>
+            <input type="number" id="user-order-price" class="quant-input" step="0.05" value="584.95">
+          </div>
+
+          <!-- Quantity -->
+          <div class="control-item">
+            <div class="control-head">
+              <span>Order Quantity (Shares)</span>
+              <span style="color: var(--text-dim);">Lot Size: 1</span>
+            </div>
+            <input type="number" id="user-order-qty" class="quant-input" min="1" max="500" value="10">
+          </div>
+
+          <!-- Time in Force -->
+          <div class="control-item">
+            <label class="control-head">Time in Force</label>
+            <select id="user-order-tif" class="quant-input">
+              <option value="GTC" selected>Good 'Til Cancel (GTC - Resting)</option>
+              <option value="IOC">Immediate or Cancel (IOC - Sweep Only)</option>
+            </select>
+          </div>
+
+          <!-- Submit Order Button -->
+          <button type="button" class="btn-submit-order" id="btn-submit-order">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span>⚡ EXECUTE ORDER INTO LOB</span>
+          </button>
+
+          <!-- Order Execution Feedback Banner -->
+          <div id="order-feedback-banner" style="display: none; background: #080d1a; border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 0.65rem; font-family: var(--font-mono); font-size: 0.74rem;">
+            <div style="font-weight: 700; color: var(--accent-green);" id="feedback-title">ORDER FILLED</div>
+            <div style="color: var(--text-muted); margin-top: 0.2rem;" id="feedback-desc">10 shares filled at $584.95 (Maker: MM)</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- EXECUTION BLOTTER, RECENT TAPE & PNL ATTRIBUTION -->
+    <section class="panel-card" aria-label="Trade Blotter and PnL Attribution">
+      <div class="panel-head">
+        <div class="panel-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-amber)" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <span>Market Maker PnL Attribution &amp; High-Frequency Trade Tape</span>
+        </div>
+        <span style="font-family: var(--font-mono); font-size: 0.74rem; color: var(--text-dim);" id="tape-stats">REAL-TIME CME GLOBEX REPLAY</span>
+      </div>
+
+      <!-- PnL Attribution 4-Cards Grid -->
+      <div class="attribution-grid">
+        <div class="att-card">
+          <span class="att-label">PURE SPREAD CAPTURE</span>
+          <span class="att-val" id="att-spread" style="color: var(--accent-green);">+$0.00</span>
+          <span style="font-size: 0.68rem; color: var(--text-dim); margin-top: 0.2rem;">Half-spread collected</span>
+        </div>
+        <div class="att-card">
+          <span class="att-label">INVENTORY DRIFT MTM</span>
+          <span class="att-val" id="att-drift" style="color: var(--accent-cyan);">$0.00</span>
+          <span style="font-size: 0.68rem; color: var(--text-dim); margin-top: 0.2rem;">q * ΔMid position drift</span>
+        </div>
+        <div class="att-card">
+          <span class="att-label">ADVERSE SELECTION COST</span>
+          <span class="att-val" id="att-adverse" style="color: var(--accent-red);">-$0.00</span>
+          <span style="font-size: 0.68rem; color: var(--text-dim); margin-top: 0.2rem;">Informed order decay</span>
+        </div>
+        <div class="att-card">
+          <span class="att-label">EXCHANGE MAKER REBATES</span>
+          <span class="att-val" id="att-rebates" style="color: var(--accent-amber);">+$0.00</span>
+          <span style="font-size: 0.68rem; color: var(--text-dim); margin-top: 0.2rem;">+0.20 bps liquidity credit</span>
+        </div>
+      </div>
+
+      <!-- Recent Trade Tape -->
+      <div style="margin-top: 1rem;">
+        <div style="font-family: var(--font-mono); font-size: 0.74rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.4rem;">
+          LATEST MATCHED TRADES TAPE:
+        </div>
+        <div class="tape-scroll-box">
+          <div id="tape-container">
+            <div style="padding: 1.5rem; text-align: center; color: var(--text-dim); font-family: var(--font-mono); font-size: 0.78rem;">
+              Listening for matched trades on CME Globex engine...
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

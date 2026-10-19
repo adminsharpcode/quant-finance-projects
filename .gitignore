@@ -57,6 +57,8 @@ htmlcov/
 !**/web/*.html
 *.log
 
-# Vercel
+# Vercel & Node
 .vercel/
+.env.local
+node_modules/
 
