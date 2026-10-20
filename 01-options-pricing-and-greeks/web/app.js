@@ -234,43 +234,43 @@ const liveMarketFeed = {
     SPY: {
       symbol: "AMEX SPY",
       name: "S&P 500 ETF",
-      basePrice: 585.50,
-      price: 585.50,
-      openPrice: 582.00,
-      bid: 585.45,
-      ask: 585.55,
+      basePrice: 766.50,
+      price: 766.50,
+      openPrice: 763.25,
+      bid: 766.45,
+      ask: 766.55,
       vol: 0.142,
       tickSize: 0.05,
-      sliderMin: 450,
-      sliderMax: 700,
+      sliderMin: 500,
+      sliderMax: 950,
       sliderStep: 1,
     },
     NVDA: {
       symbol: "NASDAQ NVDA",
       name: "NVIDIA Corp",
-      basePrice: 139.80,
-      price: 139.80,
-      openPrice: 136.50,
-      bid: 139.75,
-      ask: 139.85,
+      basePrice: 217.10,
+      price: 217.10,
+      openPrice: 214.15,
+      bid: 217.05,
+      ask: 217.15,
       vol: 0.465,
       tickSize: 0.05,
-      sliderMin: 80,
-      sliderMax: 220,
+      sliderMin: 100,
+      sliderMax: 350,
       sliderStep: 0.5,
     },
     BTC: {
       symbol: "BINANCE BTC",
       name: "Bitcoin Spot",
-      basePrice: 68450.0,
-      price: 68450.0,
-      openPrice: 67200.0,
-      bid: 68445.0,
-      ask: 68455.0,
+      basePrice: 81750.0,
+      price: 81750.0,
+      openPrice: 80200.0,
+      bid: 81745.0,
+      ask: 81755.0,
       vol: 0.540,
       tickSize: 5.0,
       sliderMin: 40000,
-      sliderMax: 120000,
+      sliderMax: 150000,
       sliderStep: 100,
     }
   },
@@ -318,8 +318,19 @@ const liveMarketFeed = {
     if (!asset) return;
     asset.basePrice = Math.round(price * 100) / 100;
     asset.openPrice = Math.round(openPrice * 100) / 100;
-    if (Math.abs(asset.price - asset.basePrice) > (asset.basePrice * 0.05)) {
-      asset.price = asset.basePrice;
+    asset.price = asset.basePrice;
+    asset.bid = bid || (asset.price - asset.tickSize);
+    asset.ask = ask || (asset.price + asset.tickSize);
+
+    // If this is currently selected asset and user is not dragging sliders, sync slider
+    if (this.activeAsset === assetKey && !this.userInteracting) {
+      const inputF = document.getElementById("input-f");
+      if (inputF) {
+        inputF.value = asset.price;
+        const valF = document.getElementById("val-f");
+        if (valF) valF.innerText = `$${asset.price.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      }
+      if (typeof updateLiveOptionDeskUI === "function") updateLiveOptionDeskUI();
     }
   },
 

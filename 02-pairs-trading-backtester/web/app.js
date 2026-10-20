@@ -2001,6 +2001,10 @@
         btn.classList.add('active');
         currentPairKey = btn.dataset.pair;
         recalculateAll();
+        const p = getActivePair();
+        if (p && typeof fetchLiveCustomPair === 'function') {
+          fetchLiveCustomPair(p.symY, p.symX).catch(() => {});
+        }
       });
     }
 
@@ -2103,6 +2107,12 @@
   document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
     recalculateAll();
+    setTimeout(() => {
+      const p = getActivePair();
+      if (p && typeof fetchLiveCustomPair === 'function') {
+        fetchLiveCustomPair(p.symY, p.symX).catch(() => {});
+      }
+    }, 400);
   });
 
 })();
