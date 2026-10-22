@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Machine Learning Alpha Signal Engine | De Prado Purged K-Fold Cross-Validation</title>
+  <meta name="description" content="Institutional ML Alpha Signal Engine predicting forward returns with LightGBM and ElasticNet, validated strictly via Marcos López de Prado's Purged K-Fold Cross-Validation with Embargo to eliminate data leakage." />
+  
+  <!-- Modern Quantitative Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Header / Institutional Top Bar -->
+    <header class="desk-header">
+      <div class="brand-group">
+        <div class="brand-badge">PROJ 04</div>
+        <div class="brand-text">
+          <h1>ML ALPHA SIGNAL ENGINE</h1>
+          <span class="sub-brand">LEAKAGE-FREE PURGED K-FOLD VALIDATION & TREE-SHAP ATTRIBUTION</span>
+        </div>
+      </div>
+
+      <div class="status-ribbon">
+        <div class="status-pill status-emerald">
+          <span class="pulse-dot"></span>
+          <span>PURGED CV: ZERO LEAKAGE ACTIVE</span>
+        </div>
+        <div class="status-pill status-cyan">
+          <span class="pulse-dot"></span>
+          <span>TREESHAP EXPLAINER: ONLINE</span>
+        </div>
+        <div class="status-pill status-purple">
+          <span class="pulse-dot"></span>
+          <span id="active-model-pill">MODEL: LIGHTGBM (HUBER LOSS)</span>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <div class="model-toggle-group">
+          <button id="btn-model-lgbm" class="toggle-btn active" onclick="switchModel('lgbm')">LightGBM GBDT</button>
+          <button id="btn-model-enet" class="toggle-btn" onclick="switchModel('enet')">ElasticNet L1/L2</button>
+        </div>
+        <select id="horizon-select" class="horizon-dropdown" onchange="switchHorizon(this.value)">
+          <option value="5" selected>Target: 5-Day Forward Return</option>
+          <option value="10">Target: 10-Day Forward Return</option>
+          <option value="21">Target: 21-Day Forward Return</option>
+        </select>
+        <button id="btn-refresh" class="btn-refresh" onclick="refreshQuotes()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          Sync Feed
+        </button>
+      </div>
+    </header>
+
+    <!-- Executive KPI Metrics Ribbon -->
+    <section class="kpi-ribbon" id="kpi-ribbon">
+      <div class="kpi-card">
+        <div class="kpi-label">OUT-OF-SAMPLE RANK IC</div>
+        <div class="kpi-value text-emerald" id="kpi-rank-ic">+0.0682</div>
+        <div class="kpi-meta">
+          <span class="badge-pill bg-emerald-dim">t = +2.48</span>
+          <span class="text-dim">p = 0.0135 (Significant)</span>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">INFORMATION RATIO (IC_IR)</div>
+        <div class="kpi-value text-cyan" id="kpi-ic-ir">1.48</div>
+        <div class="kpi-meta">
+          <span class="badge-pill bg-cyan-dim">Top Decile</span>
+          <span class="text-dim">Annualized (√252)</span>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">LONG-SHORT SPREAD (Q5 - Q1)</div>
+        <div class="kpi-value text-emerald" id="kpi-ls-return">+18.42%</div>
+        <div class="kpi-meta">
+          <span class="badge-pill bg-emerald-dim">Sharpe 2.14</span>
+          <span class="text-dim">Dollar-Neutral Quintiles</span>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">DAILY ALPHA HIT RATE</div>
+        <div class="kpi-value text-purple" id="kpi-hit-rate">57.8%</div>
+        <div class="kpi-meta">
+          <span class="badge-pill bg-purple-dim">282 / 488 Days</span>
+          <span class="text-dim">Positive Rank IC</span>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">DAILY TURNOVER & COST DRAG</div>
+        <div class="kpi-value text-yellow" id="kpi-turnover">18.25%</div>
+        <div class="kpi-meta">
+          <span class="badge-pill bg-yellow-dim">-1.84% Ann. Drag</span>
+          <span class="text-dim">@ 5.0 bps Half-Spread</span>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">LEAKAGE PREVENTION AUDIT</div>
+        <div class="kpi-value text-cyan" id="kpi-leakage">0.00% LEAK</div>
+        <div class="kpi-meta">
+          <span class="badge-pill bg-cyan-dim">5 Folds Purged</span>
+          <span class="text-dim">2.0% Post-Test Embargo</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Quantitative Grid -->
+    <main class="main-grid">
+      
+      <!-- Section 1: Purged K-Fold Timeline & TradingView Desk -->
+      <div class="grid-row row-top">
+        
+        <!-- Left: De Prado Purged K-Fold Cross-Validation Timeline -->
+        <div class="card panel-cv-visualizer">
+          <div class="panel-header">
+            <div class="panel-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span>DE PRADO PURGED K-FOLD CROSS-VALIDATION (ZERO LEAKAGE INSPECTOR)</span>
+            </div>
+            <div class="fold-switcher" id="fold-tabs">
+              <button class="fold-btn active" onclick="selectFold(1)">Fold 1</button>
+              <button class="fold-btn" onclick="selectFold(2)">Fold 2</button>
+              <button class="fold-btn" onclick="selectFold(3)">Fold 3</button>
+              <button class="fold-btn" onclick="selectFold(4)">Fold 4</button>
+              <button class="fold-btn" onclick="selectFold(5)">Fold 5</button>
+            </div>
+          </div>
+
+          <div class="cv-diagram-container">
+            <div class="timeline-legend">
+              <span class="legend-item"><span class="swatch swatch-train"></span> Train Set (In-Sample)</span>
+              <span class="legend-item"><span class="swatch swatch-purge"></span> Purged Horizon (τ = 5D Overlap)</span>
+              <span class="legend-item"><span class="swatch swatch-test"></span> Out-of-Sample Test (Evaluation)</span>
+              <span class="legend-item"><span class="swatch swatch-embargo"></span> Post-Test Embargo Buffer (h = 2%)</span>
+            </div>
+
+            <!-- Interactive Timeline Canvas / Bar -->
+            <div class="timeline-track" id="timeline-track">
+              <!-- Dynamically populated by app.js -->
+            </div>
+
+            <div class="cv-fold-details" id="fold-details-card">
+              <!-- Dynamic fold metadata -->
+            </div>
+
+            <div class="math-proof-box">
+              <span class="math-title">Marcos López de Prado Purging Condition:</span>
+              <code>I_train^purged = { i in I_train | t_{i,1} < T_{0,test} OR t_{i,0} > T_{1,test} + h }</code>
+              <p class="math-desc">Eliminates all serial correlation and overlapping return contamination. Standard K-Fold generates spurious IC > 0.30 that collapses to 0.0 in live trading.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: TradingView Advanced Candlestick Desk -->
+        <div class="card panel-tradingview">
+          <div class="panel-header">
+            <div class="panel-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              <span>REAL-TIME SPOT EXECUTION DESK // <span id="tv-selected-title" class="text-cyan">NASDAQ:NVDA</span></span>
+            </div>
+            <div class="selected-ticker-metrics" id="selected-ticker-metrics">
+              <span class="live-price" id="tv-price">$139.80</span>
+              <span class="live-change text-emerald" id="tv-change">+2.41%</span>
+              <span class="badge-pill bg-purple-dim" id="tv-alpha">Alpha: +0.0245 (Q5)</span>
+            </div>
+          </div>
+
+          <div class="tv-chart-container" id="tv-chart-wrapper">
+            <iframe id="tv-iframe" src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_chart&symbol=NASDAQ%3ANVDA&interval=D&hidesidetoolbar=0&symboledit=1&saveimage=1&toolbarbg=070c18&studies=%5B%5D&theme=dark&style=1&timezone=exchange" width="100%" height="100%" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Section 2: TreeSHAP Attributions & Rank IC Dynamics -->
+      <div class="grid-row row-middle">
+        
+        <!-- Left: TreeSHAP Global & Local Attribution -->
+        <div class="card panel-shap">
+          <div class="panel-header">
+            <div class="panel-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              <span>TREESHAP FACTOR ATTRIBUTION & SHAPLEY VALUES</span>
+            </div>
+            <div class="shap-view-toggle">
+              <button class="pill-btn active" id="btn-shap-global" onclick="setShapView('global')">Global Matrix</button>
+              <button class="pill-btn" id="btn-shap-local" onclick="setShapView('local')">Local Breakdown</button>
+            </div>
+          </div>
+
+          <div class="shap-content">
+            <div id="shap-chart-view" class="shap-chart-container">
+              <!-- Rendered via HTML5 Canvas in app.js -->
+              <canvas id="shap-canvas" width="600" height="280"></canvas>
+            </div>
+            
+            <div id="shap-local-card" class="shap-local-card hidden">
+              <div class="local-header">
+                <span class="text-dim">Asset Breakdown:</span>
+                <strong id="local-ticker-label" class="text-cyan">NVDA (NVIDIA Corporation)</strong>
+                <span class="badge-pill bg-emerald-dim" id="local-pred-label">Pred Return: +2.45%</span>
+              </div>
+              <div class="local-waterfall" id="local-waterfall-list">
+                <!-- Injected by app.js -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Rank IC Dynamics & Alpha Decay Curve -->
+        <div class="card panel-ic-dynamics">
+          <div class="panel-header">
+            <div class="panel-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg>
+              <span>SPEARMAN RANK IC DYNAMICS & FORWARD ALPHA DECAY</span>
+            </div>
+            <div class="ic-tabs">
+              <button class="pill-btn active" id="btn-ic-history" onclick="setIcView('history')">Daily IC Series</button>
+              <button class="pill-btn" id="btn-ic-decay" onclick="setIcView('decay')">Holding Decay Curve</button>
+            </div>
+          </div>
+
+          <div class="ic-chart-wrapper">
+            <canvas id="ic-canvas" width="600" height="280"></canvas>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Section 3: Quantile Performance & Cross-Sectional Alpha Screener -->
+      <div class="grid-row row-bottom">
+        
+        <!-- Left: Quantile Spread Backtest (Q1 to Q5) -->
+        <div class="card panel-quantiles">
+          <div class="panel-header">
+            <div class="panel-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/></svg>
+              <span>QUANTILE PORTFOLIO BACKTEST (QUINTILES Q1 TO Q5)</span>
+            </div>
+            <div class="fee-drag-selector">
+              <span class="text-dim text-xs">Fee Drag:</span>
+              <button class="fee-btn" onclick="setFeeDrag(0)">0 bps</button>
+              <button class="fee-btn active" onclick="setFeeDrag(5)">5 bps</button>
+              <button class="fee-btn" onclick="setFeeDrag(10)">10 bps</button>
+            </div>
+          </div>
+
+          <div class="quantile-chart-container">
+            <canvas id="quantile-canvas" width="600" height="260"></canvas>
+          </div>
+
+          <div class="quantile-legend-grid">
+            <div class="q-card q-top">
+              <span class="q-name">Q5 (Top Quintile Long)</span>
+              <strong class="q-val text-emerald" id="q5-stat">+22.4% Ann.</strong>
+            </div>
+            <div class="q-card q-mid">
+              <span class="q-name">Q3 (Market Neutral)</span>
+              <strong class="q-val text-dim" id="q3-stat">+8.2% Ann.</strong>
+            </div>
+            <div class="q-card q-bot">
+              <span class="q-name">Q1 (Bottom Quintile Short)</span>
+              <strong class="q-val text-red" id="q1-stat">-4.1% Ann.</strong>
+            </div>
+            <div class="q-card q-ls">
+              <span class="q-name">Q5 - Q1 Dollar-Neutral Spread</span>
+              <strong class="q-val text-cyan" id="qls-stat">+18.4% Ann.</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Cross-Sectional Alpha Screener Table -->
+        <div class="card panel-screener">
+          <div class="panel-header">
+            <div class="panel-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              <span>CROSS-SECTIONAL UNIVERSE ALPHA SCREENER</span>
+            </div>
+            <div class="screener-filters">
+              <select id="sector-filter" class="table-filter" onchange="filterSector(this.value)">
+                <option value="ALL">All Sectors (14)</option>
+                <option value="Technology">Technology</option>
+                <option value="Financials">Financials</option>
+                <option value="Healthcare">Healthcare</option>
+                <option value="Consumer">Consumer</option>
+                <option value="Energy">Energy</option>
+                <option value="Industrials">Industrials</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="screener-table" id="screener-table">
+              <thead>
+                <tr>
+                  <th onclick="sortTable('ticker')">Ticker</th>
+                  <th onclick="sortTable('sector')">Sector</th>
+                  <th onclick="sortTable('price')" class="text-right">Price</th>
+                  <th onclick="sortTable('changePct')" class="text-right">Change</th>
+                  <th onclick="sortTable('alphaScore')" class="text-right">5D Alpha</th>
+                  <th class="text-center">Quantile</th>
+                  <th class="text-center">Signal</th>
+                  <th onclick="sortTable('recommendedWeight')" class="text-right">Target Weight</th>
+                </tr>
+              </thead>
+              <tbody id="screener-tbody">
+                <!-- Dynamically rendered rows from app.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="desk-footer">
+      <div class="footer-left">
+        <span>QUANT FINANCE SERIES: PROJECT 04 // MACHINE LEARNING ALPHA SIGNAL ENGINE</span>
+        <span class="sep">•</span>
+        <span>MARCOS LÓPEZ DE PRADO (2018) PURGED K-FOLD GROUP CV WITH EMBARGO</span>
+      </div>
+      <div class="footer-right">
+        <span>LIGHTGBM v4.7.0</span>
+        <span class="sep">•</span>
+        <span>SHAP TREE-EXPLAINER</span>
+        <span class="sep">•</span>
+        <span class="text-emerald">PRODUCTION READY // VERCEL EDGE</span>
+      </div>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

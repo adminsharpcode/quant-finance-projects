@@ -1,0 +1,13 @@
+{
+  "name": "quant-ml-alpha-signal-engine",
+  "version": "1.0.0",
+  "description": "Institutional Machine Learning Alpha Signal Engine with De Prado Purged K-Fold Cross-Validation",
+  "scripts": {
+    "dev": "npx serve .",
+    "start": "npx serve ."
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}
