@@ -1,5 +1,11 @@
 # 4 Production Quant Finance Projects to Stand Out in 2026
 
+[![Quant Portfolio CI](https://github.com/adminsharpcode/quant-finance-projects/actions/workflows/ci.yml/badge.svg)](https://github.com/adminsharpcode/quant-finance-projects/actions/workflows/ci.yml)
+![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-3776AB?logo=python&logoColor=white)
+![Testing](https://img.shields.io/badge/tested%20with-pytest-0A9EDC?logo=pytest&logoColor=white)
+![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)
+![Deployment](https://img.shields.io/badge/deployed-Vercel-000000?logo=vercel&logoColor=white)
+
 An institutional portfolio of 4 quantitative engineering systems built from first principles. Each project includes complete mathematical derivations, modular production code, calibration against real exchange data (CME, COMEX, NASDAQ), and deployment-ready architecture for Vercel.
 
 ---
@@ -20,3 +26,24 @@ An institutional portfolio of 4 quantitative engineering systems built from firs
 - **Microstructure Realism**: Accounts for American early-exercise on futures, transaction fees, bid-ask half-spread crossing, and borrow costs.
 - **Production Web Deployment**: Includes interactive web applications deployable in 1-click via Vercel with zero cold-start latency.
 - **Statistical Rigor**: 100% automated test coverage with verified put-call parity, martingale pricing conditions, and no lookahead bias.
+- **CI / Automated Test Pipeline**: Integrated GitHub Actions CI validating tests across Python 3.10 and 3.11.
+
+---
+
+## ⚡ Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/adminsharpcode/quant-finance-projects.git
+cd quant-finance-projects
+
+# Run test suites across engines
+pytest 01-options-pricing-and-greeks/tests
+pytest 03-limit-order-book-simulator/tests
+```
+
+---
+
+## 📄 License
+
+Distributed under the [MIT License](./LICENSE). See `LICENSE` for more information.
