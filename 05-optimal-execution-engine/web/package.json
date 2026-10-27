@@ -1,0 +1,11 @@
+{
+  "name": "quant-optimal-execution-desk",
+  "version": "1.0.0",
+  "description": "Institutional Almgren-Chriss Optimal Trade Execution, Market Impact, and TCA Analytics Desk",
+  "scripts": {
+    "dev": "npx serve .",
+    "start": "npx serve ."
+  },
+  "keywords": ["quant", "almgren-chriss", "execution-algo", "tca", "order-book"],
+  "license": "MIT"
+}
