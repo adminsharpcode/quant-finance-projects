@@ -1,4 +1,4 @@
-# 4 Production Quant Finance Projects to Stand Out in 2026
+# 5 Production Quant Finance Projects to Stand Out in 2026
 
 [![Quant Portfolio CI](https://github.com/adminsharpcode/quant-finance-projects/actions/workflows/ci.yml/badge.svg)](https://github.com/adminsharpcode/quant-finance-projects/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-3776AB?logo=python&logoColor=white)
@@ -6,7 +6,7 @@
 ![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)
 ![Deployment](https://img.shields.io/badge/deployed-Vercel-000000?logo=vercel&logoColor=white)
 
-An institutional portfolio of 4 quantitative engineering systems built from first principles. Each project includes complete mathematical derivations, modular production code, calibration against real exchange data (CME, COMEX, NASDAQ), and deployment-ready architecture for Vercel.
+An institutional portfolio of 5 quantitative engineering systems built from first principles. Each project includes complete mathematical derivations, modular production code, calibration against real exchange data (CME, COMEX, NASDAQ), and deployment-ready architecture for Vercel.
 
 ---
 
@@ -18,6 +18,7 @@ An institutional portfolio of 4 quantitative engineering systems built from firs
 | **02** | **[Pairs Trading Backtester](./02-pairs-trading-backtester)** | Engle-Granger & Johansen Cointegration, Dynamic Kalman Filter Beta Tracking, Ornstein-Uhlenbeck Mean Reversion, Slippage & Borrow Fees, Out-of-Sample Walk-Forward Validation | US Equities & Commodity Spreads | 🟢 **Complete** | [🌐 **Live on Vercel**](https://quant-pairs-trading-engine.vercel.app) |
 | **03** | **[Limit Order Book (LOB) Simulator](./03-limit-order-book-simulator)** | Event-Driven FIFO Matching Engine, Avellaneda-Stoikov Market Making Reservation Pricing, Inventory Penalty $\gamma$, Order Flow Imbalance (OFI), Toxic Flow VPIN | CME Globex, NASDAQ ITCH | 🟢 **Complete** | [🌐 **Live on Vercel**](https://quant-limit-order-book-simulator.vercel.app) |
 | **04** | **[Machine Learning Alpha Signal Engine](./04-ml-alpha-signal)** | De Prado PurgedGroupTimeSeriesSplit + Embargo (Zero Leakage), LightGBM Return Prediction, Garman-Klass Volatility, Rank IC & Turnover Attribution | Cross-Sectional Equities | 🟢 **Complete** | [🌐 **Live on Vercel**](https://quant-ml-alpha-signal-engine.vercel.app) |
+| **05** | **[Almgren-Chriss Optimal Execution Engine](./05-optimal-execution-engine)** | Almgren-Chriss (2000) Liquidation Frontier, Linear & Non-Linear Square-Root Market Impact, Implementation Shortfall (IS), TWAP & VWAP Benchmarking | US Equities & Block Liquidation | 🟢 **Complete** | [🌐 **Dedicated Repo**](https://github.com/adminsharpcode/optimal-execution-engine) |
 
 ---
 

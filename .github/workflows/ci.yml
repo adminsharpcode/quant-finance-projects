@@ -36,3 +36,7 @@ jobs:
       - name: Test Project 03 (Limit Order Book Matching Engine)
         run: |
           pytest 03-limit-order-book-simulator/tests -v
+
+      - name: Test Project 05 (Almgren-Chriss Optimal Execution Engine)
+        run: |
+          pytest 05-optimal-execution-engine/tests -v
