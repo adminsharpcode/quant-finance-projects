@@ -1,4 +1,4 @@
-# 5 Production Quant Finance Projects to Stand Out in 2026
+# 6 Production Quant Finance Projects to Stand Out in 2026
 
 [![Quant Portfolio CI](https://github.com/adminsharpcode/quant-finance-projects/actions/workflows/ci.yml/badge.svg)](https://github.com/adminsharpcode/quant-finance-projects/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-3776AB?logo=python&logoColor=white)
@@ -6,7 +6,7 @@
 ![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)
 ![Deployment](https://img.shields.io/badge/deployed-Vercel-000000?logo=vercel&logoColor=white)
 
-An institutional portfolio of 5 quantitative engineering systems built from first principles. Each project includes complete mathematical derivations, modular production code, calibration against real exchange data (CME, COMEX, NASDAQ), and deployment-ready architecture for Vercel.
+An institutional portfolio of 6 quantitative engineering systems built from first principles. Each project includes complete mathematical derivations, modular production code, calibration against real exchange data (CME, COMEX, NASDAQ, Real Broker Ticks), and deployment-ready architecture for Vercel.
 
 ---
 
@@ -19,6 +19,7 @@ An institutional portfolio of 5 quantitative engineering systems built from firs
 | **03** | **[Limit Order Book (LOB) Simulator](./03-limit-order-book-simulator)** | Event-Driven FIFO Matching Engine, Avellaneda-Stoikov Market Making Reservation Pricing, Inventory Penalty $\gamma$, Order Flow Imbalance (OFI), Toxic Flow VPIN | CME Globex, NASDAQ ITCH | 🟢 **Complete** | [🌐 **Live on Vercel**](https://quant-limit-order-book-simulator.vercel.app) |
 | **04** | **[Machine Learning Alpha Signal Engine](./04-ml-alpha-signal)** | De Prado PurgedGroupTimeSeriesSplit + Embargo (Zero Leakage), LightGBM Return Prediction, Garman-Klass Volatility, Rank IC & Turnover Attribution | Cross-Sectional Equities | 🟢 **Complete** | [🌐 **Live on Vercel**](https://quant-ml-alpha-signal-engine.vercel.app) |
 | **05** | **[Almgren-Chriss Optimal Execution Engine](./05-optimal-execution-engine)** | Almgren-Chriss (2000) Liquidation Frontier, Linear & Non-Linear Square-Root Market Impact, Implementation Shortfall (IS), TWAP & VWAP Benchmarking | US Equities & Block Liquidation | 🟢 **Complete** | [🌐 **Dedicated Repo**](https://github.com/adminsharpcode/optimal-execution-engine) |
+| **06** | **[MQ4 Alpha Miner & Real Tick Engine](./06-mq4-tick-alpha-engine)** | Static Feature Extraction from 1,297 MQL4 Codes, Multi-Regime Volatility Exhaustion & Trend Breakout, Real Broker Millisecond Ticks, 5,000-Run Monte Carlo Simulation, Production MQL4 EA | Live Broker Ticks (`EURUSD`, `GBPUSD`, `XAUUSD`) | 🟢 **Complete** | [📘 **Full Project Documentation**](./06-mq4-tick-alpha-engine) |
 
 ---
 
@@ -41,6 +42,10 @@ cd quant-finance-projects
 # Run test suites across engines
 pytest 01-options-pricing-and-greeks/tests
 pytest 03-limit-order-book-simulator/tests
+pytest 06-mq4-tick-alpha-engine/tests
+
+# Run the 1,297 MQ4 Alpha Miner & 5,000 Monte Carlo Engine
+python 06-mq4-tick-alpha-engine/run_pipeline.py
 ```
 
 ---
