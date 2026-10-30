@@ -1,0 +1,8 @@
+{
+  "name": "quant-mq4-tick-alpha-engine",
+  "version": "1.0.0",
+  "description": "Institutional MQ4 Alpha Miner & Real Tick Quantitative Terminal",
+  "scripts": {
+    "start": "serve ."
+  }
+}

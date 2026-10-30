@@ -20,8 +20,9 @@ This repository replaces retail curve-fitting and toxic Martingale blowup archit
 5. [In-Sample / Out-of-Sample Parameter Optimization](#5-in-sample--out-of-sample-parameter-optimization)
 6. [Real Tick Backtest Performance (EURUSD, GBPUSD, Gold)](#6-real-tick-backtest-performance-eurusd-gbpusd-gold)
 7. [5,000-Iteration Monte Carlo Risk Simulation](#7-5000-iteration-monte-carlo-risk-simulation)
-8. [Production Architecture & Source Code Tour](#8-production-architecture--source-code-tour)
-9. [Reproducibility & Quick Start](#9-reproducibility--quick-start)
+8. [Interactive Web Dashboard & Vercel Deployment](#8-interactive-web-dashboard--vercel-deployment)
+9. [Production Architecture & Source Code Tour](#9-production-architecture--source-code-tour)
+10. [Reproducibility & Quick Start](#10-reproducibility--quick-start)
 
 ---
 
@@ -56,6 +57,8 @@ The static analysis surfaced the empirical building blocks most heavily utilized
 | `iEnvelopes` | Percentage Price Channels | **22** | #11 |
 
 ### 🔍 Strategy Archetype Distribution
+
+![MQ4 Codebase Taxonomy & Indicators](./visualizations/mq4_taxonomy_chart.png)
 
 ```mermaid
 pie title Strategy Archetypes in 1,297 MQ4 Files
@@ -189,6 +192,10 @@ Combinatorial Grid Evaluation: 54 parameter sets
 
 ## 6. Real Tick Backtest Performance (EURUSD, GBPUSD, Gold)
 
+![Real Tick Cumulative Equity Curves](./visualizations/equity_curves.png)
+
+![Underwater Drawdown Curves](./visualizations/drawdown_underwater.png)
+
 The strategy was evaluated across all three assets using the calibrated parameters on real broker tick data:
 
 | Metric | EUR / USD | GBP / USD | XAU / USD (Gold) | Multi-Asset Portfolio |
@@ -211,6 +218,8 @@ The strategy was evaluated across all three assets using the calibrated paramete
 ---
 
 ## 7. 5,000-Iteration Monte Carlo Risk Simulation
+
+![5,000-Run Monte Carlo Fan Chart](./visualizations/monte_carlo_distribution.png)
 
 To stress-test order path dependency and ensure the strategy is not vulnerable to trade sequence risks, the engine ran **5,000 stochastic Monte Carlo simulations** using bootstrap resampling with replacement across the complete real trade distribution:
 
@@ -250,7 +259,33 @@ xychart-beta
 
 ---
 
-## 8. Production Architecture & Source Code Tour
+## 8. Interactive Web Dashboard & Vercel Deployment
+
+A standalone quantitative terminal is included in [`web/`](./web) ready for instant 1-click deployment on Vercel:
+
+```
+web/
+├── index.html       # Bloomberg-style institutional dark UI
+├── styles.css       # Responsive quantitative CSS
+├── app.js           # Client-side execution & interactive canvas charts
+├── data.js          # Pre-packaged real tick metrics & 1,297 catalog
+└── vercel.json      # Production Vercel deployment configuration
+```
+
+### Dashboard Capabilities:
+1. **Interactive Real Tick Backtester**: Adjust lookback windows, band deviations, stop-loss, take-profit, and risk parameters in real-time with instant re-calculation.
+2. **Interactive 5,000 Monte Carlo Fan Chart**: Dynamically resample trade distributions and visualize the 90% confidence bands ($P_5$ to $P_{95}$) and ruin threshold lines.
+3. **1,297 MQ4 Codebase Explorer**: Search by indicator API (`iMA`, `iATR`, `iRSI`, `iBands`), strategy archetype, and filter for Martingale / Grid risk warnings.
+4. **Live MQL4 EA Generator**: Automatically syncs slider inputs into production MQL4 source code with 1-click copy and download.
+
+To launch locally:
+```bash
+npx serve 06-mq4-tick-alpha-engine/web
+```
+
+---
+
+## 9. Production Architecture & Source Code Tour
 
 ```
 06-mq4-tick-alpha-engine/
@@ -289,7 +324,7 @@ Key features:
 
 ---
 
-## 9. Reproducibility & Quick Start
+## 10. Reproducibility & Quick Start
 
 ### Prerequisites
 - Python 3.10, 3.11, or 3.12
@@ -317,3 +352,4 @@ python 06-mq4-tick-alpha-engine/src/extractor/mq4_extractor.py
 
 ## 📄 License
 This project is licensed under the [MIT License](../LICENSE).
+

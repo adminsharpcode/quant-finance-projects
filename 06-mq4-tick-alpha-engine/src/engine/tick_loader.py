@@ -106,3 +106,4 @@ def prepare_benchmark_datasets(output_dir: str):
 if __name__ == "__main__":
     out_dir = r"e:\Github Submissions\06-mq4-tick-alpha-engine\data"
     prepare_benchmark_datasets(out_dir)
+

@@ -131,3 +131,4 @@ def test_monte_carlo_resampling():
     assert 'final_equity' in res
     assert 'risk_metrics' in res
     assert res['final_equity']['p95_bullish'] >= res['final_equity']['p5_bearish']
+

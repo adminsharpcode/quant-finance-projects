@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MQ4 Alpha Miner & Real Tick Quantitative Terminal</title>
+  <meta name="description" content="Institutional algorithmic trading system synthesized from 1,297 MQL4 source codes, backtested on real millisecond broker ticks with 5,000 Monte Carlo simulations.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="brand-box">
+      <div class="brand-icon">Ω</div>
+      <div>
+        <div class="brand-title">MQ4 QUANT DESK // REAL TICK ALPHA</div>
+        <div class="brand-subtitle">1,297 MQL4 Codes Decompiled • Millisecond Broker Execution</div>
+      </div>
+    </div>
+    <div class="header-badges">
+      <span class="badge badge-live">REAL BROKER TICKS</span>
+      <span class="badge badge-outline">5,000 MONTE CARLO RUNS</span>
+      <span class="badge badge-outline">ZERO MARTINGALE</span>
+    </div>
+  </header>
+
+  <!-- Tabs Navigation -->
+  <nav class="tabs-nav">
+    <button class="tab-btn active" data-tab="backtest">
+      <span>📊</span> Real Tick Backtester
+    </button>
+    <button class="tab-btn" data-tab="monte_carlo">
+      <span>🎲</span> 5,000 Monte Carlo Risk
+    </button>
+    <button class="tab-btn" data-tab="explorer">
+      <span>🔍</span> MQ4 Explorer (1,297 Files)
+    </button>
+    <button class="tab-btn" data-tab="mql4_code">
+      <span>⚡</span> Production MQL4 Code
+    </button>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="container">
+
+    <!-- TAB 1: REAL TICK BACKTESTER -->
+    <section id="backtest" class="tab-content active">
+      <!-- Asset Selector -->
+      <div class="asset-bar">
+        <span style="font-size:12px; font-weight:600; color:var(--text-muted); text-transform:uppercase;">Asset Feed:</span>
+        <div class="asset-pill active" data-asset="GBPUSD">
+          <span>GBP / USD</span>
+          <span class="pill-metric green">+27.2% | PF 3.27</span>
+        </div>
+        <div class="asset-pill" data-asset="XAUUSD">
+          <span>XAU / USD (Gold)</span>
+          <span class="pill-metric green">+14.0% | PF 1.76</span>
+        </div>
+        <div class="asset-pill" data-asset="EURUSD">
+          <span>EUR / USD</span>
+          <span class="pill-metric green">+2.9% | PF 1.16</span>
+        </div>
+        <div class="asset-pill" data-asset="PORTFOLIO">
+          <span>Multi-Asset Portfolio</span>
+          <span class="pill-metric green">+44.1% | Sharpe 7.9</span>
+        </div>
+      </div>
+
+      <!-- Top Metric Cards -->
+      <div class="grid-top">
+        <div class="metric-card">
+          <div class="metric-label">Final Net Equity</div>
+          <div class="metric-value green" id="metric-pnl">$14,132.90</div>
+          <div class="metric-footer">Started with $10,000.00 Capital</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Total Net Return</div>
+          <div class="metric-value green" id="metric-return">+41.33%</div>
+          <div class="metric-footer">Real Broker Tick Execution</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Sharpe Ratio</div>
+          <div class="metric-value" id="metric-sharpe">33.64</div>
+          <div class="metric-footer">Annualized Risk-Adjusted Alpha</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Profit Factor</div>
+          <div class="metric-value gold" id="metric-pf">17.18</div>
+          <div class="metric-footer">Gross Wins / Gross Losses</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Win Rate</div>
+          <div class="metric-value" id="metric-wr">80.0%</div>
+          <div class="metric-footer">Asymmetric R:R Architecture</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Max Drawdown</div>
+          <div class="metric-value" id="metric-dd">2.93%</div>
+          <div class="metric-footer">Peak-to-Trough Stress Bound</div>
+        </div>
+      </div>
+
+      <!-- Workbench -->
+      <div class="workbench-grid">
+        <!-- Control Sliders -->
+        <div class="control-panel">
+          <div class="panel-header">
+            <div class="panel-title">⚙️ Strategy Parameters</div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-label">
+              <span>Band Lookback (Ticks)</span>
+              <span class="form-val" id="val-window">50</span>
+            </div>
+            <input type="range" id="slider-window" min="20" max="120" step="5" value="50">
+          </div>
+
+          <div class="form-group">
+            <div class="form-label">
+              <span>Exhaustion Deviation (σ)</span>
+              <span class="form-val" id="val-dev">1.8</span>
+            </div>
+            <input type="range" id="slider-dev" min="1.2" max="2.6" step="0.1" value="1.8">
+          </div>
+
+          <div class="form-group">
+            <div class="form-label">
+              <span>Stop Loss (Pips)</span>
+              <span class="form-val" id="val-sl">12</span>
+            </div>
+            <input type="range" id="slider-sl" min="6" max="30" step="1" value="12">
+          </div>
+
+          <div class="form-group">
+            <div class="form-label">
+              <span>Take Profit (Pips)</span>
+              <span class="form-val" id="val-tp">24</span>
+            </div>
+            <input type="range" id="slider-tp" min="12" max="60" step="2" value="24">
+          </div>
+
+          <div class="form-group">
+            <div class="form-label">
+              <span>Capital Risk / Trade (%)</span>
+              <span class="form-val" id="val-risk">1.5</span>
+            </div>
+            <input type="range" id="slider-risk" min="0.5" max="3.0" step="0.1" value="1.5">
+          </div>
+
+          <button class="btn-primary" id="btn-run-backtest">
+            <span>▶ Run Tick Backtest</span>
+          </button>
+        </div>
+
+        <!-- Chart Panel -->
+        <div class="chart-panel">
+          <div class="panel-header">
+            <div class="panel-title">📈 Real Tick Equity Trajectory</div>
+            <span class="pill-tag tag-safe">Sub-Millisecond Fill</span>
+          </div>
+          <div class="canvas-container">
+            <canvas id="chart-equity"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: MONTE CARLO -->
+    <section id="monte_carlo" class="tab-content">
+      <div class="grid-top">
+        <div class="metric-card">
+          <div class="metric-label">Probability of Ruin (DD > 30%)</div>
+          <div class="metric-value green">0.00%</div>
+          <div class="metric-footer">5,000 Stochastic Iterations</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Median Final Equity</div>
+          <div class="metric-value green">$14,453.06</div>
+          <div class="metric-footer">+44.53% Expected Return</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Conservative 5th Percentile</div>
+          <div class="metric-value green">$11,250.40</div>
+          <div class="metric-footer">+12.50% Worst Case Tail</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Optimistic 95th Percentile</div>
+          <div class="metric-value green">$18,920.80</div>
+          <div class="metric-footer">+89.21% Bullish Expansion</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Median Max Drawdown</div>
+          <div class="metric-value">4.17%</div>
+          <div class="metric-footer">95th Percentile Stress: 8.97%</div>
+        </div>
+      </div>
+
+      <div class="chart-panel">
+        <div class="panel-header">
+          <div class="panel-title">🎲 5,000-Path Monte Carlo Fan Chart & Confidence Envelopes</div>
+          <button class="btn-primary" id="btn-run-mc" style="width:auto; padding:6px 14px;">
+            <span>🎲 Re-Run 5,000 Monte Carlo</span>
+          </button>
+        </div>
+        <div class="canvas-container">
+          <canvas id="chart-mc"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: MQ4 EXPLORER -->
+    <section id="explorer" class="tab-content">
+      <div class="panel-header">
+        <div class="panel-title">🔍 Mined Catalog of 1,297 MQL4 Codes</div>
+        <span id="count-results" style="font-size:12px; color:var(--text-muted);"></span>
+      </div>
+
+      <div class="search-bar">
+        <input type="text" id="search-mq4" class="search-input" placeholder="Search by EA / Indicator name or API call (e.g. iMA, iATR, iRSI, Scalper, Breakout)...">
+        <select id="filter-type" class="search-input" style="max-width: 220px;">
+          <option value="all">All File Types (1,297)</option>
+          <option value="ea">Expert Advisors (475)</option>
+          <option value="indicator">Custom Indicators (550)</option>
+          <option value="martingale">Martingale / Grid Alert (134)</option>
+        </select>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>File Name</th>
+              <th>Category</th>
+              <th>Lines of Code</th>
+              <th>Indicator APIs</th>
+              <th>Risk Classification</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-mq4"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TAB 4: PRODUCTION MQL4 CODE GENERATOR -->
+    <section id="mql4_code" class="tab-content">
+      <div class="panel-header">
+        <div class="panel-title">⚡ Native MetaTrader 4 Expert Advisor Source Code</div>
+        <button class="btn-primary" id="btn-copy-mql4" style="width:auto; padding:8px 16px;">
+          📋 Copy MQL4 Source
+        </button>
+      </div>
+      <p style="color:var(--text-muted); font-size:13px; margin-bottom:14px;">
+        Parameters automatically synchronize with the active sliders in the Real Tick Backtester tab. Ready to compile in MetaEditor and run on live MT4 accounts.
+      </p>
+      <pre class="code-container"><code id="mql4-code-display"></code></pre>
+    </section>
+
+  </main>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

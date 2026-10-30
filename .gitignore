@@ -53,6 +53,7 @@ htmlcov/
 
 # Output plots / cache
 *.png
+!**/visualizations/*.png
 *.html
 !**/web/*.html
 *.log

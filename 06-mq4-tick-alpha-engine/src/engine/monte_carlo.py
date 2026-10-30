@@ -120,3 +120,4 @@ class MonteCarloEngine:
                 "upper_95_curve": [round(x, 2) for x in upper_95_curve[::max(1, len(upper_95_curve)//20)]]
             }
         }
+
