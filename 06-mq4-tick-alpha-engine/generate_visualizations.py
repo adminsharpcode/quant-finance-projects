@@ -220,3 +220,4 @@ if __name__ == '__main__':
     all_trades = plot_equity_and_drawdowns(df_eur, df_gbp, df_xau, os.path.join(vis_dir, 'equity_curves.png'), os.path.join(vis_dir, 'drawdown_underwater.png'))
     plot_monte_carlo(all_trades, os.path.join(vis_dir, 'monte_carlo_distribution.png'))
     print('All visualizations successfully generated.')
+

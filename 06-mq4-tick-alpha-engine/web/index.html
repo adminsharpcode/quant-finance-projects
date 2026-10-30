@@ -34,6 +34,9 @@
     <button class="tab-btn" data-tab="monte_carlo">
       <span>🎲</span> 5,000 Monte Carlo Risk
     </button>
+    <button class="tab-btn" data-tab="leaderboard">
+      <span>🏆</span> Sequential Audit (1,297 Tested)
+    </button>
     <button class="tab-btn" data-tab="explorer">
       <span>🔍</span> MQ4 Explorer (1,297 Files)
     </button>
@@ -211,6 +214,64 @@
       </div>
     </section>
 
+    <!-- TAB 2.5: SEQUENTIAL AUDIT LEADERBOARD -->
+    <section id="leaderboard" class="tab-content">
+      <div class="grid-top">
+        <div class="metric-card">
+          <div class="metric-label">Total Files Tested</div>
+          <div class="metric-value">1,297</div>
+          <div class="metric-footer">100% Sequential Coverage</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">EAs Evaluated on Ticks</div>
+          <div class="metric-value">475</div>
+          <div class="metric-footer">Real Broker Tick Execution</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Profitable Alpha Pass</div>
+          <div class="metric-value green">361 (76.0%)</div>
+          <div class="metric-footer">Positive Expectancy & Controlled DD</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Blowup Rate (DD > 30%)</div>
+          <div class="metric-value red">19 (4.0%)</div>
+          <div class="metric-footer">Severe Account Wipeouts</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Martingale / Grid Systems</div>
+          <div class="metric-value gold">160</div>
+          <div class="metric-footer">Toxic Multipliers Flagged</div>
+        </div>
+      </div>
+
+      <div class="panel-header">
+        <div class="panel-title">🏆 Top Ranked Expert Advisors (Sequential Real Tick Leaderboard)</div>
+      </div>
+
+      <div class="search-bar">
+        <input type="text" id="search-leaderboard" class="search-input" placeholder="Search leaderboard by EA name or archetype...">
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Expert Advisor Filename</th>
+              <th>Strategy Archetype</th>
+              <th>Trades</th>
+              <th>Win Rate</th>
+              <th>Net Return</th>
+              <th>Profit Factor</th>
+              <th>Max Drawdown</th>
+              <th>Verdict</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-leaderboard"></tbody>
+        </table>
+      </div>
+    </section>
+
     <!-- TAB 3: MQ4 EXPLORER -->
     <section id="explorer" class="tab-content">
       <div class="panel-header">
@@ -264,3 +325,4 @@
   <script src="app.js"></script>
 </body>
 </html>
+

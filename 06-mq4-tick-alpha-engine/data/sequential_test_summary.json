@@ -1,0 +1,14 @@
+{
+  "total_files_tested": 1297,
+  "total_expert_advisors": 475,
+  "total_indicators": 527,
+  "total_martingale_systems": 160,
+  "ea_verdict_breakdown": {
+    "PASS_PROFITABLE": 361,
+    "PASS_MARGINAL": 82,
+    "FAIL_BLOWUP": 19
+  },
+  "pass_rate_pct": 76.0,
+  "blowup_rate_pct": 4.0,
+  "test_duration_seconds": 29.91
+}

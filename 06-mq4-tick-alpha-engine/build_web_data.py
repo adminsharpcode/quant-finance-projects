@@ -1,7 +1,7 @@
 """
-Web Data Bundle Builder
-------------------------
-Extracts catalog and backtest metrics into lightweight JS bundle for client-side web application.
+Web Data Bundle Builder (With Sequential Test Leaderboard)
+-----------------------------------------------------------
+Bundles catalog, backtest metrics, and 1,297 sequential test leaderboard into data.js.
 """
 
 import os
@@ -19,9 +19,15 @@ with open(os.path.join(data_dir, "mq4_strategy_catalog.json"), "r", encoding="ut
 with open(os.path.join(data_dir, "pipeline_results.json"), "r", encoding="utf-8") as f:
     pipe = json.load(f)
 
-# Compact catalog items for web search (first 300 diverse items)
+with open(os.path.join(data_dir, "sequential_test_summary.json"), "r", encoding="utf-8") as f:
+    seq_summary = json.load(f)
+
+df_board = pd.read_csv(os.path.join(data_dir, "sequential_test_leaderboard.csv"))
+# Filter top 100 for web UI
+top_board = df_board[df_board['Type'] == 'Expert Advisor'].sort_values('ProfitFactor', ascending=False).head(100).to_dict(orient='records')
+
 compact_catalog = []
-for item in cat["catalog"][:400]:
+for item in cat["catalog"][:350]:
     compact_catalog.append({
         "name": item["filename"],
         "type": item["file_type"],
@@ -37,6 +43,10 @@ const MQ4_SUMMARY = {json.dumps(cat['summary'], indent=2)};
 
 const PIPELINE_RESULTS = {json.dumps(pipe, indent=2)};
 
+const SEQUENTIAL_SUMMARY = {json.dumps(seq_summary, indent=2)};
+
+const SEQUENTIAL_LEADERBOARD = {json.dumps(top_board, indent=2)};
+
 const MQ4_CATALOG = {json.dumps(compact_catalog, indent=2)};
 """
 
@@ -44,4 +54,4 @@ out_js = os.path.join(web_dir, "data.js")
 with open(out_js, "w", encoding="utf-8") as f:
     f.write(js_content)
 
-print(f"Generated web data bundle: {out_js} ({os.path.getsize(out_js)} bytes)")
+print(f"Generated web data bundle with sequential leaderboard: {out_js} ({os.path.getsize(out_js)} bytes)")

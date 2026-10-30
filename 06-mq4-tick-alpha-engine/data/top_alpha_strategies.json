@@ -1,0 +1,616 @@
+{
+  "top_10_alpha_eas": [
+    {
+      "index": 1198,
+      "filename": "my.mq4",
+      "file_type": "Expert Advisor",
+      "file_size_bytes": 3060,
+      "lines_of_code": 68,
+      "syntax_valid": true,
+      "syntax_status": "VALID (Entry: start)",
+      "archetype": "General Market Order EA",
+      "indicators": [
+        "iBearsPower",
+        "iBullsPower"
+      ],
+      "is_martingale": false,
+      "risk_classification": "SYMMETRIC_OR_DEFAULT",
+      "extracted_sl": 60.0,
+      "extracted_tp": 86.0,
+      "extracted_lots": 5.0,
+      "backtest": {
+        "total_trades": 4,
+        "win_rate_pct": 100.0,
+        "final_equity": 27100.0,
+        "net_pnl": 17100.0,
+        "return_pct": 171.0,
+        "profit_factor": 99.0,
+        "max_drawdown_pct": 0.0,
+        "sharpe_ratio": 0.0,
+        "verdict": "PASS_PROFITABLE"
+      }
+    },
+    {
+      "index": 380,
+      "filename": "Jum+StoC+v2.3F~.mq4",
+      "file_type": "Expert Advisor",
+      "file_size_bytes": 44350,
+      "lines_of_code": 1017,
+      "syntax_valid": true,
+      "syntax_status": "VALID (Entry: start,init)",
+      "archetype": "Moving Average Crossover",
+      "indicators": [
+        "iMA",
+        "iRSI",
+        "iStochastic"
+      ],
+      "is_martingale": false,
+      "risk_classification": "NEGATIVE_ASYMMETRY (High Risk)",
+      "extracted_sl": 253.0,
+      "extracted_tp": 4.0,
+      "extracted_lots": 5.0,
+      "backtest": {
+        "total_trades": 7,
+        "win_rate_pct": 100.0,
+        "final_equity": 11225.0,
+        "net_pnl": 1225.0,
+        "return_pct": 12.25,
+        "profit_factor": 99.0,
+        "max_drawdown_pct": 0.0,
+        "sharpe_ratio": 0.0,
+        "verdict": "PASS_PROFITABLE"
+      }
+    },
+    {
+      "index": 784,
+      "filename": "SMC Trader Camel CCI MACD -ron02.mq4",
+      "file_type": "Expert Advisor",
+      "file_size_bytes": 2658,
+      "lines_of_code": 49,
+      "syntax_valid": true,
+      "syntax_status": "VALID (Entry: start,init)",
+      "archetype": "Trend Breakout (MA + Donchian)",
+      "indicators": [
+        "iMA",
+        "iMACD",
+        "iCCI"
+      ],
+      "is_martingale": false,
+      "risk_classification": "SYMMETRIC_OR_DEFAULT",
+      "extracted_sl": 200.0,
+      "extracted_tp": 120.0,
+      "extracted_lots": 1.0,
+      "backtest": {
+        "total_trades": 1,
+        "win_rate_pct": 100.0,
+        "final_equity": 11195.0,
+        "net_pnl": 1195.0,
+        "return_pct": 11.95,
+        "profit_factor": 99.0,
+        "max_drawdown_pct": 0.0,
+        "sharpe_ratio": 0.0,
+        "verdict": "PASS_PROFITABLE"
+      }
+    },
+    {
+      "index": 788,
+      "filename": "SMC Trader Kurt1.mq4",
+      "file_type": "Expert Advisor",
+      "file_size_bytes": 7674,
+      "lines_of_code": 151,
+      "syntax_valid": true,
+      "syntax_status": "VALID (Entry: start,init)",
+      "archetype": "Moving Average Crossover",
+      "indicators": [
+        "iMA",
+        "iATR",
+        "iRSI",
+        "iMACD"
+      ],
+      "is_martingale": false,
+      "risk_classification": "UNPROTECTED_NO_STOP_LOSS",
+      "extracted_sl": null,
+      "extracted_tp": 20.0,
+      "extracted_lots": 1.0,
+      "backtest": {
+        "total_trades": 5,
+        "win_rate_pct": 100.0,
+        "final_equity": 10975.0,
+        "net_pnl": 975.0,
+        "return_pct": 9.75,
+        "profit_factor": 99.0,
+        "max_drawdown_pct": 0.0,
+        "sharpe_ratio": 0.0,
+        "verdict": "PASS_PROFITABLE"
+      }
+    },
+    {
+      "index": 795,
+      "filename": "SMC eur usd(26AUG05).mq4",
+      "file_type": "Expert Advisor",
+      "file_size_bytes": 7913,
+      "lines_of_code": 156,
+      "syntax_valid": true,
+      "syntax_status": "VALID (Entry: start,init)",
+      "archetype": "Moving Average Crossover",
+      "indicators": [
+        "iMA",
+        "iATR",
+        "iRSI",
+        "iMACD"
+      ],
+      "is_martingale": false,
+      "risk_classification": "UNPROTECTED_NO_STOP_LOSS",
+      "extracted_sl": null,
+      "extracted_tp": 20.0,
+      "extracted_lots": 1.0,
+      "backtest": {
+        "total_trades": 5,
+        "win_rate_pct": 100.0,
+        "final_equity": 10975.0,
+        "net_pnl": 975.0,
+        "return_pct": 9.75,
+        "profit_factor": 99.0,
+        "max_drawdown_pct": 0.0,
+        "sharpe_ratio": 0.0,
+        "verdict": "PASS_PROFITABLE"
+      }
+    },
+    {
+      "index": 796,
+      "filename": "SMC eur usd(28AUG05).mq4",
+      "file_type": "Expert Advisor",
+      "file_size_bytes": 6033,
+      "lines_of_code": 108,
+      "syntax_valid": true,
+      "syntax_status": "VALID (Entry: start,init)",
+      "archetype": "Moving Average Crossover",
+      "indicators": [
+        "iMA",
+        "iATR",
+        "iRSI",
+        "iMACD"
+      ],
+      "is_martingale": false,
+      "risk_classification": "UNPROTECTED_NO_STOP_LOSS",
+      "extracted_sl": null,
+      "extracted_tp": 20.0,
+      "extracted_lots": 1.0,
+      "backtest": {
+        "total_trades": 5,
+        "win_rate_pct": 100.0,
+        "final_equity": 10975.0,
+        "net_pnl": 975.0,
+        "return_pct": 9.75,
+        "profit_factor": 99.0,
+        "max_drawdown_pct": 0.0,
+        "sharpe_ratio": 0.0,
+        "verdict": "PASS_PROFITABLE"
+      }
+    },
+    {
+      "index": 797,
+      "filename": "SMC eur usd1(26AUG05).mq4",
+      "file_type": "Expert Advisor",
+      "file_size_bytes": 7912,
+      "lines_of_code": 156,
+      "syntax_valid": true,
+      "syntax_status": "VALID (Entry: start,init)",
+      "archetype": "Moving Average Crossover",
+      "indicators": [
+        "iMA",
+        "iATR",
+        "iRSI",
+        "iMACD"
+      ],
+      "is_martingale": false,
+      "risk_classification": "UNPROTECTED_NO_STOP_LOSS",
+      "extracted_sl": null,
+      "extracted_tp": 20.0,
+      "extracted_lots": 1.0,
+      "backtest": {
+        "total_trades": 5,
+        "win_rate_pct": 100.0,
+        "final_equity": 10975.0,
+        "net_pnl": 975.0,
+        "return_pct": 9.75,
+        "profit_factor": 99.0,
+        "max_drawdown_pct": 0.0,
+        "sharpe_ratio": 0.0,
+        "verdict": "PASS_PROFITABLE"
+      }
+    },
+    {
+      "index": 799,
+      "filename": "SMC eur usd2.mq4",
+      "file_type": "Expert Advisor",
+      "file_size_bytes": 7686,
+      "lines_of_code": 151,
+      "syntax_valid": true,
+      "syntax_status": "VALID (Entry: start,init)",
+      "archetype": "Moving Average Crossover",
+      "indicators": [
+        "iMA",
+        "iATR",
+        "iRSI",
+        "iMACD"
+      ],
+      "is_martingale": false,
+      "risk_classification": "UNPROTECTED_NO_STOP_LOSS",
+      "extracted_sl": null,
+      "extracted_tp": 20.0,
+      "extracted_lots": 1.0,
+      "backtest": {
+        "total_trades": 5,
+        "win_rate_pct": 100.0,
+        "final_equity": 10975.0,
+        "net_pnl": 975.0,
+        "return_pct": 9.75,
+        "profit_factor": 99.0,
+        "max_drawdown_pct": 0.0,
+        "sharpe_ratio": 0.0,
+        "verdict": "PASS_PROFITABLE"
+      }
+    },
+    {
+      "index": 1240,
+      "filename": "russian20-HP.mq4",
+      "file_type": "Expert Advisor",
+      "file_size_bytes": 4664,
+      "lines_of_code": 130,
+      "syntax_valid": true,
+      "syntax_status": "VALID (Entry: start)",
+      "archetype": "Moving Average Crossover",
+      "indicators": [
+        "iMA",
+        "iMomentum"
+      ],
+      "is_martingale": false,
+      "risk_classification": "UNPROTECTED_NO_STOP_LOSS",
+      "extracted_sl": null,
+      "extracted_tp": 20.0,
+      "extracted_lots": 1.0,
+      "backtest": {
+        "total_trades": 5,
+        "win_rate_pct": 100.0,
+        "final_equity": 10975.0,
+        "net_pnl": 975.0,
+        "return_pct": 9.75,
+        "profit_factor": 99.0,
+        "max_drawdown_pct": 0.0,
+        "sharpe_ratio": 0.0,
+        "verdict": "PASS_PROFITABLE"
+      }
+    },
+    {
+      "index": 1241,
+      "filename": "russian20-HP1.mq4",
+      "file_type": "Expert Advisor",
+      "file_size_bytes": 4681,
+      "lines_of_code": 131,
+      "syntax_valid": true,
+      "syntax_status": "VALID (Entry: start)",
+      "archetype": "Moving Average Crossover",
+      "indicators": [
+        "iMA",
+        "iMomentum"
+      ],
+      "is_martingale": false,
+      "risk_classification": "UNPROTECTED_NO_STOP_LOSS",
+      "extracted_sl": null,
+      "extracted_tp": 20.0,
+      "extracted_lots": 1.0,
+      "backtest": {
+        "total_trades": 5,
+        "win_rate_pct": 100.0,
+        "final_equity": 10975.0,
+        "net_pnl": 975.0,
+        "return_pct": 9.75,
+        "profit_factor": 99.0,
+        "max_drawdown_pct": 0.0,
+        "sharpe_ratio": 0.0,
+        "verdict": "PASS_PROFITABLE"
+      }
+    }
+  ],
+  "worst_10_blowup_eas": [
+    {
+      "index": 381,
+      "filename": "Jum+StoCh luis.mq4",
+      "file_type": "Expert Advisor",
+      "file_size_bytes": 18704,
+      "lines_of_code": 440,
+      "syntax_valid": true,
+      "syntax_status": "VALID (Entry: start,init)",
+      "archetype": "Moving Average Crossover",
+      "indicators": [
+        "iMA",
+        "iRSI",
+        "iStochastic"
+      ],
+      "is_martingale": false,
+      "risk_classification": "NEGATIVE_ASYMMETRY (High Risk)",
+      "extracted_sl": 253.0,
+      "extracted_tp": 30.0,
+      "extracted_lots": 5.0,
+      "backtest": {
+        "total_trades": 2,
+        "win_rate_pct": 50.0,
+        "final_equity": -1200.0,
+        "net_pnl": -11200.0,
+        "return_pct": -112.0,
+        "profit_factor": 0.12,
+        "max_drawdown_pct": 110.46,
+        "sharpe_ratio": -28.1,
+        "verdict": "FAIL_BLOWUP"
+      }
+    },
+    {
+      "index": 382,
+      "filename": "Jum+StoCh+v2 (3).5F.mq4",
+      "file_type": "Expert Advisor",
+      "file_size_bytes": 18533,
+      "lines_of_code": 435,
+      "syntax_valid": true,
+      "syntax_status": "VALID (Entry: start,init)",
+      "archetype": "Moving Average Crossover",
+      "indicators": [
+        "iMA",
+        "iRSI",
+        "iStochastic"
+      ],
+      "is_martingale": false,
+      "risk_classification": "NEGATIVE_ASYMMETRY (High Risk)",
+      "extracted_sl": 253.0,
+      "extracted_tp": 30.0,
+      "extracted_lots": 5.0,
+      "backtest": {
+        "total_trades": 2,
+        "win_rate_pct": 50.0,
+        "final_equity": -1200.0,
+        "net_pnl": -11200.0,
+        "return_pct": -112.0,
+        "profit_factor": 0.12,
+        "max_drawdown_pct": 110.46,
+        "sharpe_ratio": -28.1,
+        "verdict": "FAIL_BLOWUP"
+      }
+    },
+    {
+      "index": 384,
+      "filename": "Jum+StoCh+v2.5F.mq4",
+      "file_type": "Expert Advisor",
+      "file_size_bytes": 18533,
+      "lines_of_code": 435,
+      "syntax_valid": true,
+      "syntax_status": "VALID (Entry: start,init)",
+      "archetype": "Moving Average Crossover",
+      "indicators": [
+        "iMA",
+        "iRSI",
+        "iStochastic"
+      ],
+      "is_martingale": false,
+      "risk_classification": "NEGATIVE_ASYMMETRY (High Risk)",
+      "extracted_sl": 253.0,
+      "extracted_tp": 30.0,
+      "extracted_lots": 5.0,
+      "backtest": {
+        "total_trades": 2,
+        "win_rate_pct": 50.0,
+        "final_equity": -1200.0,
+        "net_pnl": -11200.0,
+        "return_pct": -112.0,
+        "profit_factor": 0.12,
+        "max_drawdown_pct": 110.46,
+        "sharpe_ratio": -28.1,
+        "verdict": "FAIL_BLOWUP"
+      }
+    },
+    {
+      "index": 952,
+      "filename": "TSR.mq4",
+      "file_type": "Expert Advisor",
+      "file_size_bytes": 18711,
+      "lines_of_code": 440,
+      "syntax_valid": true,
+      "syntax_status": "VALID (Entry: start,init)",
+      "archetype": "Moving Average Crossover",
+      "indicators": [
+        "iMA",
+        "iRSI",
+        "iStochastic"
+      ],
+      "is_martingale": false,
+      "risk_classification": "NEGATIVE_ASYMMETRY (High Risk)",
+      "extracted_sl": 253.0,
+      "extracted_tp": 30.0,
+      "extracted_lots": 5.0,
+      "backtest": {
+        "total_trades": 2,
+        "win_rate_pct": 50.0,
+        "final_equity": -1200.0,
+        "net_pnl": -11200.0,
+        "return_pct": -112.0,
+        "profit_factor": 0.12,
+        "max_drawdown_pct": 110.46,
+        "sharpe_ratio": -28.1,
+        "verdict": "FAIL_BLOWUP"
+      }
+    },
+    {
+      "index": 1038,
+      "filename": "TripleMA_Crossover_expert.mq4",
+      "file_type": "Expert Advisor",
+      "file_size_bytes": 11709,
+      "lines_of_code": 219,
+      "syntax_valid": true,
+      "syntax_status": "VALID (Entry: start,init)",
+      "archetype": "Moving Average Crossover",
+      "indicators": [
+        "iMA"
+      ],
+      "is_martingale": false,
+      "risk_classification": "SYMMETRIC_OR_DEFAULT",
+      "extracted_sl": 250.0,
+      "extracted_tp": null,
+      "extracted_lots": 1.0,
+      "backtest": {
+        "total_trades": 3,
+        "win_rate_pct": 66.67,
+        "final_equity": 7985.0,
+        "net_pnl": -2015.0,
+        "return_pct": -20.15,
+        "profit_factor": 0.2,
+        "max_drawdown_pct": 24.45,
+        "sharpe_ratio": -18.39,
+        "verdict": "PASS_MARGINAL"
+      }
+    },
+    {
+      "index": 240,
+      "filename": "Firebird v0.55.mq4",
+      "file_type": "Expert Advisor",
+      "file_size_bytes": 6080,
+      "lines_of_code": 114,
+      "syntax_valid": true,
+      "syntax_status": "VALID (Entry: start)",
+      "archetype": "Moving Average Crossover",
+      "indicators": [
+        "iMA"
+      ],
+      "is_martingale": true,
+      "risk_classification": "MARTINGALE_GRID_TOXIC",
+      "extracted_sl": 200.0,
+      "extracted_tp": 30.0,
+      "extracted_lots": 1.0,
+      "backtest": {
+        "total_trades": 3,
+        "win_rate_pct": 66.67,
+        "final_equity": 8732.5,
+        "net_pnl": -1267.5,
+        "return_pct": -12.68,
+        "profit_factor": 0.37,
+        "max_drawdown_pct": 19.48,
+        "sharpe_ratio": -13.38,
+        "verdict": "FAIL_BLOWUP"
+      }
+    },
+    {
+      "index": 241,
+      "filename": "Firebird v0.56 [ea].mq4",
+      "file_type": "Expert Advisor",
+      "file_size_bytes": 7702,
+      "lines_of_code": 122,
+      "syntax_valid": true,
+      "syntax_status": "VALID (Entry: start)",
+      "archetype": "Moving Average Crossover",
+      "indicators": [
+        "iMA"
+      ],
+      "is_martingale": true,
+      "risk_classification": "MARTINGALE_GRID_TOXIC",
+      "extracted_sl": 200.0,
+      "extracted_tp": 30.0,
+      "extracted_lots": 1.0,
+      "backtest": {
+        "total_trades": 3,
+        "win_rate_pct": 66.67,
+        "final_equity": 8732.5,
+        "net_pnl": -1267.5,
+        "return_pct": -12.68,
+        "profit_factor": 0.37,
+        "max_drawdown_pct": 19.48,
+        "sharpe_ratio": -13.38,
+        "verdict": "FAIL_BLOWUP"
+      }
+    },
+    {
+      "index": 242,
+      "filename": "Firebird v0.57 [ea].mq4",
+      "file_type": "Expert Advisor",
+      "file_size_bytes": 7796,
+      "lines_of_code": 123,
+      "syntax_valid": true,
+      "syntax_status": "VALID (Entry: start)",
+      "archetype": "Moving Average Crossover",
+      "indicators": [
+        "iMA"
+      ],
+      "is_martingale": true,
+      "risk_classification": "MARTINGALE_GRID_TOXIC",
+      "extracted_sl": 200.0,
+      "extracted_tp": 30.0,
+      "extracted_lots": 1.0,
+      "backtest": {
+        "total_trades": 3,
+        "win_rate_pct": 66.67,
+        "final_equity": 8732.5,
+        "net_pnl": -1267.5,
+        "return_pct": -12.68,
+        "profit_factor": 0.37,
+        "max_drawdown_pct": 19.48,
+        "sharpe_ratio": -13.38,
+        "verdict": "FAIL_BLOWUP"
+      }
+    },
+    {
+      "index": 243,
+      "filename": "Firebird v0.57.mq4",
+      "file_type": "Expert Advisor",
+      "file_size_bytes": 7796,
+      "lines_of_code": 123,
+      "syntax_valid": true,
+      "syntax_status": "VALID (Entry: start)",
+      "archetype": "Moving Average Crossover",
+      "indicators": [
+        "iMA"
+      ],
+      "is_martingale": true,
+      "risk_classification": "MARTINGALE_GRID_TOXIC",
+      "extracted_sl": 200.0,
+      "extracted_tp": 30.0,
+      "extracted_lots": 1.0,
+      "backtest": {
+        "total_trades": 3,
+        "win_rate_pct": 66.67,
+        "final_equity": 8732.5,
+        "net_pnl": -1267.5,
+        "return_pct": -12.68,
+        "profit_factor": 0.37,
+        "max_drawdown_pct": 19.48,
+        "sharpe_ratio": -13.38,
+        "verdict": "FAIL_BLOWUP"
+      }
+    },
+    {
+      "index": 244,
+      "filename": "Firebird v0.58 [ea].mq4",
+      "file_type": "Expert Advisor",
+      "file_size_bytes": 8968,
+      "lines_of_code": 147,
+      "syntax_valid": true,
+      "syntax_status": "VALID (Entry: start)",
+      "archetype": "Moving Average Crossover",
+      "indicators": [
+        "iMA"
+      ],
+      "is_martingale": true,
+      "risk_classification": "MARTINGALE_GRID_TOXIC",
+      "extracted_sl": 200.0,
+      "extracted_tp": 30.0,
+      "extracted_lots": 1.0,
+      "backtest": {
+        "total_trades": 3,
+        "win_rate_pct": 66.67,
+        "final_equity": 8732.5,
+        "net_pnl": -1267.5,
+        "return_pct": -12.68,
+        "profit_factor": 0.37,
+        "max_drawdown_pct": 19.48,
+        "sharpe_ratio": -13.38,
+        "verdict": "FAIL_BLOWUP"
+      }
+    }
+  ]
+}

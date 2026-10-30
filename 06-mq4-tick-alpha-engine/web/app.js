@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSliders();
   renderBacktestTab();
   renderMonteCarloTab();
+  renderLeaderboardTab();
   renderExplorerTab();
   renderMQL4Code();
 });
@@ -279,6 +280,43 @@ function renderMonteCarloChart() {
   ctx.fillText('$6,000', 5, toY(6000) + 4);
 }
 
+// Leaderboard Tab
+function renderLeaderboardTab() {
+  const searchInput = document.getElementById('search-leaderboard');
+  const tbody = document.getElementById('tbody-leaderboard');
+  if (!tbody || typeof SEQUENTIAL_LEADERBOARD === 'undefined') return;
+
+  function filterBoard() {
+    const q = (searchInput?.value || '').toLowerCase();
+    const filtered = SEQUENTIAL_LEADERBOARD.filter(item => {
+      return item.Filename.toLowerCase().includes(q) || item.Archetype.toLowerCase().includes(q);
+    });
+
+    tbody.innerHTML = '';
+    filtered.slice(0, 50).forEach((item, idx) => {
+      const tr = document.createElement('tr');
+      const isProfitable = item.Verdict === 'PASS_PROFITABLE';
+      const isBlowup = item.Verdict === 'FAIL_BLOWUP';
+
+      tr.innerHTML = `
+        <td style="color:var(--text-muted); font-weight:bold;">#${idx + 1}</td>
+        <td style="font-weight:600; color:#f0f6fc;">${item.Filename}</td>
+        <td><span class="pill-tag tag-ind">${item.Archetype}</span></td>
+        <td>${item.Trades}</td>
+        <td style="color:${item.WinRatePct >= 50 ? 'var(--accent-green)' : 'var(--text-muted)'};">${item.WinRatePct.toFixed(1)}%</td>
+        <td style="color:${item.ReturnPct >= 0 ? 'var(--accent-green)' : 'var(--accent-red)'}; font-weight:bold;">${item.ReturnPct >= 0 ? '+' : ''}${item.ReturnPct.toFixed(2)}%</td>
+        <td style="color:var(--accent-gold); font-weight:bold;">${item.ProfitFactor.toFixed(2)}</td>
+        <td style="color:${item.MaxDrawdownPct > 25 ? 'var(--accent-red)' : 'var(--text-muted)'};">${item.MaxDrawdownPct.toFixed(1)}%</td>
+        <td><span class="pill-tag ${isProfitable ? 'tag-safe' : (isBlowup ? 'tag-warn' : 'tag-ind')}">${item.Verdict}</span></td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  if (searchInput) searchInput.addEventListener('input', filterBoard);
+  filterBoard();
+}
+
 // Explorer Tab
 function renderExplorerTab() {
   const searchInput = document.getElementById('search-mq4');
@@ -381,3 +419,4 @@ if (copyBtn) {
     setTimeout(() => { copyBtn.textContent = '📋 Copy MQL4 Source'; }, 1500);
   });
 }
+

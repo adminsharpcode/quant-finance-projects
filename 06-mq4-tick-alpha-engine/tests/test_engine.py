@@ -132,3 +132,32 @@ def test_monte_carlo_resampling():
     assert 'risk_metrics' in res
     assert res['final_equity']['p95_bullish'] >= res['final_equity']['p5_bearish']
 
+
+def test_sequential_tester_rule_extraction():
+    from src.engine.sequential_tester import SequentialMQ4Tester
+    
+    tick_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "real_ticks_gbpusd.csv")
+    mq4_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "MQ4 Source Codes (1300+)")
+    
+    tester = SequentialMQ4Tester(mq4_dir, tick_path)
+    
+    sample_content = """
+    // Sample EA
+    extern double Lots = 0.2;
+    extern double StopLoss = 25.0;
+    extern double TakeProfit = 50.0;
+    int start() {
+        double rsi = iRSI(Symbol(), 0, 14, PRICE_CLOSE, 0);
+        OrderSend(Symbol(), OP_BUY, Lots, Ask, 3, Ask-StopLoss*Point, Ask+TakeProfit*Point);
+        return(0);
+    }
+    """
+    params = tester.extract_strategy_parameters(sample_content)
+    assert params['has_ordersend'] is True
+    assert params['sl_pips'] == 25.0
+    assert params['tp_pips'] == 50.0
+    assert params['lot_size'] == 0.2
+    assert params['is_martingale'] is False
+    assert params['risk_classification'] == 'ASYMMETRIC_POSITIVE_SKEW'
+
+

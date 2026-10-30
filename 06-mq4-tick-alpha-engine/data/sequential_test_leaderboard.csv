@@ -1,0 +1,1298 @@
+Index,Filename,Type,LinesOfCode,Archetype,Indicators,IsMartingale,RiskClass,Verdict,Trades,WinRatePct,NetPnL,ReturnPct,ProfitFactor,MaxDrawdownPct,SharpeRatio
+1,3D-oscilator-v2-indicator.mq4,Custom Indicator,65,Oscillator Mean Reversion,"iRSI,iCCI",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+2,3DMA MT4 Indicator.mq4,Script / Helper,265,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+3,4 time frame stochastic 2.mq4,Custom Indicator,187,Oscillator Mean Reversion,iStochastic,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+4,4_Period_MA_w_Regr_STD.mq4,Custom Indicator,887,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+5,AA_MTF_RSIOMA_Line V1.02.mq4,Custom Indicator,439,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+6,ADR.mq4,Custom Indicator,48,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+7,ADX-STOCHhisto-AWESOME.mq4,Custom Indicator,151,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+8,AF-Global Expert Full.mq4,Script / Helper,4261,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+9,AF-Investing.Cv.mq4,Script / Helper,4451,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+10,AIO Divergence.mq4,Script / Helper,2937,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+11,AK_ZigZag Noble Pointer.mq4,Custom Indicator,112,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+12,AK_ZigZag ROYAL Pointer.mq4,Custom Indicator,112,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+13,ALMA_v2 atr bands.mq4,Script / Helper,393,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+14,ASSAR V10 Final.mq4,Expert Advisor,1429,Volatility Bands Reversion,"iMA,iBands,iEnvelopes",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,2,100.0,9.9,0.1,99.0,0.0,0.0
+15,ATR Bands 2.01.mq4,Custom Indicator,324,Martingale Grid Scalper,,True,MARTINGALE_GRID_TOXIC,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+16,AccountEquityAnalyzer.mq4,Custom Indicator,308,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+17,AddCandles.mq4,Custom Indicator,169,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+18,Adenan Scalping.mq4,Expert Advisor,675,Martingale Grid Scalper,,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,9,100.0,2.25,0.02,99.0,0.0,0.0
+19,Advanced StepRSI v2.2 dz's alerts mtf arrows.mq4,Custom Indicator,345,Trend Breakout (MA + Donchian),"iMA,iATR",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+20,Advanced StepRSI v2.3 dz's alerts mtf arrows.mq4,Custom Indicator,456,Technical Indicator / Filter,iATR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+21,Alert2.mq4,Custom Indicator,321,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+22,Algo Samurai.mq4,Script / Helper,1073,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+23,AllClusterFilter_v1.1 600+.mq4,Script / Helper,2033,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+24,AntiAlligator.mq4,Custom Indicator,87,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+25,Arnold.mq4,Expert Advisor,398,Oscillator Mean Reversion,"iRSI,iStochastic",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,60.0,81.5,0.82,3.63,0.15,22.28
+26,Aroon_Oscillator_v1.mq4,Script / Helper,98,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+27,ArrowsAndCurves_Alert.mq4,Custom Indicator,111,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+28,AsiaScalperPro_.mq4,Expert Advisor,516,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,5.5,0.06,4.55,0.02,28.9
+29,Auto Recommendations_WithAlert.mq4,Custom Indicator,143,Volatility Bands Reversion,iBands,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+30,Auto Trading_v2.02.mq4,Script / Helper,92,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+31,AutoFib TradeZones.mq4,Script / Helper,485,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+32,AutoFibu button.mq4,Script / Helper,384,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+33,AutoPivotIndicator_ver5.mq4,Custom Indicator,983,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+34,AutoRefresh.mq4,Custom Indicator,31,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+35,Auto_Targets.mq4,Expert Advisor,279,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+36,Avg Daily Range.mq4,Custom Indicator,66,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+37,BBCI_v2 (2).mq4,Custom Indicator,282,Technical Indicator / Filter,"iATR,iStdDev",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+38,BEAST SUPER SIGNAL EXPERT ADVISOR.mq4,Script / Helper,9016,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+39,BLUE GOLD EA (FMP.SA).mq4,Script / Helper,8207,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+40,BNfx Signals - Indicator-3.mq4,Custom Indicator,372,Trend Breakout (MA + Donchian),"iMA,iATR,iVolume",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+41,BTFX-Dynamic_Trend_Multi_Currency~.mq4,Custom Indicator,3450,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+42,BUY-SELL.SIGNAL.mq4,Custom Indicator,81,Trend Breakout (MA + Donchian),"iMA,iRSI",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+43,Bar-reversal-indicator.mq4,Custom Indicator,81,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+44,Barreversal.mq4,Script / Helper,341,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+45,Barros_Swing_Fix.mq4,Custom Indicator,725,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+46,Beast_EA_V4.mq4,Expert Advisor,258,Martingale Grid Scalper,,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+47,Beast_EA_V5.mq4,Expert Advisor,271,Martingale Grid Scalper,,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+48,Best Indicator Forever.mq4,Script / Helper,827,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+49,BetterVolumeTicks_ alerts  + text.mq4,Custom Indicator,294,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+50,Bheurekso_pattern@totusmod@.mq4,Script / Helper,1007,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+51,Big Rise EA.mq4,Script / Helper,3714,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+52,BigRise EA.mq4,Script / Helper,3714,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+53,Bismillah Hedge..mq4,Expert Advisor,288,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,5.8,0.06,4.74,0.02,29.72
+54,Black.mq4,Script / Helper,610,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+55,Blessing 3 v3.9.6.09.mq4,Script / Helper,5819,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+56,BlessingLite-gamma.mq4,Expert Advisor,2560,Moving Average Crossover,"iMA,iATR,iRSI,iMACD,iStochastic,iCCI,iStdDev",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,9,100.0,1.35,0.01,99.0,0.0,0.0
+57,Blessing_3_v3.9.6.18.mq4,Expert Advisor,3055,Moving Average Crossover,"iMA,iATR,iRSI,iMACD,iStochastic,iCCI,iStdDev",True,MARTINGALE_GRID_TOXIC,PASS_MARGINAL,4,75.0,0.28,0.0,1.03,0.1,0.42
+58,Blubbb MightyZones [kokoveni].mq4,Custom Indicator,229,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+59,BlueTrernd.mq4,Script / Helper,241,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+60,Bollinger_Bands_Exit_Strategy.mq4,Script / Helper,242,Volatility Bands Reversion,iBands,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+61,Braid_Filter.mq4,Script / Helper,141,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+62,BrainTrend2SigALERT2.mq4,Custom Indicator,165,Technical Indicator / Filter,iATR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+63,BreakOutBoxesV2.06.mq4,Script / Helper,2525,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+64,BreakOut_BOX_5_Asian_Session_HLbox_SCREEN_TEXT_indicator.mq4,Custom Indicator,323,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+65,Breakeven.mq4,Script / Helper,325,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+66,Breakout_PANCA_EAGLE.mq4,Custom Indicator,98,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+67,Brooky_Garnish_Levels.mq4,Custom Indicator,180,Directional Trend Following,iSAR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+68,Brooky_PSAR_Levels_MTF_TT.mq4,Script / Helper,553,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+69,BullBearRSI.mq4,Custom Indicator,93,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+70,Buy-Sell_Alerts.mq4,Script / Helper,151,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+71,BuySell_Filter.mq4,Custom Indicator,96,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+72,Buy_-Sel_l_Alert.mq4,Custom Indicator,1999,Moving Average Crossover,"iMA,iRSI,iMACD,iStochastic,iCCI,iADX,iBearsPower,iBullsPower,iMomentum",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+73,Buy_Sell_Signal.mq4,Custom Indicator,150,Moving Average Crossover,"iMA,iRSI",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+74,CAMARILLA_ZONES_02.mq4,Custom Indicator,530,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+75,CAP Channel.mq4,Custom Indicator,351,Trend Breakout (MA + Donchian),"iMA,iATR",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+76,CCI zones.mq4,Custom Indicator,122,Oscillator Mean Reversion,iCCI,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+77,CCI'HMA MinMax Levels AA MTF SV+TT 1.mq4,Script / Helper,533,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+78,CHV.mq4,Custom Indicator,67,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+79,CK_Speed.mq4,Custom Indicator,73,Technical Indicator / Filter,"iATR,iStdDev",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+80,CM_Strength.mq4,Custom Indicator,358,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+81,COTCustomInd.mq4,Custom Indicator,323,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+82,CPIv1.5 ENG.mq4,Custom Indicator,476,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+83,CRIPTOBOT EA - New Version 8.5.7.mq4,Script / Helper,1921,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+84,CTG-Modify_Date.mq4,Script / Helper,161,Martingale Grid Scalper,,True,MARTINGALE_GRID_TOXIC,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+85,Calculate Trendline Script.mq4,Script / Helper,16,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+86,CalendarFX-DeactivateEAs_v1.02_danEdit.mq4,Custom Indicator,1629,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+87,Candlestick - CustomCandle_TRO_MODIFIED_VERSION.mq4,Custom Indicator,197,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+88,Candlestick alerts.mq4,Script / Helper,1055,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+89,Candlestick_alerts_Set 3.mq4,Script / Helper,1111,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+90,ChandelierExit.mq4,Custom Indicator,67,Technical Indicator / Filter,iATR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+91,Cheeta xpMA.mq4,Custom Indicator,544,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+92,Clear method-SD v1.11.mq4,Custom Indicator,409,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+93,ClickCloseAllv01.mq4,Script / Helper,60,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+94,Close All.mq4,Script / Helper,177,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+95,Close Losses.mq4,Script / Helper,177,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+96,Close Open.mq4,Script / Helper,177,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+97,Close Pendings.mq4,Script / Helper,175,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+98,Close Profits.mq4,Script / Helper,177,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+99,Close all positions at profit target v1.1.mq4,Script / Helper,126,Martingale Grid Scalper,,True,MARTINGALE_GRID_TOXIC,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+100,CloseAfterXpips EA.mq4,Script / Helper,217,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+101,CloseAllTrades.mq4,Script / Helper,38,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+102,CloseAllTradesBuy.mq4,Script / Helper,35,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+103,CloseAllTradesBuyCurrent.mq4,Script / Helper,41,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+104,CloseAllTradesCurrent.mq4,Script / Helper,58,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+105,CloseAllTradesOpened.mq4,Script / Helper,37,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+106,CloseAllTradesOpenedCurrent.mq4,Script / Helper,42,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+107,CloseAllTradesPending.mq4,Script / Helper,37,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+108,CloseAllTradesPendingCurrent.mq4,Script / Helper,42,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+109,CloseAllTradesSell.mq4,Script / Helper,35,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+110,CloseAllTradesSellCurrent.mq4,Script / Helper,41,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+111,CloseAtProfit.mq4,Script / Helper,375,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+112,Color Levels.mq4,Custom Indicator,368,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+113,Cronex_Taichi.mq4,Script / Helper,233,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+114,Crypto Amazing Analysis 2.6.0.mq4,Script / Helper,1265,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+115,CumulativeDelta.mq4,Custom Indicator,388,Technical Indicator / Filter,iVolume,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+116,Currency Slope Strength_STOC_v1.4.mq4,Custom Indicator,822,Oscillator Mean Reversion,"iRSI,iStochastic",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+117,CurrencyStrengthIndicator.mq4,Script / Helper,601,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+118,DIDI Index MTF.mq4,Custom Indicator,160,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+119,DSS Bressert.mq4,Script / Helper,223,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+120,DT_ZZ_alerts rus.mq4,Custom Indicator,111,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+121,DailyLinesBoxes.mq4,Custom Indicator,1415,Technical Indicator / Filter,iVolume,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+122,Daily_Research.mq4,Script / Helper,111,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+123,DarvasBoxes nmc.mq4,Custom Indicator,408,Trend Breakout (MA + Donchian),"iMA,iATR",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+124,Dat cloud.mq4,Custom Indicator,201,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+125,Daydream01.mq4,Expert Advisor,99,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,100.0,725.0,7.25,99.0,0.0,0.0
+126,DeleteAllObjects.mq4,Script / Helper,21,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+127,Delta Trend_v1 600+.mq4,Custom Indicator,134,Trend Breakout (MA + Donchian),"iMA,iATR",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+128,Digital 123Pattern.mq4,Custom Indicator,499,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+129,Digital 30 MASHEK PODVAL.mq4,Script / Helper,1865,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+130,Digital ADR Calc_mod.mq4,Custom Indicator,828,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+131,Digital ADX Crossing 2.mq4,Script / Helper,249,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+132,Digital BUYSELL VOLUME 3 MTF.mq4,Custom Indicator,665,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+133,Digital Buy Sell Arrow.mq4,Script / Helper,179,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+134,Digital BuySell ZONE.mq4,Custom Indicator,79,Trend Breakout (MA + Donchian),"iMA,iATR",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+135,Digital CandleAbsoluteStrengthTrend.mq4,Custom Indicator,1095,Trend Breakout (MA + Donchian),"iMA,iATR",True,MARTINGALE_GRID_TOXIC,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+136,Digital FAST TMA LINE.mq4,Custom Indicator,407,Martingale Grid Scalper,iATR,True,MARTINGALE_GRID_TOXIC,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+137,Digital HMA TRICOLOR ZERO Alert NO-REPAINT.mq4,Script / Helper,319,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+138,Digital HULL & Alerts & Arrows.mq4,Custom Indicator,249,Trend Breakout (MA + Donchian),"iMA,iATR",True,MARTINGALE_GRID_TOXIC,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+139,Digital HULL OHLC Candle TT.mq4,Script / Helper,277,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+140,Digital HULL OHLC Candle.mq4,Script / Helper,303,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+141,Digital HULL _ Alerts _ Arrows.mq4,Custom Indicator,249,Trend Breakout (MA + Donchian),"iMA,iATR",True,MARTINGALE_GRID_TOXIC,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+142,Digital Jeepers Creepers Alert.mq4,Custom Indicator,168,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+143,Digital MA2Color.mq4,Custom Indicator,239,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+144,Digital MarketProfile vPOC.mq4,Script / Helper,2149,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+145,Digital Murrey Math Line RUS.mq4,Script / Helper,635,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+146,Digital OBOS ZZ.mq4,Custom Indicator,331,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+147,Digital SNR SND.mq4,Custom Indicator,198,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+148,Digital SupDem CHANNEL.mq4,Custom Indicator,356,Trend Breakout (MA + Donchian),"iMA,iATR",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+149,Digital TargetLines.mq4,Custom Indicator,156,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+150,Digital Trend Lord NRP.mq4,Script / Helper,247,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+151,Digital X-DAILY TARGETS.mq4,Script / Helper,357,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+152,Digital ZZ Arrow NO REPAINT.mq4,Custom Indicator,146,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+153,Digitel FLET ColorMOD.mq4,Custom Indicator,101,Moving Average Crossover,"iMA,iATR",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+154,Donchian Bands.mq4,Custom Indicator,47,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+155,Donchian Breakout Modified by Yogi.mq4,Script / Helper,1609,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+156,Donchian Breakout Syste.mq4,Script / Helper,1609,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+157,Donchian Channels - Generalized version.mq4,Custom Indicator,55,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+158,Donchian Channels - Generalized version1.mq4,Custom Indicator,55,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+159,DonchianBreakoutSystem_v1.1.2 600+.mq4,Script / Helper,1609,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+160,Dope.mq4,Script / Helper,1949,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+161,Dope_mod.mq4,Script / Helper,2075,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+162,Dope_mod_2.mq4,Script / Helper,2269,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+163,Doske_Scalping_EA_ver1.mq4,Expert Advisor,451,Moving Average Crossover,iMA,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+164,Double Stochastic RSI.mq4,Custom Indicator,334,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+165,Double(Ilan1_5&Ilan1_6).mq4,Expert Advisor,820,Oscillator Mean Reversion,iRSI,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,2,100.0,1.9,0.02,99.0,0.0,0.0
+166,DoubleMeanRenkoBuilder.mq4,Custom Indicator,525,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+167,Dragon Expert Advisor v4.1 updated 2019 .mq4,Expert Advisor,813,Moving Average Crossover,"iMA,iCCI",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,4.75,0.05,99.0,0.0,0.0
+168,Dragon Pips v2.02 Rev.mq4,Script / Helper,2361,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+169,Dream EA.mq4,Script / Helper,1131,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+170,Dreko.mq4,Expert Advisor,921,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,5.8,0.06,4.74,0.02,29.72
+171,Dserg-LinRegressionBreakout_v1 (1).1.mq4,Custom Indicator,174,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+172,Dserg-LinRegressionBreakout_v1.1.mq4,Custom Indicator,174,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+173,DuettoFX.MQ4,Custom Indicator,281,Moving Average Crossover,"iMA,iRSI",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+174,Dynamic cycle explorer.mq4,Script / Helper,636,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+175,Dynamic zones Polychromatic momentum 5.13.mq4,Custom Indicator,579,Technical Indicator / Filter,iATR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+176,DynamicCycleExplorer.mq4,Custom Indicator,126,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+177,EA - Budak Ubat v1.51.mq4,Script / Helper,1137,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+178,EA Masyuk V3..mq4,Expert Advisor,151,Moving Average Crossover,"iMA,iSAR",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,4,75.0,5.53,0.06,1.55,0.1,7.36
+179,EA Phoenix 2021.mq4,Expert Advisor,623,General Market Order EA,"iATR,iVolume,iWPR",False,SYMMETRIC_OR_DEFAULT,NO_TRADES_TRIGGERED,0,0.0,0.0,0.0,0.0,0.0,0.0
+180,EA Phoenix 2021_edited.mq4,Expert Advisor,616,General Market Order EA,"iATR,iVolume,iWPR",False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,4,75.0,2.8,0.03,1.46,0.06,6.38
+181,EA Predator Pips.mq4,Expert Advisor,533,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+182,EA Profit V10.mq4,Expert Advisor,269,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,4,100.0,31.8,0.32,99.0,0.0,0.0
+183,EA Pyramid 7.mq4,Script / Helper,1575,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+184,EA RoboFibo v.11.2.mq4,Script / Helper,4727,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+185,EA SPARTAN BOLT_.mq4,Expert Advisor,684,Moving Average Crossover,"iMA,iATR",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+186,EA Sarapan-Pagi_2.mq4,Expert Advisor,267,Volatility Bands Reversion,"iRSI,iBands,iStochastic",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,2,100.0,19.0,0.19,99.0,0.0,0.0
+187,EA Scalping Asia.mq4,Expert Advisor,233,Volatility Bands Reversion,"iMACD,iEnvelopes",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,60.0,87.5,0.88,3.82,0.15,23.05
+188,EA Smart Neural V1.mq4,Expert Advisor,1407,Martingale Grid Scalper,"iATR,iVolume,iWPR",True,MARTINGALE_GRID_TOXIC,NO_TRADES_TRIGGERED,0,0.0,0.0,0.0,0.0,0.0,0.0
+189,EA for Set TP-SL.mq4,Script / Helper,58,Technical Indicator / Filter,,False,NEGATIVE_ASYMMETRY (High Risk),INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+190,EA noName(1).mq4,Expert Advisor,5493,Martingale Grid Scalper,,True,MARTINGALE_GRID_TOXIC,NO_TRADES_TRIGGERED,0,0.0,0.0,0.0,0.0,0.0,0.0
+191,EA-2MACrossover_v1-0.mq4,Expert Advisor,158,Moving Average Crossover,iMA,False,ASYMMETRIC_POSITIVE_SKEW,PASS_PROFITABLE,4,75.0,128.0,1.28,7.24,0.2,37.47
+192,EA-HOKKYDJONG.mq4,Expert Advisor,462,Martingale Grid Scalper,,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,7,100.0,245.0,2.45,99.0,0.0,0.0
+193,EA_Close_All_v5.mq4,Script / Helper,711,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+194,EA_LUCRE.mq4,Script / Helper,973,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+195,EA_TheOne.mq4,Expert Advisor,763,Volatility Bands Reversion,"iMA,iBands,iEnvelopes",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,4,75.0,25.78,0.26,13.57,0.02,44.28
+196,EA_eurusd m15.mq4,Expert Advisor,1312,Volatility Bands Reversion,"iMA,iATR,iBands,iStochastic,iEnvelopes",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,60.0,425.0,4.25,2.37,1.51,15.4
+197,EMA MACD indi.mq4,Custom Indicator,112,Trend Breakout (MA + Donchian),"iMA,iATR,iMACD",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+198,EMA-color-alerts-indicator.mq4,Script / Helper,268,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+199,EMA_Cross__SES__BDv8_12_31.mq4,Custom Indicator,76,Trend Breakout (MA + Donchian),iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+200,EZTrender-swing.mq4,Custom Indicator,146,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+201,Ea-Tesshinso.mq4,Expert Advisor,734,General Market Order EA,"iATR,iVolume,iWPR",False,ASYMMETRIC_POSITIVE_SKEW,PASS_PROFITABLE,3,66.67,14.85,0.15,3.94,0.05,24.85
+202,EasyRobot.mq4,Expert Advisor,214,Martingale Grid Scalper,iATR,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+203,Elite_eFibo_Trader_v2_1.mq4,Expert Advisor,606,General Market Order EA,,False,ASYMMETRIC_POSITIVE_SKEW,PASS_MARGINAL,1,0.0,-10.5,-0.1,0.0,0.1,0.0
+204,Elliott Wave Oscillator.mq4,Custom Indicator,27,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+205,EquityGuard1.2c.mq4,Script / Helper,268,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+206,Extreme_Spike-123.mq4,Custom Indicator,418,Technical Indicator / Filter,iATR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+207,FDM Buy Sell Pressure.mq4,Script / Helper,165,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+208,FDM Oscillator.mq4,Custom Indicator,250,Oscillator Mean Reversion,"iATR,iStochastic",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+209,FEDTM Billioner.mq4,Expert Advisor,691,Martingale Grid Scalper,,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,4,75.0,122.75,1.23,3.43,0.5,22.72
+210,FFCal Panel (Black).mq4,Custom Indicator,885,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+211,FFCal.mq4,Custom Indicator,830,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+212,FILTER-EXTRA.mq4,Custom Indicator,187,Technical Indicator / Filter,iATR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+213,FL11.mq4,Custom Indicator,104,Oscillator Mean Reversion,iStochastic,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+214,FX5 Fibospiral v1.2.mq4,Custom Indicator,148,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+215,FX87 code.mq4,Script / Helper,2075,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+216,FXCore100.mq4,Expert Advisor,440,Volatility Bands Reversion,"iMA,iRSI,iBands,iStochastic",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,60.0,42.5,0.43,2.37,0.15,15.4
+217,FXMIND SCALPANDO H1 STANDARD 300$.mq4,Expert Advisor,2134,Moving Average Crossover,"iMA,iRSI,iMACD,iStochastic,iCCI",True,MARTINGALE_GRID_TOXIC,PASS_MARGINAL,3,33.33,-2.74,-0.03,0.89,0.25,-1.95
+218,FXMIND SCALPANDO H1 STANDARD.mq4,Expert Advisor,2134,Moving Average Crossover,"iMA,iRSI,iMACD,iStochastic,iCCI",True,MARTINGALE_GRID_TOXIC,PASS_MARGINAL,2,0.0,-25.12,-0.25,0.0,0.25,-177.48
+219,FXTT_Fx_Scanner.mq4,Script / Helper,1901,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+220,Falcon Zone MTF.mq4,Script / Helper,765,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+221,Fast Scalper.mq4,Script / Helper,762,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+222,FibProgression.mq4,Custom Indicator,60,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+223,FiboFan_8_TRO_MODIFIED_VERSION.mq4,Custom Indicator,459,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+224,FiboPivotandRSI.mq4,Expert Advisor,400,Oscillator Mean Reversion,iRSI,False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,5,60.0,20.5,0.2,1.5,0.2,7.25
+225,FiboRetracement3.mq4,Custom Indicator,420,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+226,FiboSequenceMTF 600+.mq4,Custom Indicator,190,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+227,Filter overRSI.mq4,Custom Indicator,81,Oscillator Mean Reversion,iRSI,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+228,Filter v2.01.mq4,Script / Helper,383,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+229,Filter_AO.mq4,Script / Helper,54,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+230,Find Data Holes.mq4,Script / Helper,26,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+231,Firebird HMA [i].mq4,Script / Helper,45,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+232,Firebird MC v058.mq4,Expert Advisor,184,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,1,100.0,295.0,2.95,99.0,0.0,0.0
+233,Firebird MC v0581.mq4,Expert Advisor,184,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,1,100.0,295.0,2.95,99.0,0.0,0.0
+234,Firebird MC v0582.mq4,Expert Advisor,184,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,1,100.0,295.0,2.95,99.0,0.0,0.0
+235,Firebird MC v0583.mq4,Expert Advisor,184,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,1,100.0,295.0,2.95,99.0,0.0,0.0
+236,Firebird [i].mq4,Custom Indicator,72,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+237,Firebird v0.50(26JUL05).mq4,Expert Advisor,75,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,1,100.0,295.0,2.95,99.0,0.0,0.0
+238,Firebird v0.50.mq4,Expert Advisor,75,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,1,100.0,295.0,2.95,99.0,0.0,0.0
+239,Firebird v0.51.mq4,Expert Advisor,71,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,1,100.0,295.0,2.95,99.0,0.0,0.0
+240,Firebird v0.55.mq4,Expert Advisor,114,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,FAIL_BLOWUP,3,66.67,-1267.5,-12.68,0.37,19.48,-13.38
+241,Firebird v0.56 [ea].mq4,Expert Advisor,122,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,FAIL_BLOWUP,3,66.67,-1267.5,-12.68,0.37,19.48,-13.38
+242,Firebird v0.57 [ea].mq4,Expert Advisor,123,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,FAIL_BLOWUP,3,66.67,-1267.5,-12.68,0.37,19.48,-13.38
+243,Firebird v0.57.mq4,Expert Advisor,123,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,FAIL_BLOWUP,3,66.67,-1267.5,-12.68,0.37,19.48,-13.38
+244,Firebird v0.58 [ea].mq4,Expert Advisor,147,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,FAIL_BLOWUP,3,66.67,-1267.5,-12.68,0.37,19.48,-13.38
+245,Firebird v0.60 [ea].mq4,Expert Advisor,174,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,FAIL_BLOWUP,3,66.67,-1267.5,-12.68,0.37,19.48,-13.38
+246,Firebird v0.61.01 [ea].mq4,Expert Advisor,185,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,FAIL_BLOWUP,3,66.67,-1267.5,-12.68,0.37,19.48,-13.38
+247,Firebird v0.61.01 [ea]5.mq4,Expert Advisor,185,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,FAIL_BLOWUP,3,66.67,-1267.5,-12.68,0.37,19.48,-13.38
+248,Firebird v0.62 [ea].mq4,Expert Advisor,186,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,1,100.0,295.0,2.95,99.0,0.0,0.0
+249,Firebird v0.63 [ea].mq4,Expert Advisor,193,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,1,100.0,295.0,2.95,99.0,0.0,0.0
+250,Firebird v0.63.mq4,Expert Advisor,246,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,4,75.0,123.75,1.24,1.41,2.98,5.67
+251,Firebird v0.64.mq4,Expert Advisor,235,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,PASS_MARGINAL,2,50.0,-21.25,-0.21,0.89,2.0,-1.99
+252,Firebird v0.65.mq4,Expert Advisor,236,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,PASS_MARGINAL,2,50.0,-21.25,-0.21,0.89,2.0,-1.99
+253,Firebird v01.57.mq4,Expert Advisor,123,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,FAIL_BLOWUP,3,66.67,-1267.5,-12.68,0.37,19.48,-13.38
+254,Firebird v060.mq4,Expert Advisor,174,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,PASS_MARGINAL,3,66.67,-126.75,-1.27,0.37,2.0,-13.38
+255,Firebird v065tf.mq4,Expert Advisor,244,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,PASS_MARGINAL,3,66.67,-583.75,-5.84,0.42,9.86,-12.07
+256,Firebird v0_58_JD.mq4,Expert Advisor,180,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,FAIL_BLOWUP,3,66.67,-1267.5,-12.68,0.37,19.48,-13.38
+257,Firebird v0_58_symbol_fix.mq4,Expert Advisor,175,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,FAIL_BLOWUP,3,66.67,-1267.5,-12.68,0.37,19.48,-13.38
+258,Firebird v3[1].2-fixed.mq4,Expert Advisor,581,Moving Average Crossover,"iMA,iATR,iRSI",True,MARTINGALE_GRID_TOXIC,PASS_MARGINAL,3,66.67,-176.75,-1.77,0.41,2.99,-12.22
+259,Firebird v63 TVD1.mq4,Expert Advisor,387,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,1,100.0,2.95,0.03,99.0,0.0,0.0
+260,Firebird v63 TVD2.mq4,Expert Advisor,387,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,1,100.0,2.95,0.03,99.0,0.0,0.0
+261,Firebird v63B1.mq4,Expert Advisor,210,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,1,100.0,88.5,0.88,99.0,0.0,0.0
+262,Firebird v63D1.mq4,Expert Advisor,436,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,1,100.0,2.95,0.03,99.0,0.0,0.0
+263,Firebird_v0[1].60__ea_.mq4,Expert Advisor,174,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,FAIL_BLOWUP,3,66.67,-1267.5,-12.68,0.37,19.48,-13.38
+264,Firebird_v0_60_deaz1.mq4,Expert Advisor,178,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,FAIL_BLOWUP,3,66.67,-1267.5,-12.68,0.37,19.48,-13.38
+265,Firestats v0.5.mq4,Script / Helper,37,Trend Breakout (MA + Donchian),iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+266,Fisher_mbk.mq4,Script / Helper,90,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+267,FlyBot EA 2.0.mq4,Script / Helper,1131,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+268,FoZo System.mq4,Script / Helper,394,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+269,Forex Distance.mq4,Custom Indicator,142,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+270,Forex Fireball by Forex Robot Nation~.mq4,Expert Advisor,578,Moving Average Crossover,"iMA,iRSI,iStochastic",False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,4,75.0,98.0,0.98,2.94,0.5,20.08
+271,Forex Goats SA Bar Meter.mq4,Custom Indicator,1509,Moving Average Crossover,"iMA,iMACD,iStochastic,iSAR,iWPR",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+272,Forex PiP Killer .mq4,Script / Helper,1087,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+273,Forex Robotron v1.3_fix_x.mq4,Script / Helper,1828,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+274,Forex WINNER EA (FULL2019).mq4,Script / Helper,1069,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+275,Forex hacked Pro~.mq4,Expert Advisor,1438,Oscillator Mean Reversion,iRSI,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,60.0,2.75,0.03,1.89,0.02,11.39
+276,Forex scalping indicator.mq4,Script / Helper,243,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+277,Forex-Gold-Trader-V.2.0.mq4,Expert Advisor,392,Moving Average Crossover,iMA,False,UNPROTECTED_NO_STOP_LOSS,PASS_MARGINAL,1,0.0,-1.55,-0.02,0.0,0.02,0.0
+278,ForexCurrencyIndex.mq4,Custom Indicator,523,Moving Average Crossover,"iMA,iSAR,iADX",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+279,ForexHub Non Repaint King.mq4,Script / Helper,233,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+280,ForexMT4Systems_Cycle.mq4,Custom Indicator,439,Trend Breakout (MA + Donchian),"iMA,iATR,iRSI",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+281,ForexMission.mq4,Expert Advisor,2406,Moving Average Crossover,"iMA,iRSI,iMACD,iStochastic,iCCI",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,4.75,0.05,99.0,0.0,0.0
+282,ForexOffTrend_Alert.mq4,Custom Indicator,99,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+283,ForexProfitSupreme Meter-2.mq4,Custom Indicator,1128,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+284,Forexprofitsupreme Signal.mq4,Custom Indicator,128,Trend Breakout (MA + Donchian),"iMA,iATR",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+285,Fourier_extrapolator.mq4,Custom Indicator,186,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+286,Fractal - channel breakout 1.01.mq4,Custom Indicator,228,Trend Breakout (MA + Donchian),"iMA,iATR",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+287,Fractal - channel breakout.mq4,Custom Indicator,225,Trend Breakout (MA + Donchian),"iMA,iATR",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+288,FractalZigZagNoRepaint.mq4,Custom Indicator,116,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+289,Fractals (Bill Williams).mq4,Custom Indicator,131,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+290,FractalsMD_v3.2 600+.mq4,Custom Indicator,250,Trend Breakout (MA + Donchian),iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+291,Fracture-7.4.0.mq4,Expert Advisor,287,Moving Average Crossover,"iMA,iATR,iADX,iFractals",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,5.8,0.06,4.74,0.02,29.72
+292,FreeScalper.mq4,Expert Advisor,238,General Market Order EA,,False,ASYMMETRIC_POSITIVE_SKEW,NO_TRADES_TRIGGERED,0,0.0,0.0,0.0,0.0,0.0,0.0
+293,GEBA ROBOT.mq4,Expert Advisor,169,Moving Average Crossover,"iMA,iRSI,iADX",False,NEGATIVE_ASYMMETRY (High Risk),PASS_PROFITABLE,4,100.0,29.8,0.3,99.0,0.0,0.0
+294,GEBA ROBOT2.mq4,Expert Advisor,169,Moving Average Crossover,"iMA,iRSI,iADX",False,NEGATIVE_ASYMMETRY (High Risk),PASS_PROFITABLE,4,100.0,298.0,2.98,99.0,0.0,0.0
+295,GMACD2.mq4,Custom Indicator,238,MACD Momentum,iMACD,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+296,GOLD SMART EA 1.mq4,Expert Advisor,109,Moving Average Crossover,iMA,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+297,GPSForexRobotEURGBP_edu.mq4,Expert Advisor,1187,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,5.8,0.06,4.74,0.02,29.72
+298,GPSForexRobotEURUSD_edu.mq4,Expert Advisor,1177,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,5.8,0.06,4.74,0.02,29.72
+299,GPSForexRobotUSDCHF_edu.mq4,Expert Advisor,1187,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,5.8,0.06,4.74,0.02,29.72
+300,Gann_SQ9_2.mq4,Custom Indicator,372,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+301,Gary.BaludaSuperCSS.v.2.0.mq4,Custom Indicator,1563,Moving Average Crossover,"iMA,iATR",True,MARTINGALE_GRID_TOXIC,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+302,Generic v13.20.mq4,Script / Helper,3195,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+303,Givonly_SnR_SnD_modM15 [saol].mq4,Custom Indicator,215,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+304,GoWithFlow.mq4,Script / Helper,927,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+305,Gold.mq4,Expert Advisor,117,General Market Order EA,,False,SYMMETRIC_OR_DEFAULT,NO_TRADES_TRIGGERED,0,0.0,0.0,0.0,0.0,0.0,0.0
+306,GoldFX_Filter.mq4,Script / Helper,401,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+307,Gold_Line_FX_CM_Pro.mq4,Script / Helper,2239,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+308,Golden MA MTF TT [x5] (1).mq4,Script / Helper,516,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+309,Golden MA MTF TT [x5] button.mq4,Custom Indicator,289,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+310,Golden MA MTF TT [x5].mq4,Script / Helper,516,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+311,Golden Owl source code.mq4,Expert Advisor,1595,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,PASS_MARGINAL,4,75.0,2.75,0.03,1.03,1.0,0.42
+312,Golden_section_v3.2.mq4,Custom Indicator,765,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+313,Good good.mq4,Script / Helper,955,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+314,Grail.mq4,Script / Helper,259,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+315,Grid_Builder.mq4,Custom Indicator,48,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+316,Grid_Template.mq4,Script / Helper,287,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+317,H4_BreakOut_Cycle_V1a.mq4,Script / Helper,12185,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+318,HMA Trend Arrows TT.mq4,Script / Helper,323,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+319,HMA_Color.mq4,Custom Indicator,85,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+320,HalfTrend-1.02.mq4,Custom Indicator,169,Trend Breakout (MA + Donchian),"iMA,iATR",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+321,HeatMapModokiV1.mq4,Custom Indicator,190,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+322,Heiken Ashi Double Smoothed MA+T3.mq4,Script / Helper,701,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+323,Heiken Ashi.mq4,Custom Indicator,111,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+324,Heiken_Ashi_Smoothed.mq4,Custom Indicator,87,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+325,HiLow - Jurik smooth histo mtf.mq4,Custom Indicator,117,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+326,Hide Trendline Script.mq4,Script / Helper,17,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+327,HirosiMA 2.mq4,Custom Indicator,141,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+328,HirosiMA.mq4,Custom Indicator,95,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+329,Hodrick Prescott MA.mq4,Custom Indicator,95,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+330,IBFX_-_Waves 1.mq4,Script / Helper,1723,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+331,ICT 80_20.mq4,Custom Indicator,138,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+332,ICT AUTOBOT 1.0 EA  .mq4,Custom Indicator,138,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+333,ICWR.a.mq4,Custom Indicator,210,Oscillator Mean Reversion,iRSI,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+334,IINWMARROWS.mq4,Custom Indicator,107,Trend Breakout (MA + Donchian),iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+335,IKONIKROBOT.(EA).mq4,Script / Helper,1169,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+336,ILAN TURBO BETA v.4.5.1 +Mear.mq4,Expert Advisor,296,Oscillator Mean Reversion,iRSI,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,60.0,27.5,0.27,1.89,0.15,11.39
+337,ILAN_TURBO_BETA_v.4.5.11_Plus.mq4,Expert Advisor,842,Oscillator Mean Reversion,iRSI,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,60.0,27.5,0.27,1.89,0.15,11.39
+338,ILAN_TURBO_BETA_v.4.5.1_Plus_PcntM.mq4,Expert Advisor,965,Oscillator Mean Reversion,iRSI,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,60.0,27.5,0.27,1.89,0.15,11.39
+339,Ichimoku Scanner v1.1.mq4,Custom Indicator,468,Technical Indicator / Filter,iIchimoku,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+340,Ichimoku.mq4,Custom Indicator,176,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+341,Ichimoku_Signals_and_Alert.mq4,Custom Indicator,288,Technical Indicator / Filter,iIchimoku,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+342,Ikarus_2.0.mq4,Script / Helper,6045,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+343,Ilan V 1.6.mq4,Script / Helper,869,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+344,Ilan-1.8.mq4,Expert Advisor,447,Martingale Grid Scalper,,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,4.75,0.05,99.0,0.0,0.0
+345,Ilan-Combi V2.1.mq4,Expert Advisor,1856,Moving Average Crossover,"iMA,iATR,iRSI,iMACD,iStochastic,iCCI",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,4.75,0.05,99.0,0.0,0.0
+346,Ilan-Combi _Dinamic.mq4,Expert Advisor,988,Oscillator Mean Reversion,iRSI,True,MARTINGALE_GRID_TOXIC,PASS_MARGINAL,4,75.0,-6.72,-0.07,0.33,0.1,-12.34
+347,Ilan-Trio V1.2.mq4,Expert Advisor,1228,Oscillator Mean Reversion,iRSI,True,MARTINGALE_GRID_TOXIC,PASS_MARGINAL,4,75.0,-67.25,-0.67,0.33,1.0,-12.34
+348,Ilan-Trio V1.33.mq4,Expert Advisor,1294,Oscillator Mean Reversion,iRSI,True,MARTINGALE_GRID_TOXIC,PASS_MARGINAL,4,75.0,-6.72,-0.07,0.33,0.1,-12.34
+349,Ilan-Trio V1.43.mq4,Expert Advisor,2186,Moving Average Crossover,"iMA,iRSI,iMACD,iStochastic,iCCI",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,4.75,0.05,99.0,0.0,0.0
+350,Ilan-Trio V1.45.4.mq4,Expert Advisor,1154,Oscillator Mean Reversion,iRSI,True,MARTINGALE_GRID_TOXIC,PASS_MARGINAL,4,75.0,-6.72,-0.07,0.33,0.1,-12.34
+351,Ilan-Trio V1.47.mq4,Expert Advisor,2239,Moving Average Crossover,"iMA,iRSI,iMACD,iStochastic,iCCI",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,9.75,0.1,99.0,0.0,0.0
+352,Ilan-Trio V1.49.mq4,Script / Helper,3601,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+353,Ilan1.6.Prof6.mq4,Expert Advisor,388,Oscillator Mean Reversion,iRSI,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,2,100.0,1.9,0.02,99.0,0.0,0.0
+354,Ilan_1.5_ZeroProfit.mq4,Expert Advisor,444,Oscillator Mean Reversion,"iMACD,iStochastic",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,16,100.0,8.0,0.08,99.0,0.0,0.0
+355,Ilan_1.6_Dynamic_MM.mq4,Expert Advisor,415,Trend Breakout (MA + Donchian),"iMA,iRSI,iCCI",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,2,100.0,19.0,0.19,99.0,0.0,0.0
+356,Ilan_16TD_CCI_1.3.mq4,Expert Advisor,491,Trend Breakout (MA + Donchian),"iMA,iCCI",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,2,100.0,1.9,0.02,99.0,0.0,0.0
+357,Ilan_16TD_SCT.mq4,Expert Advisor,504,Trend Breakout (MA + Donchian),"iMA,iCCI",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,2,100.0,1.9,0.02,99.0,0.0,0.0
+358,Ilan_Exstra_Friday-from_Martingeil.mq4,Expert Advisor,418,Oscillator Mean Reversion,iRSI,True,MARTINGALE_GRID_TOXIC,PASS_MARGINAL,4,75.0,-32.25,-0.32,0.68,1.0,-5.35
+359,Ilan_HiLo_RSI.mq4,Expert Advisor,388,Oscillator Mean Reversion,iRSI,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,2,100.0,1.9,0.02,99.0,0.0,0.0
+360,Ilan_HiLo_RSI_Dinamic.mq4,Expert Advisor,401,Oscillator Mean Reversion,iRSI,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,2,100.0,1.9,0.02,99.0,0.0,0.0
+361,Ilan_HiLo_RSI_fixed_by_Vespertilio.mq4,Expert Advisor,388,Oscillator Mean Reversion,iRSI,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,2,100.0,1.9,0.02,99.0,0.0,0.0
+362,Ilan_Lite_1.mq4,Expert Advisor,159,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+363,Ilan_Nikolaus_mod.mq4,Expert Advisor,463,Oscillator Mean Reversion,"iRSI,iCCI",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,2,100.0,19.0,0.19,99.0,0.0,0.0
+364,Ilan_RSI_MACD.mq4,Expert Advisor,393,Moving Average Crossover,"iMA,iRSI,iMACD",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+365,Ilan_RSI_mm_extr18.mq4,Expert Advisor,1053,Martingale Grid Scalper,,True,MARTINGALE_GRID_TOXIC,PASS_MARGINAL,4,75.0,2.75,0.03,1.03,1.0,0.42
+366,Ilan_RSI_mm_extr192_rrr.mq4,Expert Advisor,1258,Martingale Grid Scalper,,True,MARTINGALE_GRID_TOXIC,PASS_MARGINAL,4,75.0,2.75,0.03,1.03,1.0,0.42
+367,Ilan_T1000_Plus2.mq4,Expert Advisor,853,Oscillator Mean Reversion,iRSI,False,UNPROTECTED_NO_STOP_LOSS,PASS_MARGINAL,5,60.0,-17.5,-0.18,0.44,0.26,-12.68
+368,Ilan_Tren_AHP_2010.mq4,Expert Advisor,458,Martingale Grid Scalper,"iBearsPower,iBullsPower",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,23.75,0.24,99.0,0.0,0.0
+369,Ilan_VS_TrendTrading_LastTP_v1_2.mq4,Expert Advisor,572,Moving Average Crossover,"iMA,iCCI",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+370,Ilan_VS_TrendTrading_Trail.mq4,Expert Advisor,482,Moving Average Crossover,"iMA,iCCI",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+371,Indicator Max Pips.mq4,Expert Advisor,4697,Moving Average Crossover,"iMA,iVolume",False,ASYMMETRIC_POSITIVE_SKEW,PASS_MARGINAL,206,0.0,-144.2,-1.44,0.0,1.44,0.0
+372,InsideBar 2.mq4,Custom Indicator,64,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+373,Investing.mq4,Script / Helper,4451,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+374,Iron Scalper EA.mq4,Script / Helper,768,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+375,JH-Color V4.mq4,Script / Helper,997,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+376,JJN-Scalper.mq4,Custom Indicator,191,Technical Indicator / Filter,iATR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+377,JUMSTOCH_FIXEDLOT.mq4,Expert Advisor,436,Moving Average Crossover,"iMA,iRSI,iStochastic",False,NEGATIVE_ASYMMETRY (High Risk),PASS_MARGINAL,3,66.67,-19.45,-0.19,0.23,0.25,-17.25
+378,JabrixScalperForInsta.mq4,Expert Advisor,338,General Market Order EA,,False,SYMMETRIC_OR_DEFAULT,PASS_MARGINAL,30,13.33,7.0,0.07,1.08,0.59,0.87
+379,JimDandyAlarm.mq4,Custom Indicator,75,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+380,Jum+StoC+v2.3F~.mq4,Expert Advisor,1017,Moving Average Crossover,"iMA,iRSI,iStochastic",False,NEGATIVE_ASYMMETRY (High Risk),PASS_PROFITABLE,7,100.0,1225.0,12.25,99.0,0.0,0.0
+381,Jum+StoCh luis.mq4,Expert Advisor,440,Moving Average Crossover,"iMA,iRSI,iStochastic",False,NEGATIVE_ASYMMETRY (High Risk),FAIL_BLOWUP,2,50.0,-11200.0,-112.0,0.12,110.46,-28.1
+382,Jum+StoCh+v2 (3).5F.mq4,Expert Advisor,435,Moving Average Crossover,"iMA,iRSI,iStochastic",False,NEGATIVE_ASYMMETRY (High Risk),FAIL_BLOWUP,2,50.0,-11200.0,-112.0,0.12,110.46,-28.1
+383,Jum+StoCh+v2.3F.mq4,Script / Helper,2305,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+384,Jum+StoCh+v2.5F.mq4,Expert Advisor,435,Moving Average Crossover,"iMA,iRSI,iStochastic",False,NEGATIVE_ASYMMETRY (High Risk),FAIL_BLOWUP,2,50.0,-11200.0,-112.0,0.12,110.46,-28.1
+385,Jurik volty bands - separate 1.02.mq4,Custom Indicator,371,Trend Breakout (MA + Donchian),"iMA,iATR",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+386,KGFv1.mq4,Script / Helper,4906,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+387,Kaufman_Stochastik(Bullforyou.com).mq4,Custom Indicator,86,Oscillator Mean Reversion,iStochastic,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+388,LabTrend1_v4.mq4,Custom Indicator,179,Technical Indicator / Filter,iATR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+389,LabTrend3_v2.mq4,Custom Indicator,100,Trend Breakout (MA + Donchian),"iMA,iATR",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+390,Laguerre PPO 1.06 1090 fix.mq4,Script / Helper,609,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+391,Life Changer EA.mq4,Script / Helper,3328,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+392,Limited Channels.mq4,Script / Helper,335,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+393,Lowpassfilter_v1 mtf.mq4,Script / Helper,547,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+394,M-Sniper EA.mq4,Script / Helper,4261,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+395,MA CROSS WITH SOUND.mq4,Custom Indicator,81,Trend Breakout (MA + Donchian),iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+396,MA Cross Arrows.mq4,Custom Indicator,78,Trend Breakout (MA + Donchian),iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+397,MA-RSI-EA.mq4,Script / Helper,209,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+398,MA-X Arrows.mq4,Custom Indicator,89,Trend Breakout (MA + Donchian),iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+399,MACD Cross Zero EA v1.02.mq4,Expert Advisor,684,Moving Average Crossover,"iMA,iMACD",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+400,MACD Sample.mq4,Expert Advisor,119,Moving Average Crossover,"iMA,iMACD",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,133.0,1.33,9.58,0.15,41.93
+401,MACD_4in1_v2.mq4,Custom Indicator,184,MACD Momentum,iMACD,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+402,MACD_ColorHist_Alert  12  26  9   LA .mq4,Custom Indicator,88,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+403,MACD_Mirror.mq4,Custom Indicator,47,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+404,MA_Cross_with_Exit_EA.mq4,Expert Advisor,717,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,292.5,2.92,99.0,0.0,0.0
+405,MBFX Timing.mq4,Custom Indicator,124,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+406,MP Overlay.mq4,Custom Indicator,84,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+407,MQLTA MT4 High Low Trailing Stop.mq4,Script / Helper,271,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+408,MQLTA MT4 Supertrend Line.mq4,Script / Helper,357,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+409,MR dollar_Pending Orders EA V6.1.mq4,Script / Helper,999,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+410,MR.dollar_Pending Orders EA V5.5.mq4,Expert Advisor,418,Martingale Grid Scalper,,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+411,MR.dollar_Pending Orders EA V6.1.mq4,Script / Helper,999,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+412,MRO2.mq4,Custom Indicator,34,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+413,MS_1.mq4,Expert Advisor,138,Martingale Grid Scalper,,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+414,MS_2.mq4,Expert Advisor,375,Martingale Grid Scalper,,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+415,MS_4.mq4,Expert Advisor,387,Martingale Grid Scalper,,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+416,MS_5.mq4,Expert Advisor,399,Martingale Grid Scalper,,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+417,MT4 Elliot Wave.mq4,Script / Helper,2376,Trend Breakout (MA + Donchian),iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+418,MT4-Cams-Pivots.mq4,Custom Indicator,204,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+419,MT4Correlation_Seperate_Window.mq4,Custom Indicator,67,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+420,MTF Candle Direction Update Close Candle.mq4,Custom Indicator,65,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+421,MTF Center of Gravity.mq4,Custom Indicator,69,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+422,MTF HMA Russian Color.mq4,Custom Indicator,135,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+423,MTF_Juice.mq4,Custom Indicator,69,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+424,MTF_MACD_inColor.mq4,Custom Indicator,98,MACD Momentum,iMACD,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+425,MTF_Trix.mq4,Custom Indicator,120,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+426,MTH Renko Chart Builder Indi Ver 04.mq4,Custom Indicator,525,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+427,MY MILLIONS EA.mq4,Expert Advisor,612,Volatility Bands Reversion,"iMA,iRSI,iBands,iStdDev,iBearsPower",False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,5,60.0,32.5,0.32,1.79,0.2,10.47
+428,MaHadgeEA.mq4,Script / Helper,3513,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+429,Madlen_5_0.mq4,Custom Indicator,545,Technical Indicator / Filter,iFractals,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+430,MadroGoldenFilter.mq4,Custom Indicator,137,Moving Average Crossover,"iMA,iRSI,iMACD,iADX,iMomentum",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+431,Magic Fx Formula.mq4,Custom Indicator,217,Volatility Bands Reversion,iBands,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+432,Mano MM.mq4,Custom Indicator,471,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+433,Market Profiles.mq4,Custom Indicator,301,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+434,MarketProfile.mq4,Script / Helper,3339,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+435,Market_Statistics_v4_1.mq4,Custom Indicator,231,Martingale Grid Scalper,,True,MARTINGALE_GRID_TOXIC,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+436,Master_Candle.mq4,Custom Indicator,73,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+437,MegaDroid~.mq4,Expert Advisor,2211,Trend Breakout (MA + Donchian),"iMA,iRSI,iCCI",False,UNPROTECTED_NO_STOP_LOSS,PASS_MARGINAL,4,25.0,-22.0,-0.22,0.53,0.31,-11.27
+438,Min-micro-trading.mq4,Custom Indicator,387,Moving Average Crossover,"iMA,iRSI,iMACD,iSAR,iADX",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+439,Mission Impossible Power Two Open Version 2.mq4,Expert Advisor,450,Martingale Grid Scalper,,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,3.25,0.03,99.0,0.0,0.0
+440,Money Hunter_Modified _Ea _fixed lot.mq4,Expert Advisor,733,General Market Order EA,"iATR,iVolume,iWPR",False,ASYMMETRIC_POSITIVE_SKEW,PASS_PROFITABLE,3,66.67,14.85,0.15,3.94,0.05,24.85
+441,Money Pile EA.mq4,Script / Helper,6727,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+442,MorFX Gold Digger A+.mq4,Script / Helper,1055,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+443,Multi Lot Scalper.mq4,Expert Advisor,335,General Market Order EA,,False,NEGATIVE_ASYMMETRY (High Risk),PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+444,Multi Pivots.mq4,Custom Indicator,479,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+445,Multi pair MACD mtf.mq4,Custom Indicator,305,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+446,Multi purpose trade manager.mq4,Script / Helper,6473,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+447,Multi-Lot Scalper.mq4,Expert Advisor,258,MACD Momentum,iMACD,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,103.0,1.03,7.65,0.15,38.38
+448,Multi-MACD.mq4,Script / Helper,1151,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+449,MultiBreakOut_v5.mq4,Expert Advisor,143,General Market Order EA,,False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,4,75.0,1590.0,15.9,3.59,5.73,24.14
+450,MultiEMA.mq4,Script / Helper,45,Trend Breakout (MA + Donchian),iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+451,MultiHedge V1.1.mq4,Expert Advisor,170,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,580.0,5.8,4.74,1.51,29.72
+452,MultiIndicator.mq4,Custom Indicator,347,Moving Average Crossover,"iMA,iMACD,iCCI,iSAR,iADX",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+453,MultiInstrument.mq4,Custom Indicator,73,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+454,MultiPairWPR.mq4,Expert Advisor,87,General Market Order EA,iWPR,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,2900.0,29.0,4.74,6.9,29.72
+455,MultiTrader.mq4,Script / Helper,11145,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+456,Multi_Lot_Scalper.mq4,Expert Advisor,258,MACD Momentum,iMACD,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,103.0,1.03,7.65,0.15,38.38
+457,Multi_Lot_Scalper1.mq4,Expert Advisor,262,MACD Momentum,iMACD,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,10.3,0.1,7.65,0.02,38.38
+458,Multi_Lot_Scalper_A.mq4,Expert Advisor,262,MACD Momentum,iMACD,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,10.3,0.1,7.65,0.02,38.38
+459,Multi_Lot_Scalper_P_D1_JLY4.mq4,Expert Advisor,295,General Market Order EA,,False,NEGATIVE_ASYMMETRY (High Risk),PASS_PROFITABLE,5,100.0,142.5,1.42,99.0,0.0,0.0
+460,Multi_Lot_Scalper_P_DAY_MT4.mq4,Expert Advisor,334,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+461,Multi_Lot_Scalper_Psars.mq4,Expert Advisor,258,MACD Momentum,"iMACD,iSAR",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+462,Multi_Lot_Scalper_Psars1.mq4,Expert Advisor,258,MACD Momentum,"iMACD,iSAR",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+463,Multi_Lot_Scalper_PsarsV1.mq4,Expert Advisor,265,MACD Momentum,"iMACD,iSAR",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,103.0,1.03,7.65,0.15,38.38
+464,Multi_Lot_Scapler_P_DAY_JLY.mq4,Expert Advisor,295,General Market Order EA,,False,NEGATIVE_ASYMMETRY (High Risk),PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+465,Multi_Lot_Scapler_P_DAY_JLY1.mq4,Expert Advisor,295,General Market Order EA,,False,NEGATIVE_ASYMMETRY (High Risk),PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+466,Multi_Lot_Scapler_P_DAY_JLY2.mq4,Expert Advisor,295,General Market Order EA,,False,NEGATIVE_ASYMMETRY (High Risk),PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+467,Multi_Lot_Scapler_P_DAY_JLY3.mq4,Expert Advisor,295,General Market Order EA,,False,NEGATIVE_ASYMMETRY (High Risk),PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+468,Multi_Lot_Scapler_P_DAY_MT4.mq4,Expert Advisor,334,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+469,Multi_Lot_Scapler_P_DAY_MT41.mq4,Expert Advisor,334,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+470,Multilot-ASCTRend.mq4,Expert Advisor,114,General Market Order EA,iWPR,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+471,Multilot.mq4,Expert Advisor,69,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+472,MultipleMA.mq4,Script / Helper,111,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+473,MultiplePivotsV2.mq4,Custom Indicator,833,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+474,Murrey Math Lines F.mq4,Custom Indicator,267,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+475,Murrey Math Lines F2.mq4,Custom Indicator,267,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+476,Murrey_Math.mq4,Custom Indicator,199,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+477,Murrey_Math1.mq4,Custom Indicator,242,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+478,Murrey_Math_Line_X_eng.mq4,Custom Indicator,244,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+479,Murrey_Math_MT4_Period_VG.mq4,Custom Indicator,242,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+480,Murrey_Math_MT4_VG 2.mq4,Custom Indicator,199,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+481,Murrey_Math_MT4_VG.mq4,Custom Indicator,199,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+482,Murrey_Math_MT4_VG1.mq4,Custom Indicator,197,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+483,Murrey_Math_MT4_VG1b.mq4,Custom Indicator,189,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+484,Murrey_Math_MT4_VG_A.mq4,Custom Indicator,199,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+485,Murrey_Math_MT4_VGb.mq4,Custom Indicator,199,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+486,Murrey_Math_Modified.mq4,Custom Indicator,197,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+487,Murrey_Math_Modified1.mq4,Custom Indicator,209,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+488,My4xScalper_GOLD~.mq4,Expert Advisor,604,Moving Average Crossover,"iMA,iRSI,iMomentum",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,5.8,0.06,4.74,0.02,29.72
+489,MyFirstEA.mq4,Expert Advisor,149,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+490,MyFriend.mq4,Expert Advisor,313,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,193.0,1.93,13.45,0.15,46.53
+491,MyLuckyProV04p.mq4,Expert Advisor,308,Moving Average Crossover,iMA,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,100.0,225.0,2.25,99.0,0.0,0.0
+492,MyNewsTrading_EA.mq4,Expert Advisor,54,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+493,MyProject.mq4,Expert Advisor,48,General Market Order EA,,False,ASYMMETRIC_POSITIVE_SKEW,PASS_PROFITABLE,5,100.0,97.5,0.98,99.0,0.0,0.0
+494,My_First_Adviser.mq4,Expert Advisor,142,Moving Average Crossover,"iMA,iRSI",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+495,NAS KILLER_PRO_EA 3.0.mq4,Script / Helper,9798,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+496,NASDAQ Robotron.mq4,Script / Helper,921,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+497,NEWEXPERT-NN.mq4,Expert Advisor,187,Moving Average Crossover,"iMA,iATR",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+498,NINA.mq4,Custom Indicator,167,Trend Breakout (MA + Donchian),iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+499,NINA1.mq4,Custom Indicator,167,Trend Breakout (MA + Donchian),iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+500,NRTR 1.mq4,Custom Indicator,82,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+501,NRTR Pilot Alert.mq4,Custom Indicator,159,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+502,NRTR Rosh v2.mq4,Custom Indicator,178,Trend Breakout (MA + Donchian),"iMA,iATR",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+503,NRTR WATR-hist.mq4,Custom Indicator,109,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+504,NRTR WATR.mq4,Custom Indicator,109,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+505,NRTR With Alert.mq4,Custom Indicator,82,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+506,NRTR.mq4,Custom Indicator,82,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+507,NRTR1.mq4,Custom Indicator,68,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+508,NRTR_EXP.mq4,Expert Advisor,171,General Market Order EA,iATR,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,580.0,5.8,4.74,1.51,29.72
+509,NRTR_Line1.mq4,Script / Helper,62,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+510,NRTR_Pilot911.mq4,Custom Indicator,143,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+511,NRTR_Pilot_2alert.mq4,Custom Indicator,57,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+512,NRTR_Pilot_alert.mq4,Custom Indicator,159,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+513,NRTR_Pilot_alert1.mq4,Custom Indicator,159,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+514,NRTR_dots1.mq4,Script / Helper,61,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+515,NTK_07.mq4,Expert Advisor,284,Trend Breakout (MA + Donchian),iMA,False,ASYMMETRIC_POSITIVE_SKEW,NO_TRADES_TRIGGERED,0,0.0,0.0,0.0,0.0,0.0,0.0
+516,NUGROHO_V3.mq4,Custom Indicator,331,Trend Breakout (MA + Donchian),iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+517,NY breakout v0.10.mq4,Expert Advisor,37,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,1030.0,10.3,7.65,1.49,38.38
+518,NY breakout v0.11.mq4,Expert Advisor,46,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,1030.0,10.3,7.65,1.49,38.38
+519,NY breakout v01.11.mq4,Expert Advisor,46,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,1030.0,10.3,7.65,1.49,38.38
+520,N_StepMA_1.2_Email.mq4,Custom Indicator,164,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+521,N_StepMA_1_Email.mq4,Custom Indicator,154,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+522,Neuro-MartingailExpertStochastic_v3.mq4,Expert Advisor,288,Oscillator Mean Reversion,iStochastic,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,60.0,42.5,0.43,2.37,0.15,15.4
+523,NeuroProba.mq4,Custom Indicator,197,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+524,Nevalyashka_BreakdownLevel.mq4,Expert Advisor,154,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+525,NewM2H.mq4,Expert Advisor,372,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+526,New_Candle_Alarm.mq4,Custom Indicator,22,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+527,Newest Universal 10.mq4,Expert Advisor,1197,General Market Order EA,,False,ASYMMETRIC_POSITIVE_SKEW,PASS_PROFITABLE,4,75.0,133.0,1.33,9.58,0.15,41.93
+528,Newesta 4.2.mq4,Expert Advisor,434,General Market Order EA,,False,ASYMMETRIC_POSITIVE_SKEW,PASS_PROFITABLE,4,75.0,13.8,0.14,14.14,0.01,47.14
+529,News On Mt4.mq4,Script / Helper,1503,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+530,News Traders Mt4 v01.mq4,Expert Advisor,155,General Market Order EA,,False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,4,75.0,4.8,0.05,1.48,0.1,6.56
+531,News Trading Pending Order EA v1.6.mq4,Expert Advisor,267,General Market Order EA,,False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,9,33.33,4.05,0.04,2.23,0.02,11.29
+532,News_AmazingEA_1.0.5.mq4,Expert Advisor,213,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,116.0,1.16,4.74,0.31,29.72
+533,News_Grabber_Limit.mq4,Expert Advisor,294,General Market Order EA,,False,ASYMMETRIC_POSITIVE_SKEW,PASS_MARGINAL,1,0.0,-2.55,-0.03,0.0,0.03,0.0
+534,News_Traders_Mt4_v01.mq4,Expert Advisor,155,General Market Order EA,,False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,4,75.0,4.8,0.05,1.48,0.1,6.56
+535,Night Grid FZ.mq4,Expert Advisor,248,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,100.0,570.0,5.7,99.0,0.0,0.0
+536,Nikra EA.mq4,Expert Advisor,552,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,5.8,0.06,4.74,0.02,29.72
+537,NinaEA v.02.mq4,Expert Advisor,103,Moving Average Crossover,iMA,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+538,NinaEA v03.mq4,Expert Advisor,109,Moving Average Crossover,iMA,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+539,NinaEAtest.mq4,Expert Advisor,62,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+540,Nina_StepMA_1.mq4,Custom Indicator,153,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+541,NinjaForex_Versi AI unlimited fix.mq4,Script / Helper,1321,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+542,NinjaForex_Versi AI unlimited.mq4,Script / Helper,1283,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+543,No_Nonsense_ATR.mq4,Script / Helper,1815,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+544,Noah10pips2006.mq4,Expert Advisor,347,General Market Order EA,,False,ASYMMETRIC_POSITIVE_SKEW,PASS_PROFITABLE,3,66.67,143.5,1.44,3.59,0.56,23.24
+545,NonLagMA_v7.1.mq4,Custom Indicator,148,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+546,NonLagRsi nrp mtf+alerts nmc.mq4,Custom Indicator,260,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+547,Nrtr_revers_www_forex-instruments_info.mq4,Expert Advisor,95,General Market Order EA,iATR,False,SYMMETRIC_OR_DEFAULT,NO_TRADES_TRIGGERED,0,0.0,0.0,0.0,0.0,0.0,0.0
+548,Nuclear Option script.mq4,Script / Helper,52,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+549,O2.mq4,Expert Advisor,310,Oscillator Mean Reversion,"iATR,iCCI",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,4,75.0,72.75,0.73,1.72,1.0,9.32
+550,OBOS Divergence_FXTS_FastMod.mq4,Expert Advisor,325,Volatility Bands Reversion,"iMA,iEnvelopes",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,4,75.0,4.28,0.04,1.71,0.06,9.13
+551,OBOS.mq4,Custom Indicator,148,Trend Breakout (MA + Donchian),"iMA,iStdDev",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+552,OBOS_Divergence(Bullforyou.com).mq4,Expert Advisor,325,Volatility Bands Reversion,"iMA,iEnvelopes",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,4,75.0,4.28,0.04,1.71,0.06,9.13
+553,OGT Zone Recovery EA v1.5.mq4,Expert Advisor,1115,Oscillator Mean Reversion,"iATR,iRSI",True,MARTINGALE_GRID_TOXIC,PASS_MARGINAL,2,0.0,-251.25,-2.51,0.0,2.51,-177.48
+554,OM_2WAY_v3.6.mq4,Expert Advisor,666,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,145.0,1.45,99.0,0.0,0.0
+555,ORIGINAL88.mq4,Script / Helper,1684,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+556,OU Forex Mastery Candle Clock.mq4,Custom Indicator,174,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+557,OU Forex Mastery Market Scanner.mq4,Script / Helper,842,Oscillator Mean Reversion,iStochastic,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+558,OU Forex Mastery PAI Oscillator.mq4,Custom Indicator,193,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+559,OU Forex Mastery Price Action.mq4,Custom Indicator,365,Oscillator Mean Reversion,iStochastic,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+560,OU Forex Mastery Price Magnifier.mq4,Custom Indicator,94,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+561,OU Forex Mastery Signal Confirmation.mq4,Custom Indicator,307,Trend Breakout (MA + Donchian),"iMA,iStochastic",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+562,OU Forex Mastery Trend Channel.mq4,Custom Indicator,323,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+563,OU Forex Mastery Trend Momentum.mq4,Custom Indicator,331,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+564,OmegaTrendEA_v7.0_EURUSD.mq4,Expert Advisor,690,Moving Average Crossover,"iMA,iVolume",False,UNPROTECTED_NO_STOP_LOSS,PASS_MARGINAL,1,0.0,-15.5,-0.16,0.0,0.16,0.0
+565,OmegaTrend_v7.0.mq4,Custom Indicator,381,Trend Breakout (MA + Donchian),"iMA,iATR",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+566,OnChart CCI.mq4,Script / Helper,311,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+567,OnChart MFI.mq4,Script / Helper,307,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+568,OndaFX-EDU.mq4,Expert Advisor,1023,Moving Average Crossover,"iMA,iATR,iStdDev",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+569,Open Close Cross Strategy R5.1 revised by JustUncleL.mq4,Expert Advisor,625,Martingale Grid Scalper,,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+570,Original RSI-EMA Signals.mq4,Custom Indicator,176,Oscillator Mean Reversion,"iATR,iRSI",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+571,OsMA.mq4,Script / Helper,39,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+572,OsMA_5_bar_rolling_0.4.mq4,Script / Helper,79,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+573,OverHedge.mq4,Expert Advisor,273,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+574,OverHedgeV2.mq4,Expert Advisor,321,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+575,Overhedgev2_www_forex-instruments_info.mq4,Expert Advisor,321,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+576,Overlay Positive Hedging v1a_.mq4,Expert Advisor,823,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,100.0,318.0,3.18,99.0,0.0,0.0
+577,P4L CandleTime.mq4,Custom Indicator,130,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+578,PAMA GannGrid_indv4.3.mq4,Custom Indicator,480,Martingale Grid Scalper,iATR,True,MARTINGALE_GRID_TOXIC,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+579,PAMA GannGrid_oscv4.3.mq4,Custom Indicator,477,Martingale Grid Scalper,iATR,True,MARTINGALE_GRID_TOXIC,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+580,PBF_PB_Direction.mq4,Custom Indicator,151,Trend Breakout (MA + Donchian),iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+581,PBF_Squeeze.mq4,Custom Indicator,253,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+582,PBF_Trend_Bars_v2.mq4,Custom Indicator,192,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+583,PCCI.mq4,Custom Indicator,71,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+584,PCS-01.mq4,Expert Advisor,133,General Market Order EA,,False,SYMMETRIC_OR_DEFAULT,NO_TRADES_TRIGGERED,0,0.0,0.0,0.0,0.0,0.0,0.0
+585,PCS-02.mq4,Expert Advisor,263,General Market Order EA,,False,SYMMETRIC_OR_DEFAULT,NO_TRADES_TRIGGERED,0,0.0,0.0,0.0,0.0,0.0,0.0
+586,PChannel.mq4,Custom Indicator,39,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+587,PDF.mq4,Custom Indicator,37,Oscillator Mean Reversion,iStochastic,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+588,PFP v3-2.mq4,Expert Advisor,272,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,5.8,0.06,4.74,0.02,29.72
+589,PIIP-3.mq4,Expert Advisor,62,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+590,PIIP.mq4,Expert Advisor,58,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+591,PINBAR.mq4,Script / Helper,1307,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+592,Pair High Return(R3-07).mq4,Script / Helper,1311,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+593,PairTrader_Exp v41.mq4,Expert Advisor,236,General Market Order EA,,False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,1,100.0,24.5,0.24,99.0,0.0,0.0
+594,PairTrader_Ind v2.mq4,Custom Indicator,147,Moving Average Crossover,"iMA,iATR",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+595,Pallada_Volatility.mq4,Custom Indicator,93,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+596,Palmuz.mq4,Expert Advisor,142,Moving Average Crossover,iMA,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,3,66.67,223.5,2.24,15.42,0.16,41.55
+597,ParaSwing_EA~eurusd m15.mq4,Expert Advisor,1312,Volatility Bands Reversion,"iMA,iATR,iBands,iStochastic,iEnvelopes",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,60.0,425.0,4.25,2.37,1.51,15.4
+598,Parabolic MA +Alert 2.mq4,Custom Indicator,182,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+599,Parabolic marsi adaptive MACD.mq4,Custom Indicator,272,Trend Breakout (MA + Donchian),"iMA,iRSI",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+600,Parabolic.mq4,Custom Indicator,146,Directional Trend Following,iSAR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+601,Parabolic2.mq4,Custom Indicator,146,Directional Trend Following,iSAR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+602,Parabolic_Alert.mq4,Custom Indicator,197,Directional Trend Following,iSAR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+603,Parabolic_SAR.mq4,Expert Advisor,73,Directional Trend Following,iSAR,False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,1,100.0,490.0,4.9,99.0,0.0,0.0
+604,Parabolic_ZZ-0.mq4,Custom Indicator,66,Directional Trend Following,iSAR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+605,Paramon-work-time.mq4,Script / Helper,267,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+606,Paramon.mq4,Custom Indicator,95,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+607,ParamonI.mq4,Custom Indicator,82,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+608,Paramon_Scalp.mq4,Custom Indicator,95,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+609,Pattern Alert.mq4,Custom Indicator,249,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+610,Pattern Recognition.mq4,Custom Indicator,281,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+611,Pattern.mq4,Custom Indicator,77,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+612,Pattern_Recognition_Master_v3.mq4,Custom Indicator,633,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+613,PatternsV6.mq4,Custom Indicator,256,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+614,Pauls MACD EA checks re-entry and high TF.mq4,Expert Advisor,302,MACD Momentum,iMACD,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,4,75.0,4.28,0.04,1.71,0.06,9.13
+615,Peak.mq4,Custom Indicator,169,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+616,Pegasus.mq4,Expert Advisor,82,Moving Average Crossover,"iMA,iStdDev",False,ASYMMETRIC_POSITIVE_SKEW,PASS_PROFITABLE,4,75.0,128.0,1.28,7.24,0.2,37.47
+617,Pending Breakout.mq4,Script / Helper,79,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+618,Pending Orders.mq4,Expert Advisor,40,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+619,Percent Bollinger Bands.mq4,Custom Indicator,28,Volatility Bands Reversion,iBands,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+620,Perfect Crypto Scalper.mq4,Script / Helper,1677,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+621,PerfectEA v3.3.mq4,Script / Helper,4271,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+622,PerfectEA.mq4,Script / Helper,4257,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+623,PerkyAsctrend1.mq4,Custom Indicator,148,Technical Indicator / Filter,iWPR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+624,Perkytrend.mq4,Script / Helper,56,Directional Trend Following,iADX,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+625,Phat_TD_REI.mq4,Custom Indicator,64,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+626,Phat_ZigZag.mq4,Custom Indicator,54,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+627,Phoenix_4_CONTEST(2).mq4,Expert Advisor,234,Volatility Bands Reversion,"iMA,iEnvelopes",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,60.0,425.0,4.25,2.37,1.51,15.4
+628,Pioner_v2.mq4,Expert Advisor,407,General Market Order EA,,False,SYMMETRIC_OR_DEFAULT,PASS_MARGINAL,3,66.67,-151.5,-1.52,0.24,2.0,-16.9
+629,Pioner_v4.mq4,Expert Advisor,598,General Market Order EA,,False,SYMMETRIC_OR_DEFAULT,PASS_MARGINAL,3,66.67,-151.5,-1.52,0.24,2.0,-16.9
+630,Pioner_v7.mq4,Expert Advisor,784,General Market Order EA,,False,SYMMETRIC_OR_DEFAULT,PASS_MARGINAL,3,66.67,-454.5,-4.55,0.24,5.97,-16.9
+631,PipeBomb_EA.mq4,Script / Helper,639,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+632,PipsCut-v2.0 -edu.mq4,Expert Advisor,2057,Moving Average Crossover,"iMA,iRSI,iMACD,iStochastic,iCCI",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,4,75.0,7.28,0.07,1.72,0.1,9.32
+633,Pips_Miner_SE.mq4,Expert Advisor,685,Moving Average Crossover,"iMA,iRSI,iMACD,iMomentum",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+634,Pipsometer Cash+Infolines v_1.1.mq4,Script / Helper,433,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+635,Pipsover.mq4,Expert Advisor,38,Trend Breakout (MA + Donchian),iMA,False,ASYMMETRIC_POSITIVE_SKEW,PASS_MARGINAL,4,25.0,-72.0,-0.72,0.66,1.41,-7.03
+636,Pivot2.mq4,Custom Indicator,114,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+637,PivotCustomTime.mq4,Custom Indicator,477,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+638,PivotPoints_-_MT04_-_Indicator.mq4,Custom Indicator,82,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+639,Pivot_Backtest.mq4,Custom Indicator,165,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+640,Price Action Scalping.mq4,Script / Helper,1309,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+641,Price Histogram Channel .mq4,Custom Indicator,286,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+642,Price channel stop.mq4,Script / Helper,219,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+643,Profit Seven EA 2.mq4,Expert Advisor,889,Moving Average Crossover,"iMA,iATR",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+644,Profit Seven EA2.mq4,Expert Advisor,769,Moving Average Crossover,"iMA,iATR",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+645,PullBack_V1a.mq4,Script / Helper,13181,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+646,Pyramid_Pro_v.8.01MA_edu.mq4,Expert Advisor,1102,Moving Average Crossover,iMA,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+647,QQE (vhf adaptive) 1_5.mq4,Custom Indicator,485,Technical Indicator / Filter,iATR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+648,QQE Alert v3.mq4,Custom Indicator,122,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+649,QUASMOD 2 EA.mq4,Script / Helper,3351,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+650,Quantile based signed volume analysis 1.mq4,Custom Indicator,79,Trend Breakout (MA + Donchian),"iMA,iATR",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+651,Quantum 2.mq4,Script / Helper,89,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+652,QuantumFractals.mq4,Custom Indicator,70,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+653,Quasimodo ea.mq4,Script / Helper,3351,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+654,RF Double Stoch Alert.mq4,Custom Indicator,153,Oscillator Mean Reversion,"iStochastic,iCCI",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+655,RPLine_v01H1.ex4.mq4,Expert Advisor,262,Oscillator Mean Reversion,iCCI,False,NEGATIVE_ASYMMETRY (High Risk),PASS_PROFITABLE,2,100.0,159.0,1.59,99.0,0.0,0.0
+656,RPM5_MT4V1_[ea].mq4,Expert Advisor,198,General Market Order EA,"iATR,iBearsPower,iBullsPower",False,ASYMMETRIC_POSITIVE_SKEW,PASS_MARGINAL,1,0.0,-255.0,-2.55,0.0,2.55,0.0
+657,RPT-bad.mq4,Expert Advisor,154,General Market Order EA,,False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,4,75.0,23.0,0.23,1.46,0.5,6.28
+658,RPT.mq4,Expert Advisor,134,General Market Order EA,,False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,4,75.0,23.0,0.23,1.46,0.5,6.28
+659,RPT_AUD.mq4,Expert Advisor,87,General Market Order EA,,False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,1,100.0,24.5,0.24,99.0,0.0,0.0
+660,RPT_AUD_TAKE.mq4,Expert Advisor,88,General Market Order EA,,False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,1,100.0,24.5,0.24,99.0,0.0,0.0
+661,RPT_EUR.mq4,Expert Advisor,87,General Market Order EA,,False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,1,100.0,24.5,0.24,99.0,0.0,0.0
+662,RPoint.mq4,Custom Indicator,58,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+663,RSI CROSS.mq4,Script / Helper,17,Oscillator Mean Reversion,iRSI,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+664,RSI _26 CCI Values on Chart Window.mq4,Custom Indicator,104,Oscillator Mean Reversion,"iRSI,iCCI",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+665,RSI adaptive EMAs alerts + lines + arrows.mq4,Custom Indicator,159,Oscillator Mean Reversion,"iATR,iRSI",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+666,RSI smoothed - mtf & alerts & lines.mq4,Custom Indicator,330,Oscillator Mean Reversion,iRSI,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+667,RSI trader v0.10.mq4,Expert Advisor,52,Moving Average Crossover,"iMA,iRSI",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,580.0,5.8,4.74,1.51,29.72
+668,RSI&CCI DIVERGENCE V1.mq4,Script / Helper,1703,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+669,RSI- Signal Alerts.mq4,Custom Indicator,106,Oscillator Mean Reversion,iRSI,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+670,RSI-3TF.mq4,Custom Indicator,105,Oscillator Mean Reversion,iRSI,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+671,RSI-BB-BANDs alerts.mq4,Custom Indicator,106,Oscillator Mean Reversion,iRSI,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+672,RSI-TC.mq4,Custom Indicator,142,Volatility Bands Reversion,"iMA,iATR,iRSI,iBands",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+673,RSI-TC_NEW.mq4,Custom Indicator,157,Volatility Bands Reversion,"iMA,iATR,iRSI,iBands",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+674,RSI.mq4,Custom Indicator,66,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+675,RSIFilter_v1.mq4,Custom Indicator,51,Oscillator Mean Reversion,iRSI,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+676,RSI_Alert.mq4,Custom Indicator,115,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+677,RSI_BollingerBands.mq4,Script / Helper,1189,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+678,RSI_DeMarker_Fisher.mq4,Script / Helper,265,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+679,RSI_EA1.mq4,Expert Advisor,125,Moving Average Crossover,"iMA,iRSI,iMACD",False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,4,75.0,53.0,0.53,3.59,0.2,24.14
+680,RSI_MACD_MA_Ron.mq4,Custom Indicator,72,Trend Breakout (MA + Donchian),"iMA,iRSI,iMACD",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+681,RSI_MACD_MA_Ron_01.mq4,Custom Indicator,72,Trend Breakout (MA + Donchian),"iMA,iRSI,iMACD",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+682,RSI_Tradexperts.mq4,Expert Advisor,203,Oscillator Mean Reversion,iRSI,False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,2,100.0,49.0,0.49,99.0,0.0,0.0
+683,RSI_Value_EA.mq4,Expert Advisor,129,Oscillator Mean Reversion,iRSI,False,NEGATIVE_ASYMMETRY (High Risk),PASS_MARGINAL,4,75.0,-3.7,-0.04,0.27,0.05,-13.79
+684,RSI_Value_v2.mq4,Expert Advisor,102,Oscillator Mean Reversion,iRSI,False,SYMMETRIC_OR_DEFAULT,PASS_MARGINAL,3,33.33,-101.5,-1.01,0.5,2.01,-12.74
+685,RSI_candles.mq4,Script / Helper,349,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+686,RSI_trader_v0[1].10.mq4,Expert Advisor,52,Moving Average Crossover,"iMA,iRSI",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,580.0,5.8,4.74,1.51,29.72
+687,RSIoMA_T3_v1.2.mq4,Custom Indicator,204,Oscillator Mean Reversion,iRSI,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+688,RSItrend.mq4,Custom Indicator,66,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+689,RSTL.mq4,Custom Indicator,128,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+690,RSX_CD.mq4,Custom Indicator,63,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+691,RSX_MTF.mq4,Custom Indicator,64,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+692,RTC4NNCS-TRIAL~.mq4,Expert Advisor,2520,Oscillator Mean Reversion,iRSI,False,UNPROTECTED_NO_STOP_LOSS,PASS_MARGINAL,2,0.0,-3.1,-0.03,0.0,0.03,0.0
+693,RUBBERBANDS_1_6.mq4,Expert Advisor,461,General Market Order EA,,False,ASYMMETRIC_POSITIVE_SKEW,NO_TRADES_TRIGGERED,0,0.0,0.0,0.0,0.0,0.0,0.0
+694,RUSSIAN BEAR High Frequency Trading HFT 2018 .mq4,Expert Advisor,188,General Market Order EA,,False,NEGATIVE_ASYMMETRY (High Risk),PASS_MARGINAL,14,71.43,-28.0,-0.28,0.07,0.29,-20.41
+695,Radar Signal Mod.mq4,Script / Helper,12557,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+696,Radar Signal.mq4,Custom Indicator,6266,Trend Breakout (MA + Donchian),"iMA,iATR,iRSI,iMACD,iStochastic,iCCI,iSAR,iADX,iWPR,iBearsPower,iBullsPower,iMomentum",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+697,Range.mq4,Custom Indicator,56,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+698,RealCloud.mq4,Custom Indicator,77,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+699,Renko button.mq4,Custom Indicator,174,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+700,RenkoRangeBarsV1.2 new format.mq4,Custom Indicator,252,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+701,Reverse_Martingale_V3.mq4,Expert Advisor,246,Trend Breakout (MA + Donchian),iMA,True,MARTINGALE_GRID_TOXIC,PASS_MARGINAL,3,66.67,-4.15,-0.04,0.59,0.1,-8.01
+702,Risk Reward Box.mq4,Script / Helper,615,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+703,RndTrade.mq4,Expert Advisor,62,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+704,RoNz Auto SL-TS-TP.mq4,Expert Advisor,280,Moving Average Crossover,iMA,False,ASYMMETRIC_POSITIVE_SKEW,NO_TRADES_TRIGGERED,0,0.0,0.0,0.0,0.0,0.0,0.0
+705,RoNz_Auto_SL-TS-TP.mq4,Expert Advisor,268,Moving Average Crossover,iMA,False,ASYMMETRIC_POSITIVE_SKEW,NO_TRADES_TRIGGERED,0,0.0,0.0,0.0,0.0,0.0,0.0
+706,Robot 2050_ LONG.mq4,Expert Advisor,532,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,5.8,0.06,4.74,0.02,29.72
+707,Robot Forex 2009 Profesional Demo~.mq4,Expert Advisor,141,Moving Average Crossover,iMA,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,760.0,7.6,5.9,1.5,33.86
+708,Robot Forex 2009 Profesional Full.mq4,Expert Advisor,136,Moving Average Crossover,iMA,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,760.0,7.6,5.9,1.5,33.86
+709,Robot Forex 2013 Profesional Demo~.mq4,Expert Advisor,524,Martingale Grid Scalper,,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+710,Robot Forex 2015 Profesional.mq4,Expert Advisor,519,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+711,Robot Forex 2051MAC (RUS).mq4,Expert Advisor,568,Moving Average Crossover,"iMA,iMACD",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+712,Robot2050_ Short.mq4,Expert Advisor,532,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,5.8,0.06,4.74,0.02,29.72
+713,RobotPowerM5_meta4V1.mq4,Expert Advisor,110,Directional Trend Following,"iATR,iSAR,iBearsPower,iBullsPower,iMomentum",False,ASYMMETRIC_POSITIVE_SKEW,PASS_MARGINAL,1,0.0,-455.0,-4.55,0.0,4.55,0.0
+714,Robot_ADX+2MA.mq4,Script / Helper,325,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+715,Robot_Forex_2014_Profesional__Live.mq4,Expert Advisor,519,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,5.8,0.06,4.74,0.02,29.72
+716,Robot_PowerM5-m .mq4,Expert Advisor,86,General Market Order EA,"iATR,iBearsPower,iBullsPower",False,ASYMMETRIC_POSITIVE_SKEW,PASS_MARGINAL,1,0.0,-45.5,-0.46,0.0,0.46,0.0
+717,Rsi-arrows.mq4,Custom Indicator,160,Oscillator Mean Reversion,iRSI,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+718,Rubicbox v.01.mq4,Script / Helper,377,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+719,RuleBaruSajaTercetus.mq4,Script / Helper,511,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+720,Rutka.mq4,Expert Advisor,115,Trend Breakout (MA + Donchian),iMA,False,UNPROTECTED_NO_STOP_LOSS,PASS_MARGINAL,2,0.0,-31.0,-0.31,0.0,0.31,0.0
+721,Rutka1.mq4,Expert Advisor,94,Moving Average Crossover,iMA,False,UNPROTECTED_NO_STOP_LOSS,PASS_MARGINAL,1,0.0,-15.5,-0.16,0.0,0.16,0.0
+722,Rutka1_50.mq4,Expert Advisor,94,Moving Average Crossover,iMA,False,UNPROTECTED_NO_STOP_LOSS,PASS_MARGINAL,1,0.0,-15.5,-0.16,0.0,0.16,0.0
+723,Rutka1_50SMMA.mq4,Expert Advisor,94,Moving Average Crossover,iMA,False,UNPROTECTED_NO_STOP_LOSS,PASS_MARGINAL,1,0.0,-15.5,-0.16,0.0,0.16,0.0
+724,S-R.1.mq4,Expert Advisor,237,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,5.8,0.06,4.74,0.02,29.72
+725,S-R.original.mq4,Expert Advisor,181,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,5.8,0.06,4.74,0.02,29.72
+726,S.A.R.A..mq4,Expert Advisor,871,Trend Breakout (MA + Donchian),"iMA,iSAR",False,ASYMMETRIC_POSITIVE_SKEW,PASS_PROFITABLE,5,40.0,7.5,0.08,1.24,0.1,3.62
+727,SCALPANDO marti pro for cent acc m15.mq4,Expert Advisor,2101,Moving Average Crossover,"iMA,iRSI,iMACD,iStochastic,iCCI",True,MARTINGALE_GRID_TOXIC,PASS_MARGINAL,4,75.0,0.28,0.0,1.03,0.1,0.42
+728,SDX- 8h.mq4,Custom Indicator,179,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+729,SDX-TzBreaktout.mq4,Custom Indicator,144,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+730,SDX-TzPivots.mq4,Custom Indicator,478,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+731,SDX-TzPivots_mod.mq4,Custom Indicator,658,Oscillator Mean Reversion,"iRSI,iADX",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+732,SDX-ZoneBreakout-Lud-Z2.mq4,Custom Indicator,222,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+733,SDX-ZoneBreakout.mq4,Custom Indicator,179,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+734,SDX-ZoneBreakout2.mq4,Custom Indicator,179,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+735,SE (1st Confirmation).mq4,Custom Indicator,142,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+736,SHE_AntiBaluev_Pro.mq4,Expert Advisor,102,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+737,SHE_Baluev_Pro.mq4,Expert Advisor,159,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+738,SHE_Baluev_Real.mq4,Expert Advisor,96,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+739,SHE_Lucky.mq4,Expert Advisor,59,General Market Order EA,,False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+740,SHE_Lucky_reinvest.mq4,Expert Advisor,59,General Market Order EA,,False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+741,SHE_Lucky_reinvest_V.mq4,Expert Advisor,55,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+742,SHE_kanskigor.mq4,Expert Advisor,43,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+743,SHI Channel.mq4,Custom Indicator,119,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+744,SHI Channel11-#mt.mq4,Custom Indicator,90,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+745,SHI Channel11.mq4,Custom Indicator,135,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+746,SHI_Channel.mq4,Custom Indicator,118,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+747,SHI_Channel_Colour_Talk.mq4,Custom Indicator,158,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+748,SHI_Channel_true.mq4,Custom Indicator,119,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+749,SHI_Mod.mq4,Custom Indicator,192,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+750,SHI_Mod_vLine.mq4,Custom Indicator,241,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+751,SHI_SIGNAL.mq4,Script / Helper,229,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+752,SHI_SilverTrendColourBars.mq4,Custom Indicator,57,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+753,SHI_SilverTrendColourBars1.mq4,Custom Indicator,57,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+754,SHI_SilverTrendSig.mq4,Custom Indicator,57,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+755,SHI_SilverTrendSig1.mq4,Custom Indicator,57,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+756,SHI_ZigZagPro v1-1.mq4,Custom Indicator,123,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+757,SIMOO v5 2020.mq4.mq4,Custom Indicator,98,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+758,SKIV_Trader.mq4,Expert Advisor,95,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+759,SL&TP Values.mq4,Script / Helper,591,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+760,SL-TP_move-by-Mouse.mq4,Script / Helper,201,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+761,SLR_BIF.mq4,Expert Advisor,41,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+762,SLR_FXPROFIT.mq4,Expert Advisor,55,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+763,SLR_Lite.mq4,Expert Advisor,41,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+764,SLR_MoneyRain.mq4,Expert Advisor,55,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+765,SLR_Test.mq4,Expert Advisor,40,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+766,SLR_alpari.mq4,Expert Advisor,40,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+767,SMA-Crossover_Signal.mq4,Custom Indicator,64,Trend Breakout (MA + Donchian),iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+768,SMA_MultiHdege2.mq4,Expert Advisor,641,Moving Average Crossover,iMA,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+769,SMC Autotrader Momentum.mq4,Expert Advisor,139,Moving Average Crossover,"iMA,iATR",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,6650.0,66.5,9.58,6.21,41.93
+770,SMC HiLo v1.1.mq4,Expert Advisor,188,Trend Breakout (MA + Donchian),"iMA,iATR",False,UNPROTECTED_NO_STOP_LOSS,PASS_MARGINAL,2,0.0,-31.0,-0.31,0.0,0.31,0.0
+771,SMC HiLo v11.1.mq4,Expert Advisor,193,Trend Breakout (MA + Donchian),"iMA,iATR",False,UNPROTECTED_NO_STOP_LOSS,PASS_MARGINAL,2,0.0,-31.0,-0.31,0.0,0.31,0.0
+772,SMC HiLo v11.mq4,Expert Advisor,194,Trend Breakout (MA + Donchian),"iMA,iATR",False,UNPROTECTED_NO_STOP_LOSS,PASS_MARGINAL,4,25.0,3.0,0.03,1.06,0.31,0.95
+773,SMC MA 3BAR.mq4,Expert Advisor,173,Trend Breakout (MA + Donchian),"iMA,iATR",False,UNPROTECTED_NO_STOP_LOSS,PASS_MARGINAL,4,25.0,3.0,0.03,1.06,0.31,0.95
+774,SMC MA xover.mq4,Expert Advisor,205,Volatility Bands Reversion,"iMA,iEnvelopes",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,60.0,117.5,1.17,4.79,0.15,26.2
+775,SMC MA.mq4,Expert Advisor,199,Moving Average Crossover,iMA,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,133.0,1.33,9.58,0.15,41.93
+776,SMC MACD new idea.mq4,Expert Advisor,159,MACD Momentum,"iMACD,iSAR",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,3,66.67,183.5,1.84,12.84,0.16,40.05
+777,SMC Manual EA limit and_or stop order.mq4,Expert Advisor,329,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,580.0,5.8,4.74,1.51,29.72
+778,SMC Manual EA with seperation.mq4,Expert Advisor,340,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+779,SMC Manual EA.mq4,Expert Advisor,340,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+780,SMC Trader 2 MAs 12 26 EMA Basic.mq4,Expert Advisor,165,Trend Breakout (MA + Donchian),iMA,False,UNPROTECTED_NO_STOP_LOSS,PASS_MARGINAL,4,25.0,3.0,0.03,1.06,0.31,0.95
+781,SMC Trader 2 MAs 5 20 EMA.mq4,Expert Advisor,127,Moving Average Crossover,iMA,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,133.0,1.33,9.58,0.15,41.93
+782,SMC Trader 2 MAs 5 20 EMA1.mq4,Expert Advisor,127,Moving Average Crossover,iMA,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,133.0,1.33,9.58,0.15,41.93
+783,SMC Trader Aroon V1.3.mq4,Expert Advisor,93,General Market Order EA,iATR,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+784,SMC Trader Camel CCI MACD -ron02.mq4,Expert Advisor,49,Trend Breakout (MA + Donchian),"iMA,iMACD,iCCI",False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,1,100.0,1195.0,11.95,99.0,0.0,0.0
+785,SMC Trader Camel CCI MACD.mq4,Expert Advisor,190,Trend Breakout (MA + Donchian),"iMA,iATR,iMACD,iCCI",False,UNPROTECTED_NO_STOP_LOSS,PASS_MARGINAL,4,25.0,30.0,0.3,1.06,3.1,0.95
+786,SMC Trader Kurt v2.mq4,Expert Advisor,105,Moving Average Crossover,"iMA,iATR,iRSI,iMACD",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,133.0,1.33,9.58,0.15,41.93
+787,SMC Trader Kurt.mq4,Expert Advisor,151,Moving Average Crossover,"iMA,iATR,iRSI,iMACD",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,133.0,1.33,9.58,0.15,41.93
+788,SMC Trader Kurt1.mq4,Expert Advisor,151,Moving Average Crossover,"iMA,iATR,iRSI,iMACD",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,100.0,975.0,9.75,99.0,0.0,0.0
+789,SMC Trader Kurt2.mq4,Expert Advisor,151,Moving Average Crossover,"iMA,iATR,iRSI,iMACD",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,3,66.67,1835.0,18.35,12.84,1.55,40.05
+790,SMC Trader MACD v1.0.mq4,Expert Advisor,142,Moving Average Crossover,"iMA,iATR,iMACD",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,665.0,6.65,9.58,0.76,41.93
+791,SMC Trader Manual.mq4,Expert Advisor,144,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,133.0,1.33,9.58,0.15,41.93
+792,SMC Trader Skeleton v2(07SEP05).mq4,Expert Advisor,125,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,133.0,1.33,9.58,0.15,41.93
+793,SMC Trader TriggerLines V2.1.mq4,Expert Advisor,231,Trend Breakout (MA + Donchian),"iMA,iATR",False,UNPROTECTED_NO_STOP_LOSS,PASS_MARGINAL,4,25.0,3.0,0.03,1.06,0.31,0.95
+794,SMC USD JPY cci test.mq4,Expert Advisor,146,Moving Average Crossover,"iMA,iATR,iRSI,iMACD,iCCI",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,100.0,475.0,4.75,99.0,0.0,0.0
+795,SMC eur usd(26AUG05).mq4,Expert Advisor,156,Moving Average Crossover,"iMA,iATR,iRSI,iMACD",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,100.0,975.0,9.75,99.0,0.0,0.0
+796,SMC eur usd(28AUG05).mq4,Expert Advisor,108,Moving Average Crossover,"iMA,iATR,iRSI,iMACD",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,100.0,975.0,9.75,99.0,0.0,0.0
+797,SMC eur usd1(26AUG05).mq4,Expert Advisor,156,Moving Average Crossover,"iMA,iATR,iRSI,iMACD",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,100.0,975.0,9.75,99.0,0.0,0.0
+798,SMC eur usd1.mq4,Expert Advisor,154,Moving Average Crossover,"iMA,iATR,iRSI,iMACD",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,730.0,7.3,5.71,1.51,33.25
+799,SMC eur usd2.mq4,Expert Advisor,151,Moving Average Crossover,"iMA,iATR,iRSI,iMACD",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,100.0,975.0,9.75,99.0,0.0,0.0
+800,SMC-1.mq4,Expert Advisor,340,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+801,SMC.mq4,Expert Advisor,144,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,133.0,1.33,9.58,0.15,41.93
+802,SMC2.mq4,Expert Advisor,186,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,133.0,1.33,9.58,0.15,41.93
+803,SMC3.mq4,Expert Advisor,187,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,133.0,1.33,9.58,0.15,41.93
+804,SMC_Shell.mq4,Expert Advisor,213,Trend Breakout (MA + Donchian),iMA,True,MARTINGALE_GRID_TOXIC,PASS_MARGINAL,3,66.67,-51.5,-0.52,0.49,1.0,-10.34
+805,SMC_Trader_TriggerLines_V2.mq4,Expert Advisor,231,Trend Breakout (MA + Donchian),"iMA,iATR",False,UNPROTECTED_NO_STOP_LOSS,PASS_MARGINAL,4,25.0,3.0,0.03,1.06,0.31,0.95
+806,SNR Wolf Traders Empire 2022.mq4,Custom Indicator,212,Volatility Bands Reversion,"iBands,iSAR",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+807,SRsi.mq4,Script / Helper,261,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+808,SSL fast nrp + atr bands.mq4,Custom Indicator,121,Moving Average Crossover,"iMA,iATR",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+809,SS_SupportResistance_v04c nmc.mq4,Custom Indicator,698,Technical Indicator / Filter,iATR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+810,SS_SupportResistance_v04c_nmc-2800024.mq4,Custom Indicator,698,Technical Indicator / Filter,iATR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+811,SS_SupportResistance_v07.1.mq4,Custom Indicator,1046,Technical Indicator / Filter,iATR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+812,STOCH7wHTSTOCH2 Alert.mq4,Script / Helper,437,Oscillator Mean Reversion,"iATR,iStochastic",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+813,SUN+FAN_0.4.mq4,Script / Helper,1115,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+814,SUPER LEVELS_V1.b.mq4,Custom Indicator,254,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+815,Scalp_Assistant_.mq4,Custom Indicator,119,Oscillator Mean Reversion,iStochastic,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+816,ScalperAngelsEA.mq4,Script / Helper,4255,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+817,Scalper_FX.mq4,Expert Advisor,567,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,PASS_MARGINAL,3,66.67,-25.15,-0.25,0.16,0.3,-19.42
+818,Scalping Signal.mq4,Custom Indicator,72,Volatility Bands Reversion,iBands,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+819,Search_patterns.mq4,Custom Indicator,1206,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+820,Secure profit.mq4,Expert Advisor,383,Volatility Bands Reversion,"iMA,iEnvelopes",False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,4,75.0,58.0,0.58,1.64,0.9,8.49
+821,Secure profit_v1.1.mq4,Expert Advisor,390,Volatility Bands Reversion,"iMA,iEnvelopes",False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,4,75.0,58.0,0.58,1.64,0.9,8.49
+822,Secure profit_v1.2.mq4,Expert Advisor,408,Volatility Bands Reversion,"iMA,iEnvelopes",False,SYMMETRIC_OR_DEFAULT,FAIL_BLOWUP,4,75.0,2900.0,29.0,1.64,30.27,8.49
+823,SelfAdjustRSI_v1.mq4,Custom Indicator,106,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+824,Sell 20-40TP l 25 griglia l 10 ordini.mq4,Expert Advisor,231,General Market Order EA,,False,ASYMMETRIC_POSITIVE_SKEW,PASS_PROFITABLE,4,75.0,9.8,0.1,5.78,0.02,33.47
+825,Sell Stop Buy Stop.mq4,Expert Advisor,227,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+826,Sell_Buy Scalper_agr.mq4,Expert Advisor,116,Moving Average Crossover,iMA,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,580.0,5.8,4.74,1.51,29.72
+827,SemaforAlert.mq4,Custom Indicator,322,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+828,SemiLong.mq4,Expert Advisor,73,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,580.0,5.8,4.74,1.51,29.72
+829,Semilong_www.forex-instruments.info.mq4,Expert Advisor,81,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,580.0,5.8,4.74,1.51,29.72
+830,Send_Pending_Order.mq4,Expert Advisor,370,General Market Order EA,,False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,4,75.0,98.0,0.98,2.94,0.5,20.08
+831,Serg153 Martingail.mq4,Expert Advisor,286,General Market Order EA,,False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,4,75.0,48.0,0.48,2.88,0.25,19.67
+832,SergeyGukach.mq4,Expert Advisor,175,General Market Order EA,,False,ASYMMETRIC_POSITIVE_SKEW,PASS_PROFITABLE,4,75.0,155.0,1.55,7.6,0.23,38.27
+833,Sergey_0.2.mq4,Expert Advisor,349,Volatility Bands Reversion,"iATR,iBands,iVolume",False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,2,100.0,49.0,0.49,99.0,0.0,0.0
+834,Servant Avg+++..mq4,Expert Advisor,312,Oscillator Mean Reversion,iRSI,True,MARTINGALE_GRID_TOXIC,PASS_MARGINAL,5,60.0,-7.0,-0.07,0.67,0.16,-6.66
+835,Session breakout v0.25.mq4,Expert Advisor,58,General Market Order EA,,False,ASYMMETRIC_POSITIVE_SKEW,PASS_PROFITABLE,4,75.0,1430.0,14.3,7.98,1.94,39.08
+836,Session breakout v0.26.mq4,Expert Advisor,59,General Market Order EA,,False,ASYMMETRIC_POSITIVE_SKEW,PASS_PROFITABLE,4,75.0,1430.0,14.3,7.98,1.94,39.08
+837,Session breakout v01.26.mq4,Expert Advisor,59,General Market Order EA,,False,ASYMMETRIC_POSITIVE_SKEW,PASS_PROFITABLE,4,75.0,1430.0,14.3,7.98,1.94,39.08
+838,Session breakout v01_mbk.mq4,Expert Advisor,53,General Market Order EA,,False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,5,100.0,725.0,7.25,99.0,0.0,0.0
+839,Set TP (Price).mq4,Script / Helper,173,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+840,SetPendingGridLimit.mq4,Expert Advisor,254,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,5.8,0.06,4.74,0.02,29.72
+841,Set_Fibo_Price_Color_v3.mq4,Custom Indicator,216,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+842,Setka Limit Loc v4.2.mq4,Expert Advisor,820,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+843,SevenFx 7a.mq4,Expert Advisor,397,Moving Average Crossover,iMA,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,580.0,5.8,4.74,1.51,29.72
+844,Shade NY 07 _13 GMT.mq4,Custom Indicator,124,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+845,ShadeNY.mq4,Custom Indicator,118,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+846,ShadeNY1.mq4,Custom Indicator,118,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+847,ShadeNY_v5.mq4,Custom Indicator,77,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+848,Shafina v1.mq4,Expert Advisor,417,Volatility Bands Reversion,"iMA,iEnvelopes",False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,8,37.5,4.6,0.05,2.67,0.01,14.05
+849,Shafina v2.mq4,Expert Advisor,417,Volatility Bands Reversion,"iMA,iEnvelopes",False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,8,37.5,4.6,0.05,2.67,0.01,14.05
+850,Shi Channels.mq4,Custom Indicator,118,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+851,ShockBar 1.2.mq4,Expert Advisor,2367,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,4,75.0,4.8,0.05,2.19,0.04,14.05
+852,ShockBar1.2.mq4,Expert Advisor,2366,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,4,75.0,4.8,0.05,2.19,0.04,14.05
+853,ShockBar_v_1_1.mq4,Expert Advisor,645,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,100.0,22.5,0.22,99.0,0.0,0.0
+854,Show Pips.mq4,Script / Helper,521,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+855,ShowOrdersOnChart.mq4,Custom Indicator,213,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+856,Shurgin_Collector.mq4,Expert Advisor,333,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,1160.0,11.6,4.74,2.96,29.72
+857,SidewaysDetector.mq4,Custom Indicator,123,Martingale Grid Scalper,,True,MARTINGALE_GRID_TOXIC,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+858,Sidus-EA-V3.20.mq4,Script / Helper,1181,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+859,Signal Generator MA Crossing RSI.mq4,Custom Indicator,69,Oscillator Mean Reversion,iRSI,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+860,Signal Generator_.mq4,Custom Indicator,140,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+861,Signal+Arrow_v2.0.mq4,Custom Indicator,201,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+862,Signal_Bars_Executive_v1.mq4,Custom Indicator,2290,Moving Average Crossover,"iMA,iRSI,iMACD,iStochastic,iCCI",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+863,Silence.mq4,Custom Indicator,80,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+864,Silver-channels+.mq4,Custom Indicator,124,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+865,Silver-channels.mq4,Custom Indicator,99,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+866,SilverMACD+.mq4,Script / Helper,53,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+867,SilverTrend.mq4,Custom Indicator,61,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+868,SilverTrendExpert_V2a.mq4,Expert Advisor,616,General Market Order EA,iStdDev,False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,4,75.0,280.0,2.8,1.62,4.44,8.2
+869,SilverTrendSignal.mq4,Custom Indicator,90,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+870,SilverTrendTrader(xyz).mq4,Expert Advisor,144,Moving Average Crossover,iMA,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,580.0,5.8,4.74,1.51,29.72
+871,SilverTrendTrader.mq4,Expert Advisor,144,Moving Average Crossover,iMA,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,580.0,5.8,4.74,1.51,29.72
+872,SilverTrendTrader_v3.mq4,Expert Advisor,286,Trend Breakout (MA + Donchian),iMA,False,UNPROTECTED_NO_STOP_LOSS,PASS_MARGINAL,4,25.0,-220.0,-2.2,0.53,3.1,-11.27
+873,SilverTrendTrader_v3_JMA.mq4,Expert Advisor,777,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,580.0,5.8,4.74,1.51,29.72
+874,SilverTrendTrader_v3_JTPO.mq4,Expert Advisor,378,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,580.0,5.8,4.74,1.51,29.72
+875,SilverTrendTrader_v3_JTPO1.mq4,Expert Advisor,378,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,580.0,5.8,4.74,1.51,29.72
+876,SilverTrendTrader_v4.mq4,Expert Advisor,909,Trend Breakout (MA + Donchian),iMA,False,UNPROTECTED_NO_STOP_LOSS,PASS_MARGINAL,4,25.0,-220.0,-2.2,0.53,3.1,-11.27
+877,SilverTrendTrader_v4_JTPO.mq4,Expert Advisor,386,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,1480.0,14.8,10.55,1.47,43.33
+878,SilverTrendTrader_v5.mq4,Expert Advisor,920,Trend Breakout (MA + Donchian),iMA,False,UNPROTECTED_NO_STOP_LOSS,PASS_MARGINAL,4,25.0,-220.0,-2.2,0.53,3.1,-11.27
+879,SilverTrendTrader_v6.mq4,Expert Advisor,1058,Volatility Bands Reversion,"iMA,iBands,iStdDev,iBearsPower,iBullsPower",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,60.0,425.0,4.25,2.37,1.51,15.4
+880,SilverTrendTrader_v7.mq4,Expert Advisor,282,Moving Average Crossover,"iMA,iCCI",False,NEGATIVE_ASYMMETRY (High Risk),PASS_PROFITABLE,5,100.0,475.0,4.75,99.0,0.0,0.0
+881,SilverTrendV3 (2).mq4,Expert Advisor,465,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,580.0,5.8,4.74,1.51,29.72
+882,SilverTrendV3.mq4,Expert Advisor,378,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,580.0,5.8,4.74,1.51,29.72
+883,SilverTrend_Signal With Alert v3.mq4,Custom Indicator,92,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+884,SilverTrend_Signal.mq4,Custom Indicator,73,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+885,SilverTrend_Signal1.mq4,Custom Indicator,73,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+886,SilverTrend_SignalWith Alert.mq4,Custom Indicator,94,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+887,Simple Expert Advisor with Functions.mq4,Script / Helper,41,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+888,Simple Expert Advisor.mq4,Expert Advisor,129,Moving Average Crossover,iMA,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+889,Simple Stoch Divergence EA.mq4,Expert Advisor,165,Volatility Bands Reversion,"iMA,iBands,iStochastic",False,ASYMMETRIC_POSITIVE_SKEW,PASS_MARGINAL,2,0.0,-121.0,-1.21,0.0,1.21,0.0
+890,Simple-macd-ea_www_forex-instruments_info.mq4,Expert Advisor,182,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,1,100.0,245.0,2.45,99.0,0.0,0.0
+891,SimpleH1_GBPUSD_EAv9.mq4,Expert Advisor,442,Trend Breakout (MA + Donchian),"iMA,iFractals",False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,2,100.0,49.0,0.49,99.0,0.0,0.0
+892,SimplePivot.mq4,Expert Advisor,73,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,580.0,5.8,4.74,1.51,29.72
+893,SimpleRegression.mq4,Script / Helper,175,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+894,SimpleSAR_EA2.mq4,Expert Advisor,94,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+895,SimplyOpen.mq4,Expert Advisor,101,General Market Order EA,,False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,4,75.0,42.0,0.42,2.33,0.31,15.37
+896,SistemaEA_ByFreddy_Trans_v3.mq4,Expert Advisor,685,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,73.0,0.73,5.71,0.15,33.25
+897,SistemaEA_ByFreddy_mod1.mq4,Expert Advisor,509,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,73.0,0.73,5.71,0.15,33.25
+898,SistemaEA_ByFreddy~.mq4,Expert Advisor,509,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,73.0,0.73,5.71,0.15,33.25
+899,Six Study EA.mq4,Expert Advisor,273,Moving Average Crossover,iMA,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+900,SixtySecondTrades_Alerts2.mq4,Custom Indicator,60,Directional Trend Following,iADX,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+901,SkyUp EA.mq4,Script / Helper,1131,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+902,Slave-yang nyontek~.mq4,Expert Advisor,673,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+903,Smart Scalping EU M1.mq4,Expert Advisor,770,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,3,66.67,183.5,1.84,12.84,0.16,40.05
+904,Smart_Algoritm_Kod.mq4,Script / Helper,1049,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+905,SniperEA-V3.11_UNI.mq4,Script / Helper,1311,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+906,Solar Wind Joy DS RP ZAA MTF TT.mq4,Script / Helper,776,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+907,SpudFibo Weekly.mq4,Script / Helper,124,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+908,SpudFibo.mq4,Script / Helper,123,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+909,StdScore-v4.mq4,Custom Indicator,413,Trend Breakout (MA + Donchian),"iMA,iStdDev",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+910,StepMA pdf nmc 3.142 + arrows.mq4,Custom Indicator,331,Technical Indicator / Filter,iATR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+911,Stoch.mq4,Expert Advisor,75,General Market Order EA,,False,ASYMMETRIC_POSITIVE_SKEW,PASS_PROFITABLE,20,20.0,26.0,0.26,1.36,0.58,3.98
+912,Stochastic divergence_mtfalerts.mq4,Custom Indicator,259,Oscillator Mean Reversion,iStochastic,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+913,Stochastic3_v6.mq4,Custom Indicator,153,Oscillator Mean Reversion,iStochastic,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+914,Super Scalping Future.mq4,Custom Indicator,292,Trend Breakout (MA + Donchian),iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+915,Super Signal v3.mq4,Custom Indicator,99,Technical Indicator / Filter,iATR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+916,Super Signal v3d.mq4,Custom Indicator,99,Technical Indicator / Filter,iATR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+917,SuperTrend nrp mtf (new format).mq4,Custom Indicator,120,Martingale Grid Scalper,iATR,True,MARTINGALE_GRID_TOXIC,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+918,SuperTrend_ mtf_Alert.mq4,Custom Indicator,174,Oscillator Mean Reversion,"iATR,iCCI",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+919,SuperTrend_TRO_MODIFIED_VERSION.mq4,Custom Indicator,160,Martingale Grid Scalper,iATR,True,MARTINGALE_GRID_TOXIC,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+920,Supertrend_cleared_3.mq4,Custom Indicator,75,Oscillator Mean Reversion,"iATR,iCCI",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+921,Support_Resistance Indicator Andre.mq4,Custom Indicator,498,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+922,Sure Hedging pipschart.mq4,Script / Helper,2449,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+923,SureForexHedging_2.mq4,Expert Advisor,1142,Martingale Grid Scalper,,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,4,75.0,42.75,0.43,1.71,0.6,9.13
+924,SyDiv_v0.1.mq4,Script / Helper,2875,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+925,Symphone_Extreme_Indikator_v3.0.mq4,Custom Indicator,156,Martingale Grid Scalper,,True,MARTINGALE_GRID_TOXIC,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+926,T3 Fozzy (mtf + alerts + arrows).mq4,Custom Indicator,221,Oscillator Mean Reversion,"iATR,iRSI",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+927,T3 high-low activator mtf 1.01.mq4,Custom Indicator,265,Technical Indicator / Filter,iATR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+928,TA_1.14b.mq4,Custom Indicator,198,Oscillator Mean Reversion,"iRSI,iStochastic,iCCI",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+929,TDI Red Green Tape.mq4,Custom Indicator,70,Oscillator Mean Reversion,iRSI,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+930,TDI Red Green_alerts_mtf 2.02 alert.mq4,Custom Indicator,234,Oscillator Mean Reversion,"iATR,iRSI",True,MARTINGALE_GRID_TOXIC,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+931,TDI.mq4,Custom Indicator,358,Oscillator Mean Reversion,iRSI,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+932,TEMA.mq4,Custom Indicator,47,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+933,THV EA v2.mq4,Expert Advisor,427,General Market Order EA,iIchimoku,False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,4,75.0,400.0,4.0,1.47,8.11,6.51
+934,TITUS OB Indicator.mq4,Script / Helper,44,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+935,TM555 (600+) Alert.mq4,Custom Indicator,191,Trend Breakout (MA + Donchian),"iMA,iATR",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+936,TMA nrp + bands + alerts_mtf.mq4,Custom Indicator,180,Moving Average Crossover,"iMA,iATR",True,MARTINGALE_GRID_TOXIC,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+937,TMA slope v.1.4B 4.30.mq4,Custom Indicator,202,Technical Indicator / Filter,iATR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+938,TMA+CG 4C AA MTF TT.mq4,Script / Helper,691,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+939,TMA+CG mladen alerts mtf nrp.mq4,Script / Helper,845,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+940,TMA+CG mladen alerts mtf nrp_3.mq4,Script / Helper,923,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+941,TMAcentered MACD v1.mq4,Custom Indicator,94,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+942,TMAdCG mladen-arrowsMod.mq4,Custom Indicator,191,Trend Breakout (MA + Donchian),"iMA,iATR",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+943,TMAx3 HZL AA fMTF MMS+TT w NRP.mq4,Script / Helper,814,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+944,TOPTREND.mq4,Custom Indicator,139,Volatility Bands Reversion,iBands,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+945,TRENDSENTRY.mq4,Custom Indicator,98,Trend Breakout (MA + Donchian),iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+946,TREND_alexcud.mq4,Custom Indicator,314,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+947,TRIANGULAR PRICE CORRECTION.mq4,Script / Helper,643,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+948,TRIX_arrow.mq4,Script / Helper,93,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+949,TRO_DYNAMIC_FIBS_SR_Trail.mq4,Script / Helper,1889,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+950,TRO_RAT_ZONE_mod.mq4,Script / Helper,2067,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+951,TRUE_SCALPER_V11b.mq4,Expert Advisor,124,Trend Breakout (MA + Donchian),"iMA,iRSI",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,25.0,530.0,5.3,2.14,3.1,9.45
+952,TSR.mq4,Expert Advisor,440,Moving Average Crossover,"iMA,iRSI,iStochastic",False,NEGATIVE_ASYMMETRY (High Risk),FAIL_BLOWUP,2,50.0,-11200.0,-112.0,0.12,110.46,-28.1
+953,T_S_R-Daily Range Calculator .mq4,Custom Indicator,233,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+954,Targets.mq4,Custom Indicator,156,Technical Indicator / Filter,iStdDev,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+955,Teodosi_EA.mq4,Expert Advisor,521,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,3,66.67,183.5,1.84,12.84,0.16,40.05
+956,Tesshinso.mq4,Expert Advisor,734,General Market Order EA,"iATR,iVolume,iWPR",False,ASYMMETRIC_POSITIVE_SKEW,PASS_PROFITABLE,3,66.67,14.85,0.15,3.94,0.05,24.85
+957,Tier London Breakout V.3.3b.mq4,Custom Indicator,348,Trend Breakout (MA + Donchian),iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+958,TimeBasedEA.mq4,Script / Helper,173,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+959,Trade City D1 MA 5 EA.mq4,Script / Helper,13311,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+960,Trade Manager.mq4,Script / Helper,2335,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+961,TradeInfo v2_3.mq4,Script / Helper,541,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+962,TradeReport_compact.mq4,Custom Indicator,957,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+963,Trading Hours (2).mq4,Custom Indicator,51,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+964,Trading Hours.mq4,Custom Indicator,51,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+965,Trading Session vLines.mq4,Custom Indicator,192,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+966,Trading profit protect_ea.mq4,Script / Helper,101,Martingale Grid Scalper,,True,MARTINGALE_GRID_TOXIC,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+967,TradingHours.mq4,Custom Indicator,51,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+968,Trading_Volume FTR.mq4,Custom Indicator,262,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+969,Trading_Volume_v1.mq4,Custom Indicator,262,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+970,TrailMe.mq4,Script / Helper,331,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+971,TrailMe1.mq4,Script / Helper,331,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+972,Trailing Buy Stop.mq4,Expert Advisor,92,General Market Order EA,,False,SYMMETRIC_OR_DEFAULT,PASS_MARGINAL,2,50.0,-10.1,-0.1,0.5,0.2,-11.95
+973,Trailing Sell Stop.mq4,Expert Advisor,95,General Market Order EA,,False,SYMMETRIC_OR_DEFAULT,PASS_MARGINAL,2,50.0,-10.1,-0.1,0.5,0.2,-11.95
+974,Trailing Stop 5.mq4,Script / Helper,41,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+975,Trailing Stop v_tdavid.mq4,Script / Helper,29,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+976,TrailingStop.mq4,Script / Helper,193,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+977,TrailingStopCmillion_v1.mq4,Script / Helper,168,Technical Indicator / Filter,iFractals,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+978,TrailingStopFrCnSAR.mq4,Script / Helper,274,Directional Trend Following,"iSAR,iFractals",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+979,TrailingUdavka.mq4,Script / Helper,85,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+980,TrailingWithPartialClose.mq4,Script / Helper,610,Moving Average Crossover,"iMA,iSAR",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+981,TralPendOrder.mq4,Script / Helper,33,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+982,TralingStop_v3.mq4,Script / Helper,37,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+983,Transfer2Fractal.mq4,Script / Helper,91,Technical Indicator / Filter,,False,ASYMMETRIC_POSITIVE_SKEW,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+984,Transformer_EA_V(3).mq4,Expert Advisor,509,Martingale Grid Scalper,,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+985,Trend Bands.mq4,Custom Indicator,53,Trend Breakout (MA + Donchian),iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+986,Trend Moving Average.mq4,Expert Advisor,706,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,4,75.0,97.75,0.98,3.41,0.4,22.62
+987,Trend Racing 3.51 ME Lite_tral_lasttp.mq4,Expert Advisor,1032,Moving Average Crossover,"iMA,iCCI,iADX",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,3.75,0.04,99.0,0.0,0.0
+988,Trend Racing 3.57 ME Lite.mq4,Expert Advisor,1022,Volatility Bands Reversion,"iMA,iBands,iCCI,iADX",True,MARTINGALE_GRID_TOXIC,PASS_MARGINAL,4,75.0,-6.72,-0.07,0.33,0.1,-12.34
+989,Trend SMC v2.mq4,Custom Indicator,61,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+990,Trend Trigger (Bars) (2).mq4,Custom Indicator,82,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+991,Trend Trigger (Bars).mq4,Custom Indicator,82,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+992,Trend Trigger Modified.mq4,Custom Indicator,69,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+993,Trend scalp (mtf + arrows + alerts).mq4,Custom Indicator,267,Technical Indicator / Filter,iATR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+994,Trend(23SEP05).mq4,Custom Indicator,57,Volatility Bands Reversion,"iBands,iBearsPower,iBullsPower",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+995,Trend+Levels VRD 4H smp.mq4,Script / Helper,365,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+996,Trend.mq4,Custom Indicator,57,Volatility Bands Reversion,"iBands,iBearsPower,iBullsPower",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+997,Trend1.mq4,Custom Indicator,57,Volatility Bands Reversion,"iBands,iBearsPower,iBullsPower",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+998,TrendCapture.mq4,Expert Advisor,92,Directional Trend Following,"iSAR,iADX",False,ASYMMETRIC_POSITIVE_SKEW,PASS_MARGINAL,1,0.0,-50.5,-0.5,0.0,0.5,0.0
+999,TrendContinuation.mq4,Custom Indicator,150,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1000,TrendEnvelopes_v2.mq4,Custom Indicator,121,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1001,TrendLines_Auto.mq4,Custom Indicator,158,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1002,TrendManager.mq4,Custom Indicator,55,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1003,TrendManagerOpen2 seperate window.mq4,Custom Indicator,70,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1004,TrendManagerOpen2.mq4,Custom Indicator,70,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1005,TrendMeLeaveMe.mq4,Expert Advisor,138,General Market Order EA,,False,ASYMMETRIC_POSITIVE_SKEW,PASS_PROFITABLE,4,75.0,118.0,1.18,4.87,0.3,30.23
+1006,TrendPower.mq4,Custom Indicator,70,Moving Average Crossover,"iMA,iATR",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1007,TrendRSI_v3.mq4,Custom Indicator,99,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1008,TrendScalpIndc_PP.mq4,Custom Indicator,93,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1009,TrendScalper_GTR_beta.mq4,Expert Advisor,178,Volatility Bands Reversion,"iATR,iBands,iVolume",False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,4,75.0,33.0,0.33,1.81,0.4,10.4
+1010,TrendScalper_TR.mq4,Expert Advisor,180,Volatility Bands Reversion,"iATR,iBands,iVolume",True,MARTINGALE_GRID_TOXIC,PASS_MARGINAL,4,75.0,-7.25,-0.07,0.82,0.4,-2.87
+1011,TrendScalper_TR1.mq4,Expert Advisor,180,Volatility Bands Reversion,"iATR,iBands,iVolume",True,MARTINGALE_GRID_TOXIC,PASS_MARGINAL,4,75.0,-7.25,-0.07,0.82,0.4,-2.87
+1012,TrendScalper_TR_loosetest.mq4,Expert Advisor,177,Volatility Bands Reversion,"iATR,iBands,iVolume",False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,4,75.0,33.0,0.33,1.81,0.4,10.4
+1013,TrendScalper_TR_opbartr.mq4,Expert Advisor,183,Volatility Bands Reversion,"iATR,iBands,iVolume",True,MARTINGALE_GRID_TOXIC,PASS_MARGINAL,2,0.0,-101.25,-1.01,0.0,1.01,-177.48
+1014,TrendScanner.mq4,Custom Indicator,307,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1015,TrendStrengthTrio.mq4,Custom Indicator,66,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1016,TrendTrading_EA_v1.1.mq4,Expert Advisor,154,Trend Breakout (MA + Donchian),"iMA,iSAR,iADX",False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,1,100.0,199.5,2.0,99.0,0.0,0.0
+1017,TrendTriggerMod.mq4,Custom Indicator,136,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1018,TrendWave.mq4,Custom Indicator,156,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1019,Trend_Bars 2.mq4,Custom Indicator,48,Oscillator Mean Reversion,iRSI,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1020,Trend_CF.mq4,Custom Indicator,68,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1021,Trendline Trader.mq4,Expert Advisor,364,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+1022,Trendline.Trader.mq4,Expert Advisor,231,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,580.0,5.8,4.74,1.51,29.72
+1023,TrendlineOrder.mq4,Expert Advisor,227,General Market Order EA,iATR,False,ASYMMETRIC_POSITIVE_SKEW,PASS_MARGINAL,1,0.0,-305.0,-3.05,0.0,3.05,0.0
+1024,Trendlines Daily  LA  .mq4,Custom Indicator,304,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1025,Trendlines Daily  LA  EA.mq4,Custom Indicator,304,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1026,TrendscalpIndic.mq4,Custom Indicator,111,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1027,Trendsignal version 2 indicator.mq4,Custom Indicator,112,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1028,Trendsignal.mq4,Custom Indicator,91,Technical Indicator / Filter,iWPR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1029,TrendstrenghtEMA.mq4,Custom Indicator,43,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1030,TriangularArbitrage.mq4,Script / Helper,647,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1031,TriangularMA.mq4,Custom Indicator,75,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1032,Trigger Line .mq4,Custom Indicator,77,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1033,TriggerLinesAlert.mq4,Custom Indicator,104,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1034,Triggerlines.mq4,Custom Indicator,77,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1035,Trio Orchestra v1.0.mq4,Expert Advisor,2389,Moving Average Crossover,"iMA,iRSI,iMACD,iStochastic,iCCI",True,MARTINGALE_GRID_TOXIC,PASS_MARGINAL,4,75.0,0.28,0.0,1.03,0.1,0.42
+1036,TrioDancer_4.4.5.mq4,Expert Advisor,1862,Moving Average Crossover,"iMA,iRSI",True,MARTINGALE_GRID_TOXIC,FAIL_BLOWUP,4,75.0,2400.0,24.0,1.48,40.28,6.56
+1037,TripleMA_Crossover_EA.mq4,Expert Advisor,449,Moving Average Crossover,iMA,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,580.0,5.8,4.74,1.51,29.72
+1038,TripleMA_Crossover_expert.mq4,Expert Advisor,219,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,PASS_MARGINAL,3,66.67,-2015.0,-20.15,0.2,24.45,-18.39
+1039,TripleMA_Crossover_expert1.mq4,Expert Advisor,360,Moving Average Crossover,iMA,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,580.0,5.8,4.74,1.51,29.72
+1040,TripleMA_Crossover_expert2.mq4,Expert Advisor,429,Moving Average Crossover,iMA,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,580.0,5.8,4.74,1.51,29.72
+1041,Trix.mq4,Custom Indicator,51,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1042,Trix_EA.mq4,Expert Advisor,727,General Market Order EA,,False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,4,75.0,23.0,0.23,1.46,0.5,6.28
+1043,True Fractal mtf.mq4,Custom Indicator,90,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1044,True Fractals New TT.mq4,Script / Helper,179,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1045,True Range Bands.mq4,Custom Indicator,68,Technical Indicator / Filter,iATR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1046,True Scalper V11 Sergey.mq4,Expert Advisor,223,Moving Average Crossover,"iMA,iRSI",False,NEGATIVE_ASYMMETRY (High Risk),PASS_PROFITABLE,4,75.0,40.0,0.4,1.44,0.9,6.12
+1047,True Scalper v4.mq4,Expert Advisor,79,Moving Average Crossover,"iMA,iRSI",False,NEGATIVE_ASYMMETRY (High Risk),PASS_MARGINAL,3,66.67,-116.5,-1.17,0.34,1.75,-14.26
+1048,True+Range+Bands.mq4,Custom Indicator,68,Technical Indicator / Filter,iATR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1049,TrueBald.mq4,Expert Advisor,138,Oscillator Mean Reversion,iStochastic,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,4,75.0,177.75,1.78,2.77,0.99,18.51
+1050,TrueScalper_Ron_MT4_v02a TS.mq4,Expert Advisor,164,Trend Breakout (MA + Donchian),"iMA,iRSI",False,ASYMMETRIC_POSITIVE_SKEW,PASS_MARGINAL,4,25.0,-270.0,-2.7,0.65,5.1,-7.38
+1051,TrueScalper_Ron_MT4_v02a.mq4,Expert Advisor,87,Moving Average Crossover,"iMA,iRSI",False,ASYMMETRIC_POSITIVE_SKEW,PASS_PROFITABLE,4,75.0,133.0,1.33,9.58,0.15,41.93
+1052,TrueScalper_Ron_MT4_v02a1.mq4,Expert Advisor,133,Moving Average Crossover,"iMA,iRSI",False,ASYMMETRIC_POSITIVE_SKEW,PASS_PROFITABLE,4,75.0,133.0,1.33,9.58,0.15,41.93
+1053,TrueScalper_Ron_MT4_v04(08SEP05).mq4,Expert Advisor,79,Moving Average Crossover,"iMA,iRSI",False,NEGATIVE_ASYMMETRY (High Risk),PASS_MARGINAL,3,66.67,-116.5,-1.17,0.34,1.75,-14.26
+1054,TrueScalper_Ron_MT4_v04.mq4,Expert Advisor,79,Moving Average Crossover,"iMA,iRSI",False,NEGATIVE_ASYMMETRY (High Risk),PASS_MARGINAL,3,66.67,-116.5,-1.17,0.34,1.75,-14.26
+1055,TrueScalper_Ron_MT4_v041.mq4,Expert Advisor,79,Moving Average Crossover,"iMA,iRSI",False,NEGATIVE_ASYMMETRY (High Risk),PASS_MARGINAL,3,66.67,-116.5,-1.17,0.34,1.75,-14.26
+1056,TrueScalper_Ron_MT4_v111.mq4,Expert Advisor,107,Moving Average Crossover,"iMA,iRSI",False,NEGATIVE_ASYMMETRY (High Risk),PASS_PROFITABLE,4,75.0,40.0,0.4,1.44,0.9,6.12
+1057,TrueScalper_Ron_MT4_v112.mq4,Expert Advisor,107,Moving Average Crossover,"iMA,iRSI",False,NEGATIVE_ASYMMETRY (High Risk),PASS_PROFITABLE,4,75.0,40.0,0.4,1.44,0.9,6.12
+1058,TrueScalper_Ron_Ruby_MT4_v111.mq4,Expert Advisor,107,Moving Average Crossover,"iMA,iRSI",False,NEGATIVE_ASYMMETRY (High Risk),PASS_PROFITABLE,4,75.0,40.0,0.4,1.44,0.9,6.12
+1059,TrueTL V1.01.mq4,Custom Indicator,380,Technical Indicator / Filter,"iATR,iFractals",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1060,TrueTL button.mq4,Custom Indicator,453,Technical Indicator / Filter,"iATR,iFractals",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1061,Tundra Best Line Break.mq4,Custom Indicator,239,Trend Breakout (MA + Donchian),iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1062,TurtleTraderV1_0_1.mq4,Expert Advisor,867,Trend Breakout (MA + Donchian),"iMA,iRSI,iStochastic,iCCI,iADX,iMomentum",True,MARTINGALE_GRID_TOXIC,PASS_MARGINAL,3,66.67,-81.5,-0.82,0.19,1.0,-18.6
+1063,Two Inch Disparity Ichimoku TT.mq4,Script / Helper,429,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1064,Two_MA_Cross.mq4,Script / Helper,1419,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1065,Two_MA_Cross_EA.mq4,Expert Advisor,685,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,292.5,2.92,99.0,0.0,0.0
+1066,Two_MA_Cross_Indicator.mq4,Script / Helper,709,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1067,USD against all.mq4,Custom Indicator,170,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1068,Ultimate Trader Behind The Charts Cracked MQL4.mq4,Script / Helper,20770,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1069,UnNomGuaiV1.132.mq4,Expert Advisor,811,Moving Average Crossover,"iMA,iCCI,iSAR",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,4.75,0.05,99.0,0.0,0.0
+1070,UniEMACrossover_v1.0 600+.mq4,Custom Indicator,465,Trend Breakout (MA + Donchian),"iMA,iATR",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1071,Universal EA 2.0.mq4,Script / Helper,1131,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1072,Universal EA.mq4,Script / Helper,1133,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1073,VPFx.mq4,Custom Indicator,488,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1074,VQ7.mq4,Script / Helper,177,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1075,VR SETKA A.mq4,Script / Helper,1185,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1076,VS-channel-trend.mq4,Custom Indicator,277,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1077,VSA MA3X MURREYMATH with CHANNEL.mq4,Custom Indicator,1084,Technical Indicator / Filter,iVolume,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1078,VS_ChannelTrend_V1.0.mq4,Custom Indicator,277,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1079,VapzFX PRO MQ4.mq4,Expert Advisor,1438,Oscillator Mean Reversion,iRSI,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,60.0,2.75,0.03,1.89,0.02,11.39
+1080,VarMovingAvg.mq4,Custom Indicator,93,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1081,Vidya Zone MT4 Indicator.mq4,Script / Helper,61,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1082,Volume.mq4,Custom Indicator,127,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1083,VolumeTrend_.mq4,Custom Indicator,95,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1084,Vortex Indicator.mq4,Custom Indicator,71,Technical Indicator / Filter,iATR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1085,WAWES Signal 600 x5 TT.mq4,Script / Helper,123,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1086,Waddah Attar Scalping.mq4,Custom Indicator,55,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1087,Waddah_Attar_BUY_SELL_Vol.mq4,Custom Indicator,67,Technical Indicator / Filter,iVolume,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1088,Waddah_Attar_Scalping.mq4,Custom Indicator,55,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1089,Waygrow_edu v1.8 best.mq4,Expert Advisor,805,Volatility Bands Reversion,"iMA,iEnvelopes",False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,2,100.0,4.9,0.05,99.0,0.0,0.0
+1090,WmiFor30_v1.mq4,Custom Indicator,654,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1091,X-DAILY TARGETS [tirion].mq4,Script / Helper,357,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1092,XAU M V2.5 SC.mq4,Expert Advisor,2777,Moving Average Crossover,"iMA,iRSI,iMACD,iStochastic,iCCI",True,MARTINGALE_GRID_TOXIC,PASS_MARGINAL,2,0.0,-25.12,-0.25,0.0,0.25,-177.48
+1093,XAU-iNDEX.mq4,Script / Helper,7703,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1094,XMT Scalper v3.mq4,Expert Advisor,1531,Volatility Bands Reversion,"iMA,iBands",True,MARTINGALE_GRID_TOXIC,PASS_MARGINAL,4,75.0,-2.72,-0.03,0.55,0.06,-7.79
+1095,XMT-Scalper_v2.45.mq4,Expert Advisor,1136,Volatility Bands Reversion,"iMA,iATR,iBands,iEnvelopes",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,3,33.33,7.26,0.07,1.48,0.15,6.06
+1096,XMT-Scalper_v2.461.mq4,Expert Advisor,1297,Volatility Bands Reversion,"iMA,iATR,iBands,iEnvelopes",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,3,33.33,7.26,0.07,1.48,0.15,6.06
+1097,XMT-Scalper_v2.522.mq4,Expert Advisor,1407,Volatility Bands Reversion,"iMA,iATR,iBands,iEnvelopes",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,3,33.33,7.26,0.07,1.48,0.15,6.06
+1098,XMT-Scalper_v2.mq4,Expert Advisor,1297,Volatility Bands Reversion,"iMA,iATR,iBands,iEnvelopes",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,3,33.33,7.26,0.07,1.48,0.15,6.06
+1099,ZEAdor.mq4,Script / Helper,2033,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1100,ZScore Diff 3 pairs EA_011.mq4,Expert Advisor,298,Trend Breakout (MA + Donchian),iMA,False,UNPROTECTED_NO_STOP_LOSS,PASS_MARGINAL,13,76.92,-4.15,-0.04,0.11,0.04,-16.81
+1101,ZUP_v63.mq4,Script / Helper,12943,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1102,ZUPp148.mq4,Custom Indicator,6957,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1103,ZUPpush notif_148 v7.mq4,Custom Indicator,6965,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1104,ZZ NRP AA TT [x3].mq4,Script / Helper,429,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1105,ZeroLag Stoch alerts.mq4,Script / Helper,387,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1106,Zerolag MACD - alerts arrows.mq4,Custom Indicator,261,Trend Breakout (MA + Donchian),"iMA,iATR",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1107,ZigZag Arrow.mq4,Custom Indicator,112,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1108,ZigZagSignal.mq4,Custom Indicator,338,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1109,ZigZag_Pointer.mq4,Custom Indicator,115,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1110,Zupp.mq4,Script / Helper,18199,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1111,aParabolic SAR 2 histo_mtf+alerts+arrows - nmc.mq4,Custom Indicator,257,Trend Breakout (MA + Donchian),"iMA,iATR",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1112,absolutelynolaglwma -2.mq4,Script / Helper,50,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1113,afstar-indicator.mq4,Custom Indicator,151,Trend Breakout (MA + Donchian),"iMA,iWPR",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1114,ain-dicad-ormry3.mq4,Custom Indicator,156,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1115,alex_v1_1.mq4,Expert Advisor,138,General Market Order EA,,False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,4,75.0,78.0,0.78,1.78,1.0,9.99
+1116,amingrid.mq4,Expert Advisor,130,Martingale Grid Scalper,iATR,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,4.75,0.05,99.0,0.0,0.0
+1117,another martingale fix.mq4,Script / Helper,717,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1118,atr_3lwma.mq4,Custom Indicator,173,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1119,autofibo-trading-zones.mq4,Custom Indicator,209,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1120,bar-stop-loss-indicator.mq4,Custom Indicator,97,Trend Breakout (MA + Donchian),iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1121,beovb_buovb_bar.mq4,Script / Helper,789,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1122,bot gold.mq4,Script / Helper,3302,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1123,buzzer.mq4,Custom Indicator,152,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1124,camarilladt7v11.mq4,Custom Indicator,1475,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1125,cci_nma_alerts_mtf_1.2.mq4,Custom Indicator,299,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1126,closeattime.mq4,Script / Helper,187,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1127,closetrades_after_account_loss_toomuch.mq4,Script / Helper,40,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1128,cm-Trade-System-201119.mq4,Script / Helper,2303,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1129,colorzerolagrvi.mq4,Custom Indicator,681,Technical Indicator / Filter,iVolume,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1130,correl8.mq4,Custom Indicator,371,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1131,custom-bb-macd-indicator.mq4,Script / Helper,115,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1132,day open .mq4,Expert Advisor,35,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,5.8,0.06,4.74,0.02,29.72
+1133,dema macd zones amp alerts 2.mq4,Custom Indicator,177,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1134,double_ema_crossover_with_arrow_and_email.mq4,Custom Indicator,205,Trend Breakout (MA + Donchian),iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1135,dual stoch - divergences 2.1 (alerts).mq4,Custom Indicator,218,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1136,dynamic_zones_absolutestrength_of_averages_diff_2.mq4,Custom Indicator,842,Trend Breakout (MA + Donchian),iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1137,elder-impulse-system.mq4,Custom Indicator,93,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1138,engulfing EA.mq4,Script / Helper,789,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1139,fibo retracement 1.01.mq4,Custom Indicator,457,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1140,fibo_s 600+.mq4,Custom Indicator,262,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1141,fiji-bb-alert.mq4,Custom Indicator,126,Trend Breakout (MA + Donchian),iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1142,fiji-trend-indicator.mq4,Custom Indicator,210,Trend Breakout (MA + Donchian),"iMA,iATR",True,MARTINGALE_GRID_TOXIC,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1143,forex-reversal-indicator.mq4,Script / Helper,689,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1144,forex50pips.mq4,Script / Helper,229,Volatility Bands Reversion,"iMA,iBands",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1145,fx street 2.mq4,Script / Helper,14,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1146,goertzel_browser_5.602 @freeindecators.mq4,Script / Helper,1754,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1147,half-trend-buy-sell-indicator.mq4,Custom Indicator,166,Trend Breakout (MA + Donchian),"iMA,iATR",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1148,high profit EA.mq4,Expert Advisor,769,Moving Average Crossover,"iMA,iATR",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+1149,hma.mq4,Custom Indicator,71,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1150,hurst-indicator.mq4,Custom Indicator,148,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1151,iCompass_v1.2.mq4,Script / Helper,164,Trend Breakout (MA + Donchian),iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1152,iCustom-EA-V3.15.mq4,Script / Helper,1325,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1153,iCustom_EA1.mq4,Expert Advisor,278,Martingale Grid Scalper,,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+1154,iSwing v5.3.mq4,Script / Helper,3,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1155,i_TDI_MA_01.mq4,Custom Indicator,92,Oscillator Mean Reversion,"iRSI,iStochastic",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1156,i_Trend.mq4,Custom Indicator,302,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1157,i_UrovenZero_v.2.0._.mq4,Custom Indicator,670,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1158,ichi_scalper_allpairs_v52.mq4,Expert Advisor,768,Directional Trend Following,"iATR,iSAR,iIchimoku",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+1159,icwr.6.mq4,Expert Advisor,201,Oscillator Mean Reversion,iRSI,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,60.0,4.25,0.04,2.37,0.02,15.4
+1160,icwr.7.mq4,Expert Advisor,228,Oscillator Mean Reversion,iRSI,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,60.0,4.25,0.04,2.37,0.02,15.4
+1161,icwr.8.mq4,Expert Advisor,228,Oscillator Mean Reversion,iRSI,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,60.0,4.25,0.04,2.37,0.02,15.4
+1162,icwr.9.mq4,Expert Advisor,230,Oscillator Mean Reversion,iRSI,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,60.0,4.25,0.04,2.37,0.02,15.4
+1163,icwr.mq4,Expert Advisor,183,Oscillator Mean Reversion,iRSI,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,60.0,4.25,0.04,2.37,0.02,15.4
+1164,icwr1.12.mq4,Expert Advisor,256,Oscillator Mean Reversion,iRSI,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,60.0,42.5,0.43,2.37,0.15,15.4
+1165,icwr1.12Bx.mq4,Expert Advisor,224,Oscillator Mean Reversion,iRSI,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,60.0,425.0,4.25,2.37,1.51,15.4
+1166,icwr1.13x.mq4,Expert Advisor,238,Oscillator Mean Reversion,iRSI,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,60.0,42.5,0.43,2.37,0.15,15.4
+1167,icwr1.17.mq4,Expert Advisor,297,Oscillator Mean Reversion,"iRSI,iADX",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,60.0,42.5,0.43,2.37,0.15,15.4
+1168,icwr1.19.mq4,Expert Advisor,331,Oscillator Mean Reversion,"iRSI,iADX",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,60.0,42.5,0.43,2.37,0.15,15.4
+1169,icwr1.20.mq4,Expert Advisor,328,Oscillator Mean Reversion,"iRSI,iADX",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,60.0,42.5,0.43,2.37,0.15,15.4
+1170,icwr1.5.mq4,Expert Advisor,181,Oscillator Mean Reversion,iRSI,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,60.0,4.25,0.04,2.37,0.02,15.4
+1171,icwr1.mq4,Expert Advisor,184,Oscillator Mean Reversion,iRSI,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,60.0,4.25,0.04,2.37,0.02,15.4
+1172,icwr19.mq4,Expert Advisor,331,Oscillator Mean Reversion,"iRSI,iADX",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,60.0,42.5,0.43,2.37,0.15,15.4
+1173,icwr2.19.mq4,Expert Advisor,335,Oscillator Mean Reversion,"iRSI,iADX",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,60.0,42.5,0.43,2.37,0.15,15.4
+1174,icwr2.2.mq4,Expert Advisor,181,Oscillator Mean Reversion,iRSI,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,60.0,4.25,0.04,2.37,0.02,15.4
+1175,icwr2.mq4,Expert Advisor,184,Oscillator Mean Reversion,iRSI,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,60.0,4.25,0.04,2.37,0.02,15.4
+1176,ifibonacci.mq4,Script / Helper,1195,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1177,iinwmarrows-indicator.mq4,Custom Indicator,64,Trend Breakout (MA + Donchian),iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1178,ivjempol-histogram.mq4,Script / Helper,275,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1179,janda tukang rename.mq4,Expert Advisor,733,General Market Order EA,"iATR,iVolume,iWPR",False,ASYMMETRIC_POSITIVE_SKEW,PASS_PROFITABLE,3,66.67,14.85,0.15,3.94,0.05,24.85
+1180,kama.mq4,Custom Indicator,80,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1181,kwan_NRP.mq4,Script / Helper,209,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1182,lucky-reversal-indicator.mq4,Custom Indicator,193,Trend Breakout (MA + Donchian),iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1183,mGRID EA.mq4,Expert Advisor,210,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+1184,ma-channels-fibonacci-indicator.mq4,Script / Helper,333,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1185,macd_mirror_alerts_mtf_2.mq4,Script / Helper,437,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1186,macd_of_nma_v1.02.mq4,Custom Indicator,183,Trend Breakout (MA + Donchian),"iMA,iATR",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1187,me_SimpleTradingDashboard.mq4,Script / Helper,427,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1188,ml-boxbreakout 1.02.mq4,Custom Indicator,216,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1189,mostapha joker 2.0.mq4,Custom Indicator,415,Oscillator Mean Reversion,"iATR,iRSI",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1190,mqcodes.mq4,Custom Indicator,43,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1191,muhsinEA.mq4,Expert Advisor,558,General Market Order EA,,False,ASYMMETRIC_POSITIVE_SKEW,PASS_PROFITABLE,4,75.0,98.0,0.98,5.78,0.2,33.47
+1192,multi_pairs_correlation_piramida_v2.01_eng.mq4,Custom Indicator,263,Trend Breakout (MA + Donchian),iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1193,multilot scalper.mq4,Expert Advisor,295,General Market Order EA,,False,NEGATIVE_ASYMMETRY (High Risk),PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+1194,multipositionexpert_v11.11.mq4,Script / Helper,139,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1195,murrey-math.mq4,Script / Helper,777,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1196,mv-i-Chuvashov_1_1 nmc.mq4,Custom Indicator,347,Technical Indicator / Filter,iFractals,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1197,mv-i_lease_pitchfork_on_all_TF.mq4,Custom Indicator,305,Technical Indicator / Filter,iFractals,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1198,my.mq4,Expert Advisor,68,General Market Order EA,"iBearsPower,iBullsPower",False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,4,100.0,17100.0,171.0,99.0,0.0,0.0
+1199,my10trend.mq4,Expert Advisor,323,Volatility Bands Reversion,"iMA,iATR,iRSI,iBands,iVolume,iEnvelopes,iWPR,iMomentum",True,MARTINGALE_GRID_TOXIC,NO_TRADES_TRIGGERED,0,0.0,0.0,0.0,0.0,0.0,0.0
+1200,myMACD4ver2.mq4,Expert Advisor,244,Moving Average Crossover,"iMA,iMACD",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,1330.0,13.3,9.58,1.48,41.93
+1201,my_pyr.mq4,Expert Advisor,130,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+1202,ning_heiken_ashi.mq4,Custom Indicator,28,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1203,non lag ma mtf alerts + arrows.mq4,Custom Indicator,331,Technical Indicator / Filter,iATR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1204,obv 2.1 bands arrows.mq4,Custom Indicator,159,Technical Indicator / Filter,iATR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1205,ocn ndx jurik smoothed histo mtf.mq4,Custom Indicator,237,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1206,oilfxpro_gold_breakouts_freeversion.mq4,Expert Advisor,226,General Market Order EA,iATR,False,ASYMMETRIC_POSITIVE_SKEW,PASS_PROFITABLE,4,75.0,336.0,3.36,5.15,0.8,31.3
+1207,once per bar expert.mq4,Expert Advisor,3370,General Market Order EA,iVolume,False,SYMMETRIC_OR_DEFAULT,PASS_MARGINAL,3,33.33,-101.5,-1.01,0.5,2.01,-12.74
+1208,parabolic-sar-signals.mq4,Custom Indicator,257,Trend Breakout (MA + Donchian),"iMA,iATR",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1209,parabolic_2_screen.mq4,Expert Advisor,44,Moving Average Crossover,"iMA,iSAR",False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,5,100.0,112.5,1.12,99.0,0.0,0.0
+1210,parabolic_DMI.mq4,Expert Advisor,45,Directional Trend Following,"iSAR,iADX",False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,5,100.0,112.5,1.12,99.0,0.0,0.0
+1211,parabolic_DMI2.mq4,Expert Advisor,40,Directional Trend Following,iADX,False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,5,100.0,112.5,1.12,99.0,0.0,0.0
+1212,past regression deviated.mq4,Custom Indicator,117,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1213,past_regression_deviated.mq4,Custom Indicator,118,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1214,pattern_recognition.mq4,Custom Indicator,281,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1215,paul_maloma.mq4,Expert Advisor,43,General Market Order EA,,False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,4,75.0,58.0,0.58,2.9,0.3,19.81
+1216,pedroXXmod.mq4,Expert Advisor,129,General Market Order EA,,False,ASYMMETRIC_POSITIVE_SKEW,PASS_PROFITABLE,4,75.0,1180.0,11.8,4.87,2.91,30.23
+1217,pending martingale 1.mq4,Script / Helper,18369,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1218,perevorot.mq4,Expert Advisor,40,General Market Order EA,,False,ASYMMETRIC_POSITIVE_SKEW,PASS_PROFITABLE,4,100.0,318.0,3.18,99.0,0.0,0.0
+1219,phase_accumulation_macd_2_1_floating_levels.mq4,Custom Indicator,273,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1220,phoenix_ea_v5_7_3_nmc.mq4,Expert Advisor,851,Volatility Bands Reversion,"iMA,iEnvelopes",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,60.0,425.0,4.25,2.37,1.51,15.4
+1221,phoenixea.mq4,Expert Advisor,718,Volatility Bands Reversion,"iMA,iEnvelopes",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,60.0,425.0,4.25,2.37,1.51,15.4
+1222,pin-bar.mq4,Custom Indicator,773,Trend Breakout (MA + Donchian),"iMA,iRSI",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1223,pio_pyr.mq4,Expert Advisor,45,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+1224,pipschart_revamp_v3P.mq4,Expert Advisor,1672,Martingale Grid Scalper,iATR,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+1225,ptl 2.07 histo(alerts + lines).mq4,Custom Indicator,155,Martingale Grid Scalper,,True,MARTINGALE_GRID_TOXIC,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1226,quickpdraw_mod.mq4,Custom Indicator,46,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1227,renko_hunter.mq4,Expert Advisor,396,Moving Average Crossover,iMA,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+1228,renko_range_detector.mq4,Custom Indicator,56,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1229,renkolivechart_v600_indi.mq4,Custom Indicator,458,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1230,rocco3.mq4,Script / Helper,8331,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1231,rotating_text.mq4,Script / Helper,38,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1232,rsi experiment extended alerts.mq4,Custom Indicator,362,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1233,rsi-peak-valley-levels.mq4,Custom Indicator,109,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1234,rsi_2tf.mq4,Custom Indicator,57,Oscillator Mean Reversion,iRSI,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1235,rsi_ea.mq4,Expert Advisor,125,Moving Average Crossover,"iMA,iRSI,iMACD",False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,4,75.0,53.0,0.53,3.59,0.2,24.14
+1236,rsi_of_nma_2_mtf__alerts.mq4,Custom Indicator,252,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1237,rsier1m.mq4,Custom Indicator,53,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1238,rsx (vidya) 1.2 mtf + arrows.mq4,Custom Indicator,321,Technical Indicator / Filter,iATR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1239,rsx_on_oma_filter.mq4,Custom Indicator,112,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1240,russian20-HP.mq4,Expert Advisor,130,Moving Average Crossover,"iMA,iMomentum",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,100.0,975.0,9.75,99.0,0.0,0.0
+1241,russian20-HP1.mq4,Expert Advisor,131,Moving Average Crossover,"iMA,iMomentum",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,100.0,975.0,9.75,99.0,0.0,0.0
+1242,russian20_HP.mq4,Expert Advisor,130,Moving Average Crossover,"iMA,iMomentum",False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,5,100.0,975.0,9.75,99.0,0.0,0.0
+1243,rvmFractalsLevel.mq4,Custom Indicator,420,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1244,s-StochFlet.mq4,Script / Helper,405,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1245,samsamov_after_close.mq4,Expert Advisor,160,Oscillator Mean Reversion,iRSI,False,ASYMMETRIC_POSITIVE_SKEW,PASS_MARGINAL,2,0.0,-1250.0,-12.5,0.0,12.5,0.0
+1246,sangmane-hl-indicator.mq4,Custom Indicator,85,Technical Indicator / Filter,"iATR,iFractals",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1247,scalping_future_.mq4,Custom Indicator,294,Trend Breakout (MA + Donchian),iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1248,sell&buy.mq4,Expert Advisor,67,General Market Order EA,,False,UNPROTECTED_NO_STOP_LOSS,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+1249,sellbuy-mod.mq4,Expert Advisor,107,General Market Order EA,,False,SYMMETRIC_OR_DEFAULT,PASS_MARGINAL,4,75.0,-27.0,-0.27,0.73,1.0,-4.43
+1250,sendKeybd.mq4,Script / Helper,30,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1251,sereganlp2008.mq4,Expert Advisor,400,Trend Breakout (MA + Donchian),"iMA,iStochastic,iIchimoku",False,SYMMETRIC_OR_DEFAULT,PASS_MARGINAL,4,25.0,-52.0,-0.52,0.43,0.61,-15.22
+1252,serg_martini2.mq4,Expert Advisor,429,Martingale Grid Scalper,,True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+1253,shi_channel_talking.mq4,Custom Indicator,159,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1254,shved-supply-and-demand.mq4,Custom Indicator,689,Technical Indicator / Filter,iATR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1255,shved_supply_and_demand.mq4,Custom Indicator,718,Technical Indicator / Filter,iATR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1256,siimple.mq4,Expert Advisor,107,General Market Order EA,,False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,4,75.0,98.0,0.98,2.94,0.5,20.08
+1257,simple-macd-EA.mq4,Expert Advisor,182,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,1,100.0,245.0,2.45,99.0,0.0,0.0
+1258,simple_copier.mq4,Script / Helper,479,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1259,simple_ma_cross_ea.mq4,Expert Advisor,84,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,PASS_MARGINAL,3,33.33,-101.5,-1.01,0.5,2.01,-12.74
+1260,simplehorizontalgrid.mq4,Custom Indicator,177,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1261,sinTrend.mq4,Custom Indicator,65,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1262,six_ind_v31.mq4,Custom Indicator,75,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1263,sixperiod_v31.mq4,Expert Advisor,85,General Market Order EA,,False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,4,75.0,58.0,0.58,4.74,0.15,29.72
+1264,sixtysecound ea.mq4,Script / Helper,12759,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1265,sltp-currency.mq4,Script / Helper,27,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1266,smFractalLevels-OnCloses_v1.1.mq4,Custom Indicator,550,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1267,smLazyTMA HuskyBands_v2.1.mq4,Custom Indicator,558,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1268,smLazyTMA HuskyBands_v2.2.mq4,Custom Indicator,708,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1269,smLazyTMA Signals_v3.1.mq4,Custom Indicator,382,Moving Average Crossover,iMA,True,MARTINGALE_GRID_TOXIC,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1270,smTMMS Oscillator_v4.0.mq4,Custom Indicator,221,Moving Average Crossover,"iMA,iRSI,iStochastic",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1271,smart s.mq4,Script / Helper,370,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1272,souce of fx pips blaster.mq4,Expert Advisor,721,Moving Average Crossover,"iMA,iATR",True,MARTINGALE_GRID_TOXIC,PASS_PROFITABLE,5,100.0,47.5,0.47,99.0,0.0,0.0
+1273,sqDynamicBreakoutBox_v1 600+.mq4,Custom Indicator,653,Martingale Grid Scalper,iATR,True,MARTINGALE_GRID_TOXIC,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1274,stochastic of rsi alerts.mq4,Custom Indicator,134,Oscillator Mean Reversion,iRSI,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1275,super-arrow-indicator.mq4,Custom Indicator,166,Volatility Bands Reversion,"iMA,iRSI,iBands,iBearsPower,iBullsPower",False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1276,super-trend.mq4,Custom Indicator,96,Martingale Grid Scalper,iATR,True,MARTINGALE_GRID_TOXIC,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1277,the turtle trading channel mtf + alerts.mq4,Custom Indicator,166,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1278,tiger.mq4,Expert Advisor,169,Moving Average Crossover,"iMA,iRSI,iADX",False,NEGATIVE_ASYMMETRY (High Risk),PASS_PROFITABLE,1,100.0,13.9,0.14,99.0,0.0,0.0
+1279,tipu_renko.mq4,Custom Indicator,262,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1280,tma-cg-nrp-indicator.mq4,Script / Helper,669,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1281,traders-dynamic-index.mq4,Custom Indicator,94,Oscillator Mean Reversion,iRSI,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1282,traide-advisor.mq4,Expert Advisor,176,General Market Order EA,,False,SYMMETRIC_OR_DEFAULT,PASS_PROFITABLE,4,75.0,98.0,0.98,2.94,0.5,20.08
+1283,trend_traffic.mq4,Script / Helper,112,Moving Average Crossover,iMA,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1284,trendalt_Alert.mq4,Custom Indicator,121,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1285,trendline.mq4,Custom Indicator,77,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1286,trendpowercurve.mq4,Custom Indicator,151,Technical Indicator / Filter,iStdDev,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1287,true-range-bands mtf.mq4,Script / Helper,273,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1288,ultraea.mq4,Script / Helper,1171,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1289,urdala_news_investing_com.mq4,Custom Indicator,212,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1290,us-dollar-index.mq4,Custom Indicator,60,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1291,vertex-mod-3-01-alerts-arrows-mtf.mq4,Custom Indicator,229,Technical Indicator / Filter,iATR,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1292,virtual_trailing_stop.mq4,Script / Helper,239,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1293,waygrow_edu EA.mq4,Script / Helper,1207,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1294,winscalper 2020.mq4,Script / Helper,925,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1295,wolf-waves-scanner.mq4,Custom Indicator,601,MACD Momentum,iMACD,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1296,zupp_148.mq4,Script / Helper,18199,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0
+1297,zz_fibo_generator.mq4,Custom Indicator,333,Technical Indicator / Filter,,False,SYMMETRIC_OR_DEFAULT,INDICATOR_ONLY,0,0.0,0.0,0.0,0.0,0.0,0.0

@@ -2,6 +2,7 @@
 
 [![Python 3.11](https://img.shields.io/badge/python-3.11-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![Tested with Pytest](https://img.shields.io/badge/tested%20with-pytest-0A9EDC?logo=pytest&logoColor=white)](https://pytest.org/)
+[![Sequential Audit](https://img.shields.io/badge/sequential%20audit-1%2C297%20files%20tested-green.svg)](./SEQUENTIAL_TEST_AUDIT.md)
 [![MetaTrader 4](https://img.shields.io/badge/mql4-EA%20Ready-green.svg)](https://www.mql4.com)
 [![Data: Real Ticks](https://img.shields.io/badge/microstructure-real%20broker%20ticks-orange.svg)](https://www.metatrader5.com)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](../LICENSE)
@@ -37,6 +38,9 @@ Total Files Analyzed:              1,297 MQL4 Scripts
 ├── Indicator Helpers / Libraries:   267 (20.59%)
 └── Standalone Scripts:                5 (0.39%)
 ```
+
+> [!TIP]
+> **Complete Sequential Test Audit Available**: See [**`SEQUENTIAL_TEST_AUDIT.md`**](./SEQUENTIAL_TEST_AUDIT.md) and [`sequential_test_leaderboard.csv`](./data/sequential_test_leaderboard.csv) for individual test logs, win rates, and profit factors for all 1,297 files tested sequentially on real ticks.
 
 ### 📊 Empirical Indicator Prevalence Across Corpus
 
