@@ -88,3 +88,4 @@ def test_ml_meta_labeler_execution():
     assert 'volatility_ratio' in sig_df.columns
     assert 'zscore_displacement' in sig_df.columns
     assert 'label_profit' in sig_df.columns
+

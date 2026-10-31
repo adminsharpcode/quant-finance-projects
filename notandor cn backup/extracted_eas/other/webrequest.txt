@@ -1,0 +1,14 @@
+Adding required servers in the list of allowed URLs
+
+Open your MT4/MT5 terminal, go to the "Tools" menu and select “Options”. You can also press Ctrl+O to get to this menu quickly next time. Click on the “Expert Advisors“ tab. Here you should allow requests to:
+
+
+https://ec.forexprostools.com/
+https://nfs.faireconomy.media/ff_calendar_thisweek.json
+https://cdn-nfs.faireconomy.media/ff_calendar_thisweek.json
+http://nfs.faireconomy.media/ff_calendar_thisweek.xml 
+https://www.worldtimeserver.com
+https://nfs.faireconomy.media
+
+
+

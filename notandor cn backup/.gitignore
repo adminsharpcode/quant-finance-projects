@@ -1,0 +1,5 @@
+# Large raw downloaded archives (preserved locally on disk)
+downloads/
+temp/
+scratch/
+*.log

@@ -1,0 +1,27 @@
+TradesToTelegram is a lightweight MT4 utility EA that sends trade notifications to Telegram using Telegram Bot API (sendMessage).
+
+✅ Key Features ✅
+
+✅ Sends alerts when a trade is opened or closed (order-based detection in MT4)
+✅ Optional filter: BUY/SELL only
+✅ UTF-8 URL encoding (supports Vietnamese & emojis)
+✅ Optional disable web page preview
+✅ Simple inputs: Bot Token, Chat ID, timeout, prefix
+
+➡️ How It Works (MT4)
+MT4 does not provide "deal" events like MT5. This EA monitors trades by scanning OrdersTotal() and OrdersHistoryTotal() periodically.
+When a new order appears (open) or a new record is added to history (close), the EA sends a Telegram message.
+
+Setup
+Create a Telegram bot and get the bot token.
+Get your target chat id (user/group) or use @channelusername.
+In MetaTrader 4: Tools → Options → Expert Advisors
+Enable “Allow WebRequest for listed URL” and add: https://api.telegram.org
+Attach the EA to any chart and set:
+InpBotToken
+InpChatId
+
+Notes / Troubleshooting
+If WebRequest fails, check network/firewall/DNS and ensure the URL is allowed in MT4 options.
+Some networks/VPS may block Telegram; switching network or using a relay server can help.
+This EA is a notification utility only. It does not open or manage trades.

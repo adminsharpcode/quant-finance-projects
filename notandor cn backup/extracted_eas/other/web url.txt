@@ -1,0 +1,3 @@
+add this webrequest for it to work
+
+https://api.tradivorobot.xyz/
