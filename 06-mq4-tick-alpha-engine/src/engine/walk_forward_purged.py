@@ -141,3 +141,4 @@ class PurgedWalkForwardCV:
             "walk_forward_verdict": verdict,
             "folds": fold_results
         }
+

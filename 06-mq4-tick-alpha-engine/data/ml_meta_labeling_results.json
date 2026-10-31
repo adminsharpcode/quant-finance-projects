@@ -1,0 +1,69 @@
+{
+  "total_candidate_signals": 16,
+  "train_signals": 9,
+  "test_signals": 7,
+  "ml_filtered_signals": 3,
+  "filter_retention_rate_pct": 42.86,
+  "conviction_threshold": 0.5,
+  "raw_strategy_oos": {
+    "trades": 7,
+    "win_rate_pct": 14.29,
+    "net_pnl": 110.0,
+    "profit_factor": 1.88,
+    "sharpe_ratio": 5.2,
+    "sortino_ratio": 11.81,
+    "max_drawdown_pct": 1.25,
+    "ulcer_index": 0.77
+  },
+  "ml_optimized_strategy_oos": {
+    "trades": 3,
+    "win_rate_pct": 33.33,
+    "net_pnl": 241.46,
+    "profit_factor": 99.0,
+    "sharpe_ratio": 20.49,
+    "sortino_ratio": 0.0,
+    "max_drawdown_pct": 0.0,
+    "ulcer_index": 0.0
+  },
+  "ml_alpha_attribution": {
+    "win_rate_improvement_pct": 19.04,
+    "profit_factor_multiplier": 97.12,
+    "sharpe_ratio_improvement": 15.29,
+    "drawdown_reduction_pct": 1.25,
+    "verdict": "STRONG_ML_ALPHA_GAIN"
+  },
+  "top_meta_features": [
+    {
+      "feature": "volatility_ratio",
+      "importance": 0.3077
+    },
+    {
+      "feature": "donchian_position",
+      "importance": 0.1538
+    },
+    {
+      "feature": "zscore_displacement",
+      "importance": 0.1231
+    },
+    {
+      "feature": "spread_ratio",
+      "importance": 0.1231
+    },
+    {
+      "feature": "trend_regime_strength",
+      "importance": 0.1077
+    },
+    {
+      "feature": "tick_drift_10",
+      "importance": 0.1077
+    },
+    {
+      "feature": "tick_drift_30",
+      "importance": 0.0769
+    },
+    {
+      "feature": "signal_side",
+      "importance": 0.0
+    }
+  ]
+}

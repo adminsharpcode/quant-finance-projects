@@ -152,3 +152,4 @@ def test_portfolio_inverse_vol_and_diversification():
     assert w_low > w_high
     assert w_low + w_high == pytest.approx(1.0, abs=1e-2)
     assert res['diversification_ratio'] >= 1.0
+

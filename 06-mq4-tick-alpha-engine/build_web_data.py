@@ -22,6 +22,18 @@ with open(os.path.join(data_dir, "pipeline_results.json"), "r", encoding="utf-8"
 with open(os.path.join(data_dir, "sequential_test_summary.json"), "r", encoding="utf-8") as f:
     seq_summary = json.load(f)
 
+ml_insights_path = os.path.join(data_dir, "ml_codebase_insights.json")
+ml_insights = {}
+if os.path.exists(ml_insights_path):
+    with open(ml_insights_path, "r", encoding="utf-8") as f:
+        ml_insights = json.load(f)
+
+meta_label_path = os.path.join(data_dir, "ml_meta_labeling_results.json")
+meta_label_data = {}
+if os.path.exists(meta_label_path):
+    with open(meta_label_path, "r", encoding="utf-8") as f:
+        meta_label_data = json.load(f)
+
 df_board = pd.read_csv(os.path.join(data_dir, "sequential_test_leaderboard.csv"))
 # Filter top 100 for web UI
 top_board = df_board[df_board['Type'] == 'Expert Advisor'].sort_values('ProfitFactor', ascending=False).head(100).to_dict(orient='records')
@@ -48,6 +60,10 @@ const SEQUENTIAL_SUMMARY = {json.dumps(seq_summary, indent=2)};
 const SEQUENTIAL_LEADERBOARD = {json.dumps(top_board, indent=2)};
 
 const MQ4_CATALOG = {json.dumps(compact_catalog, indent=2)};
+
+const ML_INSIGHTS = {json.dumps(ml_insights, indent=2)};
+
+const ML_META_LABELING = {json.dumps(meta_label_data, indent=2)};
 """
 
 out_js = os.path.join(web_dir, "data.js")

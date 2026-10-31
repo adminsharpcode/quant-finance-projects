@@ -170,3 +170,4 @@ class MicrostructureStressTester:
             "fragility_score_pct": round(fragility, 1),
             "stress_resilience_verdict": verdict
         }
+

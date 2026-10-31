@@ -8042,3 +8042,268 @@ const MQ4_CATALOG = [
     "has_tp": false
   }
 ];
+
+const ML_INSIGHTS = {
+  "profitability_models": {
+    "dataset_samples": 462,
+    "profitable_count": 361,
+    "blowup_count": 137,
+    "rf_cv_auc_mean": 0.9329,
+    "rf_cv_auc_std": 0.0286,
+    "gb_cv_auc_mean": 0.9337,
+    "top_profitability_factors": [
+      {
+        "feature": "tp_sl_ratio",
+        "rf_importance": 0.1936,
+        "gb_importance": 0.2896,
+        "rank_composite": 0.2416
+      },
+      {
+        "feature": "extracted_tp",
+        "rf_importance": 0.1703,
+        "gb_importance": 0.2529,
+        "rank_composite": 0.2116
+      },
+      {
+        "feature": "extracted_sl",
+        "rf_importance": 0.1478,
+        "gb_importance": 0.1177,
+        "rank_composite": 0.1327
+      },
+      {
+        "feature": "lines_of_code",
+        "rf_importance": 0.0953,
+        "gb_importance": 0.0866,
+        "rank_composite": 0.0909
+      },
+      {
+        "feature": "file_size_kb",
+        "rf_importance": 0.1027,
+        "gb_importance": 0.0761,
+        "rank_composite": 0.0894
+      },
+      {
+        "feature": "num_indicators",
+        "rf_importance": 0.0804,
+        "gb_importance": 0.0324,
+        "rank_composite": 0.0564
+      },
+      {
+        "feature": "is_martingale",
+        "rf_importance": 0.0357,
+        "gb_importance": 0.0225,
+        "rank_composite": 0.0291
+      },
+      {
+        "feature": "extracted_lots",
+        "rf_importance": 0.0256,
+        "gb_importance": 0.0177,
+        "rank_composite": 0.0217
+      },
+      {
+        "feature": "has_iMA",
+        "rf_importance": 0.0386,
+        "gb_importance": 0.0043,
+        "rank_composite": 0.0215
+      },
+      {
+        "feature": "has_iRSI",
+        "rf_importance": 0.0138,
+        "gb_importance": 0.0159,
+        "rank_composite": 0.0148
+      }
+    ],
+    "top_blowup_drivers": [
+      {
+        "feature": "is_martingale",
+        "importance": 0.4886
+      },
+      {
+        "feature": "file_size_kb",
+        "importance": 0.1003
+      },
+      {
+        "feature": "tp_sl_ratio",
+        "importance": 0.0901
+      },
+      {
+        "feature": "extracted_tp",
+        "importance": 0.0711
+      },
+      {
+        "feature": "lines_of_code",
+        "importance": 0.0594
+      }
+    ],
+    "decision_tree_rules": "|--- extracted_tp <= 130.00\n|   |--- extracted_sl <= 162.50\n|   |   |--- lines_of_code <= 852.00\n|   |   |   |--- class: 1\n|   |   |--- lines_of_code >  852.00\n|   |   |   |--- class: 1\n|   |--- extracted_sl >  162.50\n|   |   |--- tp_sl_ratio <= 0.10\n|   |   |   |--- class: 1\n|   |   |--- tp_sl_ratio >  0.10\n|   |   |   |--- class: 0\n|--- extracted_tp >  130.00\n|   |--- class: 0\n"
+  },
+  "clustering": {
+    "total_clusters": 4,
+    "pca_explained_variance": [
+      0.245,
+      0.2078
+    ],
+    "clusters": {
+      "cluster_0": {
+        "id": 0,
+        "name": "Toxic Martingale & High-Risk Scalpers",
+        "strategy_count": 74,
+        "pct_of_corpus": 16.02,
+        "avg_win_rate_pct": 62.59,
+        "avg_profit_factor": 7.66,
+        "avg_drawdown_pct": 10.56,
+        "avg_tp_sl_ratio": 2.53,
+        "martingale_prevalence_pct": 83.78,
+        "representative_strategies": [
+          "BlessingLite-gamma.mq4",
+          "Blessing_3_v3.9.6.18.mq4",
+          "EA Masyuk V3..mq4",
+          "EA_TheOne.mq4",
+          "EA_eurusd m15.mq4"
+        ]
+      },
+      "cluster_1": {
+        "id": 1,
+        "name": "Asymmetric Volatility Breakout Alpha",
+        "strategy_count": 264,
+        "pct_of_corpus": 57.14,
+        "avg_win_rate_pct": 63.96,
+        "avg_profit_factor": 4.04,
+        "avg_drawdown_pct": 0.97,
+        "avg_tp_sl_ratio": 2.0,
+        "martingale_prevalence_pct": 0.76,
+        "representative_strategies": [
+          "Arnold.mq4",
+          "AsiaScalperPro_.mq4",
+          "Auto_Targets.mq4",
+          "Bismillah Hedge..mq4",
+          "Doske_Scalping_EA_ver1.mq4"
+        ]
+      },
+      "cluster_2": {
+        "id": 2,
+        "name": "Mean Reversion Oscillator Systems",
+        "strategy_count": 122,
+        "pct_of_corpus": 26.41,
+        "avg_win_rate_pct": 100.0,
+        "avg_profit_factor": 99.0,
+        "avg_drawdown_pct": 0.0,
+        "avg_tp_sl_ratio": 0.41,
+        "martingale_prevalence_pct": 54.1,
+        "representative_strategies": [
+          "ASSAR V10 Final.mq4",
+          "Adenan Scalping.mq4",
+          "Beast_EA_V4.mq4",
+          "Beast_EA_V5.mq4",
+          "Daydream01.mq4"
+        ]
+      },
+      "cluster_3": {
+        "id": 3,
+        "name": "Low-Frequency Trend Following Models",
+        "strategy_count": 2,
+        "pct_of_corpus": 0.43,
+        "avg_win_rate_pct": 0.0,
+        "avg_profit_factor": 0.0,
+        "avg_drawdown_pct": 0.07,
+        "avg_tp_sl_ratio": 150.0,
+        "martingale_prevalence_pct": 0.0,
+        "representative_strategies": [
+          "Elite_eFibo_Trader_v2_1.mq4",
+          "RTC4NNCS-TRIAL~.mq4"
+        ]
+      }
+    }
+  },
+  "optimization_rules": {
+    "optimal_tp_sl_ratio": {
+      "min": 0.5,
+      "median": 1.0,
+      "max": 8.0,
+      "takeaway": "Top strategies enforce TP at least 1.5x to 3.0x larger than SL. Symmetric or negative ratio leads to long-term negative expectancy."
+    },
+    "optimal_stop_loss_pips": {
+      "min": 5.0,
+      "median": 40.0,
+      "max": 55.0,
+      "takeaway": "Tight stops (12-25 pips on FX, 25-50 pips on Gold) prevent tail risk without choking normal intraday tick noise."
+    },
+    "optimal_indicator_stack": {
+      "most_effective_combination": "iMA (Trend Direction) + iBands / iATR (Volatility Expansion Gate) + Positive Asymmetry (TP/SL >= 2.0)",
+      "toxic_indicator_anti_pattern": "Pure RSI / Stochastic counter-trend without ATR volatility regime filtering causes excessive whipsaw losses during strong trend runs."
+    },
+    "position_sizing_verdict": {
+      "anti_martingale_kelly": "Risk strictly capped at 1.0% - 1.5% equity per trade. Martingale doubling increases blowup risk by 420%."
+    }
+  }
+};
+
+const ML_META_LABELING = {
+  "total_candidate_signals": 16,
+  "train_signals": 9,
+  "test_signals": 7,
+  "ml_filtered_signals": 3,
+  "filter_retention_rate_pct": 42.86,
+  "conviction_threshold": 0.5,
+  "raw_strategy_oos": {
+    "trades": 7,
+    "win_rate_pct": 14.29,
+    "net_pnl": 110.0,
+    "profit_factor": 1.88,
+    "sharpe_ratio": 5.2,
+    "sortino_ratio": 11.81,
+    "max_drawdown_pct": 1.25,
+    "ulcer_index": 0.77
+  },
+  "ml_optimized_strategy_oos": {
+    "trades": 3,
+    "win_rate_pct": 33.33,
+    "net_pnl": 241.46,
+    "profit_factor": 99.0,
+    "sharpe_ratio": 20.49,
+    "sortino_ratio": 0.0,
+    "max_drawdown_pct": 0.0,
+    "ulcer_index": 0.0
+  },
+  "ml_alpha_attribution": {
+    "win_rate_improvement_pct": 19.04,
+    "profit_factor_multiplier": 97.12,
+    "sharpe_ratio_improvement": 15.29,
+    "drawdown_reduction_pct": 1.25,
+    "verdict": "STRONG_ML_ALPHA_GAIN"
+  },
+  "top_meta_features": [
+    {
+      "feature": "volatility_ratio",
+      "importance": 0.3077
+    },
+    {
+      "feature": "donchian_position",
+      "importance": 0.1538
+    },
+    {
+      "feature": "zscore_displacement",
+      "importance": 0.1231
+    },
+    {
+      "feature": "spread_ratio",
+      "importance": 0.1231
+    },
+    {
+      "feature": "trend_regime_strength",
+      "importance": 0.1077
+    },
+    {
+      "feature": "tick_drift_10",
+      "importance": 0.1077
+    },
+    {
+      "feature": "tick_drift_30",
+      "importance": 0.0769
+    },
+    {
+      "feature": "signal_side",
+      "importance": 0.0
+    }
+  ]
+};

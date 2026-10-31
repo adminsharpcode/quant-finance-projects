@@ -7,8 +7,10 @@ Generates publication-quality dark-themed quantitative finance tear-sheets:
 3. Peak-to-Trough Underwater Drawdown Analysis
 4. 5,000-Path Monte Carlo Stochastic Fan Chart & Ruin Probabilities
 5. Deflated Sharpe Ratio (DSR) vs Nominal Sharpe across 1,297 Files (Multiple Testing Hurdle)
-6. Combinatorial Purged & Embargoed Walk-Forward (CPCV) Out-of-Sample Performance
-7. Microstructure Execution Stress Matrix (Spread Blowouts & Execution Latency)
+6. Microstructure Execution Stress Matrix (Spread Blowouts & Execution Latency)
+7. Machine Learning Feature Importance (Drivers of Alpha vs Account Liquidation)
+8. Unsupervised Latent Space Strategy Clustering (PCA 2D Projection of 1,297 Files)
+9. ML Meta-Labeling Out-of-Sample Performance Comparison
 """
 
 import os
@@ -201,10 +203,6 @@ def plot_monte_carlo(trades: list, output_path: str):
 
 
 def plot_deflated_sharpe_analysis(leaderboard_csv: str, output_path: str):
-    """
-    Plots the Deflated Sharpe Ratio (DSR) haircut vs Nominal Sharpe across the 1,297 corpus.
-    Visualizes why retail backtests fail multiple testing corrections.
-    """
     df = pd.read_csv(leaderboard_csv)
     df_ea = df[(df['Type'] == 'Expert Advisor') & (df['Trades'] >= 3)].copy()
 
@@ -216,7 +214,6 @@ def plot_deflated_sharpe_analysis(leaderboard_csv: str, output_path: str):
     dsr = df_ea['DeflatedSharpeRatio'].to_numpy()
     exp_max = df_ea['ExpectedMaxSharpe'].iloc[0] if len(df_ea) > 0 else 56.2
 
-    # 1. Scatter Plot: Nominal Sharpe vs Deflated Sharpe
     colors = ['#f85149' if d < 0.50 else '#2ea043' for d in dsr]
     ax1.scatter(nom_sr, dsr * 100.0, c=colors, alpha=0.6, edgecolors='none', s=40)
     ax1.axvline(exp_max, color='#f85149', linestyle='--', linewidth=1.5, label=f'Expected Max Noise Hurdle E[max_N] = {exp_max:.1f}')
@@ -229,7 +226,6 @@ def plot_deflated_sharpe_analysis(leaderboard_csv: str, output_path: str):
     ax1.legend(loc='lower right', frameon=True, facecolor='#161b22', edgecolor='#30363d', fontsize=9)
     ax1.grid(True)
 
-    # 2. Histogram Distribution of Backtest Sharpe Ratios
     ax2.hist(nom_sr, bins=35, color='#388bfd', edgecolor='#1f6feb', alpha=0.75, density=False)
     ax2.axvline(np.mean(nom_sr), color='#58a6ff', linestyle='-', linewidth=2.0, label=f'Corpus Mean SR = {np.mean(nom_sr):.2f}')
     ax2.axvline(exp_max, color='#f85149', linestyle='--', linewidth=2.0, label=f'Hedge Fund Filter Hurdle = {exp_max:.1f}')
@@ -247,9 +243,6 @@ def plot_deflated_sharpe_analysis(leaderboard_csv: str, output_path: str):
 
 
 def plot_stress_testing_tear_sheet(pipeline_json: str, output_path: str):
-    """
-    Plots the Microstructure Stress Testing degradation curve: Spread Blowout vs Latency Shocks.
-    """
     with open(pipeline_json, 'r', encoding='utf-8') as f:
         data = json.load(f)
 
@@ -261,7 +254,6 @@ def plot_stress_testing_tear_sheet(pipeline_json: str, output_path: str):
     ax1.set_facecolor('#0d1117')
     ax2.set_facecolor('#0d1117')
 
-    # 1. Spread Shock Degradation
     mults = [1.0, 1.5, 2.0, 3.0, 5.0]
     base_sr = stress.get('baseline', {}).get('sharpe_ratio', 16.34)
     sr_vals = [base_sr] + [spread_data.get(f"{m}x_spread", {}).get('sharpe_ratio', 0.0) for m in mults[1:]]
@@ -278,7 +270,6 @@ def plot_stress_testing_tear_sheet(pipeline_json: str, output_path: str):
         va = 'bottom' if v >= 0 else 'top'
         ax1.text(i, v + (1.0 if v >= 0 else -3.0), f"{v:.1f}", ha='center', va=va, color='#c9d1d9', fontweight='bold', fontsize=9.5)
 
-    # 2. Latency Queue Stress
     lat_names = ['0ms (Co-located)', '50ms (ECN)', '150ms (Retail)', '300ms (Congested)']
     lat_srs = [base_sr, lat_data.get('50ms_latency', {}).get('sharpe_ratio', 0.0), lat_data.get('150ms_latency', {}).get('sharpe_ratio', 0.0), lat_data.get('300ms_latency', {}).get('sharpe_ratio', 0.0)]
     bar2_colors = ['#388bfd' if s > 5.0 else '#e3b341' if s > 0 else '#f85149' for s in lat_srs]
@@ -300,6 +291,164 @@ def plot_stress_testing_tear_sheet(pipeline_json: str, output_path: str):
     print(f'Microstructure stress chart saved: {output_path}')
 
 
+def plot_ml_feature_importance(ml_insights_path: str, output_path: str):
+    """
+    Plots Random Forest and Gradient Boosting feature importances identifying alpha vs blowup drivers.
+    """
+    with open(ml_insights_path, 'r', encoding='utf-8') as f:
+        insights = json.load(f)
+
+    profit_factors = insights.get('profitability_models', {}).get('top_profitability_factors', [])[:8]
+    blowup_factors = insights.get('profitability_models', {}).get('top_blowup_drivers', [])[:5]
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 5.5), facecolor='#0d1117')
+    ax1.set_facecolor('#0d1117')
+    ax2.set_facecolor('#0d1117')
+
+    # 1. Profitability Drivers
+    feat_names = [f['feature'] for f in profit_factors]
+    rf_imp = [f['rf_importance'] * 100.0 for f in profit_factors]
+    gb_imp = [f['gb_importance'] * 100.0 for f in profit_factors]
+
+    y_pos = np.arange(len(feat_names))
+    width = 0.35
+
+    ax1.barh(y_pos - width/2, rf_imp[::-1], width, label='Random Forest', color='#2ea043', edgecolor='#238636')
+    ax1.barh(y_pos + width/2, gb_imp[::-1], width, label='Gradient Boosting', color='#388bfd', edgecolor='#1f6feb')
+    ax1.set_yticks(y_pos)
+    ax1.set_yticklabels(feat_names[::-1], fontsize=10, color='#c9d1d9')
+    ax1.set_title('ML Feature Importance: Drivers of Strategy Profitability', fontsize=13, fontweight='bold', color='#f0f6fc', pad=12)
+    ax1.set_xlabel('Relative Feature Contribution (%)', fontsize=10, color='#8b949e')
+    ax1.legend(loc='lower right', frameon=True, facecolor='#161b22', edgecolor='#30363d', fontsize=9.5)
+    ax1.grid(True, axis='x')
+
+    # 2. Account Blowup Drivers
+    b_names = [f['feature'] for f in blowup_factors]
+    b_imp = [f['importance'] * 100.0 for f in blowup_factors]
+
+    bars2 = ax2.barh(b_names[::-1], b_imp[::-1], color='#f85149', edgecolor='#da3633', height=0.55)
+    ax2.set_title('ML Feature Importance: Primary Drivers of Account Ruin', fontsize=13, fontweight='bold', color='#f0f6fc', pad=12)
+    ax2.set_xlabel('Ruin Predictive Importance (%)', fontsize=10, color='#8b949e')
+    ax2.grid(True, axis='x')
+
+    for bar in bars2:
+        w = bar.get_width()
+        ax2.text(w + 1.0, bar.get_y() + bar.get_height()/2, f"{w:.1f}%", va='center', ha='left', color='#c9d1d9', fontweight='bold', fontsize=9.5)
+
+    plt.tight_layout()
+    plt.savefig(output_path, dpi=200, facecolor='#0d1117')
+    plt.close()
+    print(f'ML Feature Importance chart saved: {output_path}')
+
+
+def plot_ml_codebase_clusters(ml_insights_path: str, output_path: str):
+    """
+    Visualizes the 4 latent clusters mined across the 1,297 files.
+    """
+    with open(ml_insights_path, 'r', encoding='utf-8') as f:
+        insights = json.load(f)
+
+    clusters = insights.get('clustering', {}).get('clusters', {})
+    names = [c['name'] for c in clusters.values()]
+    counts = [c['strategy_count'] for c in clusters.values()]
+    win_rates = [c['avg_win_rate_pct'] for c in clusters.values()]
+    mart_prev = [c['martingale_prevalence_pct'] for c in clusters.values()]
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 5.5), facecolor='#0d1117')
+    ax1.set_facecolor('#0d1117')
+    ax2.set_facecolor('#0d1117')
+
+    # 1. Cluster Breakdown Pie
+    colors = ['#f85149', '#2ea043', '#bc8cff', '#e3b341']
+    wedges, texts, autotexts = ax1.pie(
+        counts,
+        labels=[f"Cluster {i}" for i in range(len(counts))],
+        autopct='%1.1f%%',
+        colors=colors,
+        startangle=140,
+        textprops=dict(color='#c9d1d9', fontsize=10),
+        wedgeprops=dict(edgecolor='#0d1117', linewidth=2)
+    )
+    for at in autotexts:
+        at.set_color('#0d1117')
+        at.set_fontweight('bold')
+    ax1.set_title('1,297 MQ4 Codebase Latent Cluster Distribution', fontsize=13, fontweight='bold', color='#f0f6fc', pad=12)
+
+    # 2. Martingale Risk vs Win Rate in Clusters
+    x_pos = np.arange(len(names))
+    width = 0.35
+
+    ax2.bar(x_pos - width/2, win_rates, width, label='Avg Win Rate (%)', color='#388bfd', edgecolor='#1f6feb')
+    ax2.bar(x_pos + width/2, mart_prev, width, label='Martingale Prevalence (%)', color='#f85149', edgecolor='#da3633')
+    ax2.set_xticks(x_pos)
+    ax2.set_xticklabels([f"C{i}:\n{n[:15]}..." for i, n in enumerate(names)], fontsize=9, color='#c9d1d9')
+    ax2.set_title('Cluster Risk Profile: Win Rate vs Toxic Multiplier Prevalence', fontsize=13, fontweight='bold', color='#f0f6fc', pad=12)
+    ax2.set_ylabel('Percentage (%)', fontsize=10, color='#8b949e')
+    ax2.legend(loc='upper right', frameon=True, facecolor='#161b22', edgecolor='#30363d', fontsize=9.5)
+    ax2.grid(True, axis='y')
+
+    plt.tight_layout()
+    plt.savefig(output_path, dpi=200, facecolor='#0d1117')
+    plt.close()
+    print(f'ML Codebase Clusters chart saved: {output_path}')
+
+
+def plot_ml_meta_labeling_tear_sheet(meta_json_path: str, output_path: str):
+    """
+    Compares Out-of-Sample performance: Raw Unfiltered Strategy vs ML Meta-Labeled Strategy.
+    """
+    with open(meta_json_path, 'r', encoding='utf-8') as f:
+        meta = json.load(f)
+
+    raw = meta.get('raw_strategy_oos', {})
+    opt = meta.get('ml_optimized_strategy_oos', {})
+    top_meta = meta.get('top_meta_features', [])[:6]
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 5.5), facecolor='#0d1117')
+    ax1.set_facecolor('#0d1117')
+    ax2.set_facecolor('#0d1117')
+
+    # 1. Performance Comparison
+    metrics_labels = ['Win Rate (%)', 'Sharpe Ratio', 'Max DD (%)', 'Profit Factor']
+    raw_vals = [raw.get('win_rate_pct', 0.0), raw.get('sharpe_ratio', 0.0), raw.get('max_drawdown_pct', 0.0), min(10.0, raw.get('profit_factor', 0.0))]
+    opt_vals = [opt.get('win_rate_pct', 0.0), opt.get('sharpe_ratio', 0.0), opt.get('max_drawdown_pct', 0.0), min(10.0, opt.get('profit_factor', 0.0))]
+
+    x = np.arange(len(metrics_labels))
+    w = 0.35
+
+    ax1.bar(x - w/2, raw_vals, w, label='Raw Strategy (Unfiltered)', color='#8b949e', edgecolor='#30363d')
+    ax1.bar(x + w/2, opt_vals, w, label='ML Meta-Labeled Strategy', color='#2ea043', edgecolor='#238636')
+    ax1.set_xticks(x)
+    ax1.set_xticklabels(metrics_labels, fontsize=10, color='#c9d1d9')
+    ax1.set_title('Out-of-Sample Performance: Raw Strategy vs ML Meta-Labeler', fontsize=13, fontweight='bold', color='#f0f6fc', pad=12)
+    ax1.set_ylabel('Metric Value', fontsize=10, color='#8b949e')
+    ax1.legend(loc='upper left', frameon=True, facecolor='#161b22', edgecolor='#30363d', fontsize=9.5)
+    ax1.grid(True, axis='y')
+
+    # Add value labels
+    for i in range(len(x)):
+        ax1.text(x[i] - w/2, raw_vals[i] + 0.5, f"{raw_vals[i]:.1f}", ha='center', color='#c9d1d9', fontsize=9)
+        ax1.text(x[i] + w/2, opt_vals[i] + 0.5, f"{opt_vals[i]:.1f}", ha='center', color='#7ee787', fontweight='bold', fontsize=9)
+
+    # 2. Meta-Labeler Feature Importance
+    m_names = [f['feature'] for f in top_meta]
+    m_imp = [f['importance'] * 100.0 for f in top_meta]
+
+    bars2 = ax2.barh(m_names[::-1], m_imp[::-1], color='#388bfd', edgecolor='#1f6feb', height=0.55)
+    ax2.set_title('Meta-Labeler: Microstructure Feature Importance at Signal Time', fontsize=13, fontweight='bold', color='#f0f6fc', pad=12)
+    ax2.set_xlabel('Conviction Prediction Importance (%)', fontsize=10, color='#8b949e')
+    ax2.grid(True, axis='x')
+
+    for bar in bars2:
+        width = bar.get_width()
+        ax2.text(width + 0.8, bar.get_y() + bar.get_height()/2, f"{width:.1f}%", va='center', ha='left', color='#c9d1d9', fontweight='bold', fontsize=9.5)
+
+    plt.tight_layout()
+    plt.savefig(output_path, dpi=200, facecolor='#0d1117')
+    plt.close()
+    print(f'ML Meta-Labeling tear-sheet saved: {output_path}')
+
+
 if __name__ == '__main__':
     data_dir = os.path.join(ROOT_DIR, 'data')
     vis_dir = os.path.join(ROOT_DIR, 'visualizations')
@@ -311,6 +460,8 @@ if __name__ == '__main__':
     xau_csv = os.path.join(data_dir, 'real_ticks_xauusd.csv')
     lead_csv = os.path.join(data_dir, 'sequential_test_leaderboard.csv')
     pipe_json = os.path.join(data_dir, 'pipeline_results.json')
+    ml_insights = os.path.join(data_dir, 'ml_codebase_insights.json')
+    meta_json = os.path.join(data_dir, 'ml_meta_labeling_results.json')
 
     df_eur = pd.read_csv(eur_csv)
     df_gbp = pd.read_csv(gbp_csv)
@@ -326,4 +477,11 @@ if __name__ == '__main__':
     if os.path.exists(pipe_json):
         plot_stress_testing_tear_sheet(pipe_json, os.path.join(vis_dir, 'microstructure_stress_tests.png'))
 
-    print('All institutional tear-sheets and charts successfully generated.')
+    if os.path.exists(ml_insights):
+        plot_ml_feature_importance(ml_insights, os.path.join(vis_dir, 'ml_feature_importance.png'))
+        plot_ml_codebase_clusters(ml_insights, os.path.join(vis_dir, 'ml_codebase_clusters.png'))
+
+    if os.path.exists(meta_json):
+        plot_ml_meta_labeling_tear_sheet(meta_json, os.path.join(vis_dir, 'ml_meta_labeling_optimization.png'))
+
+    print('All institutional and ML tear-sheets successfully generated.')
