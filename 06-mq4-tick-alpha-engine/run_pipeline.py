@@ -1,11 +1,15 @@
 """
-Production Pipeline Runner
---------------------------
-1. Loads real tick datasets (EURUSD, GBPUSD, XAUUSD)
+Institutional Production Pipeline Runner
+----------------------------------------
+Hedge Fund-Grade Quantitative Trading & Risk Evaluation:
+1. Loads real broker tick datasets (EURUSD, GBPUSD, XAUUSD)
 2. Executes In-Sample / Out-of-Sample Parameter Optimization
 3. Evaluates full Event-Driven Tick Backtests with microstructure realism
 4. Runs 5,000-Iteration Monte Carlo Simulation (Ruin Probability & VaR/CVaR)
-5. Generates structured output for reporting
+5. Computes Institutional Risk Suite (Sortino, Calmar, Omega, Ulcer Index, CDaR 95%)
+6. Executes Purged & Embargoed Walk-Forward Cross-Validation (CPCV)
+7. Conducts Multi-Regime Microstructure Stress Testing (Liquidity shocks, latency, flash gaps)
+8. Synthesizes Multi-Asset Alpha Portfolio with Volatility Targeting
 """
 
 import os
@@ -21,6 +25,14 @@ from src.engine.strategy import InstitutionalAlphaStrategy
 from src.engine.backtester import TickBacktester
 from src.engine.optimizer import ParameterOptimizer
 from src.engine.monte_carlo import MonteCarloEngine
+from src.engine.institutional_metrics import (
+    compute_institutional_risk_suite,
+    compute_deflated_sharpe_ratio,
+    compute_expected_max_sharpe
+)
+from src.engine.walk_forward_purged import PurgedWalkForwardCV
+from src.engine.stress_testing import MicrostructureStressTester
+from src.engine.portfolio_allocator import InstitutionalPortfolioEngine
 
 
 def execute_pipeline():
@@ -124,7 +136,6 @@ def execute_pipeline():
     print("\n==================================================")
     print("STEP 4: 5,000-RUN MONTE CARLO RISK SIMULATION")
     print("==================================================")
-    # Aggregate trades across portfolio
     all_portfolio_trades = bt_eur.trades + bt_gbp.trades + bt_gold.trades
     print(f"Total trades across portfolio: {len(all_portfolio_trades)}")
 
@@ -144,17 +155,108 @@ def execute_pipeline():
     print(f"- VaR 95%: {mc_results['risk_metrics']['var_95_pct']}%")
     print(f"- CVaR (Expected Shortfall): {mc_results['risk_metrics']['cvar_95_expected_shortfall_pct']}%")
 
+    print("\n==================================================")
+    print("STEP 5: INSTITUTIONAL QUANTITATIVE RISK SUITE")
+    print("==================================================")
+    trade_pnls = [t.net_pnl for t in all_portfolio_trades]
+    inst_risk = compute_institutional_risk_suite(trade_pnls, initial_capital=10000.0)
+    print("Institutional Risk Suite:")
+    print(f"- Sharpe Ratio: {inst_risk['sharpe_ratio']} | Sortino: {inst_risk['sortino_ratio']} | Calmar: {inst_risk['calmar_ratio']}")
+    print(f"- Omega Ratio: {inst_risk['omega_ratio']} | Gain-to-Pain: {inst_risk['gain_to_pain_ratio']}")
+    print(f"- Ulcer Index: {inst_risk['ulcer_index']} | Martin Ratio: {inst_risk['martin_ratio']}")
+    print(f"- Tail Risk Ratio: {inst_risk['tail_risk_ratio']} | CDaR 95%: {inst_risk['cdar_95_pct']}%")
+
+    # Deflated Sharpe against the 1,297 corpus hurdle
+    # Load corpus summary to extract expected max hurdle
+    summary_path = os.path.join(data_dir, "sequential_test_summary.json")
+    if os.path.exists(summary_path):
+        with open(summary_path, 'r', encoding='utf-8') as f:
+            audit_summary = json.load(f)
+        trials_n = audit_summary.get('multiple_testing_parameters', {}).get('trials_evaluated', 393)
+        sharpe_var = audit_summary.get('multiple_testing_parameters', {}).get('sharpe_variance', 200.0)
+    else:
+        trials_n = 393
+        sharpe_var = 200.0
+
+    dsr_portfolio = compute_deflated_sharpe_ratio(
+        sr=inst_risk['sharpe_ratio'],
+        all_sr_trials=np.random.normal(0, np.sqrt(sharpe_var), size=trials_n),
+        n_obs=len(trade_pnls),
+        skew=inst_risk['return_skewness'],
+        kurt=inst_risk['return_kurtosis']
+    )
+    print(f"- Expected Max Sharpe Hurdle (N={trials_n}): {dsr_portfolio['expected_max_sharpe']}")
+    print(f"- Deflated Sharpe Ratio: {dsr_portfolio['deflated_sharpe_ratio']} (p-value: {dsr_portfolio['p_value_deflated']})")
+
+    print("\n==================================================")
+    print("STEP 6: PURGED & EMBARGOED WALK-FORWARD CV (CPCV)")
+    print("==================================================")
+    pwfo = PurgedWalkForwardCV(n_splits=4, train_ratio=0.60, purge_ticks=50, embargo_ticks=50)
+
+    def eval_gbp_slice(df_slice: pd.DataFrame) -> dict:
+        bt = TickBacktester(
+            strategy=strategy_gbp,
+            initial_capital=10000.0,
+            base_slippage_pips=0.1,
+            pip_size=0.0001,
+            commission_per_lot=5.0,
+            lot_size=100000.0
+        ).run(df_slice)
+        d = bt.to_dict()
+        return {
+            "sharpe_ratio": d["sharpe_ratio"],
+            "return_pct": d["return_pct"],
+            "win_rate_pct": d["win_rate_pct"],
+            "total_trades": d["total_trades"],
+            "profit_factor": d["profit_factor"],
+            "max_drawdown_pct": d["max_drawdown_pct"]
+        }
+
+    wfo_results = pwfo.evaluate_strategy_wfo(df_gbpusd, eval_gbp_slice)
+    print(f"Purged WFO Out-of-Sample Efficiency Ratio (OER): {wfo_results['out_of_sample_efficiency_ratio']}")
+    print(f"Walk-Forward Verdict: {wfo_results['walk_forward_verdict']}")
+
+    print("\n==================================================")
+    print("STEP 7: MICROSTRUCTURE LIQUIDITY & LATENCY STRESS")
+    print("==================================================")
+    stress_engine = MicrostructureStressTester(initial_capital=10000.0)
+    stress_results = stress_engine.run_stress_suite(df_gbpusd, eval_gbp_slice)
+    print(f"Baseline Sharpe: {stress_results['baseline']['sharpe_ratio']}")
+    print(f"3.0x Spread Blowout Sharpe: {stress_results['spread_stress']['3.0x_spread']['sharpe_ratio']}")
+    print(f"150ms Latency Shock Sharpe: {stress_results['latency_stress']['150ms_latency']['sharpe_ratio']}")
+    print(f"Fragility Score: {stress_results['fragility_score_pct']}% -> {stress_results['stress_resilience_verdict']}")
+
+    print("\n==================================================")
+    print("STEP 8: INSTITUTIONAL PORTFOLIO ALLOCATION")
+    print("==================================================")
+    port_engine = InstitutionalPortfolioEngine(target_annual_vol_pct=10.0, max_leverage=1.5, initial_capital=10000.0)
+    port_input = {
+        "EURUSD_Alpha": [t.net_pnl for t in bt_eur.trades],
+        "GBPUSD_Alpha": [t.net_pnl for t in bt_gbp.trades],
+        "XAUUSD_Alpha": [t.net_pnl for t in bt_gold.trades]
+    }
+    portfolio_summary = port_engine.combine_strategies(port_input, weighting_scheme="inverse_vol")
+    print(f"Diversification Ratio: {portfolio_summary.get('diversification_ratio')}")
+    print(f"Realized Annual Volatility: {portfolio_summary.get('realized_vol_pct')}%")
+    print("Component Weights:", {k: v['weight'] for k, v in portfolio_summary.get('components', {}).items()})
+
     final_output = {
         "optimization": opt_results,
         "backtest_eurusd": bt_eur_dict,
         "backtest_gbpusd": bt_gbp_dict,
         "backtest_xauusd": bt_gold_dict,
-        "monte_carlo": mc_results
+        "monte_carlo": mc_results,
+        "institutional_risk_suite": inst_risk,
+        "deflated_sharpe": dsr_portfolio,
+        "purged_walk_forward": wfo_results,
+        "microstructure_stress_tests": stress_results,
+        "portfolio_allocation": portfolio_summary
     }
+
     results_path = os.path.join(data_dir, "pipeline_results.json")
     with open(results_path, "w", encoding="utf-8") as f:
         json.dump(final_output, f, indent=2)
-    print(f"\nAll pipeline results successfully saved to {results_path}")
+    print(f"\nAll institutional pipeline results successfully saved to {results_path}")
     return final_output
 
 

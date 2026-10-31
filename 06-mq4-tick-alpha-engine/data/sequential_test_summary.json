@@ -3,12 +3,26 @@
   "total_expert_advisors": 475,
   "total_indicators": 527,
   "total_martingale_systems": 160,
-  "ea_verdict_breakdown": {
+  "nominal_verdicts": {
     "PASS_PROFITABLE": 361,
     "PASS_MARGINAL": 82,
     "FAIL_BLOWUP": 19
   },
+  "institutional_verdicts": {
+    "INSTITUTIONAL_ALPHA_DISCOVERY": 0,
+    "RETAIL_PROFITABLE_UNPROVEN": 361,
+    "FAIL_TOXIC_BLOWUP": 19,
+    "MARGINAL_NOISE": 82
+  },
+  "multiple_testing_parameters": {
+    "trials_evaluated": 393,
+    "sharpe_variance": 222.3242,
+    "expected_max_sharpe_hurdle": 56.208,
+    "fdr_alpha": 0.05,
+    "bonferroni_alpha": 0.000127
+  },
   "pass_rate_pct": 76.0,
+  "institutional_discovery_rate_pct": 0.0,
   "blowup_rate_pct": 4.0,
-  "test_duration_seconds": 29.91
+  "test_duration_seconds": 36.46
 }

@@ -255,5 +255,260 @@
         21565.27
       ]
     }
+  },
+  "institutional_risk_suite": {
+    "total_trades": 23,
+    "win_rate_pct": 47.83,
+    "net_pnl": 4411.56,
+    "return_pct": 44.12,
+    "profit_factor": 1.9,
+    "max_drawdown_pct": 21.8,
+    "sharpe_ratio": 7.21,
+    "sortino_ratio": 12.74,
+    "calmar_ratio": 2.02,
+    "omega_ratio": 1.9,
+    "gain_to_pain_ratio": 0.9,
+    "ulcer_index": 8.56,
+    "martin_ratio": 5.15,
+    "var_95_dollars": 1416.6,
+    "cvar_95_dollars": 1659.51,
+    "cdar_95_pct": 20.64,
+    "return_skewness": 0.134,
+    "return_kurtosis": 3.335,
+    "tail_risk_ratio": 1.35,
+    "max_consecutive_losses": 4,
+    "max_consecutive_wins": 5,
+    "psr_zero": 1.0
+  },
+  "deflated_sharpe": {
+    "deflated_sharpe_ratio": 0.0,
+    "expected_max_sharpe": 45.7309,
+    "nominal_sharpe": 7.21,
+    "p_value_deflated": 1.0
+  },
+  "purged_walk_forward": {
+    "total_folds": 4,
+    "mean_in_sample_sharpe": 6.04,
+    "mean_out_of_sample_sharpe": -0.85,
+    "mean_in_sample_return_pct": 5.97,
+    "mean_out_of_sample_return_pct": 3.12,
+    "out_of_sample_efficiency_ratio": -0.14,
+    "walk_forward_verdict": "OVERFITTED_REJECT",
+    "folds": [
+      {
+        "fold": 1,
+        "train_ticks": 1996,
+        "test_ticks": 2046,
+        "in_sample": {
+          "sharpe": 0.0,
+          "return_pct": 0.34,
+          "trades": 1,
+          "win_rate_pct": 100.0
+        },
+        "out_of_sample": {
+          "sharpe": -37.06,
+          "return_pct": -2.74,
+          "trades": 2,
+          "win_rate_pct": 0.0
+        },
+        "out_of_sample_efficiency_ratio": 0.0
+      },
+      {
+        "fold": 2,
+        "train_ticks": 3019,
+        "test_ticks": 2046,
+        "in_sample": {
+          "sharpe": -36.31,
+          "return_pct": -12.07,
+          "trades": 3,
+          "win_rate_pct": 0.0
+        },
+        "out_of_sample": {
+          "sharpe": 0.0,
+          "return_pct": 0.0,
+          "trades": 0,
+          "win_rate_pct": 0.0
+        },
+        "out_of_sample_efficiency_ratio": 0.0
+      },
+      {
+        "fold": 3,
+        "train_ticks": 3019,
+        "test_ticks": 2046,
+        "in_sample": {
+          "sharpe": 26.6,
+          "return_pct": 19.64,
+          "trades": 2,
+          "win_rate_pct": 50.0
+        },
+        "out_of_sample": {
+          "sharpe": 33.68,
+          "return_pct": 15.85,
+          "trades": 2,
+          "win_rate_pct": 50.0
+        },
+        "out_of_sample_efficiency_ratio": 1.27
+      },
+      {
+        "fold": 4,
+        "train_ticks": 3019,
+        "test_ticks": 2046,
+        "in_sample": {
+          "sharpe": 33.86,
+          "return_pct": 15.98,
+          "trades": 2,
+          "win_rate_pct": 50.0
+        },
+        "out_of_sample": {
+          "sharpe": 0.0,
+          "return_pct": -0.62,
+          "trades": 1,
+          "win_rate_pct": 0.0
+        },
+        "out_of_sample_efficiency_ratio": 0.0
+      }
+    ]
+  },
+  "microstructure_stress_tests": {
+    "baseline": {
+      "sharpe_ratio": 16.34,
+      "return_pct": 27.17,
+      "max_drawdown_pct": 12.8
+    },
+    "spread_stress": {
+      "1.5x_spread": {
+        "multiplier": 1.5,
+        "sharpe_ratio": 7.28,
+        "return_pct": 9.2,
+        "max_drawdown_pct": 12.91,
+        "profit_factor": 1.76,
+        "trades": 4
+      },
+      "2.0x_spread": {
+        "multiplier": 2.0,
+        "sharpe_ratio": 7.16,
+        "return_pct": 9.03,
+        "max_drawdown_pct": 13.01,
+        "profit_factor": 1.75,
+        "trades": 4
+      },
+      "3.0x_spread": {
+        "multiplier": 3.0,
+        "sharpe_ratio": -32.47,
+        "return_pct": -8.97,
+        "max_drawdown_pct": 10.0,
+        "profit_factor": 0.04,
+        "trades": 2
+      },
+      "5.0x_spread": {
+        "multiplier": 5.0,
+        "sharpe_ratio": -32.51,
+        "return_pct": -9.1,
+        "max_drawdown_pct": 10.11,
+        "profit_factor": 0.04,
+        "trades": 2
+      }
+    },
+    "latency_stress": {
+      "50ms_latency": {
+        "lag_ticks": 1,
+        "sharpe_ratio": 0.0,
+        "return_pct": NaN,
+        "max_drawdown_pct": 12.8,
+        "trades": 5
+      },
+      "150ms_latency": {
+        "lag_ticks": 3,
+        "sharpe_ratio": 0.0,
+        "return_pct": NaN,
+        "max_drawdown_pct": 12.81,
+        "trades": 5
+      },
+      "300ms_latency": {
+        "lag_ticks": 6,
+        "sharpe_ratio": 0.0,
+        "return_pct": NaN,
+        "max_drawdown_pct": 12.82,
+        "trades": 5
+      }
+    },
+    "flash_crash_stress": {
+      "sharpe_ratio": 12.33,
+      "return_pct": 23.58,
+      "max_drawdown_pct": 12.8
+    },
+    "fragility_score_pct": 100.0,
+    "stress_resilience_verdict": "HIGHLY_FRAGILE_RETAIL_CURVEFIT"
+  },
+  "portfolio_allocation": {
+    "weighting_scheme": "inverse_vol",
+    "target_annual_vol_pct": 10.0,
+    "realized_vol_pct": 99.91,
+    "vol_target_scalar": 0.1,
+    "diversification_ratio": 2.57,
+    "correlation_matrix": {
+      "EURUSD_Alpha": {
+        "EURUSD_Alpha": 1.0,
+        "GBPUSD_Alpha": -0.634,
+        "XAUUSD_Alpha": 0.207
+      },
+      "GBPUSD_Alpha": {
+        "EURUSD_Alpha": -0.634,
+        "GBPUSD_Alpha": 1.0,
+        "XAUUSD_Alpha": -0.394
+      },
+      "XAUUSD_Alpha": {
+        "EURUSD_Alpha": 0.207,
+        "GBPUSD_Alpha": -0.394,
+        "XAUUSD_Alpha": 1.0
+      }
+    },
+    "components": {
+      "EURUSD_Alpha": {
+        "weight": 0.211,
+        "sharpe_ratio": 1.82,
+        "sortino_ratio": 2.51,
+        "return_pct": 2.93,
+        "max_drawdown_pct": 15.89
+      },
+      "GBPUSD_Alpha": {
+        "weight": 0.183,
+        "sharpe_ratio": 14.61,
+        "sortino_ratio": 44.69,
+        "return_pct": 27.17,
+        "max_drawdown_pct": 11.97
+      },
+      "XAUUSD_Alpha": {
+        "weight": 0.606,
+        "sharpe_ratio": 5.15,
+        "sortino_ratio": 9.27,
+        "return_pct": 14.02,
+        "max_drawdown_pct": 11.78
+      }
+    },
+    "portfolio_metrics": {
+      "total_trades": 5,
+      "win_rate_pct": 60.0,
+      "net_pnl": 97.27,
+      "return_pct": 0.97,
+      "profit_factor": 6.48,
+      "max_drawdown_pct": 0.13,
+      "sharpe_ratio": 24.51,
+      "sortino_ratio": 109.21,
+      "calmar_ratio": 7.23,
+      "omega_ratio": 6.48,
+      "gain_to_pain_ratio": 5.48,
+      "ulcer_index": 0.06,
+      "martin_ratio": 16.88,
+      "var_95_dollars": 11.64,
+      "cvar_95_dollars": 13.47,
+      "cdar_95_pct": 0.13,
+      "return_skewness": -0.074,
+      "return_kurtosis": 1.358,
+      "tail_risk_ratio": 4.21,
+      "max_consecutive_losses": 1,
+      "max_consecutive_wins": 2,
+      "psr_zero": 1.0
+    }
   }
 }
