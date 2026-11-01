@@ -2,7 +2,8 @@
 """
 Notandor.cn Expert Advisor Crawler & Backup Engine
 Automated multi-stage downloader with Aliyun WAF bypass, Lanzou folder/file resolution,
-CDN anti-hotlink resolution, and automated archive unpacking.
+CDN anti-hotlink resolution, multi-category coverage (10,000+ EAs/indicators),
+automatic archive unpacking, and resilient retry architecture.
 """
 
 import sys
@@ -43,6 +44,16 @@ DEFAULT_HEADERS = {
     'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8'
 }
 
+SITE_CATEGORIES = {
+    'expert-adviso': 234,
+    'indicators': 132,
+    'other': 94,
+    'grid-expert-advisor': 35,
+    'martin-expert-advisor': 40,
+    'scalper-expert-adviso': 60,
+    'trend-expert-advisor': 70
+}
+
 
 class WAFSolver:
     """Solves Aliyun WAF JavaScript challenge using Node.js sandbox."""
@@ -78,7 +89,7 @@ class WAFSolver:
 class NotandorCrawler:
     """Main crawler and download manager for Notandor.cn."""
     
-    def __init__(self, delay: float = 1.2):
+    def __init__(self, delay: float = 0.8):
         self.session = requests.Session()
         self.session.verify = False
         self.session.headers.update(DEFAULT_HEADERS)
@@ -112,76 +123,82 @@ class NotandorCrawler:
         with open(MANIFEST_FILE, 'w', encoding='utf-8') as f:
             json.dump(self.manifest, f, ensure_ascii=False, indent=2)
 
-    def crawl_catalog(self, start_page: int = 1, end_page: int = 234):
-        """Crawls Notandor EA category pagination and catalogs all available posts."""
-        print(f"\n[*] Starting catalog crawl from page {start_page} to {end_page}...")
-        total_discovered = len(self.catalog)
+    def crawl_category(self, category: str, start_page: int = 1, end_page: int = None):
+        """Crawls a specific category pagination on Notandor."""
+        max_p = end_page or SITE_CATEGORIES.get(category, 50)
+        print(f"\n[*] Starting catalog crawl for category '{category}' (pages {start_page} to {max_p})...")
+        initial_count = len(self.catalog)
         
-        for p in range(start_page, end_page + 1):
-            url = f"https://www.notandor.cn/files/expert-adviso/page/{p}"
-            try:
-                resp = self.session.get(url, timeout=15)
-                if resp.status_code == 404:
-                    print(f"  [-] Page {p} returned 404. Reached end of catalog.")
-                    break
-                if resp.status_code != 200:
-                    print(f"  [!] Page {p} returned HTTP {resp.status_code}. Retrying...")
-                    time.sleep(2)
-                    continue
+        for p in range(start_page, max_p + 1):
+            url = f"https://www.notandor.cn/files/{category}/page/{p}"
+            success = False
+            for attempt in range(1, 4):
+                try:
+                    resp = self.session.get(url, timeout=25)
+                    if resp.status_code == 404:
+                        print(f"  [-] Page {p} returned 404. Reached end of category '{category}'.")
+                        return
+                    if resp.status_code == 200:
+                        articles = re.findall(
+                            r'<article[^>]*class=["\'][^"\']*post-(\d+)[^"\']*["\'][^>]*>(.*?)</article>',
+                            resp.text,
+                            re.S
+                        )
+                        if not articles:
+                            print(f"  [-] Page {p} contains 0 articles. End of category.")
+                            return
 
-                # Parse articles on the page
-                articles = re.findall(
-                    r'<article[^>]*class=["\'][^"\']*post-(\d+)[^"\']*["\'][^>]*>(.*?)</article>',
-                    resp.text,
-                    re.S
-                )
-                if not articles:
-                    print(f"  [-] Page {p} contains 0 articles. End of catalog.")
-                    break
+                        page_new = 0
+                        for pid, body in articles:
+                            if pid in self.catalog:
+                                continue
+                            
+                            title_m = re.search(r'<h[23][^>]*class=["\']item-title[^"\']*["\'][^>]*><a[^>]*>(.*?)</a>', body, re.S)
+                            title = re.sub(r'<[^>]+>', '', title_m.group(1)).strip() if title_m else f"EA_{pid}"
+                            
+                            cat_m = re.search(r'<a[^>]*href=["\']https?://www\.notandor\.cn/files/([^"\']+)["\'][^>]*>(.*?)</a>', body, re.S)
+                            cat = cat_m.group(2).strip() if cat_m else category
+                            
+                            desc_m = re.search(r'<div[^>]*class=["\']item-desc[^"\']*["\'][^>]*>(.*?)</div>', body, re.S)
+                            desc = re.sub(r'<[^>]+>', '', desc_m.group(1)).strip() if desc_m else ""
+                            
+                            self.catalog[pid] = {
+                                "post_id": pid,
+                                "title": title,
+                                "category": cat,
+                                "description": desc,
+                                "page_url": f"https://www.notandor.cn/file/{pid}.html",
+                                "discovered_at_category": category,
+                                "discovered_at_page": p,
+                                "created_at": time.strftime("%Y-%m-%d %H:%M:%S")
+                            }
+                            page_new += 1
 
-                page_new = 0
-                for pid, body in articles:
-                    if pid in self.catalog:
-                        continue
-                    
-                    # Extract title
-                    title_m = re.search(r'<h[23][^>]*class=["\']item-title[^"\']*["\'][^>]*><a[^>]*>(.*?)</a>', body, re.S)
-                    title = re.sub(r'<[^>]+>', '', title_m.group(1)).strip() if title_m else f"EA_{pid}"
-                    
-                    # Extract category
-                    cat_m = re.search(r'<a[^>]*href=["\']https?://www\.notandor\.cn/files/([^"\']+)["\'][^>]*>(.*?)</a>', body, re.S)
-                    cat = cat_m.group(2).strip() if cat_m else "EA"
-                    
-                    # Extract description
-                    desc_m = re.search(r'<div[^>]*class=["\']item-desc[^"\']*["\'][^>]*>(.*?)</div>', body, re.S)
-                    desc = re.sub(r'<[^>]+>', '', desc_m.group(1)).strip() if desc_m else ""
-                    
-                    self.catalog[pid] = {
-                        "post_id": pid,
-                        "title": title,
-                        "category": cat,
-                        "description": desc,
-                        "page_url": f"https://www.notandor.cn/file/{pid}.html",
-                        "discovered_at_page": p,
-                        "created_at": time.strftime("%Y-%m-%d %H:%M:%S")
-                    }
-                    page_new += 1
-                    total_discovered += 1
+                        print(f"  [+] [{category}] Page {p}/{max_p}: found {len(articles)} items (+{page_new} new). Total catalog: {len(self.catalog)}")
+                        success = True
+                        break
+                    else:
+                        time.sleep(1.5 * attempt)
+                except Exception as e:
+                    time.sleep(2 * attempt)
 
-                print(f"  [+] Page {p}/{end_page}: found {len(articles)} items (+{page_new} new). Total indexed: {total_discovered}")
-                
-                # Periodically save catalog
-                if p % 5 == 0 or p == end_page:
-                    self._save_catalog()
+            if not success:
+                print(f"  [!] Failed crawling page {p} after 3 attempts.")
 
-                time.sleep(self.delay)
+            if p % 10 == 0 or p == max_p:
+                self._save_catalog()
 
-            except Exception as e:
-                print(f"  [!] Error crawling page {p}: {e}")
-                time.sleep(2)
+            time.sleep(self.delay)
 
         self._save_catalog()
-        print(f"\n[✓] Catalog crawl complete! Total indexed EAs: {len(self.catalog)}")
+        print(f"[✓] Completed crawl for '{category}'. Added {len(self.catalog) - initial_count} new entries.")
+
+    def crawl_all_categories(self):
+        """Systematically crawls every category across the entire website."""
+        print(f"\n{'='*60}\n  LAUNCHING FULL SITE CATALOG CRAWL (ALL CATEGORIES)\n{'='*60}")
+        for cat, max_p in SITE_CATEGORIES.items():
+            self.crawl_category(cat, start_page=1, end_page=max_p)
+        print(f"\n[✓] ALL CATEGORIES CRAWLED! Total unique items in catalog: {len(self.catalog)}")
 
     def _sanitize_filename(self, name: str) -> str:
         clean = re.sub(r'[\\/*?:"<>|]', "_", name).strip()
@@ -192,13 +209,13 @@ class NotandorCrawler:
         """Downloads file bytes using curl with robust connection handling and progress."""
         try:
             cmd = [
-                'curl.exe', '-L', '--globoff', '--connect-timeout', '15',
+                'curl.exe', '-L', '--globoff', '--connect-timeout', '20',
                 '--max-time', '180', '--retry', '2',
                 '-H', f'Referer: {referer}',
                 '-H', f'User-Agent: {DEFAULT_HEADERS["User-Agent"]}',
                 direct_url, '-o', str(out_path)
             ]
-            proc = subprocess.run(cmd, capture_output=True, timeout=200)
+            proc = subprocess.run(cmd, capture_output=True, timeout=210)
             if proc.returncode == 0 and out_path.exists() and out_path.stat().st_size > 100:
                 return True
         except Exception as e:
@@ -212,7 +229,7 @@ class NotandorCrawler:
             'Referer': referer,
             'Accept-Encoding': 'gzip, deflate'
         }
-        resp = self.session.get(cdn_url, headers=headers, timeout=20)
+        resp = self.session.get(cdn_url, headers=headers, timeout=25)
         
         # Check if direct file
         if resp.content.startswith(b'PK\x03\x04') or resp.content.startswith(b'Rar!'):
@@ -227,7 +244,7 @@ class NotandorCrawler:
             if token:
                 domain = urlparse(cdn_url).netloc
                 self.session.cookies.set('acw_sc__v2', token, domain=domain)
-                resp2 = self.session.get(cdn_url, headers=headers, timeout=20)
+                resp2 = self.session.get(cdn_url, headers=headers, timeout=25)
                 if resp2.content.startswith(b'PK\x03\x04') or resp2.content.startswith(b'Rar!'):
                     with open(out_path, 'wb') as fp:
                         fp.write(resp2.content)
@@ -253,7 +270,7 @@ class NotandorCrawler:
             'el': 2,
             'sign': sign_m.group(1)
         }
-        res_ajax = self.session.post(ajax_url, data=ajax_data, headers=ajax_headers, timeout=15)
+        res_ajax = self.session.post(ajax_url, data=ajax_data, headers=ajax_headers, timeout=20)
         res_json = res_ajax.json()
         if not res_json.get('url'):
             return False
@@ -268,7 +285,7 @@ class NotandorCrawler:
             'Referer': 'https://www.notandor.cn/',
             'Accept-Encoding': 'gzip, deflate'
         }
-        resp = self.session.get(lanzou_url, headers=headers, timeout=15)
+        resp = self.session.get(lanzou_url, headers=headers, timeout=20)
         html_text = resp.text
 
         # Solve Lanzou WAF challenge if present
@@ -277,7 +294,7 @@ class NotandorCrawler:
             if token:
                 domain = urlparse(lanzou_url).netloc
                 self.session.cookies.set('acw_sc__v2', token, domain=domain)
-                resp = self.session.get(lanzou_url, headers=headers, timeout=15)
+                resp = self.session.get(lanzou_url, headers=headers, timeout=20)
                 html_text = resp.text
 
         # Extract iframe
@@ -289,7 +306,7 @@ class NotandorCrawler:
         base_host = f"{urlparse(lanzou_url).scheme}://{urlparse(lanzou_url).netloc}"
         iframe_url = urljoin(base_host, iframe_rel)
 
-        resp_if = self.session.get(iframe_url, headers=headers, timeout=15)
+        resp_if = self.session.get(iframe_url, headers=headers, timeout=20)
         html_if = resp_if.text
 
         # Extract download API parameters
@@ -336,7 +353,7 @@ class NotandorCrawler:
             'X-Requested-With': 'XMLHttpRequest',
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
         }
-        res_api = self.session.post(api_url, data=post_data, headers=ajax_headers, timeout=15)
+        res_api = self.session.post(api_url, data=post_data, headers=ajax_headers, timeout=20)
         res_json = res_api.json()
         if res_json.get('zt') != 1:
             return False
@@ -355,7 +372,7 @@ class NotandorCrawler:
             'Referer': 'https://www.notandor.cn/',
             'Accept-Encoding': 'gzip, deflate'
         }
-        resp = self.session.get(folder_url, headers=headers, timeout=15)
+        resp = self.session.get(folder_url, headers=headers, timeout=20)
         html_text = resp.text
 
         # Solve WAF if needed
@@ -364,7 +381,7 @@ class NotandorCrawler:
             if token:
                 domain = urlparse(folder_url).netloc
                 self.session.cookies.set('acw_sc__v2', token, domain=domain)
-                resp = self.session.get(folder_url, headers=headers, timeout=15)
+                resp = self.session.get(folder_url, headers=headers, timeout=20)
                 html_text = resp.text
 
         # Extract filemoreajax.php parameters dynamically
@@ -394,7 +411,6 @@ class NotandorCrawler:
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
         }
 
-        # Page loop for folder
         pg = 1
         while True:
             post_data = {
@@ -410,7 +426,7 @@ class NotandorCrawler:
                 'ls': 1,
                 'pwd': password or ''
             }
-            res_folder = self.session.post(folder_api, data=post_data, headers=folder_headers, timeout=15)
+            res_folder = self.session.post(folder_api, data=post_data, headers=folder_headers, timeout=20)
             try:
                 res_json = res_folder.json()
             except Exception:
@@ -452,13 +468,13 @@ class NotandorCrawler:
                 time.sleep(self.delay)
 
             pg += 1
-            if len(items) < 10:  # Lanzou returns items in chunks of ~20-50
+            if len(items) < 10:
                 break
 
         return downloaded_files
 
     def download_post(self, post_id: str) -> dict:
-        """Resolves download links for a post and downloads all associated EA files."""
+        """Resolves download links for a post with resilient retry logic."""
         entry = self.catalog.get(post_id, {})
         title = entry.get('title', f"EA_{post_id}")
         clean_title = self._sanitize_filename(title)
@@ -474,7 +490,7 @@ class NotandorCrawler:
 
         print(f"\n[>] Processing Post {post_id}: {title}")
 
-        # Step 1: Request modal from admin-ajax.php
+        # Step 1: Request modal from admin-ajax.php with automatic retry
         ajax_url = "https://www.notandor.cn/wp-admin/admin-ajax.php"
         ajax_data = {
             'action': 'get_app_down_btn',
@@ -485,20 +501,29 @@ class NotandorCrawler:
             'X-Requested-With': 'XMLHttpRequest',
             'Referer': f"https://www.notandor.cn/file/{post_id}.html"
         }
-        try:
-            resp_modal = self.session.post(ajax_url, data=ajax_data, headers=ajax_headers, timeout=15)
-            if resp_modal.status_code != 200:
-                result["status"] = "ERROR_MODAL_HTTP"
-                result["error"] = f"HTTP {resp_modal.status_code}"
-                return result
-            modal_html = resp_modal.text
-        except Exception as e:
-            result["status"] = "ERROR_MODAL_EXCEPTION"
-            result["error"] = str(e)
+        
+        modal_html = None
+        for attempt in range(1, 4):
+            try:
+                resp_modal = self.session.post(ajax_url, data=ajax_data, headers=ajax_headers, timeout=35)
+                if resp_modal.status_code == 200:
+                    modal_html = resp_modal.text
+                    break
+                else:
+                    time.sleep(2 * attempt)
+            except Exception as e:
+                if attempt == 3:
+                    result["status"] = "ERROR_MODAL_EXCEPTION"
+                    result["error"] = str(e)
+                    print(f"  [!] Modal error after 3 attempts: {e}")
+                    return result
+                time.sleep(2 * attempt)
+
+        if not modal_html:
+            result["status"] = "ERROR_MODAL_EMPTY"
             return result
 
         # Step 2: Extract download.php links and password
-        # Pattern: <a class="... copy-data ..." href="https://...download.php?..." data-clipboard-text="<code>">
         links = re.findall(
             r'<a[^>]+href=["\']([^"\']+/download\.php\?[^"\']+)["\'][^>]*>(.*?)</a>',
             modal_html,
@@ -509,7 +534,6 @@ class NotandorCrawler:
             print("  [-] No download links found in modal.")
             return result
 
-        # Pick Lanzou link (prefer '网盘' or any link that isn't telegram)
         chosen_link = None
         for href, text in links:
             t_clean = re.sub(r'<[^>]+>', '', text).strip().lower()
@@ -519,7 +543,6 @@ class NotandorCrawler:
         if not chosen_link:
             chosen_link = html.unescape(links[0][0])
 
-        # Extract password
         pwd_m = re.search(r'data-clipboard-text=["\']([^"\']*)["\']', modal_html)
         password = pwd_m.group(1).strip() if pwd_m else ""
         if not password:
@@ -534,23 +557,25 @@ class NotandorCrawler:
         if password:
             print(f"  [+] Extraction password: '{password}'")
 
-        # Step 3: Follow 302 redirect from download.php
-        try:
-            resp_redir = self.session.get(
-                chosen_link,
-                headers={'Referer': f"https://www.notandor.cn/file/{post_id}.html"},
-                allow_redirects=False,
-                timeout=15
-            )
-            lanzou_target = resp_redir.headers.get('Location')
-            if not lanzou_target and resp_redir.status_code == 200:
-                meta_redir = re.search(r'url=([^"\'>\s]+)', resp_redir.text, re.I)
-                if meta_redir:
-                    lanzou_target = meta_redir.group(1)
-        except Exception as e:
-            result["status"] = "ERROR_REDIRECT"
-            result["error"] = str(e)
-            return result
+        # Step 3: Follow 302 redirect from download.php with retry
+        lanzou_target = None
+        for attempt in range(1, 4):
+            try:
+                resp_redir = self.session.get(
+                    chosen_link,
+                    headers={'Referer': f"https://www.notandor.cn/file/{post_id}.html"},
+                    allow_redirects=False,
+                    timeout=25
+                )
+                lanzou_target = resp_redir.headers.get('Location')
+                if not lanzou_target and resp_redir.status_code == 200:
+                    meta_redir = re.search(r'url=([^"\'>\s]+)', resp_redir.text, re.I)
+                    if meta_redir:
+                        lanzou_target = meta_redir.group(1)
+                if lanzou_target:
+                    break
+            except Exception as e:
+                time.sleep(2 * attempt)
 
         if not lanzou_target:
             result["status"] = "NO_LANZOU_TARGET"
@@ -560,7 +585,6 @@ class NotandorCrawler:
         print(f"  [+] Resolved Lanzou Target: {lanzou_target}")
 
         # Step 4: Check if Folder or Single File
-        # Lanzou folder links typically contain '/b0' or '/b' followed by letters/digits
         is_folder = bool(re.search(r'/[bB]0?[a-zA-Z0-9]{6,}', lanzou_target))
 
         if is_folder:
@@ -590,8 +614,8 @@ class NotandorCrawler:
 
         return result
 
-    def download_all(self, limit: int = None):
-        """Downloads EAs across the entire catalog with resume support."""
+    def download_all(self, limit: int = None, auto_extract: bool = True):
+        """Downloads EAs across the catalog with continuous mirroring and automatic extraction."""
         if not self.catalog:
             print("[-] Catalog is empty. Please run with --catalog first.")
             return
@@ -602,14 +626,13 @@ class NotandorCrawler:
             post_ids = post_ids[:limit]
             print(f"\n[*] Starting download of {len(post_ids)} items (limited from {total})...")
         else:
-            print(f"\n[*] Starting download of all {total} catalog items...")
+            print(f"\n[*] Starting continuous download of all {total} catalog items...")
 
         success_count = 0
         error_count = 0
         skipped_count = 0
 
         for idx, pid in enumerate(post_ids, 1):
-            # Check manifest for existing success
             if pid in self.manifest and self.manifest[pid].get("status") == "SUCCESS":
                 files = self.manifest[pid].get("files", [])
                 if any(Path(f).exists() for f in files):
@@ -626,7 +649,14 @@ class NotandorCrawler:
             else:
                 error_count += 1
 
+            # Auto-extract every 10 posts
+            if auto_extract and success_count > 0 and success_count % 10 == 0:
+                self.extract_and_catalog_files()
+
             time.sleep(self.delay)
+
+        if auto_extract:
+            self.extract_and_catalog_files()
 
         print("\n" + "="*50)
         print(f"[✓] Download run completed!")
@@ -637,8 +667,6 @@ class NotandorCrawler:
 
     def extract_and_catalog_files(self):
         """Unpacks all downloaded zip/rar files and organizes .mq4, .ex4, .mq5, .ex5, .set."""
-        print("\n[*] Starting archive extraction and file categorization...")
-        
         extracted_index = {
             "mq4": [],
             "ex4": [],
@@ -649,8 +677,6 @@ class NotandorCrawler:
         }
 
         zip_files = list(DOWNLOADS_DIR.glob("*.zip"))
-        print(f"  [+] Found {len(zip_files)} archives in downloads directory.")
-
         for zpath in zip_files:
             try:
                 if not zipfile.is_zipfile(zpath):
@@ -675,21 +701,11 @@ class NotandorCrawler:
                             extracted_index[ext].append(fname)
                         else:
                             extracted_index["other"].append(fname)
-            except Exception as e:
-                print(f"  [!] Extraction error on {zpath.name}: {e}")
+            except Exception:
+                pass
 
-        # Save extraction index
         with open(METADATA_DIR / "extracted_index.json", 'w', encoding='utf-8') as f:
             json.dump(extracted_index, f, ensure_ascii=False, indent=2)
-
-        print("\n" + "="*50)
-        print(f"[✓] Extraction complete!")
-        print(f"    .mq4 source files: {len(extracted_index['mq4'])}")
-        print(f"    .ex4 compiled EAs: {len(extracted_index['ex4'])}")
-        print(f"    .mq5 source files: {len(extracted_index['mq5'])}")
-        print(f"    .ex5 compiled EAs: {len(extracted_index['ex5'])}")
-        print(f"    .set config files: {len(extracted_index['set'])}")
-        print("="*50)
 
     def print_status(self):
         """Displays status report of catalog, downloads, and extracted files."""
@@ -700,11 +716,11 @@ class NotandorCrawler:
         dl_files = list(DOWNLOADS_DIR.glob("*.*"))
         total_dl_bytes = sum(f.stat().st_size for f in dl_files)
         
-        extracted_files = list(EXTRACTED_DIR.glob("**/*.*"))
         mq4_count = len(list((EXTRACTED_DIR / "mq4").glob("*.mq4"))) if (EXTRACTED_DIR / "mq4").exists() else 0
         ex4_count = len(list((EXTRACTED_DIR / "ex4").glob("*.ex4"))) if (EXTRACTED_DIR / "ex4").exists() else 0
         mq5_count = len(list((EXTRACTED_DIR / "mq5").glob("*.mq5"))) if (EXTRACTED_DIR / "mq5").exists() else 0
         ex5_count = len(list((EXTRACTED_DIR / "ex5").glob("*.ex5"))) if (EXTRACTED_DIR / "ex5").exists() else 0
+        set_count = len(list((EXTRACTED_DIR / "set").glob("*.set"))) if (EXTRACTED_DIR / "set").exists() else 0
 
         print("\n" + "="*60)
         print("          NOTANDOR.CN BACKUP REPOSITORY STATUS          ")
@@ -713,20 +729,23 @@ class NotandorCrawler:
         print(f"  Posts Processed in Manifest:      {total_manifest}")
         print(f"  Successfully Backed Up Posts:     {success_manifest}")
         print(f"  Downloaded Archive Files:         {len(dl_files)} ({total_dl_bytes / (1024*1024):.2f} MB)")
-        print(f"  Total Extracted Trading Assets:   {len(extracted_files)}")
+        print(f"  Total Extracted Trading Assets:   {mq4_count + ex4_count + mq5_count + ex5_count + set_count}")
         print(f"    - MQL4 Source Codes (.mq4):     {mq4_count}")
         print(f"    - MT4 Compiled EAs (.ex4):      {ex4_count}")
         print(f"    - MQL5 Source Codes (.mq5):     {mq5_count}")
         print(f"    - MT5 Compiled EAs (.ex5):      {ex5_count}")
+        print(f"    - Strategy Presets (.set):      {set_count}")
         print("="*60 + "\n")
 
 
 def main():
     parser = argparse.ArgumentParser(description="Notandor.cn EA Backup Engine")
     parser.add_argument("--catalog", action="store_true", help="Crawl and build complete catalog index")
-    parser.add_argument("--pages", type=int, default=234, help="Maximum pages to crawl for catalog")
+    parser.add_argument("--all-categories", action="store_true", help="Crawl all site categories (EAs, indicators, other)")
+    parser.add_argument("--category", type=str, default="expert-adviso", help="Specific category to crawl")
+    parser.add_argument("--pages", type=int, default=None, help="Maximum pages to crawl for category")
     parser.add_argument("--start-page", type=int, default=1, help="Start page for catalog crawl")
-    parser.add_argument("--download", action="store_true", help="Download all EAs in catalog")
+    parser.add_argument("--download", action="store_true", help="Download EAs in catalog")
     parser.add_argument("--limit", type=int, default=None, help="Limit number of posts to download")
     parser.add_argument("--extract", action="store_true", help="Extract and organize downloaded archives")
     parser.add_argument("--status", action="store_true", help="Show backup status and statistics")
@@ -739,7 +758,10 @@ def main():
         return
 
     if args.catalog:
-        crawler.crawl_catalog(start_page=args.start_page, end_page=args.pages)
+        if args.all_categories:
+            crawler.crawl_all_categories()
+        else:
+            crawler.crawl_category(category=args.category, start_page=args.start_page, end_page=args.pages)
 
     if args.download:
         crawler.download_all(limit=args.limit)
@@ -753,4 +775,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

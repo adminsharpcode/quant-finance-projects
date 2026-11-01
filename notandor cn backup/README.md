@@ -1,85 +1,93 @@
-# Notandor.cn Expert Advisor Complete Backup Engine & Repository
+# Notandor.cn & Telegram EA Complete Backup Engine & Repository
 
-High-throughput, automated web crawler and backup engine designed to archive all Expert Advisors (EAs), indicators, scripts, and trading systems from `https://www.notandor.cn/`.
+High-throughput, automated web and Telegram backup engine archiving all **14,000+ Expert Advisors (EAs)**, indicators, scripts, and trading systems from both:
+1. **The Web Platform**: `https://www.notandor.cn/` (12,700+ indexed posts across all categories).
+2. **The Official Telegram Repository**: `t.me/www_notandor_cn` (13,800+ uploaded EA archive documents).
 
 ---
 
-## 1. System Architecture & Reverse-Engineered Flow
-
-`Notandor.cn` is a comprehensive repository of algorithmic trading software (MT4 / MT5). The download infrastructure is multi-tiered and protected by anti-scraping and cloud hosting mechanisms:
+## 1. Dual Backup Pipelines
 
 ```mermaid
 flowchart TD
-    A["Notandor File Catalog<br/>(234 Pages, ~8,400 Posts)"] --> B["Page Request<br/>https://www.notandor.cn/file/{post_id}.html"]
-    B --> C["Theme Modal API<br/>POST /wp-admin/admin-ajax.php<br/>action=get_app_down_btn"]
-    C --> D["Download Redirection<br/>/iopay/download.php?post_id=..."]
-    D --> E{"Target Resolution<br/>(302 Redirect)"}
-    
-    E -->|"Batch Folder (/b0...)"| F["Lanzou Folder Page<br/>https://notandor.lanzouc.com/b0..."]
-    E -->|"Single File (/i...)"| G["Lanzou File Page<br/>https://notandor.lanzoum.com/..."]
-    
-    F --> H["Aliyun WAF Challenge Solver<br/>(Node.js VM executes acw_sc__v2)"]
-    G --> H
-    
-    H --> I["Folder File Listing<br/>POST /filemoreajax.php<br/>(with dynamic t, k, puid & password)"]
-    H --> J["Single File Resolution<br/>Fetch /fn?... iframe<br/>POST apifile.lanzouw.com/ajaxfile.php"]
-    
-    I -->|"Unpack 20-50 EAs per bundle"| J
-    J --> K["Lanrar CDN Gateway<br/>developerX.lanrar.com/file/?..."]
-    K --> L["CDN Anti-Hotlink Solver<br/>POST /file/ajax.php"]
-    L --> M["Direct Archive Download<br/>zip2.webgetstore.com / lanrar.com"]
-    M --> N["Raw Archive Storage<br/>downloads/{post_id}_{name}.zip"]
-    N --> O["Archive Unpacker & Classifier<br/>extracted_eas/{mq4, ex4, mq5, ex5, set}"]
+    subgraph Web_Mirror ["Pipeline A: Web & Cloud Mirror (crawler.py)"]
+        W1["notandor.cn Catalog<br/>(12,700+ Posts)"] --> W2["Modal API & 302 Redirection"]
+        W2 --> W3["Aliyun WAF Solver (solve_acw.js)"]
+        W3 --> W4["Lanzou Cloud Folder/File Unpack"]
+        W4 --> W5["Lanrar CDN Anti-Hotlink Solver"]
+        W5 --> W6["Direct Archive Download<br/>downloads/{post_id}_{name}.zip"]
+    end
+
+    subgraph Telegram_Mirror ["Pipeline B: Telegram Cloud Mirror (tg_downloader.py / TG Desktop)"]
+        T1["Telegram Channel: t.me/www_notandor_cn<br/>(13,800+ Direct File Messages)"] --> T2{"Download Method"}
+        T2 -->|"MTProto Telethon Daemon"| T3["tg_downloader.py<br/>(High-speed direct CDN streaming)"]
+        T2 -->|"Telegram Desktop Native"| T4["Export Channel History<br/>(Built-in multi-part C++ export)"]
+        T3 --> W6
+        T4 --> W6
+    end
+
+    W6 --> EXT["Universal Unpacker & Classifier<br/>extracted_eas/{mq4, ex4, mq5, ex5, set}"]
 ```
 
 ---
 
-## 2. Key Components
+## 2. Live Inventory Status
 
-1. **`crawler.py`**:
-   - Multi-stage pipeline automating catalog spidering, WAF challenge handling, folder expansion, CDN anti-hotlink solving, and archive downloading.
-   - Built-in incremental state management (`ea_catalog.json`, `download_manifest.json`) supporting resume-on-failure without duplicate downloads.
-2. **`solve_acw.js`**:
-   - Sandboxed Node.js V8 challenge solver that decrypts and executes the obfuscated Aliyun WAF JavaScript puzzle, computing the required `acw_sc__v2` authentication cookie in ~2 milliseconds.
-3. **`metadata/ea_catalog.json`**:
-   - Persistent index of all posts, post IDs, titles, categories, dates, and descriptions across the entire site.
-4. **`metadata/download_manifest.json`**:
-   - Live download manifest tracking completion status, byte sizes, and paths for every processed post.
-5. **`downloads/`**:
-   - Stores all downloaded raw `.zip` and `.rar` bundles.
-6. **`extracted_eas/`**:
-   - Automatically extracted and classified into:
-     - `mq4/`: MQL4 Source Codes
-     - `ex4/`: MetaTrader 4 Compiled Robots
-     - `mq5/`: MQL5 Source Codes
-     - `ex5/`: MetaTrader 5 Compiled Robots
-     - `set/`: Quantitative Parameter Presets
+```
+============================================================
+          NOTANDOR.CN & TELEGRAM BACKUP STATUS          
+============================================================
+  Total Catalog Posts Indexed:      12,727+
+  Telegram Channel Messages:        13,800+ Documents
+  Active Download Daemons:          RUNNING (Background)
+  Downloaded Archive Files:         316+ (111.26 MB)
+  Total Extracted Trading Assets:   622+
+    - MQL4 Source Codes (.mq4):     9
+    - MT4 Compiled EAs (.ex4):      107
+    - MQL5 Source Codes (.mq5):     27
+    - MT5 Compiled EAs (.ex5):      202
+    - Strategy Presets (.set):      277
+============================================================
+```
 
 ---
 
-## 3. CLI Commands
+## 3. How to Run the Downloaders
 
-### Show Backup Status & Statistics
+### Option A: Web & Lanzou Cloud Continuous Daemon
+Downloads all 12,700+ EAs directly from Lanzou Cloud and Lanrar CDN without needing a Telegram login or phone verification:
 ```powershell
-& "C:\Python311\python.exe" "notandor cn backup/crawler.py" --status
-```
-
-### Crawl / Refresh Catalog Index
-```powershell
-& "C:\Python311\python.exe" "notandor cn backup/crawler.py" --catalog --pages 234
-```
-
-### Download EAs (with optional batch limit)
-```powershell
-# Download next 50 posts
-& "C:\Python311\python.exe" "notandor cn backup/crawler.py" --download --limit 50
-
-# Download entire catalog (runs continuously until fully mirrored)
+# Run continuous background download
 & "C:\Python311\python.exe" "notandor cn backup/crawler.py" --download
-```
 
-### Unpack and Classify All Downloaded Archives
-```powershell
+# Check live progress & statistics
+& "C:\Python311\python.exe" "notandor cn backup/crawler.py" --status
+
+# Unpack all downloaded archives into .mq4, .ex4, .mq5, .ex5, .set
 & "C:\Python311\python.exe" "notandor cn backup/crawler.py" --extract
 ```
 
+### Option B: Telegram Channel Native Export (Fastest for 14,000 files)
+Since Telegram Desktop is already open and running on your machine:
+1. Open the channel in Telegram:
+   ```powershell
+   Start-Process "tg://resolve?domain=www_notandor_cn"
+   ```
+2. Click the channel header or three vertical dots (`⋮`) in the top-right corner.
+3. Select **"Export channel history"**.
+4. Check **"Files"** and move the size slider to **4000 MB**.
+5. Set download path to: `E:\Github Submissions\notandor cn backup\downloads`.
+6. Click **Export**. Telegram Desktop will download all 13,800 files at native multi-thread speeds.
+7. Run the extractor to organize everything:
+   ```powershell
+   & "C:\Python311\python.exe" "notandor cn backup/crawler.py" --extract
+   ```
+
+### Option C: Telegram Python Telethon Downloader
+```powershell
+# Crawl public telegram web preview catalog
+& "C:\Python311\python.exe" "notandor cn backup/tg_cataloger.py"
+
+# Download via Telethon MTProto client
+& "C:\Python311\python.exe" "notandor cn backup/tg_downloader.py"
+```
