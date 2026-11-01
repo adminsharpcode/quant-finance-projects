@@ -1,0 +1,15 @@
+RiskTrade=0.1
+RiskStop=300
+Virtual_Take=90
+MagicNumber=202511191
+HTF=1
+CheckMaxSpread=true
+MaxSpreadPoints=250
+TradeOnlyAtBarOpen=true
+MinBarsRequired=200
+SendRetries=3
+RetryDelayMs=400
+Press_factor=12
+power_strik=65
+Momentum_period=115
+period_rsi=11

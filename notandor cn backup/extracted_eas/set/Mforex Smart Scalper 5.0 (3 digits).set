@@ -1,0 +1,16 @@
+Risk=0.01
+TakeProfit=300
+Tral=200
+TralStart=50
+TimeStart=2.0
+TimeEnd=23.0
+MaxSpread=150
+PipsStep=650
+OpenTime=1
+Magic=2021.0
+Info=true
+TextColor=16777215
+InfoDataColor=16748574
+FonColor=0
+FontSizeInfo=7
+SpeedEA=50

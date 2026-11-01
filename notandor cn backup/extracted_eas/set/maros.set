@@ -1,0 +1,34 @@
+x11=notandor.cn
+StartingTradeDay=1
+EndingTradeDay=5
+StartHour=2
+StartMinute=0
+StopHour=21
+StopMinute=59
+x10= =============== 
+Lots=0.01
+AutoCompound=false
+Lots_by_Dollar=10000
+MaxSpread=120
+MultiLotsFactor=1.3
+MaxOpenOrders=99
+StepLots=90.0
+TakeProfit=110.0
+x1= =============== 
+UseTralling=false
+TrallingStart=90
+TrallingStop=90
+x12= =============== 
+SafeEquityStopOut=false
+SafeEquityRisk=0.5
+Slippage=3
+MagicNumber=202510222
+FreezeAfterTP=false
+Close_All_Orders=false
+x13= =============== 
+BB_Period=20
+BB_Deviation=2.0
+MA5_Period=5
+MA10_Period=10
+EMA50_Period=50
+EMA_Period=50

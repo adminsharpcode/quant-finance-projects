@@ -1,0 +1,14 @@
+Risk=0.01
+ExpSL=0.3
+ExpOpen=0.2
+ExpTrail=0.3
+PeriodBar=20
+TimeStart=8
+TimeEnd=23
+Magic=2025
+SpeedEA=50
+Info=true
+TextColor=16777215
+InfoDataColor=16748574
+FonColor=0
+FontSizeInfo=7

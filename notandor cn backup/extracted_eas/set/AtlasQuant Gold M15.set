@@ -1,0 +1,10 @@
+pipsDistance=20
+lotSize=0.1
+stopLossPips=1000
+takeProfitPips=20
+trailingPoints=50
+maxDailyProfitUSD=1000.0
+maxDailyLossUSD=-1000.0
+magicNumber=23456
+startTradeTime=01:30
+endTradeTime=24:05

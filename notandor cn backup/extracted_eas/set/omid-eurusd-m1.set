@@ -1,0 +1,13 @@
+Ordercomment=omid v2
+Slippage=3
+ecnBroker=false
+LOTS=0.1
+risk=0
+SL=200.0
+TP=50.0
+Trailing=true
+TrailingStop=15
+TrailingStep=2
+TrailStart=3
+MaxOrders=20
+MaxSpread=20.0

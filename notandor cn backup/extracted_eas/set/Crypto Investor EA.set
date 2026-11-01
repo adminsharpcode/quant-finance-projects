@@ -1,0 +1,59 @@
+WinLargeFonts=false
+MM===== Risk Management ====
+FixedLots=0.01
+AutoMM=0.1
+K_Mart=1.0
+GS===== General Settings ====
+Magic=868686
+EA_Comment=notandor.cn
+MaxSpread=10000.0
+OnlyManualTrading=false
+CS===== Custom Settings ====
+M1_Execution=true
+ForceProfit=6.0
+CloseOnReverse=true
+CloseReverseBarTF=15
+ForceLoss=1000.0
+FixedTakeProfit=0
+FixedStopLoss=0
+OscPer=9
+OscLev=15
+OscPerHiTF=10
+OscLevHiTF=15
+ADS===== Additional Trades Settings ====
+MaxAddTrades=4
+AddOnReverse=false
+ReverseBarTF=60
+AddDistance_Default=20.0
+AddDistance_1=14.5
+AddDistance_2=20.0
+AddDistance_3=30.0
+AddDistance_4=38.0
+AddDelay_1=15
+AddDelay_2=60
+AddDelay_3=60
+AddDelay_4=25
+RS===== Recovery Settings ====
+RecoveryProfit=35.0
+RecoveryAfter=25.0
+RecoveryTrades=2
+RecoveryTradesDistance=60.0
+RecoveryRiskMultiplier=2.0
+FE===== Friday Exit ====
+FridayExit=false
+ExitHourFr=21
+LastTradeHour=19
+NN===== Notifications ====
+EMAIL_Notification=false
+PUSH_Notification=false
+PS===== Protection Settings ====
+MaxAccountTrades=0
+MaxOpenLots=0.0
+DP=--- Daily Protections ---
+MaxDailyLoss=0.0
+MaxDailyDD=0.0
+DailyResetHour=0
+AP=--- Account Protections ---
+MinEquity=0.0
+MaxEquityDD=0.0
+MaxEquity=0.0

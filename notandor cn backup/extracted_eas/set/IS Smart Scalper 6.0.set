@@ -1,0 +1,14 @@
+Risk=0.01
+TakeProfit=20
+TimeStart=2.0
+TimeEnd=23.0
+PipsStep=6
+OpenTime=15
+BigTimeFrame=5
+Magic=2022.0
+Info=true
+TextColor=16777215
+InfoDataColor=16748574
+FonColor=0
+FontSizeInfo=7
+SpeedEA=200

@@ -1,0 +1,24 @@
+INFO1================   Trading Volume   ==================
+FixedLotsSize=1.0
+INFO2=Set FixedLotsSize to '0' if you want to use Auto Lot Size.
+INFO3=================== Auto Lot Size ===================
+LotsPerAmount=1.0
+AmountPerLot=2500.0
+MinLots=1.0
+MaxLots=99.0
+INFO4=AmountPerLot : 250 = High risk; 500 = Medium risk; 1000 = Low risk.
+INFO5================   Spread Protection   =================
+MaxSpread=30.0
+def_SL=350.0
+startTrailing=250.0
+Distance=300
+Limit=50
+INFO6=================   Magic Number   ================
+MyMagicNumber=54320
+Comment_=Golden Dad EA
+INFO8===============   Trading Time   ================
+StartHour=2
+StartMinute=30
+EndHour=23
+EndMinute=30
+INFO9=Start trading 1.5 hour after the rollover and end 30 minutes before the next rollover

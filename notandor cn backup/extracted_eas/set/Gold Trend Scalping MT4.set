@@ -1,0 +1,35 @@
+StartHourMonday=3
+StartMinuteMonday=0
+StartHour=1
+StartMinute=2
+FinishHour=23
+FinishMinute=59
+FridayCloseHour=20
+FridayCloseMinute=55
+___====== Common Settings =====
+inp_comment=Impulse Trend SL TP
+inp_magic_number=20251121
+____====== Trade Settings =====
+inp_padding_points=10
+inp_max_trades_per_trend=12
+inp_super_trend_tf=60
+inp_order_type=2
+_____====== Money Management =====
+inp_mm_methods=0
+inp_volume=0.01
+inp_risk=1.0
+inp_money=5.0
+inp_using_vol_scale=true
+______====== Trailing Stop =====
+inp_trailing_step=10
+inp_trailing_stoploss=30
+inp_trailing_start=230
+_______====== Other Settings  =====
+inp_max_open_orders=2
+inp_open_same_zz=false
+__CONTACT_INFO__=www.notandor.cn
+Telegram=
+TelegramChannel=
+MQL5=
+Warning1=
+Warning2=

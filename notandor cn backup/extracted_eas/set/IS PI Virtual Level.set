@@ -1,0 +1,14 @@
+Risk=0.01
+ExpTrailSL=1.0
+PeriodBar=170
+StopLoss=30
+TimeStart=1
+TimeEnd=23
+Magic=2026
+SpeedEA=60
+TrailLine=255
+Info=true
+TextColor=16777215
+InfoDataColor=16748574
+FonColor=0
+FontSizeInfo=7
