@@ -2,6 +2,7 @@
 """
 Notandor Telegram Channel Media Downloader
 Connects via Telethon MTProto to t.me/www_notandor_cn and streams all 14,000 EA files into downloads/.
+Includes automatic FloodWait backoff, live download progress, and archive extraction hooks.
 """
 
 import sys
@@ -10,7 +11,7 @@ import os
 import argparse
 import asyncio
 from pathlib import Path
-from telethon import TelegramClient
+from telethon import TelegramClient, errors
 from telethon.tl.types import DocumentAttributeFilename
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -19,22 +20,37 @@ METADATA_DIR = BASE_DIR / "metadata"
 DOWNLOADS_DIR.mkdir(parents=True, exist_ok=True)
 METADATA_DIR.mkdir(parents=True, exist_ok=True)
 
-# Default public developer API credentials (or user-supplied)
+# Default open MTProto developer credentials
 DEFAULT_API_ID = 2040
 DEFAULT_API_HASH = "b18441a1ff607e10a989891a5462e627"
 CHANNEL_USERNAME = "www_notandor_cn"
 
 
+def progress_callback(current, total):
+    percent = (current / total) * 100 if total else 0
+    sys.stdout.write(f"\r    [Progress] {current / 1024:.1f} KB / {total / 1024:.1f} KB ({percent:.1f}%)")
+    sys.stdout.flush()
+
+
 async def download_channel_files(api_id, api_hash, session_name="notandor_tg_session", limit=None):
-    client = TelegramClient(str(BASE_DIR / session_name), int(api_id), str(api_hash))
+    session_path = BASE_DIR / session_name
+    client = TelegramClient(str(session_path), int(api_id), str(api_hash))
+    
+    print("\n" + "="*60)
+    print("      NOTANDOR TELEGRAM CHANNEL BULK DOWNLOADER         ")
+    print("="*60)
+    print("Connecting via official Telegram MTProto protocol...")
+    print("If prompted, enter your phone number and the verification code")
+    print("sent to your active Telegram Desktop app.\n")
+    
     await client.start()
     
     me = await client.get_me()
-    print(f"\n[✓] Successfully connected to Telegram as: {me.first_name} (@{me.username or me.phone})")
+    print(f"\n[✓] Successfully authenticated as: {me.first_name} (@{me.username or me.phone or 'User'})")
     
     channel = await client.get_entity(CHANNEL_USERNAME)
-    print(f"[*] Accessing channel: {channel.title} (@{channel.username})")
-    print(f"[*] Destination directory: {DOWNLOADS_DIR}\n")
+    print(f"[*] Connected to channel: {channel.title} (@{channel.username})")
+    print(f"[*] Target Directory: {DOWNLOADS_DIR}\n")
     
     downloaded_count = 0
     skipped_count = 0
@@ -58,21 +74,35 @@ async def download_channel_files(api_id, api_hash, session_name="notandor_tg_ses
             continue
             
         file_size_kb = message.document.size / 1024
-        print(f"[↓] [{message.id}] Downloading: {file_name} ({file_size_kb:.1f} KB)...")
-        try:
-            await message.download_media(file=str(out_path))
-            downloaded_count += 1
-            print(f"  [✓] Saved: {out_path.name}")
-        except Exception as e:
-            print(f"  [!] Failed downloading {file_name}: {e}")
+        print(f"\n[↓] [{message.id}] Downloading: {file_name} ({file_size_kb:.1f} KB)...")
+        
+        success = False
+        for attempt in range(1, 4):
+            try:
+                await message.download_media(file=str(out_path), progress_callback=progress_callback)
+                sys.stdout.write("\n")
+                if out_path.exists() and out_path.stat().st_size > 100:
+                    downloaded_count += 1
+                    print(f"  [✓] Saved: {out_path.name}")
+                    success = True
+                    break
+            except errors.FloodWaitError as e:
+                print(f"\n  [!] Telegram rate limit encountered: sleeping for {e.seconds}s...")
+                await asyncio.sleep(e.seconds + 1)
+            except Exception as e:
+                print(f"\n  [!] Download attempt {attempt} error: {e}")
+                await asyncio.sleep(2 * attempt)
+                
+        if not success:
             error_count += 1
+            print(f"  [✗] Failed downloading message {message.id}: {file_name}")
             
-    print("\n" + "="*50)
-    print("[✓] Telegram Download Session Completed!")
-    print(f"    Downloaded: {downloaded_count}")
-    print(f"    Skipped: {skipped_count}")
+    print("\n" + "="*60)
+    print("[✓] TELEGRAM DOWNLOAD SESSION FINISHED")
+    print(f"    New Files Downloaded: {downloaded_count}")
+    print(f"    Skipped (Already on disk): {skipped_count}")
     print(f"    Errors: {error_count}")
-    print("="*50)
+    print("="*60 + "\n")
 
 
 def main():

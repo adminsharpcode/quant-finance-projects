@@ -1,0 +1,55 @@
+1. Desktop MT5 icon → Right-click → Open file location
+
+2. Place the DLL and launcher
+
+1. Copy `API.dll` to the MT5 installation directory
+
+2. Copy `launcher.exe` to the same location (in the same folder as `terminal64.exe`)
+
+3. Launch the launcher as administrator (Crucial)
+
+1. Locate `launcher.exe` in the MT5 directory
+
+2. Right-click → Run as administrator
+
+3. Use this launcher every time you start MT5 from now on
+
+4. Open the MT5 data folder
+
+1. Top-left corner of MT5: File → Open Data Folder
+
+5. Place the EA (`ex5` file)
+
+1. Navigate to `MQL5` → `Experts`
+
+2. Paste `WakaWakaEA.ex5` into this folder
+
+6. Open MT5 Options
+
+1. Top-left corner of MT5: Tools → Options
+
+7. Add web URLs
+
+1. Select the "Expert Advisors" tab
+
+2. Check the box for "Allow WebRequest for listed URL"
+
+3. Add all the URLs provided by the author
+
+8. Refresh the EA list
+
+1. Left navigation bar → Expert Advisors
+
+2. Right-click → Refresh
+
+9. Drag the EA onto the chart
+
+1. Find `WakaWakaEA`
+
+2. Drag it onto the chart of the corresponding trading pair
+
+10. Start running
+
+1. Turn on the "Algo Trading" button
+
+2. Adjust the parameters and it is ready to run

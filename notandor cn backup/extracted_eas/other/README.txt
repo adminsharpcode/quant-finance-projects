@@ -1,0 +1,1 @@
+Import these fonts (Arial Narrow,Consolas,Wingdings,Webdings) to your Operating System's fonts repository if they are missing.

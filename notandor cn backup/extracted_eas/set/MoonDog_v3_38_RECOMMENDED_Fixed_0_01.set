@@ -1,0 +1,111 @@
+; MOONDOG EA v3.34 - RECOMMENDED FIXED 0.01
+; XAUUSD / XAUUSD_10 | Physical safety SL 200 points (2.00 price)
+; Validated MoonDog targets: Apex 140 pips, Core modules 150 pips.
+; IMPORTANT: check the recommended SET again after every EA update.
+RecommendedSetLink=
+
+; 01 | MOONDOG TRADE IDENTITY
+MoonTradeIdentity=33300
+
+; 02 | MOONDOG POSITION SIZING
+MoonSizing=0
+MoonFixedLot=0.01
+MoonCustomRiskPercent=2.0
+
+; 03 | AUTOMATIC LOT SCALING
+LotScalingEnabled=false
+LotScalingBaseBalance=0.0
+LotScalingBalanceStep=500.0
+LotScalingLotStep=0.01
+LotScalingMaxLot=0.03
+LotScalingUseEquity=false
+LotScalingOnlyUp=false
+
+; 04 | STRATEGY MODULES
+MoonNova=true
+MoonApex=true
+MoonZenith=true
+MoonPulse=true
+MoonEclipse=true
+
+; 05 | TRADING HOURS
+UseTradingHours=false
+TradingStartHour=2
+TradingStartMinute=0
+TradingEndHour=19
+TradingEndMinute=0
+DeletePendingOutsideHours=false
+
+; 06 | GENERAL NEWS SHIELD
+MoonCalendarShieldEnabled=false
+NewsCurrency=USD
+FilterHighImpactNews=true
+FilterModerateImpactNews=false
+NewsMinutesBefore=60
+NewsMinutesAfter=30
+DeletePendingBeforeNews=true
+NewsFailClosed=false
+
+; 07 | NFP - CPI - FOMC
+UseMajorEventControl=true
+TradeDuringNFP=false
+TradeDuringCPI=false
+CPIMinutesBefore=30
+CPIMinutesAfter=60
+TradeDuringFOMC=false
+FOMCMinutesBefore=60
+FOMCMinutesAfter=150
+
+; 08 | MOONDOG TARGET CONTROL
+MoonApexTargetPips=140.0
+MoonCoreTargetPips=150.0
+
+; 09 | MOONLOCK PROFIT PROTECTION
+MoonLockEnabled=true
+MoonLockStartPer001=1.0
+MoonLockPercent=50.0
+
+; 10 | VIRTUAL TRAILING FALLBACK
+VirtualTrailingMode=1
+PersistVirtualTrailing=true
+
+; 11 | ORDER IDENTIFICATION
+OrderCommentText=
+AppendModuleToComment=false
+
+; 12 | PROP FIRM PROTECTION
+PropFirmActive=false
+PropFirmChallengeId=MAIN
+PropFirmStartingBalance=0.0
+PropFirmProfitTargetPercent=8.0
+PropFirmMaxDailyLossPercent=5.0
+PropFirmMaxTotalDrawdownPercent=10.0
+PropFirmSafetyBufferPercent=0.50
+PropFirmDrawdownMode=0
+PropFirmDailyBaseline=1
+PropFirmDailyLossAmount=0
+PropFirmTrailingAmount=0
+PropFirmDailyResetHour=0
+PropFirmDailyResetMinute=0
+PropFirmMaximumExposureSlots=0
+PropFirmStopAtProfitTarget=true
+PropFirmDeletePendingsWhenBlocked=true
+PropFirmClosePositionsOnLimit=true
+PropFirmClosePositionsAtTarget=false
+PropFirmBlankOrderComment=false
+
+; 13 | EXECUTION QUALITY
+ShowExecutionComparison=true
+ExecutionMinimumTrades=10
+ExecutionExcellentMax=0.05
+ExecutionGoodMax=0.15
+ExecutionNormalMax=0.35
+ExecutionPoorMax=0.75
+
+; 14 | DISPLAY & TESTER
+MoonDashboardVisible=true
+MoonDashboardScale=1.10
+ShowLaunchSplash=true
+LaunchSplashSeconds=3
+FastBacktest=true
+TesterRejectEveryNthTrailingModify=0

@@ -1,0 +1,1047 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<weeklyevents>
+	<event>
+		<title>Visitor Arrivals m/m</title>
+		<country>NZD</country>
+		<date><![CDATA[12-12-2021]]></date>
+		<time><![CDATA[9:40pm]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast />
+		<previous><![CDATA[-13.7%]]></previous>
+	</event>
+	<event>
+		<title>Tankan Manufacturing Index</title>
+		<country>JPY</country>
+		<date><![CDATA[12-12-2021]]></date>
+		<time><![CDATA[11:50pm]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[19]]></forecast>
+		<previous><![CDATA[18]]></previous>
+	</event>
+	<event>
+		<title>Tankan Non-Manufacturing Index</title>
+		<country>JPY</country>
+		<date><![CDATA[12-12-2021]]></date>
+		<time><![CDATA[11:50pm]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[5]]></forecast>
+		<previous><![CDATA[2]]></previous>
+	</event>
+	<event>
+		<title>Core Machinery Orders m/m</title>
+		<country>JPY</country>
+		<date><![CDATA[12-12-2021]]></date>
+		<time><![CDATA[11:50pm]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[1.9%]]></forecast>
+		<previous><![CDATA[0.0%]]></previous>
+	</event>
+	<event>
+		<title>Rightmove HPI m/m</title>
+		<country>GBP</country>
+		<date><![CDATA[12-13-2021]]></date>
+		<time><![CDATA[12:01am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast />
+		<previous><![CDATA[-0.6%]]></previous>
+	</event>
+	<event>
+		<title>German WPI m/m</title>
+		<country>EUR</country>
+		<date><![CDATA[12-13-2021]]></date>
+		<time><![CDATA[7:00am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[1.3%]]></forecast>
+		<previous><![CDATA[1.6%]]></previous>
+	</event>
+	<event>
+		<title>Italian Quarterly Unemployment Rate</title>
+		<country>EUR</country>
+		<date><![CDATA[12-13-2021]]></date>
+		<time><![CDATA[9:00am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[9.4%]]></forecast>
+		<previous><![CDATA[9.8%]]></previous>
+	</event>
+	<event>
+		<title>G7 Meetings</title>
+		<country>ALL</country>
+		<date><![CDATA[12-13-2021]]></date>
+		<time><![CDATA[10:15am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast />
+		<previous />
+	</event>
+	<event>
+		<title>BOC Gov Macklem Speaks</title>
+		<country>CAD</country>
+		<date><![CDATA[12-13-2021]]></date>
+		<time><![CDATA[4:00pm]]></time>
+		<impact><![CDATA[High]]></impact>
+		<forecast />
+		<previous />
+	</event>
+	<event>
+		<title>BOE Financial Stability Report</title>
+		<country>GBP</country>
+		<date><![CDATA[12-13-2021]]></date>
+		<time><![CDATA[5:00pm]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast />
+		<previous />
+	</event>
+	<event>
+		<title>FPC Meeting Minutes</title>
+		<country>GBP</country>
+		<date><![CDATA[12-13-2021]]></date>
+		<time><![CDATA[5:00pm]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast />
+		<previous />
+	</event>
+	<event>
+		<title>FPC Statement</title>
+		<country>GBP</country>
+		<date><![CDATA[12-13-2021]]></date>
+		<time><![CDATA[5:00pm]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast />
+		<previous />
+	</event>
+	<event>
+		<title>Bank Stress Test Results</title>
+		<country>GBP</country>
+		<date><![CDATA[12-13-2021]]></date>
+		<time><![CDATA[5:00pm]]></time>
+		<impact><![CDATA[High]]></impact>
+		<forecast />
+		<previous />
+	</event>
+	<event>
+		<title>BOE Gov Bailey Speaks</title>
+		<country>GBP</country>
+		<date><![CDATA[12-13-2021]]></date>
+		<time><![CDATA[6:00pm]]></time>
+		<impact><![CDATA[High]]></impact>
+		<forecast />
+		<previous />
+	</event>
+	<event>
+		<title>FPI m/m</title>
+		<country>NZD</country>
+		<date><![CDATA[12-13-2021]]></date>
+		<time><![CDATA[9:45pm]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast />
+		<previous><![CDATA[-0.9%]]></previous>
+	</event>
+	<event>
+		<title>NAB Business Confidence</title>
+		<country>AUD</country>
+		<date><![CDATA[12-14-2021]]></date>
+		<time><![CDATA[12:30am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast />
+		<previous><![CDATA[21]]></previous>
+	</event>
+	<event>
+		<title>Revised Industrial Production m/m</title>
+		<country>JPY</country>
+		<date><![CDATA[12-14-2021]]></date>
+		<time><![CDATA[4:30am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[1.1%]]></forecast>
+		<previous><![CDATA[1.1%]]></previous>
+	</event>
+	<event>
+		<title>Average Earnings Index 3m/y</title>
+		<country>GBP</country>
+		<date><![CDATA[12-14-2021]]></date>
+		<time><![CDATA[7:00am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[4.6%]]></forecast>
+		<previous><![CDATA[5.8%]]></previous>
+	</event>
+	<event>
+		<title>Claimant Count Change</title>
+		<country>GBP</country>
+		<date><![CDATA[12-14-2021]]></date>
+		<time><![CDATA[7:00am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[-31.5K]]></forecast>
+		<previous><![CDATA[-14.9K]]></previous>
+	</event>
+	<event>
+		<title>Unemployment Rate</title>
+		<country>GBP</country>
+		<date><![CDATA[12-14-2021]]></date>
+		<time><![CDATA[7:00am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[4.2%]]></forecast>
+		<previous><![CDATA[4.3%]]></previous>
+	</event>
+	<event>
+		<title>PPI m/m</title>
+		<country>CHF</country>
+		<date><![CDATA[12-14-2021]]></date>
+		<time><![CDATA[7:30am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[0.5%]]></forecast>
+		<previous><![CDATA[0.6%]]></previous>
+	</event>
+	<event>
+		<title>Industrial Production m/m</title>
+		<country>EUR</country>
+		<date><![CDATA[12-14-2021]]></date>
+		<time><![CDATA[10:00am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[1.2%]]></forecast>
+		<previous><![CDATA[-0.2%]]></previous>
+	</event>
+	<event>
+		<title>NFIB Small Business Index</title>
+		<country>USD</country>
+		<date><![CDATA[12-14-2021]]></date>
+		<time><![CDATA[11:00am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[98.4]]></forecast>
+		<previous><![CDATA[98.2]]></previous>
+	</event>
+	<event>
+		<title>PPI m/m</title>
+		<country>USD</country>
+		<date><![CDATA[12-14-2021]]></date>
+		<time><![CDATA[1:30pm]]></time>
+		<impact><![CDATA[High]]></impact>
+		<forecast><![CDATA[0.5%]]></forecast>
+		<previous><![CDATA[0.6%]]></previous>
+	</event>
+	<event>
+		<title>Core PPI m/m</title>
+		<country>USD</country>
+		<date><![CDATA[12-14-2021]]></date>
+		<time><![CDATA[1:30pm]]></time>
+		<impact><![CDATA[Medium]]></impact>
+		<forecast><![CDATA[0.4%]]></forecast>
+		<previous><![CDATA[0.4%]]></previous>
+	</event>
+	<event>
+		<title>CB Leading Index m/m</title>
+		<country>GBP</country>
+		<date><![CDATA[12-14-2021]]></date>
+		<time><![CDATA[2:30pm]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast />
+		<previous><![CDATA[0.1%]]></previous>
+	</event>
+	<event>
+		<title>RBNZ Gov Orr Speaks</title>
+		<country>NZD</country>
+		<date><![CDATA[12-14-2021]]></date>
+		<time><![CDATA[7:00pm]]></time>
+		<impact><![CDATA[High]]></impact>
+		<forecast />
+		<previous />
+	</event>
+	<event>
+		<title>Current Account</title>
+		<country>NZD</country>
+		<date><![CDATA[12-14-2021]]></date>
+		<time><![CDATA[9:45pm]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[-7.75B]]></forecast>
+		<previous><![CDATA[-1.40B]]></previous>
+	</event>
+	<event>
+		<title>Westpac Consumer Sentiment</title>
+		<country>AUD</country>
+		<date><![CDATA[12-14-2021]]></date>
+		<time><![CDATA[11:27pm]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast />
+		<previous><![CDATA[0.6%]]></previous>
+	</event>
+	<event>
+		<title>Fixed Asset Investment ytd/y</title>
+		<country>CNY</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[2:00am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[5.4%]]></forecast>
+		<previous><![CDATA[6.1%]]></previous>
+	</event>
+	<event>
+		<title>Industrial Production y/y</title>
+		<country>CNY</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[2:00am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[3.8%]]></forecast>
+		<previous><![CDATA[3.5%]]></previous>
+	</event>
+	<event>
+		<title>Retail Sales y/y</title>
+		<country>CNY</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[2:00am]]></time>
+		<impact><![CDATA[Medium]]></impact>
+		<forecast><![CDATA[4.8%]]></forecast>
+		<previous><![CDATA[4.9%]]></previous>
+	</event>
+	<event>
+		<title>Unemployment Rate</title>
+		<country>CNY</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[2:00am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[4.9%]]></forecast>
+		<previous><![CDATA[4.9%]]></previous>
+	</event>
+	<event>
+		<title>Tertiary Industry Activity m/m</title>
+		<country>JPY</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[4:30am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[1.2%]]></forecast>
+		<previous><![CDATA[0.5%]]></previous>
+	</event>
+	<event>
+		<title>CPI y/y</title>
+		<country>GBP</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[7:00am]]></time>
+		<impact><![CDATA[High]]></impact>
+		<forecast><![CDATA[4.8%]]></forecast>
+		<previous><![CDATA[4.2%]]></previous>
+	</event>
+	<event>
+		<title>Core CPI y/y</title>
+		<country>GBP</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[7:00am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[3.7%]]></forecast>
+		<previous><![CDATA[3.4%]]></previous>
+	</event>
+	<event>
+		<title>RPI y/y</title>
+		<country>GBP</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[7:00am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[6.7%]]></forecast>
+		<previous><![CDATA[6.0%]]></previous>
+	</event>
+	<event>
+		<title>PPI Output m/m</title>
+		<country>GBP</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[7:00am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[0.6%]]></forecast>
+		<previous><![CDATA[1.1%]]></previous>
+	</event>
+	<event>
+		<title>PPI Input m/m</title>
+		<country>GBP</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[7:00am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[0.5%]]></forecast>
+		<previous><![CDATA[1.4%]]></previous>
+	</event>
+	<event>
+		<title>French Final CPI m/m</title>
+		<country>EUR</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[7:45am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[0.4%]]></forecast>
+		<previous><![CDATA[0.4%]]></previous>
+	</event>
+	<event>
+		<title>HPI y/y</title>
+		<country>GBP</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[9:30am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[11.1%]]></forecast>
+		<previous><![CDATA[11.8%]]></previous>
+	</event>
+	<event>
+		<title>Housing Starts</title>
+		<country>CAD</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[1:14pm]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[236K]]></forecast>
+		<previous><![CDATA[237K]]></previous>
+	</event>
+	<event>
+		<title>Retail Sales m/m</title>
+		<country>USD</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[1:30pm]]></time>
+		<impact><![CDATA[High]]></impact>
+		<forecast><![CDATA[0.8%]]></forecast>
+		<previous><![CDATA[1.7%]]></previous>
+	</event>
+	<event>
+		<title>Core Retail Sales m/m</title>
+		<country>USD</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[1:30pm]]></time>
+		<impact><![CDATA[High]]></impact>
+		<forecast><![CDATA[0.9%]]></forecast>
+		<previous><![CDATA[1.7%]]></previous>
+	</event>
+	<event>
+		<title>Empire State Manufacturing Index</title>
+		<country>USD</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[1:30pm]]></time>
+		<impact><![CDATA[Medium]]></impact>
+		<forecast><![CDATA[24.9]]></forecast>
+		<previous><![CDATA[30.9]]></previous>
+	</event>
+	<event>
+		<title>Import Prices m/m</title>
+		<country>USD</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[1:30pm]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[0.5%]]></forecast>
+		<previous><![CDATA[1.2%]]></previous>
+	</event>
+	<event>
+		<title>CPI m/m</title>
+		<country>CAD</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[1:32pm]]></time>
+		<impact><![CDATA[High]]></impact>
+		<forecast><![CDATA[0.2%]]></forecast>
+		<previous><![CDATA[0.7%]]></previous>
+	</event>
+	<event>
+		<title>Trimmed CPI y/y</title>
+		<country>CAD</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[1:35pm]]></time>
+		<impact><![CDATA[Medium]]></impact>
+		<forecast><![CDATA[3.3%]]></forecast>
+		<previous><![CDATA[3.3%]]></previous>
+	</event>
+	<event>
+		<title>Median CPI y/y</title>
+		<country>CAD</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[1:35pm]]></time>
+		<impact><![CDATA[Medium]]></impact>
+		<forecast><![CDATA[2.9%]]></forecast>
+		<previous><![CDATA[2.9%]]></previous>
+	</event>
+	<event>
+		<title>Common CPI y/y</title>
+		<country>CAD</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[1:35pm]]></time>
+		<impact><![CDATA[Medium]]></impact>
+		<forecast><![CDATA[1.9%]]></forecast>
+		<previous><![CDATA[1.8%]]></previous>
+	</event>
+	<event>
+		<title>Manufacturing Sales m/m</title>
+		<country>CAD</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[1:35pm]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[4.0%]]></forecast>
+		<previous><![CDATA[-3.0%]]></previous>
+	</event>
+	<event>
+		<title>Core CPI m/m</title>
+		<country>CAD</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[1:45pm]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast />
+		<previous><![CDATA[0.6%]]></previous>
+	</event>
+	<event>
+		<title>NAHB Housing Market Index</title>
+		<country>USD</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[3:00pm]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[84]]></forecast>
+		<previous><![CDATA[83]]></previous>
+	</event>
+	<event>
+		<title>Business Inventories m/m</title>
+		<country>USD</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[3:00pm]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[1.0%]]></forecast>
+		<previous><![CDATA[0.7%]]></previous>
+	</event>
+	<event>
+		<title>Crude Oil Inventories</title>
+		<country>USD</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[3:30pm]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[-1.8M]]></forecast>
+		<previous><![CDATA[-0.2M]]></previous>
+	</event>
+	<event>
+		<title>BOC Gov Macklem Speaks</title>
+		<country>CAD</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[5:00pm]]></time>
+		<impact><![CDATA[High]]></impact>
+		<forecast />
+		<previous />
+	</event>
+	<event>
+		<title>FOMC Statement</title>
+		<country>USD</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[7:00pm]]></time>
+		<impact><![CDATA[High]]></impact>
+		<forecast />
+		<previous />
+	</event>
+	<event>
+		<title>FOMC Economic Projections</title>
+		<country>USD</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[7:00pm]]></time>
+		<impact><![CDATA[High]]></impact>
+		<forecast />
+		<previous />
+	</event>
+	<event>
+		<title>Federal Funds Rate</title>
+		<country>USD</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[7:00pm]]></time>
+		<impact><![CDATA[High]]></impact>
+		<forecast><![CDATA[&lt;0.25%]]></forecast>
+		<previous><![CDATA[&lt;0.25%]]></previous>
+	</event>
+	<event>
+		<title>FOMC Press Conference</title>
+		<country>USD</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[7:30pm]]></time>
+		<impact><![CDATA[High]]></impact>
+		<forecast />
+		<previous />
+	</event>
+	<event>
+		<title>TIC Long-Term Purchases</title>
+		<country>USD</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[9:00pm]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[35.9B]]></forecast>
+		<previous><![CDATA[26.3B]]></previous>
+	</event>
+	<event>
+		<title>GDP q/q</title>
+		<country>NZD</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[9:45pm]]></time>
+		<impact><![CDATA[High]]></impact>
+		<forecast><![CDATA[-4.1%]]></forecast>
+		<previous><![CDATA[2.8%]]></previous>
+	</event>
+	<event>
+		<title>Flash Manufacturing PMI</title>
+		<country>AUD</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[10:00pm]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast />
+		<previous><![CDATA[58.5]]></previous>
+	</event>
+	<event>
+		<title>Flash Services PMI</title>
+		<country>AUD</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[10:00pm]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast />
+		<previous><![CDATA[55.0]]></previous>
+	</event>
+	<event>
+		<title>RBA Gov Lowe Speaks</title>
+		<country>AUD</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[11:30pm]]></time>
+		<impact><![CDATA[High]]></impact>
+		<forecast />
+		<previous />
+	</event>
+	<event>
+		<title>Trade Balance</title>
+		<country>JPY</country>
+		<date><![CDATA[12-15-2021]]></date>
+		<time><![CDATA[11:50pm]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[-0.32T]]></forecast>
+		<previous><![CDATA[-0.44T]]></previous>
+	</event>
+	<event>
+		<title>MI Inflation Expectations</title>
+		<country>AUD</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[12:00am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast />
+		<previous><![CDATA[4.6%]]></previous>
+	</event>
+	<event>
+		<title>Employment Change</title>
+		<country>AUD</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[12:30am]]></time>
+		<impact><![CDATA[High]]></impact>
+		<forecast><![CDATA[203.0K]]></forecast>
+		<previous><![CDATA[-46.3K]]></previous>
+	</event>
+	<event>
+		<title>Unemployment Rate</title>
+		<country>AUD</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[12:30am]]></time>
+		<impact><![CDATA[High]]></impact>
+		<forecast><![CDATA[5.0%]]></forecast>
+		<previous><![CDATA[5.2%]]></previous>
+	</event>
+	<event>
+		<title>Flash Manufacturing PMI</title>
+		<country>JPY</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[12:30am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[55.0]]></forecast>
+		<previous><![CDATA[54.2]]></previous>
+	</event>
+	<event>
+		<title>Foreign Direct Investment ytd/y</title>
+		<country>CNY</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[7:02am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast />
+		<previous><![CDATA[17.8%]]></previous>
+	</event>
+	<event>
+		<title>French Flash Services PMI</title>
+		<country>EUR</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[8:15am]]></time>
+		<impact><![CDATA[Medium]]></impact>
+		<forecast><![CDATA[55.9]]></forecast>
+		<previous><![CDATA[58.2]]></previous>
+	</event>
+	<event>
+		<title>French Flash Manufacturing PMI</title>
+		<country>EUR</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[8:15am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[55.4]]></forecast>
+		<previous><![CDATA[54.6]]></previous>
+	</event>
+	<event>
+		<title>German Flash Manufacturing PMI</title>
+		<country>EUR</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[8:30am]]></time>
+		<impact><![CDATA[High]]></impact>
+		<forecast><![CDATA[57.0]]></forecast>
+		<previous><![CDATA[57.6]]></previous>
+	</event>
+	<event>
+		<title>German Flash Services PMI</title>
+		<country>EUR</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[8:30am]]></time>
+		<impact><![CDATA[High]]></impact>
+		<forecast><![CDATA[50.9]]></forecast>
+		<previous><![CDATA[53.4]]></previous>
+	</event>
+	<event>
+		<title>SNB Monetary Policy Assessment</title>
+		<country>CHF</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[8:30am]]></time>
+		<impact><![CDATA[High]]></impact>
+		<forecast />
+		<previous />
+	</event>
+	<event>
+		<title>SNB Policy Rate</title>
+		<country>CHF</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[8:30am]]></time>
+		<impact><![CDATA[Medium]]></impact>
+		<forecast><![CDATA[-0.75%]]></forecast>
+		<previous><![CDATA[-0.75%]]></previous>
+	</event>
+	<event>
+		<title>Italian Trade Balance</title>
+		<country>EUR</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[9:00am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[3.25B]]></forecast>
+		<previous><![CDATA[2.45B]]></previous>
+	</event>
+	<event>
+		<title>Flash Manufacturing PMI</title>
+		<country>EUR</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[9:00am]]></time>
+		<impact><![CDATA[Medium]]></impact>
+		<forecast><![CDATA[57.8]]></forecast>
+		<previous><![CDATA[58.6]]></previous>
+	</event>
+	<event>
+		<title>Flash Services PMI</title>
+		<country>EUR</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[9:00am]]></time>
+		<impact><![CDATA[Medium]]></impact>
+		<forecast><![CDATA[54.2]]></forecast>
+		<previous><![CDATA[56.6]]></previous>
+	</event>
+	<event>
+		<title>SNB Press Conference</title>
+		<country>CHF</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[9:00am]]></time>
+		<impact><![CDATA[High]]></impact>
+		<forecast />
+		<previous />
+	</event>
+	<event>
+		<title>Flash Manufacturing PMI</title>
+		<country>GBP</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[9:30am]]></time>
+		<impact><![CDATA[Medium]]></impact>
+		<forecast><![CDATA[57.5]]></forecast>
+		<previous><![CDATA[58.2]]></previous>
+	</event>
+	<event>
+		<title>Flash Services PMI</title>
+		<country>GBP</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[9:30am]]></time>
+		<impact><![CDATA[Medium]]></impact>
+		<forecast><![CDATA[57.1]]></forecast>
+		<previous><![CDATA[58.6]]></previous>
+	</event>
+	<event>
+		<title>Trade Balance</title>
+		<country>EUR</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[10:00am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[5.7B]]></forecast>
+		<previous><![CDATA[6.1B]]></previous>
+	</event>
+	<event>
+		<title>Asset Purchase Facility</title>
+		<country>GBP</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[12:00pm]]></time>
+		<impact><![CDATA[High]]></impact>
+		<forecast><![CDATA[875B]]></forecast>
+		<previous><![CDATA[875B]]></previous>
+	</event>
+	<event>
+		<title>Official Bank Rate</title>
+		<country>GBP</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[12:00pm]]></time>
+		<impact><![CDATA[High]]></impact>
+		<forecast><![CDATA[0.10%]]></forecast>
+		<previous><![CDATA[0.10%]]></previous>
+	</event>
+	<event>
+		<title>Monetary Policy Summary</title>
+		<country>GBP</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[12:00pm]]></time>
+		<impact><![CDATA[High]]></impact>
+		<forecast />
+		<previous />
+	</event>
+	<event>
+		<title>MPC Asset Purchase Facility Votes</title>
+		<country>GBP</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[12:00pm]]></time>
+		<impact><![CDATA[High]]></impact>
+		<forecast><![CDATA[0-3-6]]></forecast>
+		<previous><![CDATA[0-3-6]]></previous>
+	</event>
+	<event>
+		<title>MPC Official Bank Rate Votes</title>
+		<country>GBP</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[12:00pm]]></time>
+		<impact><![CDATA[High]]></impact>
+		<forecast><![CDATA[2-0-7]]></forecast>
+		<previous><![CDATA[2-0-7]]></previous>
+	</event>
+	<event>
+		<title>Main Refinancing Rate</title>
+		<country>EUR</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[12:45pm]]></time>
+		<impact><![CDATA[High]]></impact>
+		<forecast><![CDATA[0.00%]]></forecast>
+		<previous><![CDATA[0.00%]]></previous>
+	</event>
+	<event>
+		<title>Monetary Policy Statement</title>
+		<country>EUR</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[12:45pm]]></time>
+		<impact><![CDATA[High]]></impact>
+		<forecast />
+		<previous />
+	</event>
+	<event>
+		<title>Unemployment Claims</title>
+		<country>USD</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[1:30pm]]></time>
+		<impact><![CDATA[Medium]]></impact>
+		<forecast><![CDATA[196K]]></forecast>
+		<previous><![CDATA[184K]]></previous>
+	</event>
+	<event>
+		<title>ADP Non-Farm Employment Change</title>
+		<country>CAD</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[1:30pm]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast />
+		<previous><![CDATA[65.8K]]></previous>
+	</event>
+	<event>
+		<title>Wholesale Sales m/m</title>
+		<country>CAD</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[1:30pm]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[1.5%]]></forecast>
+		<previous><![CDATA[1.0%]]></previous>
+	</event>
+	<event>
+		<title>Philly Fed Manufacturing Index</title>
+		<country>USD</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[1:30pm]]></time>
+		<impact><![CDATA[Medium]]></impact>
+		<forecast><![CDATA[29.6]]></forecast>
+		<previous><![CDATA[39.0]]></previous>
+	</event>
+	<event>
+		<title>Building Permits</title>
+		<country>USD</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[1:30pm]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[1.66M]]></forecast>
+		<previous><![CDATA[1.65M]]></previous>
+	</event>
+	<event>
+		<title>Housing Starts</title>
+		<country>USD</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[1:30pm]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[1.57M]]></forecast>
+		<previous><![CDATA[1.52M]]></previous>
+	</event>
+	<event>
+		<title>ECB Press Conference</title>
+		<country>EUR</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[1:30pm]]></time>
+		<impact><![CDATA[High]]></impact>
+		<forecast />
+		<previous />
+	</event>
+	<event>
+		<title>Industrial Production m/m</title>
+		<country>USD</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[2:15pm]]></time>
+		<impact><![CDATA[Medium]]></impact>
+		<forecast><![CDATA[0.6%]]></forecast>
+		<previous><![CDATA[1.6%]]></previous>
+	</event>
+	<event>
+		<title>Capacity Utilization Rate</title>
+		<country>USD</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[2:15pm]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[76.9%]]></forecast>
+		<previous><![CDATA[76.4%]]></previous>
+	</event>
+	<event>
+		<title>Flash Manufacturing PMI</title>
+		<country>USD</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[2:45pm]]></time>
+		<impact><![CDATA[Medium]]></impact>
+		<forecast><![CDATA[58.6]]></forecast>
+		<previous><![CDATA[59.1]]></previous>
+	</event>
+	<event>
+		<title>Flash Services PMI</title>
+		<country>USD</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[2:45pm]]></time>
+		<impact><![CDATA[Medium]]></impact>
+		<forecast><![CDATA[58.9]]></forecast>
+		<previous><![CDATA[57.0]]></previous>
+	</event>
+	<event>
+		<title>Natural Gas Storage</title>
+		<country>USD</country>
+		<date><![CDATA[12-16-2021]]></date>
+		<time><![CDATA[3:30pm]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[-85B]]></forecast>
+		<previous><![CDATA[-59B]]></previous>
+	</event>
+	<event>
+		<title>Final ANZ Business Confidence</title>
+		<country>NZD</country>
+		<date><![CDATA[12-17-2021]]></date>
+		<time><![CDATA[12:00am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast />
+		<previous><![CDATA[-16.4]]></previous>
+	</event>
+	<event>
+		<title>GfK Consumer Confidence</title>
+		<country>GBP</country>
+		<date><![CDATA[12-17-2021]]></date>
+		<time><![CDATA[12:01am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[-17]]></forecast>
+		<previous><![CDATA[-14]]></previous>
+	</event>
+	<event>
+		<title>Monetary Policy Statement</title>
+		<country>JPY</country>
+		<date><![CDATA[12-17-2021]]></date>
+		<time><![CDATA[3:50am]]></time>
+		<impact><![CDATA[Medium]]></impact>
+		<forecast />
+		<previous />
+	</event>
+	<event>
+		<title>BOJ Policy Rate</title>
+		<country>JPY</country>
+		<date><![CDATA[12-17-2021]]></date>
+		<time><![CDATA[3:50am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[-0.10%]]></forecast>
+		<previous><![CDATA[-0.10%]]></previous>
+	</event>
+	<event>
+		<title>BOJ Press Conference</title>
+		<country>JPY</country>
+		<date><![CDATA[12-17-2021]]></date>
+		<time><![CDATA[6:30am]]></time>
+		<impact><![CDATA[Medium]]></impact>
+		<forecast />
+		<previous />
+	</event>
+	<event>
+		<title>Retail Sales m/m</title>
+		<country>GBP</country>
+		<date><![CDATA[12-17-2021]]></date>
+		<time><![CDATA[7:00am]]></time>
+		<impact><![CDATA[Medium]]></impact>
+		<forecast><![CDATA[0.8%]]></forecast>
+		<previous><![CDATA[0.8%]]></previous>
+	</event>
+	<event>
+		<title>German PPI m/m</title>
+		<country>EUR</country>
+		<date><![CDATA[12-17-2021]]></date>
+		<time><![CDATA[7:00am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[1.4%]]></forecast>
+		<previous><![CDATA[3.8%]]></previous>
+	</event>
+	<event>
+		<title>German ifo Business Climate</title>
+		<country>EUR</country>
+		<date><![CDATA[12-17-2021]]></date>
+		<time><![CDATA[9:00am]]></time>
+		<impact><![CDATA[Medium]]></impact>
+		<forecast><![CDATA[95.3]]></forecast>
+		<previous><![CDATA[96.5]]></previous>
+	</event>
+	<event>
+		<title>Final Core CPI y/y</title>
+		<country>EUR</country>
+		<date><![CDATA[12-17-2021]]></date>
+		<time><![CDATA[10:00am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[2.6%]]></forecast>
+		<previous><![CDATA[2.6%]]></previous>
+	</event>
+	<event>
+		<title>Final CPI y/y</title>
+		<country>EUR</country>
+		<date><![CDATA[12-17-2021]]></date>
+		<time><![CDATA[10:00am]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[4.9%]]></forecast>
+		<previous><![CDATA[4.9%]]></previous>
+	</event>
+	<event>
+		<title>BOE Quarterly Bulletin</title>
+		<country>GBP</country>
+		<date><![CDATA[12-17-2021]]></date>
+		<time><![CDATA[12:00pm]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast />
+		<previous />
+	</event>
+	<event>
+		<title>Foreign Securities Purchases</title>
+		<country>CAD</country>
+		<date><![CDATA[12-17-2021]]></date>
+		<time><![CDATA[1:30pm]]></time>
+		<impact><![CDATA[Low]]></impact>
+		<forecast><![CDATA[18.50B]]></forecast>
+		<previous><![CDATA[20.02B]]></previous>
+	</event>
+	<event>
+		<title>FOMC Member Waller Speaks</title>
+		<country>USD</country>
+		<date><![CDATA[12-17-2021]]></date>
+		<time><![CDATA[6:00pm]]></time>
+		<impact><![CDATA[Medium]]></impact>
+		<forecast />
+		<previous />
+	</event>
+</weeklyevents>

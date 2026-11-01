@@ -1,0 +1,10 @@
+NDX10 Unlocked Indicators Instructions
+
+Copy & Paste Indicators, Experts & Templates in the corresponding MT4 Folder.  
+
+Add the arrows file (images Folder) to the images subfolder in MT4.
+
+Restart your Mt4.  
+
+Apply the template you need.
+
