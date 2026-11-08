@@ -1,0 +1,604 @@
+{
+  "ftmo_standard": {
+    "firm_id": "ftmo_standard",
+    "name": "FTMO (Standard 2-Step)",
+    "market": "Forex & CFDs",
+    "total_phases": 2,
+    "phases": [
+      {
+        "phase": 1,
+        "target_pct": 10.0,
+        "min_days": 4,
+        "max_days": null
+      },
+      {
+        "phase": 2,
+        "target_pct": 5.0,
+        "min_days": 4,
+        "max_days": null
+      }
+    ],
+    "daily_drawdown_pct": 5.0,
+    "max_drawdown_pct": 10.0,
+    "drawdown_type": "Static",
+    "daily_drawdown_type": "Equity",
+    "weekend_holding": false,
+    "news_trading": false,
+    "consistency_rule": false,
+    "profit_split_pct": 80.0,
+    "notes": "Gold standard retail firm. Static max drawdown from initial balance. Daily loss calculated from start-of-day balance/equity max."
+  },
+  "ftmo_aggressive": {
+    "firm_id": "ftmo_aggressive",
+    "name": "FTMO (Aggressive 2-Step)",
+    "market": "Forex & CFDs",
+    "total_phases": 2,
+    "phases": [
+      {
+        "phase": 1,
+        "target_pct": 20.0,
+        "min_days": 4,
+        "max_days": null
+      },
+      {
+        "phase": 2,
+        "target_pct": 10.0,
+        "min_days": 4,
+        "max_days": null
+      }
+    ],
+    "daily_drawdown_pct": 10.0,
+    "max_drawdown_pct": 20.0,
+    "drawdown_type": "Static",
+    "daily_drawdown_type": "Equity",
+    "weekend_holding": false,
+    "news_trading": false,
+    "consistency_rule": false,
+    "profit_split_pct": 80.0,
+    "notes": "Double targets and double drawdowns. Suitable for higher volatility strategies."
+  },
+  "funding_pips_2step": {
+    "firm_id": "funding_pips_2step",
+    "name": "Funding Pips (Student 2-Step)",
+    "market": "Forex & CFDs",
+    "total_phases": 2,
+    "phases": [
+      {
+        "phase": 1,
+        "target_pct": 8.0,
+        "min_days": 0,
+        "max_days": null
+      },
+      {
+        "phase": 2,
+        "target_pct": 5.0,
+        "min_days": 0,
+        "max_days": null
+      }
+    ],
+    "daily_drawdown_pct": 5.0,
+    "max_drawdown_pct": 10.0,
+    "drawdown_type": "Static",
+    "daily_drawdown_type": "Equity",
+    "weekend_holding": true,
+    "news_trading": true,
+    "consistency_rule": false,
+    "profit_split_pct": 85.0,
+    "notes": "Zero minimum trading days. Static 10% drawdown."
+  },
+  "funding_pips_1step": {
+    "firm_id": "funding_pips_1step",
+    "name": "Funding Pips (Master 1-Step)",
+    "market": "Forex & CFDs",
+    "total_phases": 1,
+    "phases": [
+      {
+        "phase": 1,
+        "target_pct": 12.0,
+        "min_days": 0,
+        "max_days": null
+      }
+    ],
+    "daily_drawdown_pct": 3.0,
+    "max_drawdown_pct": 6.0,
+    "drawdown_type": "Relative",
+    "daily_drawdown_type": "Equity",
+    "weekend_holding": true,
+    "news_trading": true,
+    "consistency_rule": false,
+    "profit_split_pct": 90.0,
+    "notes": "1-step evaluation with tighter 3% daily and 6% trailing drawdown."
+  },
+  "the5ers_high_stakes": {
+    "firm_id": "the5ers_high_stakes",
+    "name": "The 5%ers (High Stakes 2-Step)",
+    "market": "Forex & CFDs",
+    "total_phases": 2,
+    "phases": [
+      {
+        "phase": 1,
+        "target_pct": 8.0,
+        "min_days": 3,
+        "max_days": null
+      },
+      {
+        "phase": 2,
+        "target_pct": 5.0,
+        "min_days": 3,
+        "max_days": null
+      }
+    ],
+    "daily_drawdown_pct": 5.0,
+    "max_drawdown_pct": 10.0,
+    "drawdown_type": "Static",
+    "daily_drawdown_type": "Balance",
+    "weekend_holding": true,
+    "news_trading": true,
+    "consistency_rule": false,
+    "profit_split_pct": 80.0,
+    "notes": "Balance-based daily loss limit (more lenient than equity-based). Scaling plan up to $4M."
+  },
+  "the5ers_bootcamp": {
+    "firm_id": "the5ers_bootcamp",
+    "name": "The 5%ers (Bootcamp 3-Step)",
+    "market": "Forex & CFDs",
+    "total_phases": 3,
+    "phases": [
+      {
+        "phase": 1,
+        "target_pct": 6.0,
+        "min_days": 0,
+        "max_days": null
+      },
+      {
+        "phase": 2,
+        "target_pct": 6.0,
+        "min_days": 0,
+        "max_days": null
+      },
+      {
+        "phase": 3,
+        "target_pct": 6.0,
+        "min_days": 0,
+        "max_days": null
+      }
+    ],
+    "daily_drawdown_pct": 0.0,
+    "max_drawdown_pct": 5.0,
+    "drawdown_type": "Static",
+    "daily_drawdown_type": "None",
+    "weekend_holding": true,
+    "news_trading": true,
+    "consistency_rule": false,
+    "profit_split_pct": 85.0,
+    "notes": "Low cost, 3 phases at 6% target, strict 5% max drawdown with no daily loss limit."
+  },
+  "topstep_combine": {
+    "firm_id": "topstep_combine",
+    "name": "Topstep (Trading Combine Futures)",
+    "market": "CME Futures",
+    "total_phases": 1,
+    "phases": [
+      {
+        "phase": 1,
+        "target_pct": 6.0,
+        "min_days": 2,
+        "max_days": null
+      }
+    ],
+    "daily_drawdown_pct": 2.0,
+    "max_drawdown_pct": 4.0,
+    "drawdown_type": "Trailing_EOD",
+    "daily_drawdown_type": "Equity",
+    "weekend_holding": false,
+    "news_trading": true,
+    "consistency_rule": true,
+    "profit_split_pct": 90.0,
+    "notes": "Premier futures firm. End-of-Day (EOD) trailing drawdown locks at initial balance."
+  },
+  "apex_futures": {
+    "firm_id": "apex_futures",
+    "name": "Apex Trader Funding (Futures Trailing)",
+    "market": "CME Futures",
+    "total_phases": 1,
+    "phases": [
+      {
+        "phase": 1,
+        "target_pct": 6.0,
+        "min_days": 1,
+        "max_days": null
+      }
+    ],
+    "daily_drawdown_pct": 0.0,
+    "max_drawdown_pct": 5.0,
+    "drawdown_type": "Trailing_Intraday",
+    "daily_drawdown_type": "None",
+    "weekend_holding": false,
+    "news_trading": true,
+    "consistency_rule": false,
+    "profit_split_pct": 90.0,
+    "notes": "Intraday trailing peak drawdown (trails open unrealized profits). High mathematical ruin rate if trades aren't capped."
+  },
+  "fundednext_stellar_2step": {
+    "firm_id": "fundednext_stellar_2step",
+    "name": "FundedNext (Stellar 2-Step)",
+    "market": "Forex & CFDs",
+    "total_phases": 2,
+    "phases": [
+      {
+        "phase": 1,
+        "target_pct": 8.0,
+        "min_days": 5,
+        "max_days": null
+      },
+      {
+        "phase": 2,
+        "target_pct": 5.0,
+        "min_days": 5,
+        "max_days": null
+      }
+    ],
+    "daily_drawdown_pct": 5.0,
+    "max_drawdown_pct": 10.0,
+    "drawdown_type": "Static",
+    "daily_drawdown_type": "Balance",
+    "weekend_holding": true,
+    "news_trading": true,
+    "consistency_rule": false,
+    "profit_split_pct": 80.0,
+    "notes": "Balance-based daily loss limit with 15% profit sharing during challenge phase."
+  },
+  "fundednext_stellar_1step": {
+    "firm_id": "fundednext_stellar_1step",
+    "name": "FundedNext (Stellar 1-Step)",
+    "market": "Forex & CFDs",
+    "total_phases": 1,
+    "phases": [
+      {
+        "phase": 1,
+        "target_pct": 10.0,
+        "min_days": 2,
+        "max_days": null
+      }
+    ],
+    "daily_drawdown_pct": 3.0,
+    "max_drawdown_pct": 6.0,
+    "drawdown_type": "Trailing_EOD",
+    "daily_drawdown_type": "Balance",
+    "weekend_holding": true,
+    "news_trading": true,
+    "consistency_rule": false,
+    "profit_split_pct": 90.0,
+    "notes": "1-step challenge with 10% target, 3% daily, 6% trailing."
+  },
+  "e8_markets_classic": {
+    "firm_id": "e8_markets_classic",
+    "name": "E8 Markets (E8 Classic 2-Step)",
+    "market": "Forex & CFDs",
+    "total_phases": 2,
+    "phases": [
+      {
+        "phase": 1,
+        "target_pct": 8.0,
+        "min_days": 0,
+        "max_days": null
+      },
+      {
+        "phase": 2,
+        "target_pct": 4.0,
+        "min_days": 0,
+        "max_days": null
+      }
+    ],
+    "daily_drawdown_pct": 4.0,
+    "max_drawdown_pct": 8.0,
+    "drawdown_type": "Relative",
+    "daily_drawdown_type": "Equity",
+    "weekend_holding": true,
+    "news_trading": true,
+    "consistency_rule": false,
+    "profit_split_pct": 80.0,
+    "notes": "E8 custom dashboard with dynamic trailing drawdown that locks at initial balance."
+  },
+  "e8_markets_track": {
+    "firm_id": "e8_markets_track",
+    "name": "E8 Markets (E8 Track 3-Step)",
+    "market": "Forex & CFDs",
+    "total_phases": 3,
+    "phases": [
+      {
+        "phase": 1,
+        "target_pct": 5.0,
+        "min_days": 0,
+        "max_days": null
+      },
+      {
+        "phase": 2,
+        "target_pct": 5.0,
+        "min_days": 0,
+        "max_days": null
+      },
+      {
+        "phase": 3,
+        "target_pct": 5.0,
+        "min_days": 0,
+        "max_days": null
+      }
+    ],
+    "daily_drawdown_pct": 4.0,
+    "max_drawdown_pct": 8.0,
+    "drawdown_type": "Relative",
+    "daily_drawdown_type": "Equity",
+    "weekend_holding": true,
+    "news_trading": true,
+    "consistency_rule": false,
+    "profit_split_pct": 80.0,
+    "notes": "3-step evaluation with 5% target each phase."
+  },
+  "alpha_capital_pro": {
+    "firm_id": "alpha_capital_pro",
+    "name": "Alpha Capital Group (Alpha Pro 2-Step)",
+    "market": "Forex & CFDs",
+    "total_phases": 2,
+    "phases": [
+      {
+        "phase": 1,
+        "target_pct": 8.0,
+        "min_days": 0,
+        "max_days": null
+      },
+      {
+        "phase": 2,
+        "target_pct": 5.0,
+        "min_days": 0,
+        "max_days": null
+      }
+    ],
+    "daily_drawdown_pct": 5.0,
+    "max_drawdown_pct": 10.0,
+    "drawdown_type": "Static",
+    "daily_drawdown_type": "Equity",
+    "weekend_holding": true,
+    "news_trading": true,
+    "consistency_rule": false,
+    "profit_split_pct": 80.0,
+    "notes": "Raw spread zero commission broker structure with zero minimum trading days."
+  },
+  "city_traders_imperium": {
+    "firm_id": "city_traders_imperium",
+    "name": "City Traders Imperium (Challenge 2-Step)",
+    "market": "Forex & CFDs",
+    "total_phases": 2,
+    "phases": [
+      {
+        "phase": 1,
+        "target_pct": 9.0,
+        "min_days": 5,
+        "max_days": null
+      },
+      {
+        "phase": 2,
+        "target_pct": 5.0,
+        "min_days": 5,
+        "max_days": null
+      }
+    ],
+    "daily_drawdown_pct": 4.0,
+    "max_drawdown_pct": 8.0,
+    "drawdown_type": "Static",
+    "daily_drawdown_type": "Equity",
+    "weekend_holding": true,
+    "news_trading": true,
+    "consistency_rule": false,
+    "profit_split_pct": 80.0,
+    "notes": "Institutional prop firm with strict risk management culture."
+  },
+  "blue_guardian": {
+    "firm_id": "blue_guardian",
+    "name": "Blue Guardian (Unlimited 2-Step)",
+    "market": "Forex & CFDs",
+    "total_phases": 2,
+    "phases": [
+      {
+        "phase": 1,
+        "target_pct": 8.0,
+        "min_days": 0,
+        "max_days": null
+      },
+      {
+        "phase": 2,
+        "target_pct": 4.0,
+        "min_days": 0,
+        "max_days": null
+      }
+    ],
+    "daily_drawdown_pct": 4.0,
+    "max_drawdown_pct": 8.0,
+    "drawdown_type": "Static",
+    "daily_drawdown_type": "Equity",
+    "weekend_holding": true,
+    "news_trading": true,
+    "consistency_rule": false,
+    "profit_split_pct": 85.0,
+    "notes": "Guardian Protector feature automatically stops trading before daily limit breach."
+  },
+  "the_funded_trader_standard": {
+    "firm_id": "the_funded_trader_standard",
+    "name": "The Funded Trader (Standard 2-Step)",
+    "market": "Forex & CFDs",
+    "total_phases": 2,
+    "phases": [
+      {
+        "phase": 1,
+        "target_pct": 10.0,
+        "min_days": 3,
+        "max_days": null
+      },
+      {
+        "phase": 2,
+        "target_pct": 5.0,
+        "min_days": 3,
+        "max_days": null
+      }
+    ],
+    "daily_drawdown_pct": 5.0,
+    "max_drawdown_pct": 10.0,
+    "drawdown_type": "Static",
+    "daily_drawdown_type": "Equity",
+    "weekend_holding": false,
+    "news_trading": false,
+    "consistency_rule": false,
+    "profit_split_pct": 80.0,
+    "notes": "10% and 5% targets, static 10% maximum drawdown."
+  },
+  "goat_funded_trader": {
+    "firm_id": "goat_funded_trader",
+    "name": "Goat Funded Trader (Classic 2-Step)",
+    "market": "Forex & CFDs",
+    "total_phases": 2,
+    "phases": [
+      {
+        "phase": 1,
+        "target_pct": 8.0,
+        "min_days": 0,
+        "max_days": null
+      },
+      {
+        "phase": 2,
+        "target_pct": 5.0,
+        "min_days": 0,
+        "max_days": null
+      }
+    ],
+    "daily_drawdown_pct": 4.0,
+    "max_drawdown_pct": 8.0,
+    "drawdown_type": "Static",
+    "daily_drawdown_type": "Balance",
+    "weekend_holding": true,
+    "news_trading": true,
+    "consistency_rule": false,
+    "profit_split_pct": 80.0,
+    "notes": "Balance-based daily loss limit with no time limit."
+  },
+  "fxify_2step": {
+    "firm_id": "fxify_2step",
+    "name": "FXIFY (2-Step Assessment)",
+    "market": "Forex & CFDs",
+    "total_phases": 2,
+    "phases": [
+      {
+        "phase": 1,
+        "target_pct": 10.0,
+        "min_days": 5,
+        "max_days": null
+      },
+      {
+        "phase": 2,
+        "target_pct": 5.0,
+        "min_days": 5,
+        "max_days": null
+      }
+    ],
+    "daily_drawdown_pct": 5.0,
+    "max_drawdown_pct": 10.0,
+    "drawdown_type": "Static",
+    "daily_drawdown_type": "Equity",
+    "weekend_holding": true,
+    "news_trading": true,
+    "consistency_rule": false,
+    "profit_split_pct": 85.0,
+    "notes": "Customizable leverage up to 1:50, automated payout on demand."
+  },
+  "take_profit_trader": {
+    "firm_id": "take_profit_trader",
+    "name": "Take Profit Trader (ProDay Futures)",
+    "market": "CME Futures",
+    "total_phases": 1,
+    "phases": [
+      {
+        "phase": 1,
+        "target_pct": 6.0,
+        "min_days": 5,
+        "max_days": null
+      }
+    ],
+    "daily_drawdown_pct": 2.2,
+    "max_drawdown_pct": 4.0,
+    "drawdown_type": "Trailing_EOD",
+    "daily_drawdown_type": "Equity",
+    "weekend_holding": false,
+    "news_trading": true,
+    "consistency_rule": true,
+    "profit_split_pct": 80.0,
+    "notes": "Day 1 withdrawals allowed upon funding, EOD trailing drawdown."
+  },
+  "tradeday_evaluation": {
+    "firm_id": "tradeday_evaluation",
+    "name": "TradeDay (Futures Evaluation)",
+    "market": "CME Futures",
+    "total_phases": 1,
+    "phases": [
+      {
+        "phase": 1,
+        "target_pct": 6.0,
+        "min_days": 7,
+        "max_days": null
+      }
+    ],
+    "daily_drawdown_pct": 2.0,
+    "max_drawdown_pct": 4.0,
+    "drawdown_type": "Trailing_EOD",
+    "daily_drawdown_type": "Equity",
+    "weekend_holding": false,
+    "news_trading": true,
+    "consistency_rule": true,
+    "profit_split_pct": 90.0,
+    "notes": "CFTC regulated backing, strict consistency rules, EOD trailing."
+  },
+  "earn2trade_tcp": {
+    "firm_id": "earn2trade_tcp",
+    "name": "Earn2Trade (Trader Career Path)",
+    "market": "CME Futures",
+    "total_phases": 1,
+    "phases": [
+      {
+        "phase": 1,
+        "target_pct": 6.0,
+        "min_days": 10,
+        "max_days": null
+      }
+    ],
+    "daily_drawdown_pct": 2.2,
+    "max_drawdown_pct": 4.0,
+    "drawdown_type": "Trailing_EOD",
+    "daily_drawdown_type": "Equity",
+    "weekend_holding": false,
+    "news_trading": true,
+    "consistency_rule": true,
+    "profit_split_pct": 80.0,
+    "notes": "Structured career progression path from $25k to $400k account."
+  },
+  "bulenox_master": {
+    "firm_id": "bulenox_master",
+    "name": "Bulenox (Futures Master Trailing)",
+    "market": "CME Futures",
+    "total_phases": 1,
+    "phases": [
+      {
+        "phase": 1,
+        "target_pct": 6.0,
+        "min_days": 5,
+        "max_days": null
+      }
+    ],
+    "daily_drawdown_pct": 0.0,
+    "max_drawdown_pct": 5.0,
+    "drawdown_type": "Trailing_Intraday",
+    "daily_drawdown_type": "None",
+    "weekend_holding": false,
+    "news_trading": true,
+    "consistency_rule": false,
+    "profit_split_pct": 90.0,
+    "notes": "Intraday trailing drawdown, no daily loss limit."
+  }
+}

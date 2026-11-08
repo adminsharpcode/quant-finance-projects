@@ -1,0 +1,23 @@
+Firm ID,Firm Name,Market,Phases,Target (%),Daily DD (%),Max DD (%),DD Type,MDI Difficulty,Pass Rate (%),Ruin Rate (%),Daily Breach (%),Avg Days
+ftmo_standard,FTMO (Standard 2-Step),Forex & CFDs,2,15.0,5.0,10.0,Static,1.5,100.0,0.0,0.0,40.229
+funding_pips_2step,Funding Pips (Student 2-Step),Forex & CFDs,2,13.0,5.0,10.0,Static,1.3,100.0,0.0,0.0,35.39
+the5ers_high_stakes,The 5%ers (High Stakes 2-Step),Forex & CFDs,2,13.0,5.0,10.0,Static,1.3,100.0,0.0,0.0,35.39
+the_funded_trader_standard,The Funded Trader (Standard 2-Step),Forex & CFDs,2,15.0,5.0,10.0,Static,1.5,100.0,0.0,0.0,40.229
+alpha_capital_pro,Alpha Capital Group (Alpha Pro 2-Step),Forex & CFDs,2,13.0,5.0,10.0,Static,1.3,100.0,0.0,0.0,35.39
+fundednext_stellar_2step,FundedNext (Stellar 2-Step),Forex & CFDs,2,13.0,5.0,10.0,Static,1.3,100.0,0.0,0.0,35.489
+fxify_2step,FXIFY (2-Step Assessment),Forex & CFDs,2,15.0,5.0,10.0,Static,1.5,100.0,0.0,0.0,40.315
+blue_guardian,Blue Guardian (Unlimited 2-Step),Forex & CFDs,2,12.0,4.0,8.0,Static,1.58,100.0,0.0,0.0,32.89
+goat_funded_trader,Goat Funded Trader (Classic 2-Step),Forex & CFDs,2,13.0,4.0,8.0,Static,1.71,99.9,0.1,0.0,35.34134134134134
+city_traders_imperium,City Traders Imperium (Challenge 2-Step),Forex & CFDs,2,14.0,4.0,8.0,Static,1.84,99.8,0.2,0.0,37.79759519038076
+e8_markets_classic,E8 Markets (E8 Classic 2-Step),Forex & CFDs,2,12.0,4.0,8.0,Relative,2.05,99.5,0.5,0.0,32.66030150753769
+e8_markets_track,E8 Markets (E8 Track 3-Step),Forex & CFDs,3,15.0,4.0,8.0,Relative,2.56,99.5,0.5,0.0,42.21809045226131
+fundednext_stellar_1step,FundedNext (Stellar 1-Step),Forex & CFDs,1,10.0,3.0,6.0,Trailing_EOD,2.64,97.3,2.7,0.0,25.110996916752313
+the5ers_bootcamp,The 5%ers (Bootcamp 3-Step),Forex & CFDs,3,18.0,0.0,5.0,Static,3.6,96.8,3.1,0.0,48.731404958677686
+funding_pips_1step,Funding Pips (Master 1-Step),Forex & CFDs,1,12.0,3.0,6.0,Relative,2.95,96.7,3.3000000000000003,0.0,29.71147880041365
+ftmo_aggressive,FTMO (Aggressive 2-Step),Forex & CFDs,2,30.0,10.0,20.0,Static,1.35,96.7,0.0,0.0,72.81592554291623
+bulenox_master,Bulenox (Futures Master Trailing),CME Futures,1,6.0,0.0,5.0,Trailing_Intraday,2.64,94.39999999999999,5.6000000000000005,0.0,15.145127118644067
+apex_futures,Apex Trader Funding (Futures Trailing),CME Futures,1,6.0,0.0,5.0,Trailing_Intraday,2.64,94.39999999999999,5.6000000000000005,0.0,15.13771186440678
+topstep_combine,Topstep (Trading Combine Futures),CME Futures,1,6.0,2.0,4.0,Trailing_EOD,2.73,93.2,6.800000000000001,0.0,14.936695278969957
+take_profit_trader,Take Profit Trader (ProDay Futures),CME Futures,1,6.0,2.2,4.0,Trailing_EOD,2.63,93.2,6.800000000000001,0.0,14.947424892703863
+tradeday_evaluation,TradeDay (Futures Evaluation),CME Futures,1,6.0,2.0,4.0,Trailing_EOD,2.73,93.2,6.800000000000001,0.0,15.143776824034335
+earn2trade_tcp,Earn2Trade (Trader Career Path),CME Futures,1,6.0,2.2,4.0,Trailing_EOD,2.63,91.60000000000001,8.4,0.0,15.653930131004367

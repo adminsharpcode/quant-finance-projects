@@ -1,0 +1,35 @@
+/* Custom enhancements for PropFirm Simulator */
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #090d16;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Range input thumb glow */
+input[type=range]::-webkit-slider-thumb {
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+input[type=range]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+}
+
+/* Tab button transition */
+.tab-btn {
+  transition: all 0.15s ease-in-out;
+}

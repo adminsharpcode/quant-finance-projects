@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "propfirm-simulator-and-risk-engine"
+version = "1.0.0"
+description = "Stochastic First-Passage Survival Engine and Interactive Prop Firm Challenge Simulator across 20+ Firms"
+readme = "README.md"
+authors = [{ name = "adminsharpcode" }]
+license = { text = "MIT" }
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.26.0",
+    "pandas>=2.1.0",
+    "scipy>=1.11.0",
+    "matplotlib>=3.8.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
