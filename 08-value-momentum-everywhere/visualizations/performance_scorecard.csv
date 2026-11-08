@@ -1,0 +1,14 @@
+Metric,Value (Everywhere),Momentum (Everywhere),50/50 Combo (Risk Parity),Market Benchmark
+Total Cumulative Return (%),24.64%,44.25%,277.66%,1172.78%
+CAGR (Annualized Return %),0.89%,1.49%,5.51%,10.82%
+Annualized Volatility (%),3.26%,3.36%,8.88%,16.01%
+Sharpe Ratio,0.29,0.46,0.65,0.72
+Sortino Ratio,0.29,0.46,0.65,0.74
+Maximum Drawdown (%),-10.88%,-9.77%,-26.37%,-32.51%
+Max DD Duration (Days),2684,1315,996,558
+Calmar Ratio,0.08,0.15,0.21,0.33
+Skewness,+0.04,-0.02,-0.04,+0.01
+Excess Kurtosis,-0.07,0.14,0.09,0.00
+Daily Win Rate (%),50.11%,51.22%,51.92%,51.35%
+Profit Factor,1.05,1.08,1.11,1.12
+Annual Turnover (x),1.64,4.76,11.64,N/A

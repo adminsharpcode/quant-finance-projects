@@ -1,0 +1,14 @@
+Metric,TSMOM (12M Paper),TSMOM Multi-Horizon,Benchmark 60/40,S&P 500 (ES Long)
+Total Return (%),4063.50%,2886.69%,1484.18%,1805.47%
+CAGR (%),16.35%,14.79%,11.87%,12.71%
+Annualized Volatility (%),12.06%,12.27%,10.88%,18.82%
+Sharpe Ratio,1.32,1.19,1.09,0.73
+Sortino Ratio,1.36,1.21,1.09,0.73
+Maximum Drawdown (%),-22.54%,-21.60%,-55.51%,-80.86%
+Max DD Duration (Days),456,447,1266,1579
+Calmar Ratio,0.73,0.68,0.21,0.16
+Skewness (Convexity),-0.00,+0.05,-0.11,-0.14
+Excess Kurtosis,1.38,1.09,1.90,1.94
+Daily Win Rate (%),53.18%,53.55%,53.25%,52.63%
+Profit Factor,1.24,1.21,1.20,1.13
+Annual Turnover (x),9.55,21.78,N/A,N/A

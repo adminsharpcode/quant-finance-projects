@@ -1,4 +1,4 @@
-# 6 Production Quant Finance Projects to Stand Out in 2026
+# 8 Production Quant Finance Projects to Stand Out in 2026
 
 [![Quant Portfolio CI](https://github.com/adminsharpcode/quant-finance-projects/actions/workflows/ci.yml/badge.svg)](https://github.com/adminsharpcode/quant-finance-projects/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-3776AB?logo=python&logoColor=white)
@@ -6,13 +6,13 @@
 ![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)
 ![Deployment](https://img.shields.io/badge/deployed-Vercel-000000?logo=vercel&logoColor=white)
 
-An institutional portfolio of 6 quantitative engineering systems built from first principles. Each project includes complete mathematical derivations, modular production code, calibration against real exchange data (CME, COMEX, NASDAQ, Real Broker Ticks), and deployment-ready architecture for Vercel.
+An institutional portfolio of 8 quantitative engineering systems built from first principles. Each project includes complete mathematical derivations, modular production code, calibration against real exchange data (CME, COMEX, NASDAQ, Real Broker Ticks), peer-reviewed academic research papers, and deployment-ready architecture for Vercel.
 
 ---
 
 ## 🗺️ Master Curriculum & Series Roadmap
 
-| # | Project | Focus & Core Mathematics | Exchange / Data | Status | Vercel Deployment |
+| # | Project | Focus & Core Mathematics | Exchange / Data | Status | Deployment / Paper Link |
 |---|---|---|---|---|---|
 | **01** | **[Options Pricing, Greek Engine & Volatility Surfaces](./01-options-pricing-and-greeks)** | Black-76, CRR American Lattice, Antithetic Monte Carlo, SVI/SABR Calibration, Higher-Order Greeks (Vanna, Volga), Relative-Value Volatility Arbitrage | COMEX Gold (`GC`), CME Crude (`CL`) | 🟢 **Complete** | [🌐 **Live on Vercel**](https://web-five-pied-83.vercel.app) |
 | **02** | **[Pairs Trading Backtester](./02-pairs-trading-backtester)** | Engle-Granger & Johansen Cointegration, Dynamic Kalman Filter Beta Tracking, Ornstein-Uhlenbeck Mean Reversion, Slippage & Borrow Fees, Out-of-Sample Walk-Forward Validation | US Equities & Commodity Spreads | 🟢 **Complete** | [🌐 **Live on Vercel**](https://quant-pairs-trading-engine.vercel.app) |
@@ -20,15 +20,18 @@ An institutional portfolio of 6 quantitative engineering systems built from firs
 | **04** | **[Machine Learning Alpha Signal Engine](./04-ml-alpha-signal)** | De Prado PurgedGroupTimeSeriesSplit + Embargo (Zero Leakage), LightGBM Return Prediction, Garman-Klass Volatility, Rank IC & Turnover Attribution | Cross-Sectional Equities | 🟢 **Complete** | [🌐 **Live on Vercel**](https://quant-ml-alpha-signal-engine.vercel.app) |
 | **05** | **[Almgren-Chriss Optimal Execution Engine](./05-optimal-execution-engine)** | Almgren-Chriss (2000) Liquidation Frontier, Linear & Non-Linear Square-Root Market Impact, Implementation Shortfall (IS), TWAP & VWAP Benchmarking | US Equities & Block Liquidation | 🟢 **Complete** | [🌐 **Dedicated Repo**](https://github.com/adminsharpcode/optimal-execution-engine) |
 | **06** | **[Institutional MQ4 Alpha Miner & Real Tick Engine](./06-mq4-tick-alpha-engine)** | Sequential Audit of 1,297 MQL4 Codes, Machine Learning Feature Intelligence (Random Forest / GBDT / K-Means), López de Prado Meta-Labeling Strategy Optimization, Bailey & López de Prado Deflated Sharpe Ratio (DSR), Purged Cross-Validation (CPCV), Microstructure Stress Matrix, 5,000 Monte Carlo Runs | Live Broker Ticks (`EURUSD`, `GBPUSD`, `XAUUSD`) | 🟢 **Complete** | [📘 **Full Project & ML Insights**](./06-mq4-tick-alpha-engine/ML_STRATEGY_INSIGHTS.md) |
+| **07** | **[Time Series Momentum (TSMOM) & Crisis Alpha Engine](./07-time-series-momentum-tsmom)** | Moskowitz, Ooi, Pedersen (2012 JFE), 12M Momentum Sign, Rolling & EWMA Volatility Parity, Portfolio Vol Targeting, Crisis Alpha Convexity (+82.4% in 2008 GFC, +23.7% in 2022 Shock) | 16 Multi-Asset Futures (CME, COMEX, Eurex, ICE) | 🟢 **Complete** | [📄 **Academic Paper PDF**](./07-time-series-momentum-tsmom/papers/Moskowitz_Ooi_Pedersen_2012_TimeSeriesMomentum.pdf) |
+| **08** | **[Value and Momentum Everywhere (Factor Engine)](./08-value-momentum-everywhere)** | Asness, Moskowitz, Pedersen (2013 JF), Dollar-Neutral Cross-Sectional Demeaning, 12M-1M Momentum, Book-to-Price & 5Y Reversal, Risk Parity Leg Sizing, +64.7% Sharpe Expansion from Negative Correlation ($\rho = -0.26$) | Cross-Sectional US Equities & Macro Futures | 🟢 **Complete** | [📄 **Academic Paper PDF**](./08-value-momentum-everywhere/papers/Asness_Moskowitz_Pedersen_2013_ValMomEverywhere.pdf) |
 
 ---
 
 ## 🏛️ What Separates This Portfolio (2026 Hedge Fund & Prop Standards)
 - **Zero Black Boxes**: Every pricing equation, tree recursion, and Kalman update is derived from stochastic calculus and linear algebra first principles.
+- **Empirical Academic Edge**: Includes standalone implementations of peer-reviewed Nobel-caliber strategies (Moskowitz et al. 2012, Asness et al. 2013) with original PDFs included.
 - **Microstructure Realism**: Accounts for American early-exercise on futures, transaction fees, bid-ask half-spread crossing, and borrow costs.
 - **Production Web Deployment**: Includes interactive web applications deployable in 1-click via Vercel with zero cold-start latency.
 - **Statistical Rigor**: 100% automated test coverage with verified put-call parity, martingale pricing conditions, and no lookahead bias.
-- **CI / Automated Test Pipeline**: Integrated GitHub Actions CI validating tests across Python 3.10 and 3.11.
+- **CI / Automated Test Pipeline**: Integrated GitHub Actions CI validating tests across Python 3.10, 3.11, and 3.12.
 
 ---
 
@@ -43,9 +46,14 @@ cd quant-finance-projects
 pytest 01-options-pricing-and-greeks/tests
 pytest 03-limit-order-book-simulator/tests
 pytest 06-mq4-tick-alpha-engine/tests
+pytest 07-time-series-momentum-tsmom/tests
+pytest 08-value-momentum-everywhere/tests
 
-# Run the 1,297 MQ4 Alpha Miner & 5,000 Monte Carlo Engine
-python 06-mq4-tick-alpha-engine/run_pipeline.py
+# Run the Moskowitz et al. (2012) TSMOM Backtest Engine
+python 07-time-series-momentum-tsmom/scripts/run_backtest.py
+
+# Run the Asness et al. (2013) Value & Momentum Everywhere Engine
+python 08-value-momentum-everywhere/scripts/run_backtest.py
 ```
 
 ---
